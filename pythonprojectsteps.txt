@@ -1,5 +1,5 @@
 Create venv
-Python –m venv vehicleenv
+python –m venv vehicleenv
 #activate
 .venv\Scripts\activate
 If it is bash shell in github codespaces
