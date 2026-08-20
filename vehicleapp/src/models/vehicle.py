@@ -4,8 +4,7 @@ class Vehicle:
         #private attributes have double underscore prefix
         self.__vin = vin
         self.__model = model
-        if not self.validate_battery_kwh():
-            raise ValueError("Battery capacity cannot be negative.")
+        self.validate_battery_kwh(battery_kwh)
         self.__battery_kwh = battery_kwh
 
     #getter methods for private attributes
@@ -15,14 +14,12 @@ class Vehicle:
 
     @battery_kwh.setter
     def battery_kwh(self, value):
-        if not self.validate_battery_kwh():
-            raise ValueError("Battery capacity cannot be negative.")
+        self.validate_battery_kwh(value)
         self.__battery_kwh = value
 
-    def validate_battery_kwh(self):
-        if self.__battery_kwh < 0:
-            return False
-        return True
+    def validate_battery_kwh(self, value):
+        if value < 0:
+            raise ValueError("Battery capacity cannot be negative.")
 
     #user friendly representation of the object
     def __str__(self):
