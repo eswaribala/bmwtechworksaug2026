@@ -1,0 +1,6 @@
+pyproject.toml
+src/vehicle_app.egg-info/PKG-INFO
+src/vehicle_app.egg-info/SOURCES.txt
+src/vehicle_app.egg-info/dependency_links.txt
+src/vehicle_app.egg-info/requires.txt
+src/vehicle_app.egg-info/top_level.txt
