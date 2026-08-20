@@ -1,9 +1,9 @@
 Create venv
 python –m venv vehicleenv
 #activate
-.venv\Scripts\activate
+vehicleenv\Scripts\activate
 If it is bash shell in github codespaces
-source venv/bin/activate
+source vehicleenv/bin/activate
 Ctrl+shift+p open folder for specific
 #install dependencies from pyproject.toml
 pip install -e .
