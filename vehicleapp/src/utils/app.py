@@ -8,8 +8,11 @@ def create_vehicle_object(vehicle_data):
     return vehicle_object
 
 if __name__ == "__main__":  
-   create_vehicle_object({
+  instance= create_vehicle_object({
        'vin': '1HGCM82633A004352',
          'model': 'BMW i3',
          'battery_kwh': 87.5
    })
+  instance.battery_kwh = -87.5
+  print(instance)
+  print(repr(instance))
