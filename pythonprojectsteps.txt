@@ -1,0 +1,13 @@
+Create venv
+Python –m venv vehicleenv
+#activate
+.venv\Scripts\activate
+If it is bash shell in github codespaces
+source venv/bin/activate
+Ctrl+shift+p open folder for specific
+#install dependencies from pyproject.toml
+pip install -e .
+
+python -m pip install pytest
+# run pytest
+pytest
