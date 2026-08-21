@@ -33,11 +33,137 @@
             
   <section id="vehicleapp-documentation">
 <h1>vehicleapp documentation<a class="headerlink" href="#vehicleapp-documentation" title="Link to this heading">¶</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
-<div class="toctree-wrapper compound">
-</div>
+<section id="vehicle-application-documentation">
+<h2>Vehicle Application Documentation<a class="headerlink" href="#vehicle-application-documentation" title="Link to this heading">¶</a></h2>
+<p>This documentation is generated automatically from Python docstrings.</p>
+</section>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#utils.app.create_vehicle_object" title="utils.app.create_vehicle_object"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_vehicle_object()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#models.vehicle.Vehicle" title="models.vehicle.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p></li>
+<li><p><a class="reference internal" href="#models.electric_vehicle.ElectricVehicle" title="models.electric_vehicle.ElectricVehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElectricVehicle</span></code></a></p></li>
+<li><p><a class="reference internal" href="#models.hybrid_vehicle.HybridVehicle" title="models.hybrid_vehicle.HybridVehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">HybridVehicle</span></code></a></p></li>
+<li><p><a class="reference internal" href="#models.fuel_type.FuelType" title="models.fuel_type.FuelType"><code class="xref py py-class docutils literal notranslate"><span class="pre">FuelType</span></code></a></p></li>
+</ul>
+</section>
+<section id="module-utils.app">
+<span id="application-utilities"></span><h2>Application Utilities<a class="headerlink" href="#module-utils.app" title="Link to this heading">¶</a></h2>
+<p>Utility functions for creating vehicle objects.</p>
+<p>This module creates ElectricVehicle or HybridVehicle objects
+based on the supplied vehicle data.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.app.create_vehicle_object">
+<span class="sig-prename descclassname"><span class="pre">utils.app.</span></span><span class="sig-name descname"><span class="pre">create_vehicle_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.app.create_vehicle_object" title="Link to this definition">¶</a></dt>
+<dd><p>Create a vehicle object based on the provided vehicle data.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">fuel_type</span></code> is None, an ElectricVehicle object is created.
+Otherwise, a HybridVehicle object is created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vehicle_data</strong> (<em>dict</em>) – Dictionary containing vehicle information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created ElectricVehicle or HybridVehicle object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#models.vehicle.Vehicle" title="models.vehicle.Vehicle">Vehicle</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-models.vehicle">
+<span id="vehicle"></span><h2>Vehicle<a class="headerlink" href="#module-models.vehicle" title="Link to this heading">¶</a></h2>
+<p>Vehicle class representing a vehicle with VIN and model.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.vehicle.Vehicle">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">models.vehicle.</span></span><span class="sig-name descname"><span class="pre">Vehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#models.vehicle.Vehicle" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initialize a Vehicle instance with VIN and model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vin</strong> (<em>str</em>) – The Vehicle Identification Number.</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – The model of the vehicle.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-models.electric_vehicle">
+<span id="electric-vehicle"></span><h2>Electric Vehicle<a class="headerlink" href="#module-models.electric_vehicle" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.electric_vehicle.ElectricVehicle">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">models.electric_vehicle.</span></span><span class="sig-name descname"><span class="pre">ElectricVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">battery_capacity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#models.electric_vehicle.ElectricVehicle" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.vehicle.Vehicle" title="models.vehicle.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+<p>Initialize an ElectricVehicle instance with VIN, model, and battery capacity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vin</strong> (<em>str</em>) – The Vehicle Identification Number.</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – The model of the vehicle.</p></li>
+<li><p><strong>battery_capacity</strong> (<em>float</em>) – The battery capacity of the electric vehicle.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="models.electric_vehicle.ElectricVehicle.battery_capacity">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">battery_capacity</span></span><a class="headerlink" href="#models.electric_vehicle.ElectricVehicle.battery_capacity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.electric_vehicle.ElectricVehicle.validate_battery_capacity">
+<span class="sig-name descname"><span class="pre">validate_battery_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">battery_capacity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#models.electric_vehicle.ElectricVehicle.validate_battery_capacity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.hybrid_vehicle">
+<span id="hybrid-vehicle"></span><h2>Hybrid Vehicle<a class="headerlink" href="#module-models.hybrid_vehicle" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.hybrid_vehicle.HybridVehicle">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">models.hybrid_vehicle.</span></span><span class="sig-name descname"><span class="pre">HybridVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuel_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">battery_capacity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#models.hybrid_vehicle.HybridVehicle" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.vehicle.Vehicle" title="models.vehicle.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+<p>Initialize a HybridVehicle instance with VIN, model, fuel type, and battery capacity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vin</strong> (<em>str</em>) – The Vehicle Identification Number.</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – The model of the vehicle.</p></li>
+<li><p><strong>fuel_type</strong> (<em>str</em>) – The fuel type of the hybrid vehicle.</p></li>
+<li><p><strong>battery_capacity</strong> (<em>float</em>) – The battery capacity of the hybrid vehicle.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-models.fuel_type">
+<span id="fuel-type"></span><h2>Fuel Type<a class="headerlink" href="#module-models.fuel_type" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.fuel_type.FuelType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">models.fuel_type.</span></span><span class="sig-name descname"><span class="pre">FuelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#models.fuel_type.FuelType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.fuel_type.FuelType.DIESEL">
+<span class="sig-name descname"><span class="pre">DIESEL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Diesel'</span></span><a class="headerlink" href="#models.fuel_type.FuelType.DIESEL" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.fuel_type.FuelType.GAS">
+<span class="sig-name descname"><span class="pre">GAS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Gas'</span></span><a class="headerlink" href="#models.fuel_type.FuelType.GAS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.fuel_type.FuelType.PETROL">
+<span class="sig-name descname"><span class="pre">PETROL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Petrol'</span></span><a class="headerlink" href="#models.fuel_type.FuelType.PETROL" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
 
