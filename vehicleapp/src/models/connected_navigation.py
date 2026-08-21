@@ -19,3 +19,7 @@ class ConnectedNavigation(NavigationSystem):
         # Implement logic to update the map data
         print("Updating map data for connected navigation.")
         self.navigation_data = new_map_data
+    #destructor
+    def __del__(self):
+        # Clean up resources if needed
+        print("Cleaning up ConnectedNavigation resources.")

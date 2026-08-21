@@ -24,3 +24,5 @@ if __name__ == "__main__":
 
     print(f"Route: {route}")
     print(f"Current Location: {current_location}")
+
+    del navigation_app  # Explicitly call the destructor to clean up resources
