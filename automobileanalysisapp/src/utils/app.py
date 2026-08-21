@@ -1,3 +1,4 @@
+from models.carconfig import car_frozen_set
 from models.users import create_users
 from models.projects import create_projects
 from models.mapper import create_mapper
@@ -26,3 +27,6 @@ if __name__ == "__main__":
     print(f"Union: {union_set}")
     print(f"Intersection: {intersection_set}")
     print(f"Difference: {difference_set}")
+    #call the frozen set function from carconfig.py
+    frozen_features = car_frozen_set()
+    print(f"Frozen Features: {frozen_features}")
