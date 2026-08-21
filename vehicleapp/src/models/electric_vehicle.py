@@ -9,9 +9,9 @@ class ElectricVehicle(ElectricSystem,Vehicle):
             model (str): The model of the vehicle.
             battery_capacity (float): The battery capacity of the electric vehicle.
     """
-    def __init__(self, vin, model, battery_capacity, voltage=0, current=0):
+    def __init__(self, vin, model, battery_capacity, voltage=0, current=0,adas_system=None):
         ElectricSystem.__init__(self, voltage=voltage, current=current)  # Initialize ElectricSystem with provided values
-        Vehicle.__init__(self, vin, model)
+        Vehicle.__init__(self, vin, model, adas_system=adas_system)
         self.validate_battery_capacity(battery_capacity)
         self.__battery_capacity = battery_capacity
     """Battery capacity of the electric vehicle."""
@@ -44,7 +44,8 @@ class ElectricVehicle(ElectricSystem,Vehicle):
             str: A string containing the VIN, model, and battery capacity of the electric vehicle.
     """
     def __str__(self):
-        return f"self._vin: {self._vin}, self._model: {self._model}, self.__battery_capacity: {self.__battery_capacity}"
+      
+        return f"{super().__str__()}, self.__battery_capacity: {self.__battery_capacity}"
 
     """Developer-friendly representation of the ElectricVehicle instance.
 

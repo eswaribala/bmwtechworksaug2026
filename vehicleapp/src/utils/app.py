@@ -6,6 +6,7 @@ based on the supplied vehicle data.
 """
 
 from models.vehicle import Vehicle
+from models.adas_system import ADASSystem
 from models.hybrid_vehicle import HybridVehicle
 from models.fuel_type import FuelType
 from models.electric_vehicle import ElectricVehicle
@@ -31,7 +32,8 @@ def create_vehicle_object(vehicle_data):
             vehicle_data["model"],
             vehicle_data["battery_capacity"],
             vehicle_data["voltage"],
-            vehicle_data["current"]
+            vehicle_data["current"],
+            vehicle_data["adas_system"]
         )
 
     else:
@@ -40,6 +42,7 @@ def create_vehicle_object(vehicle_data):
             vehicle_data["model"],
             vehicle_data["fuel_type"],
             vehicle_data["battery_capacity"],
+            vehicle_data["adas_system"],
           
         )
 
@@ -54,7 +57,8 @@ if __name__ == "__main__":
        "fuel_type": None,
         "battery_capacity": 42,
         "voltage": 220,
-        "current": 10
+        "current": 10,
+        "adas_system": ADASSystem(name="ADAS Pro", version="1.0")
     })
  
     print(instance)

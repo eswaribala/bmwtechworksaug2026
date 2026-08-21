@@ -8,10 +8,12 @@ class Vehicle:
             vin (str): The Vehicle Identification Number.
             model (str): The model of the vehicle.
     """
-    def __init__(self, vin, model):
+    def __init__(self, vin, model,adas_system=None):
         #protected attributes have double underscore prefix
         self._vin = vin
-        self._model = model        
+        self._model = model
+        #associate an ADASSystem instance with the Vehicle instance
+        self._adas_system = adas_system
 
     def power(self):
        return f"Vehicle {self._model} with VIN {self._vin} is powered on."
@@ -23,7 +25,7 @@ class Vehicle:
             str: A string containing the VIN and model of the vehicle.
     """
     def __str__(self):
-        return f"self._vin: {self._vin}, self._model: {self._model}, "
+        return f"self._vin: {self._vin}, self._model: {self._model}, self._adas_system: {self._adas_system.activate()}"
     #developers friendly representation of the object
     """ Developer-friendly representation of the Vehicle instance.
 
