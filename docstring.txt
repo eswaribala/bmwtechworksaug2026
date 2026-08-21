@@ -7,4 +7,4 @@ python -m pip install sphinx
 4.run sphinx-quickstart
 5.It will create .rst file under source folder
 6.To generate html document
- sphinx-build –b html source build\html 
+ sphinx-build -b html source build
