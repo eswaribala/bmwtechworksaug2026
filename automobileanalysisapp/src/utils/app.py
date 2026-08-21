@@ -1,4 +1,4 @@
-from models.carconfig import car_frozen_set
+from models.carconfig import car_frozen_set, car_prize
 from models.users import create_users
 from models.projects import create_projects
 from models.mapper import create_mapper
@@ -30,3 +30,10 @@ if __name__ == "__main__":
     #call the frozen set function from carconfig.py
     frozen_features = car_frozen_set()
     print(f"Frozen Features: {frozen_features}")
+    #print the car prize dictionary
+    prize_dict = car_prize()
+    print(f"Car Prize Dictionary: {prize_dict}")
+
+    #print the users with their city and phone number
+    from models.users import fetch_users
+    fetch_users()
