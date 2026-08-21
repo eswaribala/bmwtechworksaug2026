@@ -29,7 +29,9 @@ def create_vehicle_object(vehicle_data):
         vehicle_object = ElectricVehicle(
             vehicle_data["vin"],
             vehicle_data["model"],
-            vehicle_data["battery_capacity"]
+            vehicle_data["battery_capacity"],
+            vehicle_data["voltage"],
+            vehicle_data["current"]
         )
 
     else:
@@ -37,7 +39,8 @@ def create_vehicle_object(vehicle_data):
             vehicle_data["vin"],
             vehicle_data["model"],
             vehicle_data["fuel_type"],
-            vehicle_data["battery_capacity"]
+            vehicle_data["battery_capacity"],
+          
         )
 
     return vehicle_object
@@ -48,9 +51,14 @@ if __name__ == "__main__":
     instance = create_vehicle_object({
         "vin": "1HGCM82633A004352",
         "model": "BMW i3",
-        "fuel_type": FuelType.PETROL,
-        "battery_capacity": 42
+       "fuel_type": None,
+        "battery_capacity": 42,
+        "voltage": 220,
+        "current": 10
     })
-
+ 
     print(instance)
     print(repr(instance))
+
+    #call power method
+    print(instance.power())

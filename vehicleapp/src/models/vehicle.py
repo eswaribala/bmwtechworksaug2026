@@ -13,6 +13,8 @@ class Vehicle:
         self._vin = vin
         self._model = model        
 
+    def power(self):
+       return f"Vehicle {self._model} with VIN {self._vin} is powered on."
    
     #user friendly representation of the object
     """ String representation of the Vehicle instance.

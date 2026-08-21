@@ -1,6 +1,7 @@
+from models.electric_system import ElectricSystem
 from models.vehicle import Vehicle
 """ElectricVehicle class representing an electric vehicle with VIN, model, and battery capacity."""
-class ElectricVehicle(Vehicle):
+class ElectricVehicle(ElectricSystem,Vehicle):
     """Initialize an ElectricVehicle instance with VIN, model, and battery capacity.
 
         Args:
@@ -8,8 +9,9 @@ class ElectricVehicle(Vehicle):
             model (str): The model of the vehicle.
             battery_capacity (float): The battery capacity of the electric vehicle.
     """
-    def __init__(self, vin, model, battery_capacity):
-        super().__init__(vin, model)
+    def __init__(self, vin, model, battery_capacity, voltage=0, current=0):
+        ElectricSystem.__init__(self, voltage=voltage, current=current)  # Initialize ElectricSystem with provided values
+        Vehicle.__init__(self, vin, model)
         self.validate_battery_capacity(battery_capacity)
         self.__battery_capacity = battery_capacity
     """Battery capacity of the electric vehicle."""
