@@ -1,5 +1,7 @@
 install sphinx as optional dependency
 2. install sphinx as cli tool – pip install sphinx
+or
+python -m pip install sphinx
 3. Test Sphinx
     sphinx-build –version
 4.run sphinx-quickstart
