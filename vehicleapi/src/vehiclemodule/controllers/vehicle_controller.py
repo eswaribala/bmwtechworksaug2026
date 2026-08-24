@@ -1,6 +1,4 @@
-
 from fastapi import APIRouter
-
 from vehiclemodule.dtos.vehicle_request import VehicleRequest
 from vehiclemodule.dtos.vehicle_response import VehicleResponse
 from vehiclemodule.services.vehicle_service_impl import VehicleServiceImpl
