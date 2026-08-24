@@ -4,7 +4,7 @@ from vehiclemodule.configurations.config import Config
 
 config = Config().get_database_connection_string()
 
-from sqlalchemy.ext.declarative import declarative_base
+
 base = declarative_base()
 
 engine = create_engine(config,

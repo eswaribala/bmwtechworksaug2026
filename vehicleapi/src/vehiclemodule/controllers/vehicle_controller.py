@@ -14,7 +14,7 @@ def create_vehicle(vehicle_data: VehicleRequest) -> VehicleResponse:
 
 @router.get("/{vehicle_id}", response_model=VehicleResponse)
 def get_vehicle(vehicle_id: int) -> VehicleResponse:
-    return vehicleService.get_vehicle(vehicle_id)
+    return vehicleService. get_vehicle_by_id(vehicle_id)
 
 @router.get("/", response_model=list[VehicleResponse])
 def get_all_vehicles() -> list[VehicleResponse]:
