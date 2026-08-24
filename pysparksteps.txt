@@ -1,0 +1,16 @@
+#install pyspark and check
+pip show pyspark
+
+#set python path check your project path and modify the path
+PYSPARK_PYTHON=E:\Datascience2026\pysparkws\pysparkenv\Scripts\python.exe
+
+set PYSPARK_DRIVER_PYTHON=E:\Datascience2026\pysparkws\pysparkenv\Scripts\python.exe
+
+#test 
+
+pyspark
+
+
+
+
+
