@@ -1,7 +1,6 @@
 
 from pydantic import BaseModel, Field
 
-
 class VehicleRequest(BaseModel):
     """
     VehicleRequest is a Pydantic model that represents a request for vehicle information.
@@ -16,6 +15,4 @@ class VehicleRequest(BaseModel):
     model: str = Field(..., pattern="^[a-zA-Z0-9 ]+$", max_length=50, description="The model of the vehicle.")
     year: int = Field(..., description="The year of manufacture of the vehicle.")
     vin: str = Field(..., pattern="^[A-HJ-NPR-Z0-9]{17}$", description="The Vehicle Identification Number (VIN).")
-    created_at: str = Field(...,  description="The creation timestamp of the vehicle record.")
-    updated_at: str = Field(...,  description="The last update timestamp of the vehicle record.")
-    
+   
