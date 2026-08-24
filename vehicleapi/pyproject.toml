@@ -1,0 +1,39 @@
+[project]
+name = "vehicle-crud-cli"
+version = "0.1.0"
+description = "Vehicle CRUD CLI application for managing vehicle data in a PostgreSQL database."
+authors = [
+    { name = "Paramswari", email = "parameswaribala@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [       
+    "sqlalchemy>=2.0.0",
+    
+    "cryptography>=3.0.0",
+    "pydantic>=2.0.0",
+    "pydantic[email]>=2.0.0",
+    
+    "python-dotenv>=0.19.0",
+    
+    "asyncio>=3.4.3",
+    "fastapi>=0.68.0",
+    "uvicorn>=0.15.0",
+    "psycopg[binary]>=3.3.4"   
+]
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "isort>=5.0.0",
+    
+]
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+[tool.isort]
+profile = "black"
