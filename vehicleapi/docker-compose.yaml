@@ -1,0 +1,43 @@
+services:
+
+  postgres:
+    image: postgres:17
+
+    container_name: vehicle-postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bmwdb
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - vehicle_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d bmwdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  vehicle-api:
+    build: .
+
+    container_name: vehicle-fastapi
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/bmwdb
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+volumes:
+  vehicle_postgres_data:
