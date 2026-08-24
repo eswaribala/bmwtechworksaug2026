@@ -1,5 +1,6 @@
 
-from ast import List
+from typing import List
+from datetime import datetime
 
 from vehiclemodule.configurations.postgres_conn import PGConnection
 from vehiclemodule.dtos.vehicle_request import VehicleRequest
@@ -28,7 +29,8 @@ class VehicleRepositoryImpl(VehicleRepository):
             make=vehicle_data.make,
             model=vehicle_data.model,
             year=vehicle_data.year,
-            vin=vehicle_data.vin
+            vin=vehicle_data.vin,
+            created_at=datetime.now(),
          )
          try:
             self.session.add(newVehicle)
@@ -37,9 +39,32 @@ class VehicleRepositoryImpl(VehicleRepository):
             self.session.rollback()
             raise VehicleDataException("Error occurred while creating the vehicle.")
          return newVehicle
-   def update_vehicle(self, vehicle_id: int, vehicle_data: VehicleRequest):
-         pass
+   def update_vehicle(self, vehicle_id: int, vehicle_data: VehicleRequest)-> Vehicle:
+         existing_vehicle = self.session.query(Vehicle).filter_by(id=vehicle_id).first()
+         if not existing_vehicle:
+            raise VehicleNotFoundException(f"Vehicle with ID {vehicle_id} not found.")
+         else:
+            existing_vehicle.make = vehicle_data.make
+            existing_vehicle.model = vehicle_data.model
+            existing_vehicle.year = vehicle_data.year
+            existing_vehicle.vin = vehicle_data.vin
+            existing_vehicle.updated_at = datetime.now()
+            try:
+                self.session.commit()
+            except:
+                self.session.rollback()
+                raise VehicleDataException("Error occurred while updating the vehicle.")
+            return existing_vehicle
 
    def delete_vehicle(self, vehicle_id: int) -> bool:
-        pass
+        existing_vehicle = self.session.query(Vehicle).filter_by(id=vehicle_id).first()
+        if not existing_vehicle:
+            raise VehicleNotFoundException(f"Vehicle with ID {vehicle_id} not found.")
+        try:
+            self.session.delete(existing_vehicle)
+            self.session.commit()
+            return True
+        except:
+            self.session.rollback()
+            raise VehicleDataException("Error occurred while deleting the vehicle.")
    
