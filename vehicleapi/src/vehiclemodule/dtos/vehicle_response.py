@@ -20,4 +20,4 @@ class VehicleResponse(BaseModel):
     year: int 
     vin: str  
     created_at: datetime
-    updated_at: datetimes
+    updated_at: datetime
