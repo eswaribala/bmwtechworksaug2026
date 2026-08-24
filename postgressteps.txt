@@ -1,3 +1,6 @@
+#pull the image
 docker pull postgres:17
-
+#create container
 docker run --name postgresdb -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=bmwdb -p 5432:5432 -d postgres:17
+#access postgres
+docker exec -it postgresdb psql -U postgres -d bmwdb
