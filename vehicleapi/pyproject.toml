@@ -19,7 +19,8 @@ dependencies = [
     "asyncio>=3.4.3",
     "fastapi>=0.68.0",
     "uvicorn>=0.15.0",
-    "psycopg[binary]>=3.3.4"   
+    "psycopg[binary]>=3.3.4",
+     "psycopg2-binary",  
 ]
 [project.optional-dependencies]
 dev = [
