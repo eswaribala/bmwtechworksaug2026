@@ -1,0 +1,8 @@
+pyproject.toml
+src/vehicle_crud_cli.egg-info/PKG-INFO
+src/vehicle_crud_cli.egg-info/SOURCES.txt
+src/vehicle_crud_cli.egg-info/dependency_links.txt
+src/vehicle_crud_cli.egg-info/requires.txt
+src/vehicle_crud_cli.egg-info/top_level.txt
+src/vehiclemodule/__init__.py
+src/vehiclemodule/main.py
