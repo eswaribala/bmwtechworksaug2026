@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-
+from datetime import datetime
 class VehicleResponse(BaseModel):
     """
     VehicleResponse is a Pydantic model that represents the response for vehicle information.
@@ -19,5 +19,5 @@ class VehicleResponse(BaseModel):
     model: str 
     year: int 
     vin: str  
-    created_at: str
-    updated_at: str 
+    created_at: datetime
+    updated_at: datetimes

@@ -14,7 +14,7 @@ engine = create_engine(config,
                        pool_timeout=30,
                        pool_recycle=1800)
 
-session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+sessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 class PGConnection:
     @staticmethod
@@ -23,7 +23,7 @@ class PGConnection:
 
     @staticmethod
     def get_session():
-        return session
+        return sessionLocal()
     
     @staticmethod
     def close_connection(conn):
