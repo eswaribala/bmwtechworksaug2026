@@ -28,4 +28,4 @@ USER 185
 CMD ["/opt/spark/bin/spark-submit", \
      "--master", "local[*]", \
      "--conf", "spark.ui.port=4040", \
-     "/app/src/utils/spark_pg.py"]
+     "/app/src/pysparkmodule/utils/spark_pg.py"]
