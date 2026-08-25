@@ -8,7 +8,7 @@ spark = (SparkSession.builder
          .config("spark.sql.shuffle.partitions", "4")
          .config("spark.executor.memory", "2g")
          #cluster mode
-         .master("local[*]")
+         .master("local[4,4]")
          .getOrCreate()
         )
 
@@ -49,7 +49,7 @@ split_rdd_with_failure = split_rdd.mapPartitions(simulate_failure)
 #fault tolerance
 try:
     result = split_rdd_with_failure.collect()
-    print(f"Result: {result}")
+    #print(f"Result: {result}")
     #count the number of records in the RDD after failure handling
     count_after_failure = len(result)
     print(f"Number of records in the RDD after failure handling: {count_after_failure}")
