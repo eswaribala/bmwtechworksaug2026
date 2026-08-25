@@ -1,4 +1,5 @@
 FROM apache/spark:4.2.0-python3
+FROM python:3.11-slim
 
 USER root
 
@@ -16,8 +17,7 @@ COPY pyproject.toml .
 COPY src ./src
 
 # Install dependencies and project
-RUN python -m pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir .
+RUN python -m pip install --upgrade pip setuptools wheel && pip install --no-cache-dir .
 
 # Make src packages importable
 ENV PYTHONPATH=/app/src
