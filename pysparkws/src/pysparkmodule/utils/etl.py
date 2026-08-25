@@ -13,7 +13,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 #read customer data from csv file
-customer_df = spark.read.csv("src/data/bmw_customer_1000.csv", header=True, inferSchema=True)
+customer_df = spark.read.csv("src/pysparkmodule/data/bmw_customers_1000.csv", header=True, inferSchema=True)
 
 #data cleaning
 
@@ -40,5 +40,5 @@ customer_df = customer_df.withColumn("purchase_category",
 customer_df = customer_df.filter((col("purchase_date") >= "2023-01-01") 
                                  & (col("purchase_date") <= "2025-12-31"))
 
-#save as parquet file in the reports folder
-customer_df.write.mode("overwrite").parquet("src/reports/customer_data.parquet")
+#save as csv file using pandas to avoid the error "Py4JJavaError: An error occurred while calling o42.csv. : org.apache.spark.SparkException: Task not serializable"
+customer_df.toPandas().to_csv("src/pysparkmodule/data/bmw_customers_cleaned.csv", index=False)

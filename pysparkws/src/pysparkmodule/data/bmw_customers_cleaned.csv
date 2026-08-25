@@ -1,0 +1,651 @@
+customer_id,first_name,last_name,age,model,fuel_type,city,state,vehicle_year,color,purchase_date,purchase_price_inr,annual_income_inr,financing_type,service_plan,customer_segment,annual_km_driven,satisfaction_score,purchase_category
+BMWC0001,Rahul,Reddy,42,BMW i5,Electric,Chennai,Tamil Nadu,2023,Silver,2023-05-17,12150000,3230000,Lease,Basic,Premium,26500,4.5,luxury
+BMWC0015,Diya,Verma,67,BMW 3 Series,Petrol,Hyderabad,Telangana,2024,Grey,2024-09-21,5900000,2900000,BMW Finance,Basic,Premium,23000,3.4,luxury
+BMWC0028,Harish,Gupta,26,BMW iX,Electric,Gurugram,Haryana,2023,Red,2023-01-03,14500000,5500000,Cash,Service Inclusive,Premium,28500,4.6,luxury
+BMWC0029,Karthik,Rao,54,BMW X7,Petrol,Pune,Maharashtra,2023,Black,2023-12-18,13950000,4190000,Bank Loan,Service Inclusive,Business,26000,3.6,luxury
+BMWC0035,Riya,Singh,40,BMW 5 Series,Petrol,Chennai,Tamil Nadu,2023,Red,2024-08-31,8150000,4030000,Lease,Service Inclusive,Business,18000,3.3,luxury
+BMWC0040,Aarav,Joshi,62,BMW X5,Diesel,Jaipur,Rajasthan,2025,Blue,2025-11-25,9750000,4650000,Lease,Service Inclusive,Luxury,23000,4.8,luxury
+BMWC0044,Harish,Joshi,33,BMW i4,Electric,Pune,Maharashtra,2024,White,2024-08-27,7700000,1840000,Cash,Basic,Executive,11500,4.2,luxury
+BMWC0062,Priya,Sharma,30,BMW iX,Electric,Noida,Uttar Pradesh,2023,Red,2023-10-07,14400000,4880000,Lease,Service Inclusive,Premium,29500,3.4,luxury
+BMWC0063,Divya,Kumar,56,BMW 7 Series,Petrol,Ahmedabad,Gujarat,2025,Grey,2025-07-04,18900000,8580000,Lease,Basic,Premium,13500,3.3,luxury
+BMWC0065,Ananya,Kapoor,70,BMW X7,Diesel,Kolkata,West Bengal,2023,White,2023-07-14,14300000,5860000,BMW Finance,Basic,Executive,12500,5.0,luxury
+BMWC0067,Meera,Mehta,59,BMW X3,Diesel,Kolkata,West Bengal,2024,Grey,2024-02-12,7700000,2540000,Cash,Service Inclusive,Business,27000,4.8,luxury
+BMWC0072,Nikhil,Rao,64,BMW 5 Series,Petrol,Bengaluru,Karnataka,2024,Grey,2024-02-23,8150000,3730000,Bank Loan,Service Inclusive Plus,Premium,23500,3.6,luxury
+BMWC0073,Ishita,Bose,68,BMW iX,Electric,Hyderabad,Telangana,2024,Red,2025-01-24,14250000,3250000,Bank Loan,Service Inclusive,Executive,16000,4.0,luxury
+BMWC0077,Karthik,Iyer,35,BMW iX1,Electric,Chandigarh,Chandigarh,2023,Grey,2023-06-11,7000000,2900000,Cash,Basic,Luxury,14000,4.9,luxury
+BMWC0082,Deepak,Jain,50,BMW iX1,Electric,Chennai,Tamil Nadu,2023,Black,2023-07-20,6750000,1650000,Cash,Service Inclusive,Luxury,19500,4.9,luxury
+BMWC0097,Akash,Kapoor,33,BMW X7,Diesel,Mumbai,Maharashtra,2024,Red,2024-02-18,14700000,4340000,Cash,Service Inclusive,Premium,26000,4.1,luxury
+BMWC0103,Riya,Pillai,48,BMW X7,Petrol,Chennai,Tamil Nadu,2023,Red,2023-08-11,13200000,3140000,Cash,Service Inclusive,Luxury,21000,4.3,luxury
+BMWC0107,Meera,Menon,69,BMW X3,Diesel,Kochi,Kerala,2025,White,2025-09-18,7600000,1920000,Cash,Service Inclusive Plus,Business,7500,4.3,luxury
+BMWC0108,Diya,Nair,48,BMW iX1,Electric,Chennai,Tamil Nadu,2023,White,2023-09-25,6750000,1950000,Cash,Service Inclusive,Premium,29500,3.8,luxury
+BMWC0115,Rohan,Shah,43,BMW iX1,Electric,Bengaluru,Karnataka,2023,Black,2023-05-02,6800000,1660000,Cash,Service Inclusive,Premium,18000,3.3,luxury
+BMWC0126,Nikhil,Gupta,53,BMW X1,Diesel,Coimbatore,Tamil Nadu,2022,Red,2023-03-16,5450000,2700000,Lease,Basic,Executive,9000,3.6,luxury
+BMWC0138,Nikhil,Pillai,61,BMW 2 Series Gran Coupe,Diesel,Chennai,Tamil Nadu,2025,Blue,2025-02-24,4600000,1700000,Cash,Basic,Premium,7000,4.2,premium
+BMWC0144,Rahul,Menon,45,BMW iX1,Electric,Kolkata,West Bengal,2025,Silver,2025-09-18,6850000,2970000,Bank Loan,Service Inclusive Plus,Executive,10500,3.9,luxury
+BMWC0149,Akash,Kulkarni,66,BMW X5,Diesel,Noida,Uttar Pradesh,2022,White,2023-02-13,10600000,4120000,Cash,Basic,Business,6500,3.7,luxury
+BMWC0153,Varun,Rao,33,BMW i5,Electric,Mumbai,Maharashtra,2024,Blue,2024-09-04,12250000,3950000,Bank Loan,Service Inclusive Plus,Premium,17000,3.2,luxury
+BMWC0162,Sneha,Patel,26,BMW 2 Series Gran Coupe,Diesel,Ahmedabad,Gujarat,2023,White,2023-05-08,4600000,1300000,Cash,Service Inclusive,Business,6000,3.4,premium
+BMWC0164,Sanjay,Bose,44,BMW 5 Series,Petrol,Gurugram,Haryana,2022,Silver,2023-07-18,7250000,3150000,Lease,Basic,Executive,28500,4.9,luxury
+BMWC0166,Deepak,Menon,60,BMW iX,Electric,Chennai,Tamil Nadu,2024,Red,2024-04-25,14650000,6430000,Cash,Service Inclusive,Executive,17000,4.2,luxury
+BMWC0169,Priya,Verma,43,BMW iX1,Electric,Jaipur,Rajasthan,2024,Grey,2024-02-19,6850000,3070000,Cash,Service Inclusive Plus,Business,14500,4.4,luxury
+BMWC0170,Aarav,Rao,48,BMW iX,Electric,Pune,Maharashtra,2023,Silver,2023-10-03,14650000,3130000,Lease,Service Inclusive,Luxury,12000,4.2,luxury
+BMWC0191,Varun,Menon,66,BMW i5,Electric,Mumbai,Maharashtra,2025,Grey,2025-06-08,12000000,6000000,Cash,Basic,Premium,26500,5.0,luxury
+BMWC0199,Sanjay,Pillai,49,BMW i7,Electric,Kolkata,West Bengal,2024,Red,2024-05-06,21900000,6080000,BMW Finance,Service Inclusive Plus,Luxury,18500,4.2,luxury
+BMWC0214,Ananya,Iyer,34,BMW i7,Electric,Kochi,Kerala,2023,Silver,2024-04-23,21950000,9990000,Lease,Service Inclusive,Business,7500,4.7,luxury
+BMWC0218,Suresh,Kapoor,50,BMW 7 Series,Petrol,Chennai,Tamil Nadu,2024,Black,2024-11-03,18400000,7680000,BMW Finance,Service Inclusive,Premium,29500,4.5,luxury
+BMWC0234,Nikhil,Patel,37,BMW 3 Series,Petrol,Bengaluru,Karnataka,2025,White,2025-08-15,6300000,1660000,Lease,Service Inclusive Plus,Business,15500,3.4,luxury
+BMWC0235,Nikhil,Nair,68,BMW X7,Petrol,Gurugram,Haryana,2024,Black,2024-05-23,13550000,4910000,BMW Finance,Service Inclusive Plus,Executive,10500,3.6,luxury
+BMWC0257,Sneha,Kapoor,63,BMW X5,Diesel,Ahmedabad,Gujarat,2024,Black,2024-08-26,9800000,2460000,Lease,Service Inclusive,Luxury,9500,3.7,luxury
+BMWC0272,Deepak,Gupta,46,BMW iX,Electric,Noida,Uttar Pradesh,2025,Silver,2025-07-16,14250000,4850000,BMW Finance,Service Inclusive,Premium,5000,4.3,luxury
+BMWC0279,Rahul,Verma,41,BMW 7 Series,Petrol,Jaipur,Rajasthan,2024,White,2024-12-07,18100000,5820000,Lease,Service Inclusive,Luxury,14000,4.5,luxury
+BMWC0293,Divya,Gupta,28,BMW X7,Petrol,Kolkata,West Bengal,2025,Red,2025-02-07,14350000,6570000,BMW Finance,Service Inclusive Plus,Luxury,21000,4.1,luxury
+BMWC0300,Varun,Singh,39,BMW 7 Series,Petrol,Chandigarh,Chandigarh,2025,Blue,2025-07-21,18650000,8530000,Lease,Basic,Premium,28500,4.3,luxury
+BMWC0310,Ananya,Kapoor,53,BMW i4,Electric,Hyderabad,Telangana,2024,Silver,2024-02-21,7500000,3600000,Bank Loan,Service Inclusive Plus,Luxury,10000,3.3,luxury
+BMWC0313,Sanjay,Mehta,31,BMW X1,Petrol,Hyderabad,Telangana,2023,Black,2023-02-09,5900000,2700000,Bank Loan,Service Inclusive Plus,Premium,16000,4.9,luxury
+BMWC0318,Meera,Joshi,50,BMW i5,Electric,Delhi,Delhi,2023,Silver,2023-04-03,12450000,4290000,Cash,Service Inclusive Plus,Luxury,21000,3.4,luxury
+BMWC0320,Pranav,Shah,48,BMW 7 Series,Petrol,Hyderabad,Telangana,2023,Black,2023-04-25,17600000,7720000,Cash,Service Inclusive Plus,Executive,30000,3.6,luxury
+BMWC0322,Ananya,Shah,47,BMW iX1,Electric,Delhi,Delhi,2024,White,2024-09-24,7000000,2900000,BMW Finance,Basic,Executive,5000,4.8,luxury
+BMWC0323,Vijay,Menon,35,BMW 7 Series,Petrol,Mumbai,Maharashtra,2024,Red,2024-01-12,19400000,8380000,Cash,Service Inclusive,Business,26000,4.7,luxury
+BMWC0326,Priya,Rao,51,BMW X7,Petrol,Pune,Maharashtra,2025,White,2025-05-15,13450000,6390000,Bank Loan,Service Inclusive,Premium,10500,4.7,luxury
+BMWC0330,Tanvi,Sharma,30,BMW X7,Petrol,Chandigarh,Chandigarh,2023,Silver,2023-08-04,14900000,6380000,Cash,Service Inclusive Plus,Premium,11000,3.9,luxury
+BMWC0331,Harish,Pillai,45,BMW X5,Petrol,Coimbatore,Tamil Nadu,2024,Grey,2024-04-17,10850000,2770000,Bank Loan,Service Inclusive Plus,Executive,25500,3.5,luxury
+BMWC0348,Pranav,Kumar,51,BMW X7,Petrol,Mumbai,Maharashtra,2024,Blue,2024-10-20,13400000,6680000,Cash,Service Inclusive,Premium,28000,4.1,luxury
+BMWC0350,Rahul,Gupta,32,BMW X3,Petrol,Gurugram,Haryana,2023,Blue,2023-12-21,8050000,3510000,Bank Loan,Service Inclusive,Business,23000,3.6,luxury
+BMWC0351,Sanjay,Menon,49,BMW iX,Electric,Bengaluru,Karnataka,2024,Grey,2025-06-10,14450000,5790000,Lease,Basic,Premium,9500,4.3,luxury
+BMWC0375,Priya,Menon,54,BMW iX,Electric,Kochi,Kerala,2025,Red,2025-12-09,14650000,3530000,BMW Finance,Service Inclusive Plus,Business,10500,3.5,luxury
+BMWC0376,Diya,Kulkarni,45,BMW X3,Diesel,Kolkata,West Bengal,2024,Silver,2024-02-01,7650000,3530000,BMW Finance,Service Inclusive,Executive,28000,4.0,luxury
+BMWC0379,Riya,Singh,62,BMW 5 Series,Diesel,Delhi,Delhi,2023,Red,2023-05-27,7550000,2310000,Cash,Service Inclusive Plus,Executive,7500,4.7,luxury
+BMWC0382,Nikhil,Jain,57,BMW X3,Petrol,Delhi,Delhi,2024,Silver,2025-11-30,7350000,1870000,Cash,Basic,Business,28000,3.3,luxury
+BMWC0384,Tanvi,Desai,60,BMW iX,Electric,Noida,Uttar Pradesh,2023,White,2023-02-10,14750000,5450000,BMW Finance,Basic,Executive,11000,4.4,luxury
+BMWC0395,Deepak,Iyer,51,BMW iX,Electric,Gurugram,Haryana,2023,White,2023-09-14,14700000,6940000,BMW Finance,Basic,Executive,13500,4.9,luxury
+BMWC0404,Yash,Verma,33,BMW X1,Petrol,Bengaluru,Karnataka,2023,Silver,2023-02-20,5000000,2100000,Cash,Service Inclusive Plus,Business,5000,4.6,luxury
+BMWC0413,Lakshmi,Pillai,55,BMW X3,Diesel,Kochi,Kerala,2024,Blue,2024-08-29,7050000,3410000,Lease,Service Inclusive,Premium,9500,3.4,luxury
+BMWC0424,Nikhil,Gupta,45,BMW i7,Electric,Jaipur,Rajasthan,2024,Blue,2024-07-17,21550000,4610000,Bank Loan,Service Inclusive Plus,Luxury,8500,3.3,luxury
+BMWC0430,Rahul,Joshi,33,BMW i4,Electric,Chandigarh,Chandigarh,2023,Black,2023-08-26,7200000,2540000,Bank Loan,Basic,Luxury,6500,4.8,luxury
+BMWC0432,Tanvi,Verma,43,BMW X3,Diesel,Mumbai,Maharashtra,2025,Red,2025-10-04,7200000,1840000,Lease,Basic,Premium,25500,3.2,luxury
+BMWC0440,Akash,Nair,69,BMW X3,Petrol,Hyderabad,Telangana,2023,Silver,2023-04-29,7750000,2050000,BMW Finance,Service Inclusive,Business,6000,4.6,luxury
+BMWC0447,Suresh,Menon,43,BMW 3 Series,Petrol,Hyderabad,Telangana,2024,Blue,2024-08-14,6650000,1530000,BMW Finance,Basic,Executive,13500,4.3,luxury
+BMWC0449,Aditya,Reddy,52,BMW 3 Series,Petrol,Kolkata,West Bengal,2023,Black,2023-03-24,6550000,1610000,Bank Loan,Service Inclusive,Premium,27500,4.8,luxury
+BMWC0452,Arjun,Pillai,59,BMW i5,Electric,Delhi,Delhi,2023,Black,2023-11-28,12050000,5310000,Lease,Service Inclusive Plus,Luxury,14000,4.6,luxury
+BMWC0453,Deepak,Nair,65,BMW X1,Diesel,Bengaluru,Karnataka,2025,Black,2025-11-11,5550000,2700000,BMW Finance,Basic,Luxury,25000,3.4,luxury
+BMWC0454,Aarav,Patel,59,BMW X7,Diesel,Bengaluru,Karnataka,2024,Blue,2025-08-10,13950000,5890000,Cash,Service Inclusive,Premium,19000,4.2,luxury
+BMWC0461,Aarav,Pillai,56,BMW i4,Electric,Coimbatore,Tamil Nadu,2025,White,2025-06-07,7250000,3450000,BMW Finance,Basic,Premium,14500,4.7,luxury
+BMWC0470,Deepak,Nair,56,BMW X7,Petrol,Noida,Uttar Pradesh,2023,Blue,2023-05-08,13250000,6150000,Bank Loan,Basic,Premium,27000,4.6,luxury
+BMWC0474,Karthik,Mehta,66,BMW X3,Diesel,Mumbai,Maharashtra,2025,Silver,2025-02-18,8100000,1820000,Cash,Service Inclusive Plus,Business,29500,4.2,luxury
+BMWC0487,Neha,Nair,53,BMW i7,Electric,Jaipur,Rajasthan,2023,Silver,2023-08-15,20500000,9200000,Cash,Basic,Luxury,18500,4.5,luxury
+BMWC0507,Pranav,Sharma,39,BMW X1,Diesel,Noida,Uttar Pradesh,2025,White,2025-07-10,5200000,1200000,Lease,Service Inclusive Plus,Executive,6500,3.4,luxury
+BMWC0511,Yash,Gupta,68,BMW X7,Petrol,Ahmedabad,Gujarat,2024,Silver,2024-10-01,14750000,7250000,Cash,Service Inclusive,Executive,20000,4.2,luxury
+BMWC0515,Sneha,Singh,49,BMW i4,Electric,Delhi,Delhi,2025,Blue,2025-03-14,7500000,2500000,Lease,Service Inclusive Plus,Executive,20500,4.2,luxury
+BMWC0517,Harish,Reddy,39,BMW X1,Diesel,Jaipur,Rajasthan,2025,Silver,2025-07-03,5100000,2300000,Lease,Service Inclusive,Luxury,8000,4.7,luxury
+BMWC0518,Meera,Rao,44,BMW X3,Petrol,Kochi,Kerala,2024,Silver,2024-10-30,7450000,2790000,Lease,Service Inclusive Plus,Luxury,15000,4.4,luxury
+BMWC0524,Riya,Kapoor,30,BMW iX1,Electric,Noida,Uttar Pradesh,2023,Red,2023-05-03,6900000,1680000,BMW Finance,Service Inclusive,Luxury,15000,4.6,luxury
+BMWC0526,Lakshmi,Jain,34,BMW X7,Petrol,Hyderabad,Telangana,2024,Black,2024-01-14,14500000,5200000,Cash,Service Inclusive Plus,Luxury,5500,4.7,luxury
+BMWC0532,Lakshmi,Kulkarni,30,BMW iX,Electric,Pune,Maharashtra,2023,White,2024-04-28,14550000,4010000,Cash,Basic,Luxury,17000,3.9,luxury
+BMWC0533,Ananya,Reddy,41,BMW 3 Series,Diesel,Pune,Maharashtra,2025,Blue,2025-12-07,5850000,1300000,BMW Finance,Service Inclusive Plus,Premium,18500,3.9,luxury
+BMWC0536,Suresh,Kapoor,68,BMW 7 Series,Petrol,Ahmedabad,Gujarat,2024,Red,2025-08-18,18950000,4290000,BMW Finance,Service Inclusive Plus,Business,9000,3.2,luxury
+BMWC0538,Arjun,Rao,50,BMW iX1,Electric,Hyderabad,Telangana,2025,White,2025-10-06,6800000,1760000,Lease,Service Inclusive,Business,22500,4.9,luxury
+BMWC0543,Sneha,Iyer,29,BMW iX1,Electric,Gurugram,Haryana,2023,Grey,2023-05-20,7000000,2900000,Bank Loan,Service Inclusive Plus,Premium,15500,4.4,luxury
+BMWC0558,Pranav,Iyer,61,BMW iX1,Electric,Gurugram,Haryana,2023,Grey,2023-10-09,6900000,1580000,Bank Loan,Service Inclusive,Business,25500,3.7,luxury
+BMWC0562,Pranav,Rao,29,BMW 5 Series,Petrol,Jaipur,Rajasthan,2023,Blue,2023-11-23,7850000,1870000,Bank Loan,Basic,Executive,8500,4.3,luxury
+BMWC0577,Kavya,Kumar,61,BMW 3 Series,Petrol,Delhi,Delhi,2023,Blue,2023-08-17,5650000,2800000,Lease,Basic,Luxury,16500,3.5,luxury
+BMWC0593,Kavya,Singh,25,BMW X3,Petrol,Noida,Uttar Pradesh,2022,Black,2023-03-30,8150000,1630000,Bank Loan,Service Inclusive Plus,Luxury,26500,4.6,luxury
+BMWC0595,Tanvi,Reddy,61,BMW 5 Series,Petrol,Kochi,Kerala,2025,White,2025-10-08,8250000,3550000,Bank Loan,Service Inclusive Plus,Luxury,7000,4.2,luxury
+BMWC0598,Suresh,Bose,37,BMW X3,Petrol,Gurugram,Haryana,2023,Black,2023-11-17,7100000,3220000,BMW Finance,Basic,Luxury,28500,4.7,luxury
+BMWC0602,Yash,Jain,28,BMW i5,Electric,Kolkata,West Bengal,2023,Red,2023-08-27,12300000,4960000,Cash,Service Inclusive,Business,29000,3.4,luxury
+BMWC0605,Ishita,Kulkarni,33,BMW iX,Electric,Chennai,Tamil Nadu,2023,Silver,2023-10-01,14900000,5680000,BMW Finance,Basic,Business,25500,4.1,luxury
+BMWC0608,Suresh,Mehta,31,BMW X5,Diesel,Mumbai,Maharashtra,2024,Grey,2024-07-19,9800000,3460000,BMW Finance,Basic,Business,5000,3.6,luxury
+BMWC0609,Akash,Joshi,49,BMW i7,Electric,Jaipur,Rajasthan,2023,Black,2023-02-25,21250000,6550000,Cash,Basic,Executive,5000,4.7,luxury
+BMWC0617,Priya,Joshi,48,BMW X5,Petrol,Chandigarh,Chandigarh,2023,White,2023-06-06,11450000,2790000,Cash,Service Inclusive,Executive,7500,3.4,luxury
+BMWC0618,Nikhil,Mehta,52,BMW X5,Diesel,Noida,Uttar Pradesh,2024,Blue,2024-04-17,10850000,5270000,Cash,Service Inclusive,Premium,17000,3.8,luxury
+BMWC0625,Sneha,Pillai,46,BMW 7 Series,Petrol,Bengaluru,Karnataka,2025,White,2025-03-12,18900000,7780000,Cash,Service Inclusive Plus,Business,7500,4.8,luxury
+BMWC0628,Harish,Singh,63,BMW i7,Electric,Mumbai,Maharashtra,2025,Black,2025-03-23,20950000,7890000,BMW Finance,Service Inclusive,Premium,27500,3.6,luxury
+BMWC0633,Akash,Reddy,32,BMW 2 Series Gran Coupe,Petrol,Hyderabad,Telangana,2025,Silver,2025-12-23,4500000,1700000,BMW Finance,Service Inclusive Plus,Business,19500,4.4,premium
+BMWC0647,Tanvi,Bose,48,BMW X1,Diesel,Bengaluru,Karnataka,2024,White,2024-03-26,5600000,1700000,Lease,Basic,Business,18500,4.0,luxury
+BMWC0654,Meera,Kumar,65,BMW iX,Electric,Bengaluru,Karnataka,2024,Black,2025-03-18,14550000,3810000,BMW Finance,Service Inclusive,Premium,11500,3.7,luxury
+BMWC0655,Arjun,Joshi,69,BMW 3 Series,Petrol,Jaipur,Rajasthan,2024,White,2024-05-05,6400000,2580000,BMW Finance,Basic,Business,28000,4.4,luxury
+BMWC0660,Suresh,Mehta,69,BMW 2 Series Gran Coupe,Diesel,Chandigarh,Chandigarh,2024,Blue,2024-04-02,4500000,1200000,Lease,Service Inclusive Plus,Business,21500,4.3,premium
+BMWC0662,Ananya,Desai,52,BMW X5,Petrol,Delhi,Delhi,2024,Silver,2024-09-02,10000000,4300000,Cash,Basic,Business,24000,3.9,luxury
+BMWC0692,Meera,Gupta,29,BMW 5 Series,Petrol,Mumbai,Maharashtra,2024,Blue,2024-01-22,8500000,2100000,Cash,Service Inclusive,Luxury,6500,4.1,luxury
+BMWC0697,Aditya,Gupta,37,BMW i7,Electric,Bengaluru,Karnataka,2023,Red,2023-08-07,20100000,4820000,BMW Finance,Service Inclusive,Executive,28500,3.9,luxury
+BMWC0698,Meera,Desai,60,BMW 3 Series,Diesel,Noida,Uttar Pradesh,2024,Red,2024-10-11,6850000,1770000,Lease,Basic,Premium,29000,3.8,luxury
+BMWC0711,Ishita,Patel,70,BMW X1,Petrol,Hyderabad,Telangana,2023,Red,2023-07-04,5850000,1500000,BMW Finance,Service Inclusive,Luxury,6000,3.5,luxury
+BMWC0745,Rohan,Kapoor,34,BMW X7,Petrol,Kolkata,West Bengal,2024,Black,2024-08-20,13450000,6690000,Bank Loan,Service Inclusive,Business,23000,3.6,luxury
+BMWC0767,Lakshmi,Shah,62,BMW X5,Petrol,Ahmedabad,Gujarat,2023,Grey,2023-10-01,10200000,4540000,Bank Loan,Service Inclusive,Premium,28000,3.6,luxury
+BMWC0778,Harish,Menon,32,BMW i5,Electric,Kochi,Kerala,2024,Red,2024-12-04,12400000,3980000,Lease,Basic,Premium,26000,4.2,luxury
+BMWC0788,Arjun,Sharma,55,BMW 5 Series,Petrol,Kochi,Kerala,2023,Silver,2024-05-26,7700000,1540000,Bank Loan,Service Inclusive,Premium,13000,3.5,luxury
+BMWC0802,Riya,Desai,43,BMW X3,Petrol,Chandigarh,Chandigarh,2025,Red,2025-03-04,7750000,3750000,Cash,Service Inclusive Plus,Luxury,6500,3.8,luxury
+BMWC0804,Priya,Shah,32,BMW 2 Series Gran Coupe,Petrol,Ahmedabad,Gujarat,2024,Grey,2024-11-30,4450000,1500000,Cash,Basic,Executive,20000,3.6,premium
+BMWC0806,Sneha,Rao,55,BMW 5 Series,Petrol,Noida,Uttar Pradesh,2023,Grey,2023-08-17,7650000,3630000,Lease,Service Inclusive Plus,Premium,23500,3.4,luxury
+BMWC0810,Riya,Kulkarni,70,BMW i4,Electric,Ahmedabad,Gujarat,2024,Blue,2024-11-04,7800000,3660000,Lease,Basic,Premium,9000,4.1,luxury
+BMWC0811,Diya,Mehta,31,BMW 2 Series Gran Coupe,Petrol,Pune,Maharashtra,2025,Black,2025-09-24,4450000,1900000,BMW Finance,Service Inclusive Plus,Business,20000,4.9,premium
+BMWC0812,Varun,Joshi,28,BMW iX,Electric,Bengaluru,Karnataka,2025,Silver,2025-06-07,14400000,3580000,Cash,Basic,Executive,28500,3.3,luxury
+BMWC0815,Yash,Nair,38,BMW i5,Electric,Pune,Maharashtra,2024,Black,2025-03-14,12350000,5670000,Lease,Service Inclusive,Business,24500,3.8,luxury
+BMWC0827,Akash,Patel,26,BMW i5,Electric,Bengaluru,Karnataka,2024,Blue,2024-10-18,12000000,4100000,Lease,Service Inclusive,Premium,17000,3.7,luxury
+BMWC0833,Harish,Rao,64,BMW i4,Electric,Hyderabad,Telangana,2025,Grey,2025-02-03,7450000,1690000,BMW Finance,Basic,Luxury,13000,4.0,luxury
+BMWC0845,Tanvi,Gupta,51,BMW 3 Series,Diesel,Noida,Uttar Pradesh,2025,Red,2025-07-15,6300000,2560000,Cash,Basic,Premium,20000,3.7,luxury
+BMWC0858,Divya,Patel,68,BMW iX1,Electric,Hyderabad,Telangana,2023,Blue,2023-10-13,6850000,2570000,Lease,Service Inclusive Plus,Luxury,18500,4.7,luxury
+BMWC0869,Tanvi,Reddy,66,BMW iX1,Electric,Delhi,Delhi,2023,Black,2023-04-28,6800000,2760000,Lease,Service Inclusive Plus,Premium,21000,4.5,luxury
+BMWC0872,Rohan,Rao,43,BMW i4,Electric,Mumbai,Maharashtra,2024,Grey,2024-12-07,7700000,2140000,Lease,Basic,Executive,27500,4.6,luxury
+BMWC0880,Varun,Joshi,52,BMW i5,Electric,Kolkata,West Bengal,2024,Red,2025-08-28,12250000,3550000,Lease,Basic,Luxury,16500,3.2,luxury
+BMWC0885,Sneha,Patel,48,BMW i7,Electric,Ahmedabad,Gujarat,2024,Black,2024-11-23,20000000,10000000,BMW Finance,Service Inclusive Plus,Luxury,18000,4.4,luxury
+BMWC0909,Tanvi,Reddy,34,BMW X3,Diesel,Chennai,Tamil Nadu,2025,Blue,2025-06-01,8150000,3630000,Bank Loan,Service Inclusive,Business,8000,4.7,luxury
+BMWC0911,Aditya,Jain,52,BMW X3,Diesel,Pune,Maharashtra,2023,Grey,2023-07-17,8150000,3830000,BMW Finance,Service Inclusive Plus,Executive,13500,4.6,luxury
+BMWC0915,Ishita,Menon,56,BMW 2 Series Gran Coupe,Petrol,Kochi,Kerala,2025,Grey,2025-02-23,4850000,1300000,Lease,Basic,Luxury,21500,3.6,premium
+BMWC0916,Ishita,Pillai,47,BMW i4,Electric,Ahmedabad,Gujarat,2025,Red,2025-03-02,7500000,2800000,Lease,Basic,Business,5500,5.0,luxury
+BMWC0924,Harish,Pillai,68,BMW 2 Series Gran Coupe,Petrol,Kochi,Kerala,2024,Black,2024-04-12,5100000,1900000,Cash,Service Inclusive,Business,7000,4.8,luxury
+BMWC0926,Deepak,Rao,35,BMW iX,Electric,Coimbatore,Tamil Nadu,2024,Black,2024-01-21,14650000,7130000,Bank Loan,Service Inclusive Plus,Premium,12500,3.8,luxury
+BMWC0928,Ishita,Kumar,58,BMW iX,Electric,Mumbai,Maharashtra,2023,Red,2023-08-14,14000000,4200000,BMW Finance,Service Inclusive Plus,Executive,23000,4.8,luxury
+BMWC0931,Akash,Menon,35,BMW X5,Diesel,Kochi,Kerala,2024,White,2024-12-11,11200000,3340000,Bank Loan,Basic,Luxury,17000,4.1,luxury
+BMWC0938,Sneha,Pillai,43,BMW X3,Diesel,Kolkata,West Bengal,2025,Silver,2025-08-14,7450000,2290000,Bank Loan,Service Inclusive Plus,Business,12500,4.8,luxury
+BMWC0948,Nikhil,Singh,69,BMW 5 Series,Petrol,Chandigarh,Chandigarh,2024,White,2025-12-27,8350000,2670000,Bank Loan,Service Inclusive,Luxury,16500,4.9,luxury
+BMWC0949,Sanjay,Bose,37,BMW X7,Diesel,Delhi,Delhi,2025,Grey,2025-10-19,13800000,4360000,Lease,Service Inclusive,Premium,5500,4.3,luxury
+BMWC0965,Lakshmi,Jain,34,BMW iX1,Electric,Jaipur,Rajasthan,2023,Black,2023-04-07,6950000,1590000,BMW Finance,Basic,Executive,27500,4.5,luxury
+BMWC0979,Varun,Rao,67,BMW 3 Series,Diesel,Pune,Maharashtra,2024,Red,2024-10-09,6900000,2680000,Bank Loan,Service Inclusive,Executive,25000,4.0,luxury
+BMWC0986,Suresh,Verma,64,BMW i5,Electric,Delhi,Delhi,2024,Blue,2024-10-15,12500000,3600000,Bank Loan,Service Inclusive,Executive,11000,4.6,luxury
+BMWC0990,Neha,Pillai,25,BMW X7,Petrol,Mumbai,Maharashtra,2023,Silver,2023-08-31,13750000,2850000,BMW Finance,Service Inclusive,Luxury,20000,4.7,luxury
+BMWC0996,Aarav,Jain,57,BMW X3,Petrol,Ahmedabad,Gujarat,2024,Black,2024-04-13,7200000,3140000,Bank Loan,Service Inclusive Plus,Premium,23500,5.0,luxury
+BMWC0004,Suresh,Reddy,30,BMW iX1,Electric,Gurugram,Haryana,2025,Black,2025-02-04,6800000,3360000,BMW Finance,Service Inclusive,Premium,16500,4.3,luxury
+BMWC0006,Vikram,Patel,54,BMW iX1,Electric,Mumbai,Maharashtra,2024,White,2024-02-17,6800000,3360000,Cash,Service Inclusive,Business,12000,4.4,luxury
+BMWC0009,Rahul,Sharma,29,BMW iX,Electric,Ahmedabad,Gujarat,2024,Red,2024-02-28,14600000,6720000,Cash,Service Inclusive Plus,Executive,21500,5.0,luxury
+BMWC0010,Harish,Desai,43,BMW iX,Electric,Bengaluru,Karnataka,2023,White,2024-06-09,14250000,5750000,Cash,Service Inclusive Plus,Executive,28000,3.2,luxury
+BMWC0016,Meera,Menon,52,BMW i5,Electric,Delhi,Delhi,2024,Black,2024-04-21,12350000,2770000,BMW Finance,Basic,Luxury,25500,4.4,luxury
+BMWC0018,Aarav,Kapoor,51,BMW 3 Series,Petrol,Mumbai,Maharashtra,2024,Blue,2024-09-21,6350000,1870000,Lease,Service Inclusive,Business,6500,4.8,luxury
+BMWC0026,Ananya,Bose,29,BMW iX1,Electric,Bengaluru,Karnataka,2025,White,2025-11-16,6750000,3050000,Cash,Service Inclusive,Executive,16500,3.3,luxury
+BMWC0027,Yash,Bose,38,BMW iX,Electric,Delhi,Delhi,2025,Silver,2025-10-28,14350000,7070000,BMW Finance,Basic,Luxury,29500,3.4,luxury
+BMWC0043,Akash,Patel,30,BMW X1,Diesel,Hyderabad,Telangana,2024,Black,2024-08-21,5000000,2300000,BMW Finance,Basic,Premium,16000,4.2,luxury
+BMWC0046,Neha,Verma,59,BMW iX,Electric,Delhi,Delhi,2024,Black,2024-05-27,14550000,3310000,Lease,Service Inclusive,Business,15500,4.1,luxury
+BMWC0049,Tanvi,Bose,42,BMW iX,Electric,Delhi,Delhi,2025,Grey,2025-05-05,14400000,6380000,BMW Finance,Service Inclusive Plus,Business,11000,3.2,luxury
+BMWC0059,Tanvi,Menon,57,BMW i7,Electric,Hyderabad,Telangana,2024,Silver,2025-01-10,21550000,9910000,Bank Loan,Basic,Premium,6000,3.3,luxury
+BMWC0064,Vikram,Iyer,35,BMW i5,Electric,Coimbatore,Tamil Nadu,2023,Grey,2023-09-29,12400000,2480000,Cash,Service Inclusive Plus,Luxury,7500,4.2,luxury
+BMWC0066,Sneha,Verma,57,BMW iX,Electric,Delhi,Delhi,2023,White,2023-07-02,14000000,4600000,Lease,Service Inclusive Plus,Business,23500,4.5,luxury
+BMWC0079,Sanjay,Shah,26,BMW 3 Series,Petrol,Noida,Uttar Pradesh,2025,Red,2025-06-22,6450000,2290000,Bank Loan,Service Inclusive Plus,Business,12000,4.8,luxury
+BMWC0085,Priya,Kulkarni,51,BMW 2 Series Gran Coupe,Petrol,Coimbatore,Tamil Nadu,2024,Black,2024-12-13,4450000,2300000,Lease,Service Inclusive Plus,Luxury,19000,3.3,premium
+BMWC0089,Akash,Reddy,52,BMW X5,Petrol,Delhi,Delhi,2022,Black,2023-10-03,10500000,4400000,Cash,Service Inclusive,Premium,26500,4.9,luxury
+BMWC0095,Neha,Iyer,63,BMW i5,Electric,Noida,Uttar Pradesh,2024,Blue,2024-06-24,12300000,4160000,Lease,Service Inclusive Plus,Executive,21000,3.6,luxury
+BMWC0098,Amit,Kapoor,45,BMW X7,Petrol,Chandigarh,Chandigarh,2025,Black,2025-03-25,14350000,6470000,Bank Loan,Basic,Business,25000,3.9,luxury
+BMWC0100,Tanvi,Nair,57,BMW iX,Electric,Bengaluru,Karnataka,2025,White,2025-07-20,14150000,6130000,Cash,Basic,Executive,29500,4.1,luxury
+BMWC0111,Ananya,Rao,49,BMW X7,Diesel,Jaipur,Rajasthan,2024,Black,2024-10-26,14650000,5530000,Lease,Service Inclusive,Premium,11000,4.9,luxury
+BMWC0117,Kavya,Mehta,65,BMW X5,Diesel,Chennai,Tamil Nadu,2024,Red,2024-03-03,10850000,3770000,Cash,Service Inclusive Plus,Executive,16000,4.5,luxury
+BMWC0119,Ishita,Desai,43,BMW i7,Electric,Chennai,Tamil Nadu,2023,Grey,2023-02-17,20100000,9020000,Lease,Service Inclusive,Premium,6000,3.6,luxury
+BMWC0134,Nikhil,Iyer,47,BMW X3,Diesel,Coimbatore,Tamil Nadu,2024,Blue,2024-03-27,7200000,2540000,Lease,Basic,Luxury,8000,4.1,luxury
+BMWC0135,Divya,Kulkarni,49,BMW 3 Series,Petrol,Hyderabad,Telangana,2025,Red,2025-06-14,6250000,1950000,Bank Loan,Basic,Luxury,10000,4.9,luxury
+BMWC0136,Diya,Singh,44,BMW X7,Diesel,Noida,Uttar Pradesh,2024,Silver,2024-10-15,13050000,3110000,Bank Loan,Basic,Premium,21000,4.9,luxury
+BMWC0141,Neha,Kulkarni,61,BMW iX1,Electric,Coimbatore,Tamil Nadu,2023,Blue,2023-09-06,6850000,1370000,Cash,Service Inclusive Plus,Business,26500,3.9,luxury
+BMWC0146,Varun,Nair,32,BMW X3,Diesel,Hyderabad,Telangana,2025,Blue,2025-03-20,8050000,3310000,Cash,Service Inclusive,Premium,17500,3.9,luxury
+BMWC0157,Aditya,Shah,68,BMW iX1,Electric,Bengaluru,Karnataka,2023,White,2023-02-25,6950000,3190000,Lease,Service Inclusive,Premium,21000,4.1,luxury
+BMWC0161,Kavya,Nair,54,BMW 2 Series Gran Coupe,Petrol,Hyderabad,Telangana,2025,Blue,2025-10-11,4950000,2000000,BMW Finance,Service Inclusive Plus,Premium,12000,3.9,premium
+BMWC0168,Diya,Jain,38,BMW X3,Diesel,Chennai,Tamil Nadu,2023,Red,2023-01-25,8150000,1930000,BMW Finance,Service Inclusive,Luxury,29000,4.5,luxury
+BMWC0180,Rohan,Kapoor,31,BMW iX1,Electric,Chennai,Tamil Nadu,2024,Blue,2024-06-14,6750000,1550000,Cash,Service Inclusive Plus,Executive,29500,3.8,luxury
+BMWC0181,Meera,Reddy,39,BMW iX,Electric,Noida,Uttar Pradesh,2023,Silver,2023-12-30,14850000,5370000,Bank Loan,Basic,Premium,26500,4.0,luxury
+BMWC0182,Amit,Reddy,49,BMW 3 Series,Diesel,Mumbai,Maharashtra,2025,Black,2025-12-28,6850000,3370000,Bank Loan,Service Inclusive,Executive,17000,3.5,luxury
+BMWC0186,Karthik,Jain,64,BMW i7,Electric,Ahmedabad,Gujarat,2022,Grey,2023-02-05,21450000,5590000,Bank Loan,Service Inclusive,Executive,5000,3.4,luxury
+BMWC0192,Sneha,Kulkarni,58,BMW X1,Petrol,Kolkata,West Bengal,2025,Red,2025-02-16,5900000,1900000,BMW Finance,Service Inclusive,Premium,17500,4.0,luxury
+BMWC0195,Sanjay,Bose,60,BMW iX1,Electric,Delhi,Delhi,2024,Grey,2024-05-23,6850000,2070000,Cash,Service Inclusive Plus,Luxury,25000,4.6,luxury
+BMWC0198,Amit,Mehta,68,BMW X7,Petrol,Chandigarh,Chandigarh,2025,Blue,2025-12-16,13950000,6690000,Cash,Basic,Executive,26500,4.3,luxury
+BMWC0202,Vikram,Joshi,56,BMW 5 Series,Diesel,Ahmedabad,Gujarat,2025,Silver,2025-01-30,8000000,1900000,Cash,Service Inclusive Plus,Business,13500,4.2,luxury
+BMWC0204,Vikram,Singh,62,BMW 3 Series,Petrol,Pune,Maharashtra,2025,Black,2025-11-12,6150000,2530000,Bank Loan,Service Inclusive Plus,Executive,9000,3.5,luxury
+BMWC0206,Meera,Verma,33,BMW i5,Electric,Coimbatore,Tamil Nadu,2023,White,2023-05-27,12100000,4420000,Bank Loan,Service Inclusive Plus,Business,29000,4.7,luxury
+BMWC0208,Neha,Singh,54,BMW iX,Electric,Coimbatore,Tamil Nadu,2025,Grey,2025-07-24,14550000,3310000,Bank Loan,Service Inclusive,Executive,17500,4.6,luxury
+BMWC0212,Pranav,Reddy,25,BMW iX1,Electric,Chennai,Tamil Nadu,2025,White,2025-11-25,6800000,1660000,Lease,Basic,Premium,18500,5.0,luxury
+BMWC0215,Ishita,Sharma,42,BMW X3,Petrol,Pune,Maharashtra,2025,Red,2025-08-13,7100000,2120000,Bank Loan,Basic,Luxury,24000,4.2,luxury
+BMWC0217,Varun,Reddy,61,BMW 5 Series,Diesel,Chandigarh,Chandigarh,2024,Black,2024-05-11,7750000,3250000,Cash,Basic,Executive,29000,4.4,luxury
+BMWC0230,Riya,Iyer,53,BMW i7,Electric,Delhi,Delhi,2023,White,2023-07-11,20700000,4540000,Cash,Basic,Business,9000,4.9,luxury
+BMWC0231,Amit,Reddy,32,BMW X7,Diesel,Gurugram,Haryana,2025,White,2025-01-02,14100000,4120000,Bank Loan,Service Inclusive Plus,Premium,19500,4.0,luxury
+BMWC0232,Harish,Gupta,30,BMW 7 Series,Petrol,Mumbai,Maharashtra,2025,Black,2025-12-27,18250000,5850000,Lease,Service Inclusive,Luxury,6500,3.9,luxury
+BMWC0242,Neha,Verma,31,BMW i7,Electric,Ahmedabad,Gujarat,2023,Red,2023-11-21,20950000,6190000,Bank Loan,Basic,Executive,10000,3.4,luxury
+BMWC0249,Aarav,Bose,28,BMW X1,Petrol,Bengaluru,Karnataka,2024,Black,2024-03-15,5900000,2900000,Bank Loan,Service Inclusive Plus,Business,9500,4.7,luxury
+BMWC0261,Amit,Sharma,37,BMW 2 Series Gran Coupe,Diesel,Coimbatore,Tamil Nadu,2023,White,2023-07-16,4850000,2500000,Bank Loan,Service Inclusive,Business,17500,4.0,premium
+BMWC0268,Sneha,Joshi,70,BMW i4,Electric,Delhi,Delhi,2022,Silver,2023-04-01,7700000,3240000,Bank Loan,Basic,Luxury,20000,4.3,luxury
+BMWC0273,Tanvi,Joshi,52,BMW 5 Series,Diesel,Kochi,Kerala,2024,Black,2024-04-06,7850000,3070000,Bank Loan,Service Inclusive Plus,Luxury,6000,3.9,luxury
+BMWC0274,Ishita,Gupta,40,BMW 2 Series Gran Coupe,Petrol,Kochi,Kerala,2023,Black,2023-04-09,4850000,1600000,Cash,Service Inclusive,Executive,17000,3.4,premium
+BMWC0278,Rohan,Iyer,58,BMW i5,Electric,Kochi,Kerala,2023,Blue,2023-07-07,12450000,3290000,Cash,Basic,Business,8000,4.0,luxury
+BMWC0283,Suresh,Patel,42,BMW X5,Diesel,Noida,Uttar Pradesh,2024,White,2024-02-29,11200000,4840000,Cash,Service Inclusive,Business,10000,4.4,luxury
+BMWC0311,Rahul,Pillai,60,BMW X1,Diesel,Chennai,Tamil Nadu,2025,Black,2025-02-10,5200000,1300000,Bank Loan,Basic,Executive,23000,3.3,luxury
+BMWC0317,Deepak,Patel,57,BMW i7,Electric,Chennai,Tamil Nadu,2025,Silver,2025-07-17,20050000,9210000,Bank Loan,Service Inclusive Plus,Business,17500,4.2,luxury
+BMWC0329,Vijay,Kulkarni,58,BMW X3,Petrol,Coimbatore,Tamil Nadu,2024,Black,2024-05-28,7350000,2970000,Lease,Basic,Executive,17000,4.6,luxury
+BMWC0339,Riya,Verma,57,BMW X3,Petrol,Jaipur,Rajasthan,2022,White,2023-06-12,7850000,3370000,Bank Loan,Service Inclusive,Business,19000,3.7,luxury
+BMWC0353,Amit,Iyer,40,BMW 5 Series,Petrol,Mumbai,Maharashtra,2025,Black,2025-09-17,7600000,3720000,Lease,Service Inclusive Plus,Premium,11500,4.5,luxury
+BMWC0359,Vijay,Jain,49,BMW 5 Series,Diesel,Chandigarh,Chandigarh,2023,Red,2023-03-28,7600000,1720000,Bank Loan,Service Inclusive,Executive,12500,4.0,luxury
+BMWC0360,Harish,Jain,29,BMW X5,Petrol,Chandigarh,Chandigarh,2023,Grey,2023-01-09,10100000,2920000,BMW Finance,Service Inclusive,Premium,19500,3.4,luxury
+BMWC0363,Suresh,Mehta,37,BMW iX1,Electric,Mumbai,Maharashtra,2022,Grey,2023-05-28,7000000,2600000,Lease,Basic,Premium,8500,4.7,luxury
+BMWC0367,Vijay,Joshi,34,BMW 2 Series Gran Coupe,Diesel,Kochi,Kerala,2024,Grey,2025-12-07,4450000,1400000,BMW Finance,Basic,Business,15000,4.1,premium
+BMWC0370,Rahul,Nair,29,BMW iX,Electric,Delhi,Delhi,2025,Silver,2025-09-10,14850000,5370000,Bank Loan,Service Inclusive,Business,26500,3.5,luxury
+BMWC0371,Aditya,Singh,31,BMW i5,Electric,Bengaluru,Karnataka,2024,Black,2024-12-07,12500000,2900000,Lease,Basic,Premium,9000,3.3,luxury
+BMWC0372,Aarav,Singh,56,BMW 2 Series Gran Coupe,Diesel,Kochi,Kerala,2024,Red,2024-12-12,4700000,1200000,Lease,Basic,Business,24000,3.9,premium
+BMWC0383,Harish,Reddy,33,BMW X1,Diesel,Mumbai,Maharashtra,2023,Grey,2023-11-20,5100000,1900000,Lease,Service Inclusive Plus,Luxury,6500,4.2,luxury
+BMWC0386,Tanvi,Reddy,34,BMW X3,Diesel,Ahmedabad,Gujarat,2024,Black,2024-06-21,7050000,2110000,Cash,Basic,Luxury,16500,3.6,luxury
+BMWC0398,Neha,Kapoor,36,BMW iX,Electric,Bengaluru,Karnataka,2023,Black,2024-06-18,14950000,6090000,Lease,Service Inclusive Plus,Executive,19500,4.4,luxury
+BMWC0403,Suresh,Patel,35,BMW X5,Diesel,Chennai,Tamil Nadu,2023,Grey,2023-11-18,11500000,3200000,Bank Loan,Service Inclusive,Business,9500,3.5,luxury
+BMWC0411,Deepak,Sharma,64,BMW i7,Electric,Jaipur,Rajasthan,2024,Red,2024-04-29,21300000,4760000,BMW Finance,Service Inclusive Plus,Executive,22500,3.8,luxury
+BMWC0420,Karthik,Rao,25,BMW 5 Series,Diesel,Bengaluru,Karnataka,2025,White,2025-06-29,8050000,3210000,Bank Loan,Service Inclusive Plus,Luxury,22000,3.4,luxury
+BMWC0429,Divya,Bose,38,BMW X5,Diesel,Pune,Maharashtra,2025,Red,2025-10-27,10700000,4040000,Bank Loan,Basic,Premium,26500,4.2,luxury
+BMWC0436,Ishita,Jain,55,BMW iX1,Electric,Pune,Maharashtra,2025,Black,2025-07-15,6950000,1590000,Bank Loan,Service Inclusive Plus,Premium,22000,4.4,luxury
+BMWC0437,Aditya,Jain,55,BMW X7,Diesel,Kolkata,West Bengal,2025,Red,2025-03-21,14050000,5410000,Bank Loan,Service Inclusive Plus,Executive,14000,3.8,luxury
+BMWC0444,Sneha,Kulkarni,66,BMW X1,Petrol,Hyderabad,Telangana,2025,White,2025-04-11,5600000,2600000,Bank Loan,Service Inclusive Plus,Luxury,28500,4.6,luxury
+BMWC0462,Aditya,Singh,59,BMW i4,Electric,Chandigarh,Chandigarh,2024,Black,2024-11-05,7350000,2870000,BMW Finance,Service Inclusive Plus,Business,26000,4.6,luxury
+BMWC0468,Tanvi,Bose,51,BMW i4,Electric,Bengaluru,Karnataka,2024,Red,2024-12-04,7550000,2110000,BMW Finance,Basic,Executive,19500,4.3,luxury
+BMWC0475,Akash,Joshi,39,BMW i7,Electric,Jaipur,Rajasthan,2023,Blue,2023-10-19,21100000,7620000,Lease,Service Inclusive,Premium,18500,4.1,luxury
+BMWC0477,Neha,Pillai,34,BMW X1,Petrol,Coimbatore,Tamil Nadu,2024,White,2024-10-13,5200000,2500000,Lease,Service Inclusive,Business,25000,3.6,luxury
+BMWC0486,Yash,Pillai,49,BMW i7,Electric,Delhi,Delhi,2023,Black,2024-02-03,20000000,5800000,BMW Finance,Service Inclusive Plus,Business,14500,3.8,luxury
+BMWC0500,Amit,Kulkarni,35,BMW i4,Electric,Delhi,Delhi,2024,Black,2024-10-22,7800000,3860000,BMW Finance,Service Inclusive Plus,Luxury,21000,4.3,luxury
+BMWC0513,Sanjay,Kumar,47,BMW X5,Petrol,Gurugram,Haryana,2024,Silver,2024-01-02,11000000,4400000,Cash,Service Inclusive Plus,Premium,12500,3.3,luxury
+BMWC0527,Meera,Sharma,65,BMW X1,Diesel,Hyderabad,Telangana,2024,Grey,2025-12-05,5550000,1500000,Bank Loan,Service Inclusive,Premium,12500,4.2,luxury
+BMWC0531,Tanvi,Nair,63,BMW 7 Series,Petrol,Chandigarh,Chandigarh,2025,Blue,2025-11-05,18800000,8760000,BMW Finance,Service Inclusive Plus,Executive,19000,4.9,luxury
+BMWC0540,Ananya,Pillai,45,BMW X1,Diesel,Kolkata,West Bengal,2024,Red,2024-06-11,5250000,1700000,Lease,Basic,Luxury,20500,4.5,luxury
+BMWC0553,Pranav,Kumar,66,BMW 3 Series,Petrol,Mumbai,Maharashtra,2024,Silver,2024-09-04,6300000,2460000,Bank Loan,Service Inclusive Plus,Business,28500,4.8,luxury
+BMWC0559,Sneha,Menon,37,BMW 2 Series Gran Coupe,Petrol,Hyderabad,Telangana,2024,Silver,2024-08-19,4850000,1900000,Lease,Basic,Executive,12000,3.6,premium
+BMWC0560,Ishita,Reddy,68,BMW i7,Electric,Gurugram,Haryana,2025,Red,2025-08-29,21150000,10230000,Lease,Basic,Luxury,10000,4.6,luxury
+BMWC0563,Amit,Jain,28,BMW 5 Series,Petrol,Coimbatore,Tamil Nadu,2024,Silver,2024-06-15,8450000,3090000,Cash,Service Inclusive Plus,Premium,29000,4.9,luxury
+BMWC0572,Amit,Shah,48,BMW i7,Electric,Chandigarh,Chandigarh,2023,Blue,2023-06-16,22000000,10800000,Cash,Service Inclusive,Executive,6500,3.8,luxury
+BMWC0578,Rahul,Joshi,44,BMW 5 Series,Diesel,Chennai,Tamil Nadu,2023,Black,2023-08-04,7500000,2000000,Cash,Service Inclusive,Business,20500,4.7,luxury
+BMWC0586,Diya,Sharma,45,BMW 3 Series,Diesel,Chennai,Tamil Nadu,2024,Blue,2024-08-09,6450000,2590000,Cash,Basic,Luxury,5500,3.3,luxury
+BMWC0589,Akash,Kapoor,57,BMW X3,Petrol,Ahmedabad,Gujarat,2023,Red,2023-07-31,7050000,1910000,Cash,Basic,Executive,23000,4.5,luxury
+BMWC0594,Deepak,Kapoor,27,BMW 7 Series,Petrol,Delhi,Delhi,2023,Black,2023-07-29,19050000,9510000,Bank Loan,Service Inclusive Plus,Business,24000,4.5,luxury
+BMWC0611,Vijay,Iyer,36,BMW 5 Series,Petrol,Chennai,Tamil Nadu,2023,Blue,2023-06-21,7350000,1470000,BMW Finance,Service Inclusive,Business,9000,4.7,luxury
+BMWC0613,Varun,Jain,48,BMW 7 Series,Petrol,Coimbatore,Tamil Nadu,2022,Silver,2023-10-14,19400000,6580000,BMW Finance,Service Inclusive Plus,Executive,12500,5.0,luxury
+BMWC0616,Nikhil,Mehta,50,BMW X7,Diesel,Ahmedabad,Gujarat,2024,Grey,2025-07-30,14850000,7070000,BMW Finance,Service Inclusive,Business,12000,3.3,luxury
+BMWC0621,Deepak,Verma,66,BMW X5,Petrol,Noida,Uttar Pradesh,2024,White,2024-11-15,10150000,4730000,Lease,Service Inclusive Plus,Business,12000,3.9,luxury
+BMWC0623,Varun,Pillai,67,BMW X1,Petrol,Noida,Uttar Pradesh,2023,Blue,2023-12-28,5500000,1900000,Bank Loan,Service Inclusive Plus,Premium,26500,4.0,luxury
+BMWC0626,Nikhil,Patel,29,BMW 2 Series Gran Coupe,Petrol,Pune,Maharashtra,2024,Blue,2024-03-01,4750000,1500000,Cash,Basic,Executive,26000,3.6,premium
+BMWC0635,Nikhil,Patel,53,BMW i5,Electric,Mumbai,Maharashtra,2024,Red,2024-01-04,12100000,3720000,Cash,Service Inclusive,Executive,26500,4.5,luxury
+BMWC0651,Diya,Verma,70,BMW X1,Diesel,Kolkata,West Bengal,2024,Black,2024-09-27,5550000,1300000,Bank Loan,Service Inclusive Plus,Premium,18500,4.4,luxury
+BMWC0653,Rahul,Kapoor,37,BMW X5,Petrol,Kolkata,West Bengal,2024,Silver,2024-05-16,10200000,4640000,Bank Loan,Service Inclusive Plus,Business,27000,4.0,luxury
+BMWC0659,Meera,Jain,48,BMW i4,Electric,Delhi,Delhi,2025,Black,2025-10-28,7450000,2490000,Bank Loan,Service Inclusive,Premium,16500,4.7,luxury
+BMWC0663,Rahul,Mehta,68,BMW iX,Electric,Hyderabad,Telangana,2025,White,2025-01-28,14700000,3940000,BMW Finance,Basic,Premium,8500,4.8,luxury
+BMWC0670,Pranav,Kapoor,70,BMW 2 Series Gran Coupe,Diesel,Mumbai,Maharashtra,2023,Blue,2023-03-08,4650000,2300000,BMW Finance,Basic,Business,29500,4.5,premium
+BMWC0672,Pranav,Kumar,70,BMW X3,Petrol,Chandigarh,Chandigarh,2023,White,2023-09-15,7700000,3540000,BMW Finance,Basic,Luxury,9000,3.5,luxury
+BMWC0682,Akash,Pillai,60,BMW 7 Series,Petrol,Ahmedabad,Gujarat,2023,Blue,2023-03-19,19350000,6070000,Bank Loan,Service Inclusive,Luxury,28000,3.7,luxury
+BMWC0686,Amit,Patel,58,BMW i4,Electric,Bengaluru,Karnataka,2023,White,2023-12-16,7750000,3350000,Bank Loan,Service Inclusive,Luxury,22500,4.8,luxury
+BMWC0694,Tanvi,Gupta,64,BMW 2 Series Gran Coupe,Diesel,Chennai,Tamil Nadu,2024,Grey,2024-07-31,4800000,1600000,Bank Loan,Basic,Premium,5000,3.8,premium
+BMWC0703,Kavya,Bose,57,BMW X5,Diesel,Chennai,Tamil Nadu,2024,White,2024-05-24,9850000,2870000,Bank Loan,Basic,Luxury,16500,3.4,luxury
+BMWC0715,Arjun,Singh,34,BMW 7 Series,Petrol,Delhi,Delhi,2024,Silver,2024-09-08,17750000,6650000,Lease,Service Inclusive Plus,Luxury,10500,3.5,luxury
+BMWC0722,Vikram,Kumar,36,BMW iX1,Electric,Ahmedabad,Gujarat,2025,Blue,2025-10-23,6850000,1770000,Cash,Service Inclusive,Business,26500,4.8,luxury
+BMWC0725,Rahul,Verma,65,BMW i7,Electric,Ahmedabad,Gujarat,2023,Silver,2023-11-14,20400000,9180000,Lease,Service Inclusive Plus,Luxury,12500,4.9,luxury
+BMWC0726,Deepak,Sharma,70,BMW X5,Petrol,Ahmedabad,Gujarat,2024,Blue,2024-05-13,11350000,3670000,Lease,Basic,Premium,12500,4.5,luxury
+BMWC0728,Kavya,Patel,69,BMW i7,Electric,Bengaluru,Karnataka,2024,Red,2025-12-12,20450000,6490000,Cash,Service Inclusive Plus,Premium,27000,4.5,luxury
+BMWC0729,Vikram,Bose,34,BMW X7,Petrol,Chennai,Tamil Nadu,2024,White,2024-01-19,13450000,3190000,BMW Finance,Service Inclusive,Luxury,5000,3.6,luxury
+BMWC0743,Kavya,Shah,61,BMW X1,Diesel,Mumbai,Maharashtra,2024,Grey,2024-03-28,5100000,1500000,Lease,Basic,Premium,19500,3.9,luxury
+BMWC0744,Pranav,Singh,52,BMW 5 Series,Petrol,Gurugram,Haryana,2022,Red,2023-02-13,7800000,2560000,Lease,Basic,Executive,15500,3.3,luxury
+BMWC0749,Sneha,Bose,34,BMW X3,Diesel,Chennai,Tamil Nadu,2024,Blue,2024-07-28,7200000,2940000,Cash,Service Inclusive,Luxury,8500,4.8,luxury
+BMWC0756,Sneha,Mehta,43,BMW iX,Electric,Kolkata,West Bengal,2022,Black,2023-07-03,14400000,4780000,Lease,Basic,Premium,30000,4.7,luxury
+BMWC0766,Meera,Singh,60,BMW 3 Series,Diesel,Coimbatore,Tamil Nadu,2025,Blue,2025-08-28,6050000,2610000,BMW Finance,Basic,Executive,20500,4.5,luxury
+BMWC0780,Priya,Menon,49,BMW 2 Series Gran Coupe,Petrol,Noida,Uttar Pradesh,2023,Blue,2023-01-20,5050000,1300000,Lease,Service Inclusive Plus,Luxury,23500,3.8,luxury
+BMWC0784,Rohan,Rao,28,BMW X1,Diesel,Bengaluru,Karnataka,2025,Silver,2025-08-21,5600000,2500000,Lease,Service Inclusive Plus,Business,11000,3.5,luxury
+BMWC0793,Vikram,Jain,51,BMW X3,Diesel,Ahmedabad,Gujarat,2023,Black,2023-07-20,7450000,2090000,Lease,Service Inclusive,Executive,21500,3.3,luxury
+BMWC0794,Rohan,Pillai,56,BMW X1,Petrol,Chennai,Tamil Nadu,2024,Red,2025-11-04,5200000,1900000,BMW Finance,Service Inclusive,Business,21500,4.4,luxury
+BMWC0797,Lakshmi,Iyer,55,BMW X1,Petrol,Chennai,Tamil Nadu,2023,Blue,2023-12-28,5350000,2400000,Bank Loan,Service Inclusive Plus,Executive,17000,4.4,luxury
+BMWC0813,Sneha,Kumar,33,BMW 3 Series,Diesel,Gurugram,Haryana,2025,White,2025-07-29,6500000,3000000,BMW Finance,Service Inclusive Plus,Luxury,13000,3.6,luxury
+BMWC0822,Akash,Kulkarni,64,BMW 3 Series,Diesel,Bengaluru,Karnataka,2024,Black,2024-01-24,6150000,1830000,BMW Finance,Service Inclusive,Premium,6500,3.8,luxury
+BMWC0825,Aditya,Joshi,66,BMW X3,Diesel,Chandigarh,Chandigarh,2023,Grey,2023-05-16,7800000,2360000,Lease,Service Inclusive,Premium,22000,3.8,luxury
+BMWC0829,Vijay,Iyer,26,BMW X1,Petrol,Jaipur,Rajasthan,2023,Silver,2023-11-30,5650000,2500000,Lease,Service Inclusive Plus,Executive,28500,4.6,luxury
+BMWC0832,Kavya,Verma,41,BMW i4,Electric,Chandigarh,Chandigarh,2023,Red,2023-01-02,7550000,2910000,BMW Finance,Service Inclusive,Premium,5000,3.2,luxury
+BMWC0835,Nikhil,Iyer,47,BMW X1,Petrol,Kochi,Kerala,2025,Silver,2025-01-11,5050000,2100000,Cash,Basic,Luxury,8000,3.6,luxury
+BMWC0840,Kavya,Pillai,32,BMW 7 Series,Petrol,Delhi,Delhi,2025,Silver,2025-11-20,18250000,6450000,Cash,Service Inclusive,Business,18000,4.5,luxury
+BMWC0844,Vikram,Menon,50,BMW X5,Diesel,Mumbai,Maharashtra,2025,Silver,2025-11-28,11450000,3790000,Cash,Service Inclusive Plus,Premium,8500,4.5,luxury
+BMWC0859,Sanjay,Iyer,53,BMW X3,Petrol,Hyderabad,Telangana,2024,Silver,2024-04-19,7350000,3270000,Bank Loan,Basic,Premium,22000,4.8,luxury
+BMWC0864,Harish,Shah,63,BMW 3 Series,Diesel,Pune,Maharashtra,2023,White,2023-10-02,6850000,2370000,Cash,Service Inclusive,Business,28500,4.0,luxury
+BMWC0871,Sneha,Rao,25,BMW 5 Series,Diesel,Gurugram,Haryana,2022,Silver,2023-08-31,7350000,2770000,Bank Loan,Service Inclusive Plus,Executive,28000,5.0,luxury
+BMWC0895,Riya,Kapoor,27,BMW X7,Diesel,Hyderabad,Telangana,2023,Silver,2023-04-25,14600000,3520000,Cash,Basic,Luxury,29500,4.0,luxury
+BMWC0899,Neha,Jain,33,BMW 5 Series,Diesel,Jaipur,Rajasthan,2024,Grey,2024-03-29,8400000,2680000,Cash,Service Inclusive,Business,26500,4.8,luxury
+BMWC0904,Amit,Gupta,53,BMW X1,Petrol,Ahmedabad,Gujarat,2023,Grey,2024-10-25,5550000,2700000,Lease,Service Inclusive Plus,Premium,22000,4.5,luxury
+BMWC0935,Pranav,Shah,58,BMW i7,Electric,Mumbai,Maharashtra,2023,Black,2023-09-13,20150000,5330000,Cash,Service Inclusive,Premium,23500,3.6,luxury
+BMWC0939,Neha,Kumar,25,BMW 3 Series,Petrol,Noida,Uttar Pradesh,2023,Black,2023-10-16,6400000,2780000,Lease,Service Inclusive,Luxury,10500,4.1,luxury
+BMWC0942,Karthik,Shah,44,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2024,Blue,2024-01-30,17950000,5490000,Lease,Service Inclusive Plus,Business,16000,3.8,luxury
+BMWC0946,Ananya,Reddy,65,BMW 2 Series Gran Coupe,Petrol,Chennai,Tamil Nadu,2023,Blue,2023-12-03,4700000,2000000,Lease,Basic,Luxury,14000,3.9,premium
+BMWC0947,Sneha,Rao,37,BMW i4,Electric,Ahmedabad,Gujarat,2025,Silver,2025-02-24,7250000,2850000,Bank Loan,Service Inclusive Plus,Premium,23000,3.6,luxury
+BMWC0966,Harish,Nair,70,BMW 5 Series,Diesel,Delhi,Delhi,2023,Blue,2024-08-04,8250000,3450000,Lease,Service Inclusive,Luxury,23000,4.1,luxury
+BMWC0971,Aarav,Singh,57,BMW iX1,Electric,Chandigarh,Chandigarh,2023,Red,2023-01-09,6850000,2970000,Bank Loan,Service Inclusive Plus,Luxury,26500,3.6,luxury
+BMWC0973,Lakshmi,Desai,64,BMW iX,Electric,Kolkata,West Bengal,2024,Grey,2024-05-18,14300000,4560000,Lease,Service Inclusive,Executive,17500,3.3,luxury
+BMWC0985,Vikram,Mehta,36,BMW iX,Electric,Jaipur,Rajasthan,2024,Blue,2024-10-20,14100000,4920000,Bank Loan,Basic,Premium,22000,3.8,luxury
+BMWC1000,Karthik,Kapoor,28,BMW 2 Series Gran Coupe,Petrol,Kolkata,West Bengal,2025,Blue,2025-10-30,4850000,1300000,Cash,Service Inclusive Plus,Executive,21500,3.5,premium
+BMWC0005,Sneha,Rao,42,BMW 7 Series,Petrol,Gurugram,Haryana,2024,Red,2024-07-17,19500000,9200000,Cash,Service Inclusive Plus,Luxury,16500,3.9,luxury
+BMWC0008,Akash,Patel,62,BMW i7,Electric,Coimbatore,Tamil Nadu,2024,Black,2024-05-27,21850000,9470000,BMW Finance,Service Inclusive Plus,Luxury,9000,3.9,luxury
+BMWC0021,Suresh,Menon,67,BMW i4,Electric,Gurugram,Haryana,2025,White,2025-04-10,7650000,3130000,Bank Loan,Service Inclusive,Luxury,13000,3.8,luxury
+BMWC0025,Harish,Gupta,65,BMW X1,Petrol,Bengaluru,Karnataka,2024,Red,2024-05-17,5400000,1300000,Lease,Service Inclusive Plus,Business,29500,3.2,luxury
+BMWC0033,Deepak,Bose,36,BMW i5,Electric,Kochi,Kerala,2025,Silver,2025-06-14,12450000,4390000,Bank Loan,Service Inclusive,Business,5000,3.9,luxury
+BMWC0039,Karthik,Pillai,34,BMW iX1,Electric,Mumbai,Maharashtra,2023,Grey,2023-04-19,6850000,1770000,Lease,Basic,Luxury,7000,4.5,luxury
+BMWC0041,Tanvi,Gupta,52,BMW X7,Petrol,Hyderabad,Telangana,2024,Grey,2024-09-21,13050000,5010000,BMW Finance,Service Inclusive Plus,Premium,26500,3.8,luxury
+BMWC0045,Suresh,Mehta,61,BMW 3 Series,Petrol,Hyderabad,Telangana,2025,Black,2025-10-19,6200000,2440000,Bank Loan,Service Inclusive Plus,Premium,11000,4.9,luxury
+BMWC0052,Ananya,Rao,37,BMW X1,Diesel,Bengaluru,Karnataka,2023,Black,2023-08-30,5350000,1700000,Cash,Service Inclusive Plus,Executive,5000,3.5,luxury
+BMWC0054,Akash,Mehta,61,BMW X5,Diesel,Bengaluru,Karnataka,2024,Black,2025-07-13,9850000,2370000,Lease,Service Inclusive Plus,Luxury,23000,3.5,luxury
+BMWC0075,Deepak,Jain,56,BMW i4,Electric,Ahmedabad,Gujarat,2023,Blue,2023-08-10,7800000,2260000,BMW Finance,Service Inclusive Plus,Premium,16000,4.3,luxury
+BMWC0081,Nikhil,Mehta,56,BMW X5,Petrol,Chandigarh,Chandigarh,2025,Blue,2025-06-14,11000000,3900000,Cash,Service Inclusive Plus,Executive,16500,3.3,luxury
+BMWC0083,Ananya,Jain,60,BMW 5 Series,Petrol,Bengaluru,Karnataka,2023,Black,2023-03-01,8100000,2220000,Bank Loan,Basic,Luxury,12000,4.7,luxury
+BMWC0086,Pranav,Kapoor,67,BMW i4,Electric,Coimbatore,Tamil Nadu,2024,Grey,2024-12-03,7400000,2880000,Cash,Service Inclusive,Business,5500,4.4,luxury
+BMWC0090,Amit,Bose,33,BMW i7,Electric,Jaipur,Rajasthan,2025,Blue,2025-02-13,20150000,7730000,Lease,Service Inclusive Plus,Premium,22500,4.9,luxury
+BMWC0091,Amit,Joshi,31,BMW X1,Diesel,Delhi,Delhi,2025,Silver,2025-03-29,5800000,1800000,Bank Loan,Basic,Executive,20000,3.5,luxury
+BMWC0092,Rohan,Rao,52,BMW i4,Electric,Jaipur,Rajasthan,2025,Black,2025-02-22,7800000,3460000,BMW Finance,Service Inclusive,Executive,25500,4.3,luxury
+BMWC0094,Varun,Jain,48,BMW X7,Diesel,Mumbai,Maharashtra,2023,Black,2023-10-01,14000000,6400000,Cash,Service Inclusive,Business,6500,4.3,luxury
+BMWC0116,Arjun,Reddy,34,BMW i5,Electric,Coimbatore,Tamil Nadu,2023,Silver,2023-08-20,12300000,2460000,Bank Loan,Basic,Premium,12500,4.3,luxury
+BMWC0118,Suresh,Verma,59,BMW 5 Series,Petrol,Delhi,Delhi,2023,Red,2023-11-25,8500000,3700000,BMW Finance,Basic,Premium,29500,3.5,luxury
+BMWC0121,Akash,Bose,56,BMW 5 Series,Diesel,Coimbatore,Tamil Nadu,2024,Silver,2024-01-23,8450000,3290000,BMW Finance,Service Inclusive Plus,Executive,7500,3.7,luxury
+BMWC0125,Arjun,Verma,48,BMW i4,Electric,Kolkata,West Bengal,2024,Silver,2024-03-26,7450000,3490000,Lease,Service Inclusive Plus,Premium,8500,3.7,luxury
+BMWC0127,Divya,Gupta,29,BMW i5,Electric,Coimbatore,Tamil Nadu,2025,Blue,2025-01-31,12400000,4280000,BMW Finance,Basic,Luxury,10000,4.8,luxury
+BMWC0131,Riya,Nair,65,BMW 7 Series,Petrol,Mumbai,Maharashtra,2023,White,2023-09-13,19450000,7290000,Bank Loan,Service Inclusive Plus,Premium,25500,3.4,luxury
+BMWC0139,Aditya,Patel,46,BMW X5,Diesel,Jaipur,Rajasthan,2025,Black,2025-02-16,10850000,3070000,BMW Finance,Service Inclusive Plus,Executive,21000,3.6,luxury
+BMWC0145,Suresh,Singh,40,BMW i4,Electric,Pune,Maharashtra,2023,Red,2023-07-26,7600000,2420000,Lease,Service Inclusive,Business,14500,3.6,luxury
+BMWC0148,Pranav,Iyer,58,BMW 7 Series,Petrol,Kochi,Kerala,2023,Red,2023-04-08,19500000,5300000,BMW Finance,Basic,Luxury,18000,3.3,luxury
+BMWC0156,Deepak,Kulkarni,70,BMW iX1,Electric,Kolkata,West Bengal,2023,Silver,2024-01-11,6700000,3140000,BMW Finance,Basic,Executive,22500,3.4,luxury
+BMWC0165,Rahul,Verma,58,BMW i5,Electric,Jaipur,Rajasthan,2023,White,2023-10-15,12300000,5060000,BMW Finance,Service Inclusive,Luxury,17000,3.5,luxury
+BMWC0167,Varun,Kulkarni,42,BMW 3 Series,Petrol,Chennai,Tamil Nadu,2024,Red,2024-02-12,6650000,3230000,BMW Finance,Service Inclusive,Luxury,7000,4.3,luxury
+BMWC0171,Varun,Verma,49,BMW 7 Series,Petrol,Pune,Maharashtra,2025,Red,2025-03-12,18250000,6750000,Lease,Service Inclusive,Luxury,26500,4.2,luxury
+BMWC0185,Ishita,Verma,44,BMW 5 Series,Petrol,Hyderabad,Telangana,2023,Black,2023-07-04,7950000,1990000,Bank Loan,Service Inclusive,Luxury,18500,3.3,luxury
+BMWC0194,Sneha,Gupta,29,BMW X7,Diesel,Delhi,Delhi,2023,Red,2023-09-07,13100000,3320000,BMW Finance,Service Inclusive Plus,Luxury,15500,3.2,luxury
+BMWC0196,Akash,Kulkarni,25,BMW X7,Diesel,Gurugram,Haryana,2025,Black,2025-12-14,13650000,4030000,BMW Finance,Service Inclusive,Executive,27500,3.7,luxury
+BMWC0197,Rohan,Kapoor,41,BMW 7 Series,Petrol,Bengaluru,Karnataka,2025,Silver,2025-10-05,19050000,7110000,Cash,Service Inclusive,Executive,15000,4.9,luxury
+BMWC0200,Pranav,Nair,36,BMW X7,Diesel,Mumbai,Maharashtra,2022,White,2023-10-07,14400000,6780000,Lease,Service Inclusive Plus,Business,16000,3.3,luxury
+BMWC0201,Diya,Kumar,70,BMW X5,Diesel,Gurugram,Haryana,2024,Black,2024-06-28,11250000,3250000,Bank Loan,Basic,Executive,5500,3.3,luxury
+BMWC0205,Sneha,Iyer,70,BMW i4,Electric,Delhi,Delhi,2022,White,2023-08-23,7400000,3280000,Lease,Basic,Executive,21000,3.7,luxury
+BMWC0210,Kavya,Rao,37,BMW X7,Petrol,Gurugram,Haryana,2025,Black,2025-11-11,13400000,4580000,Bank Loan,Service Inclusive Plus,Luxury,13500,3.5,luxury
+BMWC0221,Yash,Rao,56,BMW i7,Electric,Mumbai,Maharashtra,2023,Red,2023-12-12,21650000,7630000,Cash,Basic,Executive,9000,3.5,luxury
+BMWC0224,Karthik,Rao,27,BMW X5,Petrol,Mumbai,Maharashtra,2024,Black,2025-02-06,11000000,3600000,Bank Loan,Basic,Premium,18000,3.8,luxury
+BMWC0228,Priya,Bose,34,BMW X5,Diesel,Chennai,Tamil Nadu,2024,Red,2025-12-28,10550000,2610000,Bank Loan,Service Inclusive,Premium,12000,3.3,luxury
+BMWC0229,Ananya,Mehta,33,BMW i4,Electric,Kolkata,West Bengal,2025,Blue,2025-07-29,7500000,1700000,Bank Loan,Service Inclusive,Business,6500,4.3,luxury
+BMWC0245,Aditya,Kapoor,38,BMW X7,Petrol,Hyderabad,Telangana,2023,Grey,2023-05-27,13200000,4840000,Lease,Basic,Business,8000,3.7,luxury
+BMWC0251,Harish,Mehta,48,BMW 3 Series,Diesel,Mumbai,Maharashtra,2024,Blue,2024-02-21,6150000,1730000,Cash,Basic,Premium,13000,4.0,luxury
+BMWC0260,Lakshmi,Singh,57,BMW 3 Series,Diesel,Coimbatore,Tamil Nadu,2024,Black,2024-04-06,5800000,2800000,BMW Finance,Basic,Business,5500,4.8,luxury
+BMWC0263,Aarav,Sharma,39,BMW 5 Series,Petrol,Chandigarh,Chandigarh,2025,Grey,2025-08-18,7550000,3610000,BMW Finance,Service Inclusive Plus,Luxury,25500,3.6,luxury
+BMWC0270,Rohan,Reddy,43,BMW X3,Diesel,Ahmedabad,Gujarat,2024,Grey,2024-08-07,7150000,2930000,BMW Finance,Service Inclusive Plus,Premium,25000,3.3,luxury
+BMWC0271,Riya,Shah,44,BMW i5,Electric,Kolkata,West Bengal,2024,White,2024-04-26,12000000,3300000,Bank Loan,Service Inclusive Plus,Luxury,11000,3.4,luxury
+BMWC0284,Tanvi,Nair,64,BMW iX,Electric,Mumbai,Maharashtra,2023,Grey,2024-02-17,14550000,6810000,Lease,Basic,Business,26500,3.3,luxury
+BMWC0285,Tanvi,Kulkarni,41,BMW X7,Petrol,Bengaluru,Karnataka,2025,Red,2025-09-03,14000000,2800000,BMW Finance,Service Inclusive Plus,Executive,26500,4.5,luxury
+BMWC0294,Divya,Mehta,63,BMW 3 Series,Diesel,Kochi,Kerala,2024,Blue,2025-05-26,6100000,2820000,Lease,Service Inclusive,Executive,18000,4.8,luxury
+BMWC0297,Aditya,Patel,59,BMW i4,Electric,Kochi,Kerala,2023,White,2023-08-09,7500000,1500000,Bank Loan,Basic,Executive,5500,4.1,luxury
+BMWC0305,Aarav,Desai,68,BMW i5,Electric,Chennai,Tamil Nadu,2023,Blue,2023-10-20,12300000,3160000,Lease,Service Inclusive,Premium,22000,3.9,luxury
+BMWC0314,Riya,Joshi,53,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2023,Blue,2023-11-04,19450000,8090000,Lease,Basic,Premium,23500,3.8,luxury
+BMWC0315,Tanvi,Menon,39,BMW X3,Petrol,Jaipur,Rajasthan,2025,Grey,2025-12-29,8150000,3630000,Lease,Service Inclusive,Executive,16500,4.0,luxury
+BMWC0321,Riya,Reddy,41,BMW 3 Series,Diesel,Chandigarh,Chandigarh,2025,Silver,2025-03-31,6450000,3090000,Bank Loan,Service Inclusive,Luxury,25500,3.5,luxury
+BMWC0328,Rohan,Pillai,59,BMW i4,Electric,Jaipur,Rajasthan,2024,Black,2024-10-27,7800000,1860000,Lease,Service Inclusive Plus,Business,26000,3.4,luxury
+BMWC0332,Pranav,Rao,38,BMW i5,Electric,Jaipur,Rajasthan,2024,Blue,2024-04-26,12400000,5980000,Bank Loan,Service Inclusive Plus,Business,16500,4.1,luxury
+BMWC0335,Varun,Gupta,64,BMW i7,Electric,Gurugram,Haryana,2025,Red,2025-09-05,21650000,7930000,Lease,Service Inclusive,Premium,24000,4.5,luxury
+BMWC0337,Tanvi,Reddy,50,BMW 5 Series,Petrol,Hyderabad,Telangana,2023,Black,2023-12-25,8250000,2850000,Bank Loan,Service Inclusive Plus,Executive,11000,3.9,luxury
+BMWC0346,Varun,Joshi,64,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2023,Blue,2023-12-04,18650000,4830000,Lease,Service Inclusive,Business,11500,4.1,luxury
+BMWC0352,Harish,Shah,45,BMW 5 Series,Diesel,Pune,Maharashtra,2023,Blue,2023-10-11,8200000,2540000,Lease,Service Inclusive,Luxury,24000,4.5,luxury
+BMWC0356,Kavya,Verma,65,BMW i4,Electric,Kochi,Kerala,2025,Silver,2025-03-01,7500000,3100000,BMW Finance,Basic,Business,22000,4.4,luxury
+BMWC0366,Pranav,Reddy,27,BMW X5,Petrol,Chennai,Tamil Nadu,2025,Red,2025-04-05,11200000,3140000,Bank Loan,Service Inclusive Plus,Premium,7500,3.9,luxury
+BMWC0368,Deepak,Kulkarni,27,BMW X3,Petrol,Hyderabad,Telangana,2024,White,2024-09-20,8100000,3020000,Bank Loan,Service Inclusive,Business,22000,4.2,luxury
+BMWC0374,Sanjay,Gupta,39,BMW 7 Series,Petrol,Bengaluru,Karnataka,2024,Silver,2024-12-24,18700000,4940000,Lease,Service Inclusive Plus,Premium,26000,3.5,luxury
+BMWC0385,Deepak,Menon,68,BMW iX,Electric,Delhi,Delhi,2025,Blue,2025-03-25,14100000,3520000,Cash,Service Inclusive,Luxury,18500,4.4,luxury
+BMWC0393,Riya,Pillai,44,BMW i4,Electric,Gurugram,Haryana,2025,Red,2025-05-24,7450000,2890000,BMW Finance,Basic,Executive,11500,4.2,luxury
+BMWC0394,Tanvi,Iyer,34,BMW i7,Electric,Gurugram,Haryana,2025,White,2025-09-05,21800000,6360000,Bank Loan,Basic,Premium,22500,3.8,luxury
+BMWC0396,Ananya,Desai,39,BMW i4,Electric,Ahmedabad,Gujarat,2023,Silver,2023-04-18,7700000,1540000,Lease,Service Inclusive Plus,Executive,27000,3.8,luxury
+BMWC0399,Meera,Patel,31,BMW X5,Petrol,Kolkata,West Bengal,2024,Silver,2024-07-13,11150000,2430000,Lease,Service Inclusive Plus,Premium,12500,4.8,luxury
+BMWC0400,Aditya,Desai,50,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2023,White,2023-09-16,18400000,6580000,Lease,Service Inclusive Plus,Business,14000,3.5,luxury
+BMWC0410,Deepak,Sharma,65,BMW 5 Series,Diesel,Kolkata,West Bengal,2024,Black,2024-10-16,7950000,2090000,Cash,Service Inclusive,Premium,12000,4.8,luxury
+BMWC0416,Ishita,Gupta,56,BMW X1,Diesel,Bengaluru,Karnataka,2023,Black,2023-05-02,5550000,2600000,Bank Loan,Basic,Luxury,14500,4.7,luxury
+BMWC0422,Sneha,Pillai,70,BMW X5,Diesel,Mumbai,Maharashtra,2025,Black,2025-05-05,11100000,4420000,Lease,Service Inclusive Plus,Luxury,11000,3.8,luxury
+BMWC0423,Lakshmi,Jain,54,BMW 3 Series,Diesel,Bengaluru,Karnataka,2023,Blue,2023-09-28,6650000,2730000,Bank Loan,Service Inclusive,Luxury,12000,4.0,luxury
+BMWC0438,Ishita,Verma,35,BMW 2 Series Gran Coupe,Diesel,Ahmedabad,Gujarat,2025,Black,2025-03-19,4350000,2200000,BMW Finance,Service Inclusive Plus,Premium,28500,5.0,premium
+BMWC0439,Rohan,Gupta,33,BMW iX,Electric,Hyderabad,Telangana,2025,Silver,2025-06-15,14400000,4580000,BMW Finance,Service Inclusive Plus,Business,5000,4.7,luxury
+BMWC0441,Aditya,Rao,67,BMW iX,Electric,Pune,Maharashtra,2024,Black,2024-06-20,15000000,4000000,Cash,Basic,Business,28000,3.6,luxury
+BMWC0480,Vijay,Nair,59,BMW 5 Series,Petrol,Coimbatore,Tamil Nadu,2022,White,2023-08-08,7450000,1990000,BMW Finance,Basic,Premium,27000,4.7,luxury
+BMWC0482,Tanvi,Pillai,26,BMW iX1,Electric,Bengaluru,Karnataka,2024,Silver,2024-04-08,6850000,1770000,Bank Loan,Service Inclusive Plus,Executive,15000,4.9,luxury
+BMWC0484,Deepak,Kulkarni,64,BMW X1,Petrol,Gurugram,Haryana,2023,Silver,2023-03-28,5700000,2300000,BMW Finance,Service Inclusive,Luxury,6500,3.4,luxury
+BMWC0485,Rohan,Desai,53,BMW 2 Series Gran Coupe,Petrol,Kolkata,West Bengal,2025,Black,2025-10-18,4400000,2000000,Bank Loan,Service Inclusive,Luxury,20500,3.9,premium
+BMWC0490,Ishita,Bose,41,BMW iX,Electric,Mumbai,Maharashtra,2023,White,2023-09-07,15000000,7000000,Lease,Service Inclusive Plus,Luxury,25500,4.1,luxury
+BMWC0491,Neha,Rao,42,BMW 2 Series Gran Coupe,Petrol,Jaipur,Rajasthan,2024,Red,2024-10-06,4400000,2100000,Lease,Service Inclusive Plus,Premium,23500,4.5,premium
+BMWC0493,Varun,Iyer,43,BMW X5,Diesel,Chennai,Tamil Nadu,2023,Silver,2023-08-21,11350000,2670000,BMW Finance,Service Inclusive Plus,Executive,29500,4.1,luxury
+BMWC0494,Ananya,Sharma,68,BMW X3,Diesel,Hyderabad,Telangana,2025,White,2025-11-30,8100000,2720000,Bank Loan,Service Inclusive,Business,23500,3.4,luxury
+BMWC0495,Rahul,Jain,31,BMW X5,Diesel,Mumbai,Maharashtra,2023,Red,2023-03-23,10150000,3630000,Cash,Service Inclusive,Business,11000,3.6,luxury
+BMWC0497,Akash,Bose,33,BMW 2 Series Gran Coupe,Petrol,Pune,Maharashtra,2025,Red,2025-11-22,4500000,2300000,Cash,Basic,Premium,9000,3.6,premium
+BMWC0506,Priya,Rao,66,BMW X1,Diesel,Jaipur,Rajasthan,2023,White,2024-03-30,5550000,2700000,Lease,Basic,Premium,17500,4.4,luxury
+BMWC0512,Vikram,Joshi,68,BMW X7,Diesel,Ahmedabad,Gujarat,2023,Blue,2023-12-24,13900000,4780000,Cash,Service Inclusive Plus,Executive,23500,3.3,luxury
+BMWC0516,Yash,Pillai,52,BMW 5 Series,Diesel,Delhi,Delhi,2023,White,2023-02-18,7950000,3590000,Bank Loan,Service Inclusive,Premium,30000,4.7,luxury
+BMWC0519,Yash,Bose,56,BMW 2 Series Gran Coupe,Petrol,Ahmedabad,Gujarat,2023,Silver,2023-03-13,5000000,1600000,Cash,Service Inclusive Plus,Luxury,22000,4.9,luxury
+BMWC0522,Arjun,Patel,35,BMW X5,Petrol,Pune,Maharashtra,2023,Red,2023-07-13,10100000,2020000,Lease,Basic,Premium,13500,3.7,luxury
+BMWC0539,Ananya,Verma,70,BMW 5 Series,Petrol,Delhi,Delhi,2024,Blue,2024-12-22,7850000,1970000,Bank Loan,Service Inclusive,Executive,15000,3.7,luxury
+BMWC0548,Karthik,Shah,48,BMW 3 Series,Diesel,Jaipur,Rajasthan,2025,Red,2025-06-11,5850000,2500000,BMW Finance,Service Inclusive Plus,Luxury,7500,4.3,luxury
+BMWC0549,Ishita,Mehta,54,BMW X7,Petrol,Hyderabad,Telangana,2024,Silver,2024-06-14,13250000,5650000,Lease,Service Inclusive,Premium,9000,3.7,luxury
+BMWC0557,Riya,Jain,62,BMW X5,Diesel,Coimbatore,Tamil Nadu,2025,Red,2025-05-05,11450000,4090000,Lease,Basic,Premium,17500,3.3,luxury
+BMWC0575,Pranav,Bose,41,BMW i4,Electric,Chandigarh,Chandigarh,2025,White,2025-04-11,7550000,3510000,BMW Finance,Service Inclusive Plus,Luxury,19000,4.0,luxury
+BMWC0580,Aditya,Shah,64,BMW 5 Series,Diesel,Bengaluru,Karnataka,2025,Red,2025-09-22,8150000,2930000,Bank Loan,Service Inclusive Plus,Premium,17500,3.9,luxury
+BMWC0597,Tanvi,Mehta,68,BMW X5,Diesel,Bengaluru,Karnataka,2024,Black,2024-11-27,11150000,5330000,Bank Loan,Service Inclusive,Business,29000,3.9,luxury
+BMWC0604,Tanvi,Jain,37,BMW 2 Series Gran Coupe,Petrol,Ahmedabad,Gujarat,2025,Grey,2025-03-19,4500000,2200000,BMW Finance,Basic,Luxury,16000,4.1,premium
+BMWC0619,Karthik,Singh,42,BMW X1,Petrol,Jaipur,Rajasthan,2023,Red,2023-04-12,5150000,1300000,Bank Loan,Service Inclusive,Executive,6000,3.3,luxury
+BMWC0622,Rahul,Sharma,37,BMW X3,Petrol,Delhi,Delhi,2024,Blue,2024-05-28,8200000,3840000,BMW Finance,Service Inclusive Plus,Luxury,19000,4.0,luxury
+BMWC0631,Kavya,Reddy,29,BMW X1,Diesel,Kochi,Kerala,2025,Black,2025-11-30,5300000,2600000,Bank Loan,Service Inclusive,Business,29000,4.1,luxury
+BMWC0639,Aditya,Reddy,54,BMW 2 Series Gran Coupe,Diesel,Pune,Maharashtra,2023,White,2023-03-27,4400000,2200000,Lease,Service Inclusive,Business,25500,4.7,premium
+BMWC0640,Karthik,Gupta,31,BMW 3 Series,Petrol,Hyderabad,Telangana,2025,Red,2025-05-13,6100000,2420000,Bank Loan,Service Inclusive Plus,Business,29500,4.4,luxury
+BMWC0641,Riya,Sharma,63,BMW 3 Series,Diesel,Chennai,Tamil Nadu,2025,White,2025-04-13,6300000,2460000,Cash,Service Inclusive Plus,Premium,28500,4.1,luxury
+BMWC0648,Nikhil,Kumar,44,BMW X5,Petrol,Jaipur,Rajasthan,2025,Grey,2025-05-03,11400000,3180000,Bank Loan,Service Inclusive,Business,10500,4.2,luxury
+BMWC0650,Amit,Kapoor,56,BMW i7,Electric,Gurugram,Haryana,2022,Silver,2023-09-23,21850000,5270000,BMW Finance,Basic,Business,6000,3.9,luxury
+BMWC0652,Vikram,Gupta,63,BMW i7,Electric,Hyderabad,Telangana,2023,Black,2024-07-21,20450000,5690000,Cash,Basic,Business,23500,3.6,luxury
+BMWC0665,Akash,Menon,69,BMW iX1,Electric,Bengaluru,Karnataka,2022,Grey,2023-11-13,7000000,2100000,Lease,Service Inclusive Plus,Business,29500,4.9,luxury
+BMWC0671,Ishita,Singh,55,BMW X3,Diesel,Kochi,Kerala,2023,Red,2023-12-15,8200000,2840000,Lease,Basic,Luxury,21500,3.9,luxury
+BMWC0674,Amit,Mehta,66,BMW 2 Series Gran Coupe,Petrol,Kolkata,West Bengal,2023,Grey,2023-11-25,4950000,1400000,Lease,Service Inclusive,Luxury,17500,4.3,premium
+BMWC0683,Harish,Singh,41,BMW X5,Diesel,Bengaluru,Karnataka,2025,Red,2025-10-17,11050000,3110000,Bank Loan,Service Inclusive Plus,Luxury,7000,4.2,luxury
+BMWC0693,Meera,Singh,44,BMW iX1,Electric,Hyderabad,Telangana,2024,Blue,2024-09-16,6800000,2160000,Cash,Service Inclusive,Business,28500,3.6,luxury
+BMWC0699,Vikram,Menon,34,BMW 3 Series,Petrol,Mumbai,Maharashtra,2023,Grey,2023-12-06,6400000,1280000,Cash,Service Inclusive,Business,12500,4.6,luxury
+BMWC0710,Suresh,Sharma,63,BMW iX1,Electric,Gurugram,Haryana,2023,Silver,2023-07-11,6750000,1850000,Lease,Service Inclusive Plus,Executive,23000,3.2,luxury
+BMWC0717,Varun,Patel,25,BMW 3 Series,Petrol,Coimbatore,Tamil Nadu,2025,White,2025-05-20,5750000,2400000,BMW Finance,Basic,Executive,8500,3.9,luxury
+BMWC0727,Divya,Bose,33,BMW 2 Series Gran Coupe,Diesel,Delhi,Delhi,2022,White,2023-08-27,5000000,1400000,BMW Finance,Basic,Premium,22500,4.7,luxury
+BMWC0733,Deepak,Rao,66,BMW X7,Diesel,Kochi,Kerala,2024,Black,2024-04-09,14200000,3840000,Cash,Basic,Executive,16500,3.3,luxury
+BMWC0735,Karthik,Reddy,61,BMW 7 Series,Petrol,Bengaluru,Karnataka,2025,Blue,2025-03-02,17600000,7120000,Cash,Service Inclusive,Executive,20000,5.0,luxury
+BMWC0738,Suresh,Kapoor,33,BMW iX1,Electric,Noida,Uttar Pradesh,2023,White,2023-11-26,6800000,2460000,BMW Finance,Service Inclusive Plus,Premium,18500,4.3,luxury
+BMWC0747,Varun,Kumar,41,BMW X5,Petrol,Kochi,Kerala,2023,White,2023-01-12,9850000,2170000,BMW Finance,Service Inclusive,Business,18500,4.8,luxury
+BMWC0753,Divya,Iyer,52,BMW iX1,Electric,Kolkata,West Bengal,2024,Black,2024-02-21,6800000,2660000,Cash,Basic,Premium,27000,4.3,luxury
+BMWC0759,Aarav,Bose,65,BMW i5,Electric,Chandigarh,Chandigarh,2023,Black,2023-06-17,12400000,3480000,BMW Finance,Basic,Premium,11500,4.9,luxury
+BMWC0762,Deepak,Kapoor,41,BMW 3 Series,Petrol,Hyderabad,Telangana,2022,Black,2023-01-05,5700000,1400000,Lease,Basic,Business,16500,4.1,luxury
+BMWC0763,Nikhil,Gupta,29,BMW 3 Series,Diesel,Kochi,Kerala,2023,White,2023-03-07,6650000,2630000,Bank Loan,Basic,Luxury,15000,3.9,luxury
+BMWC0764,Divya,Iyer,46,BMW i5,Electric,Bengaluru,Karnataka,2023,White,2023-12-12,12350000,5870000,Cash,Service Inclusive Plus,Premium,21500,3.2,luxury
+BMWC0768,Lakshmi,Patel,37,BMW i4,Electric,Gurugram,Haryana,2025,Silver,2025-03-07,7450000,2590000,Bank Loan,Service Inclusive Plus,Business,7000,4.8,luxury
+BMWC0772,Rohan,Menon,56,BMW 7 Series,Petrol,Chennai,Tamil Nadu,2024,Silver,2024-10-18,17600000,5220000,Lease,Basic,Premium,8500,4.0,luxury
+BMWC0779,Suresh,Reddy,30,BMW X1,Diesel,Coimbatore,Tamil Nadu,2022,Black,2023-12-24,5850000,1900000,Lease,Basic,Luxury,28500,4.4,luxury
+BMWC0781,Meera,Singh,39,BMW iX1,Electric,Mumbai,Maharashtra,2024,Black,2024-01-15,6850000,2770000,Bank Loan,Service Inclusive,Luxury,21000,4.8,luxury
+BMWC0796,Akash,Rao,47,BMW 2 Series Gran Coupe,Diesel,Mumbai,Maharashtra,2023,White,2023-08-04,5100000,2200000,BMW Finance,Service Inclusive,Premium,22500,4.9,luxury
+BMWC0808,Lakshmi,Desai,54,BMW 5 Series,Diesel,Coimbatore,Tamil Nadu,2023,Grey,2023-07-22,7200000,1940000,Cash,Basic,Luxury,21000,3.8,luxury
+BMWC0816,Karthik,Sharma,58,BMW 3 Series,Petrol,Mumbai,Maharashtra,2023,White,2023-09-03,5750000,1500000,Bank Loan,Service Inclusive,Business,6500,4.1,luxury
+BMWC0821,Suresh,Nair,63,BMW iX,Electric,Kolkata,West Bengal,2024,Grey,2024-02-16,14000000,6300000,Lease,Service Inclusive Plus,Luxury,17000,4.1,luxury
+BMWC0826,Vikram,Nair,58,BMW 7 Series,Petrol,Chandigarh,Chandigarh,2023,Black,2023-04-18,18450000,8390000,BMW Finance,Service Inclusive Plus,Business,8500,4.2,luxury
+BMWC0831,Harish,Rao,59,BMW 3 Series,Petrol,Jaipur,Rajasthan,2023,Red,2023-08-29,6100000,3020000,Cash,Basic,Executive,24500,3.9,luxury
+BMWC0834,Aditya,Pillai,32,BMW 5 Series,Petrol,Pune,Maharashtra,2025,Red,2025-09-02,7250000,1950000,BMW Finance,Basic,Executive,19000,4.4,luxury
+BMWC0841,Neha,Kulkarni,51,BMW i4,Electric,Noida,Uttar Pradesh,2023,Red,2023-04-16,7650000,1930000,BMW Finance,Service Inclusive Plus,Executive,12500,4.9,luxury
+BMWC0843,Aarav,Gupta,60,BMW 3 Series,Diesel,Hyderabad,Telangana,2025,Black,2025-12-27,6350000,1570000,BMW Finance,Service Inclusive Plus,Business,6000,3.4,luxury
+BMWC0846,Harish,Iyer,66,BMW i4,Electric,Kochi,Kerala,2024,White,2024-07-17,7500000,2500000,Bank Loan,Service Inclusive,Executive,21000,4.0,luxury
+BMWC0847,Tanvi,Singh,45,BMW 2 Series Gran Coupe,Diesel,Hyderabad,Telangana,2024,Grey,2024-02-26,4800000,2400000,Bank Loan,Service Inclusive Plus,Executive,9500,3.5,premium
+BMWC0849,Rahul,Pillai,60,BMW 5 Series,Petrol,Pune,Maharashtra,2023,White,2024-11-07,8400000,2180000,Cash,Service Inclusive,Premium,6000,3.2,luxury
+BMWC0853,Tanvi,Verma,49,BMW 7 Series,Petrol,Ahmedabad,Gujarat,2023,Blue,2023-03-27,18100000,5220000,BMW Finance,Basic,Premium,20500,4.0,luxury
+BMWC0861,Rahul,Mehta,70,BMW 5 Series,Diesel,Chandigarh,Chandigarh,2023,Black,2023-04-15,7650000,2030000,Cash,Basic,Premium,15500,4.8,luxury
+BMWC0875,Akash,Kulkarni,44,BMW X1,Diesel,Ahmedabad,Gujarat,2024,White,2024-01-23,5600000,2000000,Cash,Service Inclusive Plus,Luxury,25500,4.2,luxury
+BMWC0877,Yash,Sharma,39,BMW 7 Series,Petrol,Chennai,Tamil Nadu,2023,Blue,2023-03-20,17750000,8650000,Cash,Basic,Luxury,9500,4.3,luxury
+BMWC0879,Suresh,Nair,30,BMW iX1,Electric,Kolkata,West Bengal,2025,Grey,2025-05-24,7000000,2000000,Lease,Service Inclusive,Executive,25000,4.9,luxury
+BMWC0881,Karthik,Iyer,25,BMW X5,Diesel,Mumbai,Maharashtra,2023,Blue,2023-02-06,11100000,4520000,Bank Loan,Service Inclusive Plus,Premium,5000,4.1,luxury
+BMWC0882,Harish,Patel,66,BMW i4,Electric,Chennai,Tamil Nadu,2023,Silver,2023-07-18,7700000,3040000,Cash,Service Inclusive Plus,Business,27000,3.9,luxury
+BMWC0883,Aarav,Jain,36,BMW i4,Electric,Noida,Uttar Pradesh,2024,Red,2024-08-27,7750000,3550000,BMW Finance,Service Inclusive Plus,Luxury,8000,4.6,luxury
+BMWC0886,Arjun,Sharma,36,BMW i7,Electric,Bengaluru,Karnataka,2024,Blue,2024-06-27,20100000,5720000,Bank Loan,Service Inclusive Plus,Executive,27000,4.3,luxury
+BMWC0887,Akash,Gupta,61,BMW 3 Series,Diesel,Noida,Uttar Pradesh,2025,Blue,2025-11-27,5700000,2600000,Cash,Basic,Premium,7500,3.4,luxury
+BMWC0892,Kavya,Kulkarni,32,BMW X7,Diesel,Chennai,Tamil Nadu,2024,Grey,2024-11-24,15000000,4100000,Cash,Service Inclusive,Premium,19500,4.1,luxury
+BMWC0894,Vikram,Mehta,64,BMW iX,Electric,Noida,Uttar Pradesh,2024,Blue,2024-07-23,14900000,6580000,Bank Loan,Service Inclusive Plus,Executive,28000,4.5,luxury
+BMWC0905,Nikhil,Bose,70,BMW 5 Series,Petrol,Delhi,Delhi,2025,Black,2025-04-23,7600000,2120000,Lease,Service Inclusive,Premium,24500,4.1,luxury
+BMWC0907,Aditya,Pillai,53,BMW X3,Diesel,Chennai,Tamil Nadu,2023,Red,2023-10-27,7450000,3490000,Lease,Basic,Luxury,8500,3.3,luxury
+BMWC0923,Divya,Gupta,57,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2024,White,2025-08-06,17850000,8670000,Lease,Service Inclusive Plus,Premium,15500,4.3,luxury
+BMWC0934,Rohan,Rao,36,BMW 7 Series,Petrol,Jaipur,Rajasthan,2025,Silver,2025-11-13,18250000,5050000,Bank Loan,Basic,Luxury,19500,4.4,luxury
+BMWC0940,Amit,Kumar,39,BMW 7 Series,Petrol,Jaipur,Rajasthan,2023,Silver,2023-03-13,18450000,6890000,BMW Finance,Service Inclusive Plus,Luxury,29500,3.7,luxury
+BMWC0944,Deepak,Jain,45,BMW X1,Diesel,Chennai,Tamil Nadu,2024,Silver,2024-05-25,5600000,2200000,Lease,Service Inclusive,Premium,28500,4.2,luxury
+BMWC0952,Karthik,Reddy,68,BMW iX,Electric,Jaipur,Rajasthan,2024,White,2024-06-01,14400000,5780000,Bank Loan,Service Inclusive,Business,28500,4.0,luxury
+BMWC0959,Aarav,Nair,26,BMW i5,Electric,Noida,Uttar Pradesh,2023,Silver,2023-07-17,12500000,4500000,BMW Finance,Basic,Business,12500,3.3,luxury
+BMWC0964,Pranav,Verma,45,BMW X7,Diesel,Mumbai,Maharashtra,2025,Red,2025-09-06,14700000,5240000,BMW Finance,Basic,Luxury,26000,4.9,luxury
+BMWC0968,Harish,Pillai,47,BMW i4,Electric,Noida,Uttar Pradesh,2023,Grey,2023-01-20,7700000,3340000,Cash,Service Inclusive Plus,Executive,11500,3.9,luxury
+BMWC0969,Sneha,Menon,36,BMW i5,Electric,Delhi,Delhi,2023,Silver,2023-06-07,12250000,5550000,Bank Loan,Basic,Executive,19500,4.6,luxury
+BMWC0972,Arjun,Iyer,59,BMW i4,Electric,Jaipur,Rajasthan,2024,Red,2024-01-13,7600000,2220000,BMW Finance,Service Inclusive Plus,Luxury,21500,4.4,luxury
+BMWC0977,Rahul,Jain,65,BMW iX1,Electric,Jaipur,Rajasthan,2025,Grey,2025-05-10,6850000,2070000,BMW Finance,Basic,Executive,14500,4.4,luxury
+BMWC0983,Tanvi,Shah,61,BMW i5,Electric,Pune,Maharashtra,2023,Blue,2023-01-06,12000000,4500000,Bank Loan,Service Inclusive Plus,Executive,18000,3.4,luxury
+BMWC0994,Ananya,Reddy,60,BMW 3 Series,Petrol,Chennai,Tamil Nadu,2023,Red,2024-07-07,6450000,1390000,Bank Loan,Basic,Executive,20000,4.8,luxury
+BMWC0002,Diya,Shah,57,BMW 3 Series,Petrol,Pune,Maharashtra,2025,Silver,2025-05-17,5600000,1800000,Bank Loan,Basic,Luxury,27000,4.5,luxury
+BMWC0012,Varun,Pillai,28,BMW iX,Electric,Pune,Maharashtra,2023,White,2023-05-09,14900000,3480000,BMW Finance,Service Inclusive Plus,Business,20500,3.4,luxury
+BMWC0013,Deepak,Kumar,58,BMW iX1,Electric,Hyderabad,Telangana,2025,Grey,2025-05-27,6850000,1970000,Bank Loan,Service Inclusive,Business,29000,4.9,luxury
+BMWC0014,Sanjay,Patel,29,BMW 3 Series,Petrol,Pune,Maharashtra,2023,White,2023-11-24,5600000,1900000,Cash,Basic,Executive,5000,4.3,luxury
+BMWC0017,Yash,Pillai,52,BMW iX1,Electric,Mumbai,Maharashtra,2023,Black,2023-01-11,6800000,2760000,Cash,Service Inclusive Plus,Premium,7000,3.6,luxury
+BMWC0019,Tanvi,Menon,37,BMW i7,Electric,Mumbai,Maharashtra,2023,Black,2023-08-31,20650000,10230000,Cash,Service Inclusive Plus,Business,28500,3.3,luxury
+BMWC0030,Tanvi,Menon,32,BMW i5,Electric,Chennai,Tamil Nadu,2023,Grey,2023-06-19,12100000,4020000,Cash,Service Inclusive,Luxury,24000,3.3,luxury
+BMWC0037,Rohan,Desai,54,BMW 3 Series,Diesel,Mumbai,Maharashtra,2024,Grey,2025-09-29,6400000,2980000,Lease,Basic,Business,29000,4.3,luxury
+BMWC0038,Akash,Kumar,40,BMW X7,Diesel,Jaipur,Rajasthan,2025,White,2025-07-29,13850000,6070000,Bank Loan,Service Inclusive,Executive,12500,4.1,luxury
+BMWC0042,Karthik,Singh,66,BMW X5,Petrol,Bengaluru,Karnataka,2024,Grey,2024-05-27,10100000,4720000,Bank Loan,Service Inclusive,Business,6500,4.0,luxury
+BMWC0051,Rahul,Gupta,44,BMW X3,Diesel,Hyderabad,Telangana,2023,White,2023-05-30,7350000,1770000,BMW Finance,Service Inclusive Plus,Business,15000,4.5,luxury
+BMWC0055,Tanvi,Iyer,53,BMW iX,Electric,Noida,Uttar Pradesh,2023,White,2023-09-01,14900000,5680000,BMW Finance,Service Inclusive,Premium,24500,3.7,luxury
+BMWC0057,Divya,Singh,68,BMW i7,Electric,Bengaluru,Karnataka,2023,Grey,2023-04-24,20800000,9160000,Cash,Service Inclusive Plus,Luxury,23500,4.6,luxury
+BMWC0061,Karthik,Bose,55,BMW i5,Electric,Bengaluru,Karnataka,2022,Red,2023-12-14,12300000,4560000,Lease,Service Inclusive,Business,8000,3.8,luxury
+BMWC0078,Kavya,Rao,60,BMW i5,Electric,Chandigarh,Chandigarh,2024,Silver,2024-01-20,12050000,4910000,Lease,Service Inclusive Plus,Executive,22000,3.2,luxury
+BMWC0080,Nikhil,Joshi,27,BMW 3 Series,Petrol,Chennai,Tamil Nadu,2023,Red,2023-09-16,6350000,1570000,Lease,Service Inclusive Plus,Luxury,22000,3.4,luxury
+BMWC0088,Lakshmi,Mehta,66,BMW 3 Series,Petrol,Chandigarh,Chandigarh,2025,Grey,2025-08-26,6800000,3060000,Bank Loan,Service Inclusive,Business,11500,4.5,luxury
+BMWC0105,Varun,Menon,58,BMW i7,Electric,Noida,Uttar Pradesh,2024,Red,2024-12-06,21950000,6390000,Cash,Service Inclusive Plus,Executive,14000,3.9,luxury
+BMWC0106,Rohan,Nair,60,BMW 3 Series,Diesel,Bengaluru,Karnataka,2024,Blue,2025-10-21,6200000,2140000,Cash,Service Inclusive Plus,Luxury,26000,3.7,luxury
+BMWC0110,Ishita,Verma,64,BMW X3,Petrol,Noida,Uttar Pradesh,2023,White,2023-08-07,8200000,3940000,Bank Loan,Service Inclusive Plus,Business,12000,4.6,luxury
+BMWC0113,Karthik,Iyer,57,BMW X5,Petrol,Gurugram,Haryana,2024,Red,2024-02-05,10450000,4490000,Bank Loan,Basic,Luxury,16500,5.0,luxury
+BMWC0114,Lakshmi,Reddy,55,BMW 2 Series Gran Coupe,Diesel,Chandigarh,Chandigarh,2025,Black,2025-11-26,4500000,2400000,Bank Loan,Basic,Luxury,19000,4.5,premium
+BMWC0122,Suresh,Shah,45,BMW X3,Petrol,Bengaluru,Karnataka,2025,Blue,2025-09-15,7450000,2390000,Lease,Basic,Executive,27500,4.0,luxury
+BMWC0133,Neha,Verma,68,BMW X7,Petrol,Jaipur,Rajasthan,2024,Grey,2024-04-11,13950000,5690000,BMW Finance,Service Inclusive,Luxury,6500,3.3,luxury
+BMWC0137,Lakshmi,Rao,66,BMW X1,Diesel,Ahmedabad,Gujarat,2025,Red,2025-10-09,5750000,2100000,Bank Loan,Service Inclusive,Executive,8000,4.2,luxury
+BMWC0142,Vikram,Kapoor,28,BMW X1,Petrol,Coimbatore,Tamil Nadu,2025,White,2025-04-10,5750000,1700000,BMW Finance,Basic,Premium,28000,4.1,luxury
+BMWC0143,Rohan,Verma,45,BMW 7 Series,Petrol,Noida,Uttar Pradesh,2024,Red,2024-05-07,17950000,6190000,Cash,Service Inclusive Plus,Luxury,18000,4.4,luxury
+BMWC0151,Nikhil,Rao,57,BMW X7,Diesel,Mumbai,Maharashtra,2024,Red,2024-08-16,13850000,3970000,BMW Finance,Basic,Executive,15500,4.7,luxury
+BMWC0155,Suresh,Pillai,33,BMW X3,Petrol,Pune,Maharashtra,2024,Grey,2024-09-06,7200000,2840000,BMW Finance,Basic,Premium,24000,4.5,luxury
+BMWC0160,Rahul,Kapoor,67,BMW X5,Petrol,Kochi,Kerala,2025,Silver,2025-01-09,10100000,4020000,BMW Finance,Service Inclusive Plus,Luxury,8500,4.7,luxury
+BMWC0173,Nikhil,Joshi,33,BMW iX,Electric,Gurugram,Haryana,2025,Black,2025-07-15,14350000,3270000,Lease,Service Inclusive Plus,Business,5000,4.5,luxury
+BMWC0174,Ishita,Sharma,60,BMW 2 Series Gran Coupe,Petrol,Kolkata,West Bengal,2024,Silver,2024-04-22,4300000,1200000,Lease,Basic,Premium,13500,4.2,premium
+BMWC0175,Akash,Joshi,37,BMW 3 Series,Petrol,Pune,Maharashtra,2025,Grey,2025-06-23,6400000,2080000,Lease,Service Inclusive Plus,Luxury,13500,4.7,luxury
+BMWC0187,Ishita,Verma,45,BMW X5,Petrol,Hyderabad,Telangana,2024,Silver,2025-05-20,10300000,3560000,BMW Finance,Service Inclusive,Business,17500,3.8,luxury
+BMWC0188,Rahul,Sharma,32,BMW X1,Diesel,Delhi,Delhi,2025,Red,2025-02-28,5300000,2100000,Lease,Service Inclusive Plus,Luxury,10500,5.0,luxury
+BMWC0190,Suresh,Pillai,50,BMW X7,Diesel,Ahmedabad,Gujarat,2023,Silver,2024-12-30,14600000,5520000,Cash,Basic,Luxury,30000,4.2,luxury
+BMWC0227,Tanvi,Kumar,59,BMW X5,Petrol,Pune,Maharashtra,2023,Black,2023-12-11,9700000,2940000,BMW Finance,Service Inclusive Plus,Luxury,26000,3.2,luxury
+BMWC0237,Diya,Sharma,61,BMW X7,Diesel,Delhi,Delhi,2024,Blue,2024-10-25,14000000,5200000,Cash,Service Inclusive,Executive,5500,3.7,luxury
+BMWC0238,Aditya,Mehta,31,BMW iX,Electric,Mumbai,Maharashtra,2022,Silver,2023-05-23,14350000,4570000,Lease,Service Inclusive,Luxury,30000,4.2,luxury
+BMWC0246,Sneha,Mehta,59,BMW X7,Diesel,Delhi,Delhi,2024,White,2024-02-08,13300000,5660000,Lease,Basic,Premium,23000,4.6,luxury
+BMWC0252,Vikram,Desai,59,BMW 3 Series,Diesel,Jaipur,Rajasthan,2024,Grey,2024-04-27,6800000,3160000,Lease,Service Inclusive Plus,Luxury,6500,3.6,luxury
+BMWC0255,Rohan,Kulkarni,50,BMW 3 Series,Diesel,Kolkata,West Bengal,2025,Silver,2025-02-04,6100000,2020000,Lease,Basic,Business,5000,4.1,luxury
+BMWC0256,Vijay,Kumar,62,BMW 5 Series,Petrol,Ahmedabad,Gujarat,2025,Silver,2025-04-08,8400000,1980000,Bank Loan,Service Inclusive,Executive,23000,4.9,luxury
+BMWC0259,Neha,Verma,51,BMW iX,Electric,Hyderabad,Telangana,2024,Silver,2025-05-23,15000000,3500000,Bank Loan,Basic,Luxury,11500,3.5,luxury
+BMWC0262,Suresh,Reddy,60,BMW 5 Series,Diesel,Ahmedabad,Gujarat,2023,Blue,2023-12-18,7750000,2050000,Cash,Service Inclusive,Premium,13000,4.7,luxury
+BMWC0264,Neha,Kapoor,41,BMW i4,Electric,Pune,Maharashtra,2025,Blue,2025-05-30,7800000,2460000,Lease,Service Inclusive,Luxury,27500,4.5,luxury
+BMWC0266,Sanjay,Kumar,42,BMW X7,Petrol,Delhi,Delhi,2024,White,2025-08-04,14000000,4500000,BMW Finance,Service Inclusive Plus,Luxury,27500,3.7,luxury
+BMWC0267,Harish,Bose,45,BMW 2 Series Gran Coupe,Diesel,Kochi,Kerala,2024,Grey,2025-10-26,4500000,2300000,Lease,Service Inclusive Plus,Premium,20500,3.2,premium
+BMWC0288,Tanvi,Sharma,61,BMW 3 Series,Diesel,Noida,Uttar Pradesh,2023,Black,2024-07-06,5700000,2700000,Lease,Service Inclusive,Premium,8500,4.0,luxury
+BMWC0290,Varun,Mehta,64,BMW X7,Diesel,Kolkata,West Bengal,2025,Black,2025-05-13,14500000,7100000,Bank Loan,Service Inclusive,Executive,19000,3.9,luxury
+BMWC0295,Suresh,Pillai,51,BMW X7,Petrol,Mumbai,Maharashtra,2024,Red,2025-05-18,14600000,4820000,BMW Finance,Basic,Luxury,22500,4.7,luxury
+BMWC0296,Suresh,Menon,47,BMW i4,Electric,Kochi,Kerala,2025,Red,2025-10-09,7300000,3460000,Cash,Service Inclusive,Business,10500,5.0,luxury
+BMWC0298,Nikhil,Iyer,28,BMW i5,Electric,Mumbai,Maharashtra,2025,Silver,2025-11-15,12200000,3740000,BMW Finance,Service Inclusive Plus,Business,6000,4.6,luxury
+BMWC0302,Sneha,Kumar,34,BMW i7,Electric,Chennai,Tamil Nadu,2023,Grey,2023-10-23,21900000,4980000,Bank Loan,Basic,Executive,25000,4.6,luxury
+BMWC0308,Sanjay,Kapoor,41,BMW 3 Series,Petrol,Mumbai,Maharashtra,2025,Grey,2025-02-16,5700000,1900000,Bank Loan,Basic,Business,18000,4.8,luxury
+BMWC0309,Yash,Reddy,25,BMW i5,Electric,Kolkata,West Bengal,2025,Blue,2025-08-06,12450000,2890000,Cash,Service Inclusive,Executive,23500,4.6,luxury
+BMWC0324,Arjun,Nair,35,BMW X7,Petrol,Ahmedabad,Gujarat,2025,Red,2025-08-18,14300000,2960000,Cash,Service Inclusive Plus,Luxury,9000,3.6,luxury
+BMWC0325,Tanvi,Kumar,36,BMW 2 Series Gran Coupe,Petrol,Hyderabad,Telangana,2024,Black,2024-11-24,4900000,2100000,BMW Finance,Service Inclusive,Business,25000,4.9,premium
+BMWC0338,Priya,Iyer,63,BMW X3,Diesel,Pune,Maharashtra,2023,Silver,2023-02-03,7700000,2740000,Cash,Service Inclusive Plus,Executive,13000,4.2,luxury
+BMWC0340,Diya,Menon,32,BMW i4,Electric,Noida,Uttar Pradesh,2023,Grey,2023-06-13,7250000,2650000,Bank Loan,Service Inclusive Plus,Premium,12000,4.3,luxury
+BMWC0342,Kavya,Nair,40,BMW X7,Petrol,Pune,Maharashtra,2023,Black,2023-06-28,13650000,4130000,Cash,Basic,Business,12500,3.6,luxury
+BMWC0345,Amit,Menon,58,BMW X7,Petrol,Coimbatore,Tamil Nadu,2024,Blue,2024-07-31,14000000,2800000,Bank Loan,Basic,Executive,11500,3.2,luxury
+BMWC0347,Yash,Kapoor,68,BMW 5 Series,Petrol,Ahmedabad,Gujarat,2023,White,2023-04-14,8500000,2000000,BMW Finance,Service Inclusive Plus,Luxury,12500,4.5,luxury
+BMWC0361,Aarav,Mehta,26,BMW 5 Series,Petrol,Kolkata,West Bengal,2023,Black,2023-01-16,7350000,2370000,BMW Finance,Basic,Business,27500,3.7,luxury
+BMWC0364,Arjun,Patel,31,BMW 7 Series,Petrol,Coimbatore,Tamil Nadu,2023,Red,2024-12-03,18150000,6630000,Cash,Service Inclusive,Business,14500,3.9,luxury
+BMWC0388,Harish,Gupta,34,BMW iX1,Electric,Ahmedabad,Gujarat,2025,Black,2025-11-24,6950000,1390000,Bank Loan,Basic,Executive,26000,3.9,luxury
+BMWC0390,Rahul,Sharma,56,BMW iX1,Electric,Delhi,Delhi,2024,Black,2025-05-07,6900000,1580000,BMW Finance,Service Inclusive Plus,Executive,21000,3.5,luxury
+BMWC0392,Sneha,Jain,34,BMW iX1,Electric,Pune,Maharashtra,2023,Red,2023-12-01,6850000,1770000,BMW Finance,Service Inclusive,Luxury,17000,3.4,luxury
+BMWC0401,Arjun,Shah,62,BMW 3 Series,Petrol,Mumbai,Maharashtra,2025,Silver,2025-11-26,6450000,1690000,BMW Finance,Service Inclusive,Premium,15000,3.9,luxury
+BMWC0402,Nikhil,Joshi,66,BMW X1,Diesel,Coimbatore,Tamil Nadu,2025,Black,2025-12-28,5250000,2300000,Lease,Service Inclusive Plus,Luxury,7500,4.5,luxury
+BMWC0405,Diya,Pillai,67,BMW 7 Series,Petrol,Ahmedabad,Gujarat,2024,Blue,2024-09-01,18950000,6390000,BMW Finance,Basic,Luxury,24000,4.0,luxury
+BMWC0407,Nikhil,Kulkarni,67,BMW 5 Series,Diesel,Ahmedabad,Gujarat,2025,Blue,2025-11-17,8300000,3560000,Cash,Basic,Executive,22500,4.2,luxury
+BMWC0412,Karthik,Kapoor,44,BMW X1,Petrol,Hyderabad,Telangana,2024,Red,2024-11-03,5850000,2200000,Cash,Basic,Luxury,8500,4.6,luxury
+BMWC0414,Vijay,Joshi,68,BMW iX1,Electric,Ahmedabad,Gujarat,2023,Black,2023-10-09,6900000,3080000,BMW Finance,Service Inclusive,Premium,23000,3.2,luxury
+BMWC0418,Sneha,Jain,27,BMW iX1,Electric,Pune,Maharashtra,2023,Black,2024-07-29,6850000,2970000,Bank Loan,Service Inclusive,Premium,14500,3.4,luxury
+BMWC0421,Sneha,Patel,64,BMW 5 Series,Petrol,Hyderabad,Telangana,2023,Black,2023-11-25,8050000,3010000,Lease,Basic,Premium,5500,3.3,luxury
+BMWC0427,Meera,Reddy,62,BMW i7,Electric,Bengaluru,Karnataka,2025,Silver,2025-05-05,21450000,8390000,Cash,Service Inclusive Plus,Business,19000,4.2,luxury
+BMWC0431,Arjun,Verma,45,BMW X5,Diesel,Kochi,Kerala,2025,White,2025-12-28,10900000,4680000,BMW Finance,Service Inclusive Plus,Business,22000,3.9,luxury
+BMWC0443,Sanjay,Joshi,68,BMW iX,Electric,Gurugram,Haryana,2022,Grey,2023-10-09,14800000,7260000,Bank Loan,Service Inclusive,Executive,8000,4.9,luxury
+BMWC0448,Akash,Verma,49,BMW iX,Electric,Gurugram,Haryana,2023,White,2023-11-13,14050000,4410000,Lease,Basic,Business,13000,4.9,luxury
+BMWC0455,Riya,Mehta,66,BMW X5,Petrol,Pune,Maharashtra,2025,Black,2025-09-28,11350000,5170000,Cash,Service Inclusive Plus,Luxury,22000,4.9,luxury
+BMWC0464,Riya,Kulkarni,26,BMW iX1,Electric,Mumbai,Maharashtra,2024,Blue,2024-09-20,6900000,1680000,Lease,Basic,Executive,12500,3.3,luxury
+BMWC0469,Tanvi,Desai,34,BMW X5,Petrol,Ahmedabad,Gujarat,2024,Black,2025-03-20,9700000,3240000,Lease,Service Inclusive Plus,Business,6000,5.0,luxury
+BMWC0476,Meera,Gupta,64,BMW X7,Diesel,Noida,Uttar Pradesh,2024,Blue,2024-01-24,13200000,3840000,Cash,Basic,Luxury,19500,4.8,luxury
+BMWC0481,Kavya,Nair,41,BMW X3,Petrol,Noida,Uttar Pradesh,2024,Blue,2024-01-28,7250000,2050000,Lease,Service Inclusive Plus,Luxury,6000,4.2,luxury
+BMWC0483,Amit,Verma,61,BMW X7,Diesel,Jaipur,Rajasthan,2025,Black,2025-09-27,13450000,6290000,BMW Finance,Service Inclusive Plus,Premium,19000,4.5,luxury
+BMWC0488,Sanjay,Rao,58,BMW X1,Diesel,Chandigarh,Chandigarh,2023,Grey,2023-11-18,5100000,2100000,BMW Finance,Service Inclusive Plus,Business,7500,4.6,luxury
+BMWC0489,Ishita,Verma,36,BMW i7,Electric,Pune,Maharashtra,2024,Silver,2024-02-21,20900000,7680000,Lease,Basic,Premium,14500,4.1,luxury
+BMWC0502,Amit,Shah,52,BMW 5 Series,Diesel,Gurugram,Haryana,2022,Black,2023-03-15,8000000,2300000,BMW Finance,Service Inclusive,Executive,29000,3.9,luxury
+BMWC0521,Diya,Kumar,68,BMW X1,Petrol,Hyderabad,Telangana,2025,Grey,2025-05-16,5350000,1800000,Lease,Service Inclusive Plus,Business,9500,3.6,luxury
+BMWC0525,Rahul,Joshi,38,BMW 5 Series,Petrol,Mumbai,Maharashtra,2023,Red,2023-07-17,7900000,2880000,Cash,Service Inclusive,Business,23500,3.7,luxury
+BMWC0530,Deepak,Kumar,66,BMW iX,Electric,Kochi,Kerala,2023,Blue,2023-01-12,15000000,5800000,Cash,Basic,Luxury,9000,4.6,luxury
+BMWC0537,Diya,Verma,63,BMW i7,Electric,Coimbatore,Tamil Nadu,2023,Blue,2023-06-09,20200000,4640000,Cash,Basic,Executive,6500,4.2,luxury
+BMWC0544,Rohan,Sharma,30,BMW X3,Petrol,Chennai,Tamil Nadu,2023,Blue,2024-07-31,8100000,3720000,Cash,Service Inclusive Plus,Business,25000,4.1,luxury
+BMWC0551,Lakshmi,Kumar,67,BMW iX,Electric,Bengaluru,Karnataka,2024,Blue,2024-08-05,14250000,3950000,Lease,Service Inclusive Plus,Business,6000,4.7,luxury
+BMWC0552,Sneha,Iyer,36,BMW i4,Electric,Delhi,Delhi,2023,Grey,2023-03-09,7300000,1660000,Cash,Basic,Business,24000,4.5,luxury
+BMWC0568,Aditya,Desai,28,BMW X5,Petrol,Gurugram,Haryana,2023,Blue,2024-03-16,9800000,4060000,Lease,Service Inclusive,Executive,9500,4.9,luxury
+BMWC0570,Tanvi,Nair,37,BMW iX,Electric,Jaipur,Rajasthan,2023,Silver,2023-09-10,14100000,3020000,Bank Loan,Basic,Premium,17000,4.2,luxury
+BMWC0573,Diya,Iyer,44,BMW 7 Series,Petrol,Delhi,Delhi,2023,Blue,2023-08-06,19300000,8160000,BMW Finance,Service Inclusive,Business,17000,3.5,luxury
+BMWC0576,Tanvi,Gupta,70,BMW X7,Diesel,Mumbai,Maharashtra,2024,Silver,2024-11-17,14650000,3630000,Bank Loan,Basic,Business,19500,4.5,luxury
+BMWC0579,Ananya,Nair,53,BMW i4,Electric,Ahmedabad,Gujarat,2023,Silver,2023-11-23,7800000,2760000,Lease,Service Inclusive,Business,28000,4.1,luxury
+BMWC0583,Harish,Reddy,26,BMW X5,Petrol,Noida,Uttar Pradesh,2023,Black,2023-11-28,11050000,3310000,Cash,Service Inclusive Plus,Luxury,21500,3.9,luxury
+BMWC0587,Arjun,Mehta,30,BMW X1,Diesel,Noida,Uttar Pradesh,2025,Silver,2025-07-26,5800000,1800000,Lease,Service Inclusive Plus,Business,9500,4.6,luxury
+BMWC0588,Divya,Verma,54,BMW 2 Series Gran Coupe,Petrol,Chandigarh,Chandigarh,2025,Blue,2025-06-25,4750000,2200000,Bank Loan,Service Inclusive Plus,Business,5000,4.9,premium
+BMWC0599,Sanjay,Menon,65,BMW X3,Diesel,Bengaluru,Karnataka,2025,Blue,2025-07-04,7150000,1430000,BMW Finance,Basic,Business,5500,4.1,luxury
+BMWC0601,Nikhil,Patel,49,BMW 3 Series,Petrol,Chennai,Tamil Nadu,2022,Blue,2023-10-04,6700000,1540000,Lease,Basic,Premium,6500,4.6,luxury
+BMWC0607,Karthik,Kulkarni,29,BMW i5,Electric,Jaipur,Rajasthan,2023,Silver,2023-12-01,12150000,5430000,Bank Loan,Service Inclusive Plus,Executive,19500,4.5,luxury
+BMWC0612,Lakshmi,Reddy,48,BMW 7 Series,Petrol,Jaipur,Rajasthan,2024,Black,2025-09-15,18000000,6900000,BMW Finance,Basic,Luxury,24500,5.0,luxury
+BMWC0620,Harish,Sharma,70,BMW i7,Electric,Pune,Maharashtra,2025,Blue,2025-05-22,20400000,9480000,Bank Loan,Service Inclusive,Business,28500,4.6,luxury
+BMWC0624,Meera,Kapoor,34,BMW i4,Electric,Mumbai,Maharashtra,2023,White,2023-11-08,7650000,3530000,Lease,Basic,Business,24000,4.6,luxury
+BMWC0629,Ishita,Shah,46,BMW X5,Petrol,Kolkata,West Bengal,2025,Blue,2025-03-11,11250000,5150000,Bank Loan,Service Inclusive,Luxury,6000,4.0,luxury
+BMWC0638,Karthik,Gupta,38,BMW iX1,Electric,Ahmedabad,Gujarat,2025,Black,2025-01-14,6850000,2670000,Lease,Service Inclusive Plus,Executive,11500,3.4,luxury
+BMWC0644,Vijay,Mehta,40,BMW i7,Electric,Delhi,Delhi,2022,Silver,2023-02-26,21700000,4940000,Lease,Service Inclusive Plus,Executive,26000,4.8,luxury
+BMWC0646,Diya,Kumar,54,BMW 7 Series,Petrol,Gurugram,Haryana,2023,Blue,2023-09-30,18000000,8200000,Lease,Service Inclusive Plus,Luxury,18500,3.6,luxury
+BMWC0649,Priya,Joshi,70,BMW 3 Series,Diesel,Mumbai,Maharashtra,2024,Grey,2024-08-19,5900000,1600000,Lease,Service Inclusive,Business,5000,4.8,luxury
+BMWC0669,Sanjay,Singh,57,BMW i4,Electric,Hyderabad,Telangana,2025,Grey,2025-11-11,7250000,2250000,Bank Loan,Service Inclusive Plus,Business,27500,5.0,luxury
+BMWC0676,Pranav,Rao,66,BMW 3 Series,Petrol,Noida,Uttar Pradesh,2024,Red,2025-10-01,6400000,1980000,Cash,Service Inclusive Plus,Luxury,23000,3.2,luxury
+BMWC0677,Yash,Pillai,69,BMW X5,Diesel,Kochi,Kerala,2024,White,2024-06-07,10650000,2930000,Lease,Service Inclusive Plus,Premium,7000,3.4,luxury
+BMWC0678,Lakshmi,Iyer,58,BMW X5,Diesel,Bengaluru,Karnataka,2024,White,2025-04-12,11400000,2980000,BMW Finance,Basic,Business,11500,4.6,luxury
+BMWC0681,Aditya,Mehta,47,BMW i7,Electric,Kolkata,West Bengal,2025,Black,2025-05-26,21700000,10840000,BMW Finance,Basic,Executive,8000,3.6,luxury
+BMWC0684,Amit,Pillai,52,BMW X5,Petrol,Delhi,Delhi,2024,Grey,2024-02-16,9750000,3850000,Cash,Service Inclusive,Premium,13500,3.6,luxury
+BMWC0688,Priya,Kumar,63,BMW i7,Electric,Kochi,Kerala,2024,Blue,2024-05-06,21450000,6590000,Lease,Service Inclusive Plus,Luxury,16000,4.0,luxury
+BMWC0690,Priya,Pillai,25,BMW iX1,Electric,Jaipur,Rajasthan,2024,Red,2024-05-18,6950000,2990000,Cash,Service Inclusive,Premium,9000,4.9,luxury
+BMWC0695,Varun,Rao,30,BMW X5,Diesel,Pune,Maharashtra,2024,White,2024-12-19,11300000,3160000,Lease,Service Inclusive,Executive,20500,3.9,luxury
+BMWC0696,Arjun,Nair,36,BMW X1,Diesel,Gurugram,Haryana,2025,Blue,2025-01-03,5400000,1500000,Lease,Basic,Executive,26000,5.0,luxury
+BMWC0701,Riya,Nair,55,BMW i5,Electric,Pune,Maharashtra,2024,White,2025-12-17,12050000,5610000,Cash,Basic,Business,11000,4.3,luxury
+BMWC0702,Priya,Kumar,34,BMW 2 Series Gran Coupe,Diesel,Pune,Maharashtra,2024,Red,2024-05-23,4300000,2100000,BMW Finance,Basic,Executive,6500,3.6,premium
+BMWC0705,Tanvi,Joshi,31,BMW X3,Diesel,Bengaluru,Karnataka,2025,Red,2025-10-02,7000000,3500000,Bank Loan,Basic,Executive,9000,4.2,luxury
+BMWC0713,Diya,Rao,64,BMW i7,Electric,Gurugram,Haryana,2023,White,2023-08-27,21000000,4900000,Bank Loan,Basic,Premium,5000,4.3,luxury
+BMWC0714,Deepak,Kulkarni,41,BMW i7,Electric,Kochi,Kerala,2025,Red,2025-07-06,22000000,7000000,Lease,Basic,Business,12000,4.7,luxury
+BMWC0720,Ishita,Mehta,25,BMW 3 Series,Diesel,Mumbai,Maharashtra,2023,Red,2023-04-05,5600000,1900000,Lease,Service Inclusive Plus,Premium,9500,4.0,luxury
+BMWC0731,Priya,Kumar,50,BMW iX1,Electric,Chennai,Tamil Nadu,2023,Red,2024-05-17,6950000,2790000,BMW Finance,Service Inclusive,Luxury,13000,4.2,luxury
+BMWC0734,Varun,Kumar,40,BMW i4,Electric,Chennai,Tamil Nadu,2023,White,2023-08-01,7300000,3160000,BMW Finance,Service Inclusive Plus,Premium,11500,3.4,luxury
+BMWC0740,Harish,Verma,61,BMW 5 Series,Petrol,Hyderabad,Telangana,2024,Blue,2024-01-15,7750000,1750000,Lease,Service Inclusive Plus,Luxury,27500,3.3,luxury
+BMWC0741,Kavya,Desai,48,BMW 3 Series,Diesel,Chennai,Tamil Nadu,2023,Silver,2023-08-11,6200000,2540000,Bank Loan,Service Inclusive,Premium,26500,4.7,luxury
+BMWC0742,Vijay,Mehta,53,BMW i5,Electric,Kolkata,West Bengal,2023,Red,2023-06-23,12500000,2700000,Cash,Basic,Premium,25500,4.3,luxury
+BMWC0758,Diya,Iyer,65,BMW 2 Series Gran Coupe,Diesel,Mumbai,Maharashtra,2024,Red,2024-03-10,4550000,1800000,BMW Finance,Service Inclusive Plus,Premium,21500,4.8,premium
+BMWC0760,Lakshmi,Mehta,33,BMW i4,Electric,Chennai,Tamil Nadu,2024,Blue,2024-07-18,7700000,3540000,BMW Finance,Service Inclusive Plus,Luxury,10500,4.6,luxury
+BMWC0761,Sanjay,Kulkarni,41,BMW i7,Electric,Jaipur,Rajasthan,2025,Black,2025-09-12,20150000,5730000,Cash,Service Inclusive,Premium,9500,3.3,luxury
+BMWC0770,Lakshmi,Mehta,25,BMW iX,Electric,Bengaluru,Karnataka,2023,Silver,2023-10-15,14000000,4900000,Cash,Service Inclusive,Executive,23000,3.6,luxury
+BMWC0782,Diya,Sharma,61,BMW i5,Electric,Chandigarh,Chandigarh,2025,Grey,2025-08-20,12050000,3310000,BMW Finance,Service Inclusive,Premium,8000,4.0,luxury
+BMWC0787,Karthik,Reddy,36,BMW i7,Electric,Bengaluru,Karnataka,2024,White,2024-10-27,21950000,10490000,BMW Finance,Service Inclusive,Business,27000,4.5,luxury
+BMWC0799,Priya,Joshi,36,BMW X1,Diesel,Kolkata,West Bengal,2024,Grey,2024-02-09,5650000,1500000,Bank Loan,Service Inclusive,Business,19000,3.4,luxury
+BMWC0800,Divya,Kumar,26,BMW X5,Diesel,Noida,Uttar Pradesh,2025,White,2025-02-18,9750000,4350000,Bank Loan,Basic,Executive,29000,4.0,luxury
+BMWC0801,Aditya,Reddy,50,BMW 2 Series Gran Coupe,Diesel,Mumbai,Maharashtra,2025,Black,2025-10-04,4300000,1900000,Bank Loan,Service Inclusive Plus,Premium,21500,4.7,premium
+BMWC0805,Ananya,Sharma,40,BMW X5,Diesel,Mumbai,Maharashtra,2025,White,2025-01-24,10500000,4900000,BMW Finance,Service Inclusive Plus,Luxury,24500,4.7,luxury
+BMWC0817,Priya,Kumar,35,BMW i7,Electric,Bengaluru,Karnataka,2022,Grey,2023-08-13,20200000,7440000,Cash,Service Inclusive Plus,Premium,21500,4.2,luxury
+BMWC0828,Sneha,Kumar,27,BMW X5,Diesel,Noida,Uttar Pradesh,2023,Black,2023-04-05,10350000,4470000,Bank Loan,Basic,Executive,18500,3.5,luxury
+BMWC0836,Karthik,Jain,68,BMW X3,Diesel,Chandigarh,Chandigarh,2024,Blue,2024-05-01,7100000,3420000,Bank Loan,Service Inclusive,Executive,14000,4.0,luxury
+BMWC0839,Riya,Kumar,55,BMW iX1,Electric,Ahmedabad,Gujarat,2025,White,2025-09-12,6900000,2980000,Bank Loan,Basic,Executive,13500,4.0,luxury
+BMWC0850,Amit,Iyer,61,BMW X3,Petrol,Hyderabad,Telangana,2024,Grey,2024-05-23,8150000,3030000,Lease,Service Inclusive,Executive,19500,4.1,luxury
+BMWC0852,Karthik,Singh,69,BMW i5,Electric,Coimbatore,Tamil Nadu,2023,Silver,2023-10-07,12000000,5100000,Cash,Service Inclusive Plus,Premium,27500,3.4,luxury
+BMWC0855,Pranav,Kapoor,58,BMW i5,Electric,Noida,Uttar Pradesh,2025,Silver,2025-09-07,12100000,4320000,Bank Loan,Service Inclusive Plus,Business,14000,4.7,luxury
+BMWC0865,Diya,Kapoor,30,BMW X5,Diesel,Gurugram,Haryana,2023,Black,2023-04-01,11000000,3900000,Lease,Service Inclusive Plus,Business,27000,4.1,luxury
+BMWC0866,Riya,Iyer,39,BMW X3,Petrol,Noida,Uttar Pradesh,2025,Red,2025-03-29,7000000,2600000,Bank Loan,Service Inclusive,Luxury,19000,4.6,luxury
+BMWC0878,Meera,Kapoor,67,BMW iX1,Electric,Gurugram,Haryana,2024,Grey,2024-08-24,6800000,2260000,Lease,Service Inclusive,Executive,8500,4.1,luxury
+BMWC0890,Sanjay,Gupta,47,BMW X1,Petrol,Noida,Uttar Pradesh,2025,Black,2025-03-31,5550000,2300000,Lease,Basic,Luxury,21500,4.6,luxury
+BMWC0897,Tanvi,Mehta,36,BMW 2 Series Gran Coupe,Petrol,Pune,Maharashtra,2023,White,2023-09-10,4750000,1300000,Bank Loan,Basic,Business,11500,3.5,premium
+BMWC0898,Vikram,Shah,55,BMW 5 Series,Diesel,Bengaluru,Karnataka,2025,Red,2025-01-31,8250000,2850000,BMW Finance,Basic,Business,20000,4.5,luxury
+BMWC0901,Neha,Nair,27,BMW 5 Series,Diesel,Pune,Maharashtra,2023,Blue,2023-03-09,7650000,2830000,Bank Loan,Service Inclusive,Business,17000,3.4,luxury
+BMWC0908,Suresh,Jain,34,BMW 3 Series,Petrol,Mumbai,Maharashtra,2024,White,2025-07-20,6350000,2570000,Lease,Basic,Premium,16000,4.8,luxury
+BMWC0913,Sanjay,Jain,29,BMW i7,Electric,Pune,Maharashtra,2025,Blue,2025-06-06,20900000,8780000,Lease,Service Inclusive,Premium,19500,4.5,luxury
+BMWC0918,Sanjay,Menon,63,BMW X3,Petrol,Gurugram,Haryana,2022,Silver,2023-07-26,7500000,2600000,Lease,Basic,Business,26000,4.3,luxury
+BMWC0920,Akash,Jain,51,BMW X5,Diesel,Gurugram,Haryana,2023,Silver,2023-01-22,9750000,3850000,Lease,Basic,Executive,24500,3.6,luxury
+BMWC0921,Rohan,Kapoor,61,BMW i4,Electric,Mumbai,Maharashtra,2025,Silver,2025-07-05,7550000,3610000,BMW Finance,Basic,Business,16500,3.4,luxury
+BMWC0922,Deepak,Kulkarni,55,BMW X3,Petrol,Mumbai,Maharashtra,2024,Grey,2025-12-30,7300000,2460000,Lease,Basic,Business,7000,3.4,luxury
+BMWC0932,Divya,Sharma,32,BMW 5 Series,Diesel,Ahmedabad,Gujarat,2024,Red,2025-08-24,7500000,2600000,BMW Finance,Service Inclusive Plus,Luxury,23000,4.1,luxury
+BMWC0937,Neha,Jain,66,BMW 3 Series,Diesel,Jaipur,Rajasthan,2023,Blue,2023-02-03,6500000,3200000,Lease,Service Inclusive Plus,Luxury,5000,4.6,luxury
+BMWC0951,Priya,Reddy,29,BMW i5,Electric,Coimbatore,Tamil Nadu,2025,Silver,2025-03-03,12050000,5910000,Lease,Service Inclusive Plus,Luxury,22000,4.6,luxury
+BMWC0954,Arjun,Iyer,61,BMW i5,Electric,Jaipur,Rajasthan,2023,Black,2023-12-28,12450000,3390000,Cash,Basic,Executive,9500,3.5,luxury
+BMWC0955,Harish,Mehta,45,BMW 3 Series,Diesel,Chandigarh,Chandigarh,2023,White,2023-04-17,6650000,1930000,Bank Loan,Basic,Luxury,10000,3.6,luxury
+BMWC0967,Aditya,Mehta,49,BMW i4,Electric,Coimbatore,Tamil Nadu,2025,White,2025-07-18,7200000,2040000,Lease,Service Inclusive,Premium,5000,5.0,luxury
+BMWC0974,Rohan,Jain,29,BMW 5 Series,Diesel,Chennai,Tamil Nadu,2022,Black,2023-05-30,8300000,3360000,Cash,Service Inclusive,Luxury,11500,4.4,luxury
+BMWC0981,Sanjay,Iyer,58,BMW iX1,Electric,Ahmedabad,Gujarat,2025,Silver,2025-09-29,6850000,1470000,Cash,Basic,Luxury,23500,4.3,luxury
+BMWC0988,Kavya,Kapoor,70,BMW 7 Series,Petrol,Bengaluru,Karnataka,2025,White,2025-05-09,18750000,9150000,Lease,Basic,Executive,27500,3.7,luxury
+BMWC0989,Aarav,Verma,39,BMW i4,Electric,Delhi,Delhi,2023,White,2024-06-25,7200000,2140000,BMW Finance,Basic,Luxury,26000,4.2,luxury
+BMWC0991,Harish,Bose,61,BMW iX1,Electric,Kochi,Kerala,2024,Blue,2024-03-03,6950000,2190000,Bank Loan,Basic,Executive,16500,4.5,luxury
+BMWC0997,Varun,Gupta,29,BMW iX,Electric,Ahmedabad,Gujarat,2023,White,2024-12-20,14650000,3930000,Cash,Service Inclusive Plus,Business,12500,4.5,luxury
