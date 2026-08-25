@@ -1,19 +1,23 @@
-
-
+from vehiclemodule.dtos.vehicle_request import VehicleRequest
 from vehiclemodule.dtos.vehicle_response import VehicleResponse
 from vehiclemodule.repositories.vehicle_repo_impl import VehicleRepositoryImpl
 from vehiclemodule.services.vehicle_service import VehicleService
-from vehiclemodule.models.vehicle import Vehicle
-from vehiclemodule.dtos.vehicle_request import VehicleRequest
-from vehiclemodule.dtos.vehicle_response import VehicleResponse
+
 
 class VehicleServiceImpl(VehicleService):
+
     def __init__(self):
         self.vehicle_repository = VehicleRepositoryImpl()
 
-    def create_vehicle(self, vehicle_request: VehicleRequest) -> VehicleResponse:
+    async def create_vehicle(
+        self,
+        vehicle_request: VehicleRequest
+    ) -> VehicleResponse | None:
 
-        vehicle = self.vehicle_repository.create_vehicle(vehicle_request)
+        vehicle = await self.vehicle_repository.create_vehicle(
+            vehicle_request
+        )
+
         if vehicle:
             return VehicleResponse(
                 id=vehicle.id,
@@ -24,10 +28,18 @@ class VehicleServiceImpl(VehicleService):
                 created_at=vehicle.created_at,
                 updated_at=vehicle.updated_at
             )
+
         return None
 
-    def get_vehicle_by_id(self, vehicle_id: int) -> VehicleResponse:
-        vehicle = self.vehicle_repository.get_vehicle_by_id(vehicle_id)
+    async def get_vehicle_by_id(
+        self,
+        vehicle_id: int
+    ) -> VehicleResponse | None:
+
+        vehicle = await self.vehicle_repository.get_vehicle_by_id(
+            vehicle_id
+        )
+
         if vehicle:
             return VehicleResponse(
                 id=vehicle.id,
@@ -38,10 +50,20 @@ class VehicleServiceImpl(VehicleService):
                 created_at=vehicle.created_at,
                 updated_at=vehicle.updated_at
             )
+
         return None
 
-    def update_vehicle(self, vehicle_id: int, vehicle_request: VehicleRequest) -> VehicleResponse:
-        vehicle = self.vehicle_repository.update_vehicle(vehicle_id, vehicle_request)
+    async def update_vehicle(
+        self,
+        vehicle_id: int,
+        vehicle_request: VehicleRequest
+    ) -> VehicleResponse | None:
+
+        vehicle = await self.vehicle_repository.update_vehicle(
+            vehicle_id,
+            vehicle_request
+        )
+
         if vehicle:
             return VehicleResponse(
                 id=vehicle.id,
@@ -52,13 +74,24 @@ class VehicleServiceImpl(VehicleService):
                 created_at=vehicle.created_at,
                 updated_at=vehicle.updated_at
             )
+
         return None
 
-    def delete_vehicle(self, vehicle_id: int) -> bool:
-        return self.vehicle_repository.delete_vehicle(vehicle_id)
+    async def delete_vehicle(
+        self,
+        vehicle_id: int
+    ) -> bool:
 
-    def get_all_vehicles(self) -> list[VehicleResponse]:
-        vehicles = self.vehicle_repository.get_all_vehicles()
+        return await self.vehicle_repository.delete_vehicle(
+            vehicle_id
+        )
+
+    async def get_all_vehicles(
+        self
+    ) -> list[VehicleResponse]:
+
+        vehicles = await self.vehicle_repository.get_all_vehicles()
+
         return [
             VehicleResponse(
                 id=vehicle.id,
@@ -68,7 +101,6 @@ class VehicleServiceImpl(VehicleService):
                 vin=vehicle.vin,
                 created_at=vehicle.created_at,
                 updated_at=vehicle.updated_at
-            ) for vehicle in vehicles
+            )
+            for vehicle in vehicles
         ]
-
-    
