@@ -1,0 +1,29 @@
+FROM apache/spark:4.2.0-python3
+
+USER root
+
+WORKDIR /app
+
+RUN mkdir -p /app/reports
+
+# PostgreSQL JDBC driver
+ADD https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.jar /opt/spark/jars/postgresql-42.7.13.jar
+
+# Copy project configuration
+COPY pyproject.toml .
+
+# Copy source code
+COPY src ./src
+
+# Install dependencies and project
+RUN python -m pip install --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir .
+
+# Make src packages importable
+ENV PYTHONPATH=/app/src
+
+RUN chown -R 185:0 /app /opt/spark/jars/postgresql-42.7.13.jar
+
+USER 185
+
+CMD ["/opt/spark/bin/spark-submit", "--master", "local[*]", "--conf", "spark.ui.port=4040", "/app/src/utils/spark_pg.py"]

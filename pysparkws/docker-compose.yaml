@@ -1,0 +1,31 @@
+services:
+
+  pyspark-etl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: bmw-pyspark-etl
+
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: bmwdb
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_TABLE: vehicle
+
+    ports:
+      - "4040:4040"
+
+    volumes:
+      - ./reports:/app/reports
+
+    networks:
+      - external
+
+
+networks:
+  external:
+    external: true
+    name: bmw-network
