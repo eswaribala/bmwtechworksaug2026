@@ -12,6 +12,8 @@ services:
 
     ports:
       - "5432:5432"
+    networks:
+      - external
 
     volumes:
       - vehicle_postgres_data:/var/lib/postgresql/data
@@ -37,7 +39,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - external
 
 
 volumes:
   vehicle_postgres_data:
+
+networks:
+  external:
+    external: true
+    name: bmw-network
