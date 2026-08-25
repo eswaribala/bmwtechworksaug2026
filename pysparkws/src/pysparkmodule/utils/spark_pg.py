@@ -1,6 +1,6 @@
 #step1 
 from pyspark.sql import SparkSession
-
+from pysparkmodule.configurations.config import Config
 #create driver
 spark = (
         SparkSession.builder
@@ -11,4 +11,11 @@ spark = (
         .getOrCreate()
       )
 #create jdbc url
-jdbc_url = "jdbc:postgresql://localhost:5432/your_database"  #
+jdbc_url = Config().get_jdbc_connection_string()
+
+result=spark.read.jdbc(url=jdbc_url, 
+                table="vehicle", 
+                properties=Config().get_db_connection_params())
+
+print("Data read from PostgreSQL:")
+result.show()
