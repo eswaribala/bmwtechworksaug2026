@@ -31,3 +31,10 @@ class Config:
         return (
            f"jdbc:postgresql://{self.db_host}:{self.db_port}/{self.db_name}"
         )
+
+    def get_db_connection_params(self):
+        return {
+            "user": self.db_user,
+            "password": self.db_password,
+            "driver": "org.postgresql.Driver"
+        }
