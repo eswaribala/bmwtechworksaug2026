@@ -1,0 +1,230 @@
+1. BMW Vehicle Management API — CRUD Basics
+
+Scenario: Build an API for managing BMW vehicles registered in a dealership system.
+
+Vehicle fields: id, vin, model, year, fuel_type, color, price.
+
+Endpoints:
+
+POST   /vehicles
+GET    /vehicles
+GET    /vehicles/{vehicle_id}
+PUT    /vehicles/{vehicle_id}
+DELETE /vehicles/{vehicle_id}
+
+Example request:
+
+{
+  "vin": "BMWX5VIN001",
+  "model": "BMW X5",
+  "year": 2026,
+  "fuel_type": "Petrol",
+  "color": "Black",
+  "price": 9500000
+}
+
+Trainee tasks: Use Pydantic models, implement all CRUD operations, return 404 when the vehicle is missing, and test using Swagger UI.
+
+Concepts covered: FastAPI routing, GET/POST/PUT/DELETE, path parameters, request/response models, status codes.
+
+2. BMW Service Appointment API
+
+Scenario: BMW customers should be able to schedule vehicle service appointments.
+
+Service appointment fields:
+
+appointment_id
+vin
+customer_name
+service_type
+service_date
+service_center
+status
+
+Example:
+
+{
+  "vin": "BMWX3001",
+  "customer_name": "Arun Kumar",
+  "service_type": "Periodic Service",
+  "service_date": "2026-09-10",
+  "service_center": "BMW Chennai",
+  "status": "SCHEDULED"
+}
+
+Endpoints:
+
+POST   /appointments
+GET    /appointments
+GET    /appointments/{id}
+PUT    /appointments/{id}
+DELETE /appointments/{id}
+
+GET /appointments?status=SCHEDULED
+GET /appointments?vin=BMWX3001
+
+Challenge: Do not allow two appointments for the same VIN on the same date.
+
+Concepts covered: Query parameters, validation, business rules, exception handling, filtering.
+
+3. BMW Connected Car Sensor API
+
+Scenario: Connected BMW cars continuously send telemetry data to the backend.
+
+Example sensor payload:
+
+{
+  "vehicle_id": "BMW001",
+  "speed": 92,
+  "engine_temperature": 98,
+  "battery_level": 72,
+  "fuel_level": 35,
+  "latitude": 13.0827,
+  "longitude": 80.2707
+}
+
+Endpoints:
+
+POST /telemetry
+GET  /telemetry/{vehicle_id}
+GET  /telemetry/{vehicle_id}/latest
+GET  /vehicles/{vehicle_id}/health
+
+Health response could be:
+
+{
+  "vehicle_id": "BMW001",
+  "engine_status": "NORMAL",
+  "battery_status": "GOOD",
+  "overall_status": "HEALTHY"
+}
+
+Challenge: Generate an alert when:
+
+engine_temperature > 110
+battery_level < 15
+fuel_level < 10
+
+For example:
+
+{
+  "vehicle_id": "BMW001",
+  "alert": "ENGINE_OVERHEATING"
+}
+
+Concepts covered: IoT APIs, nested models, validation, business logic, derived responses.
+
+4. BMW Dealer Inventory API with PostgreSQL
+
+Scenario: Different BMW dealerships maintain vehicle inventories.
+
+Possible tables:
+
+Dealer
+------
+dealer_id
+dealer_name
+city
+
+Vehicle
+-------
+vehicle_id
+vin
+model
+price
+dealer_id
+status
+
+Example endpoints:
+
+POST /dealers
+GET  /dealers
+
+POST /vehicles
+GET  /vehicles
+
+GET /dealers/{dealer_id}/vehicles
+
+GET /vehicles?model=X5
+GET /vehicles?city=Chennai
+GET /vehicles?min_price=5000000&max_price=10000000
+
+Example request:
+
+{
+  "vin": "BMWIX001",
+  "model": "BMW iX",
+  "price": 12500000,
+  "dealer_id": 101,
+  "status": "AVAILABLE"
+}
+
+Challenge: Add an endpoint:
+
+PUT /vehicles/{vehicle_id}/sold
+
+which changes:
+
+AVAILABLE → SOLD
+
+Concepts covered: FastAPI + PostgreSQL, SQLAlchemy, repository pattern, service layer, relationships, database transactions.
+
+A good project structure is:
+
+vehicleapp/
+│
+├── controllers/
+│   └── vehicle_controller.py
+│
+├── services/
+│   └── vehicle_service.py
+│
+├── repositories/
+│   └── vehicle_repository.py
+│
+├── models/
+│   ├── vehicle.py
+│   └── dealer.py
+│
+├── dtos/
+│   ├── vehicle_request.py
+│   └── vehicle_response.py
+│
+├── configurations/
+│   └── postgres_conn.py
+│
+└── main.py
+5. BMW Roadside Assistance API — Advanced Exercise
+
+Scenario: A BMW driver experiences a breakdown and requests roadside assistance through the BMW mobile application.
+
+Example request:
+
+{
+  "vehicle_id": "BMW001",
+  "vin": "BMWVIN00981",
+  "issue": "Flat tyre",
+  "latitude": 13.0827,
+  "longitude": 80.2707
+}
+
+Endpoint:
+
+POST /roadside-assistance
+
+Response:
+
+{
+  "request_id": 5001,
+  "vehicle_id": "BMW001",
+  "status": "REQUESTED",
+  "estimated_arrival_minutes": 25
+}
+
+Additional endpoints:
+
+GET /roadside-assistance/{request_id}
+
+PUT /roadside-assistance/{request_id}/assign
+
+PUT /roadside-assistance/{request_id}/status
