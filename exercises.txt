@@ -228,3 +228,146 @@ GET /roadside-assistance/{request_id}
 PUT /roadside-assistance/{request_id}/assign
 
 PUT /roadside-assistance/{request_id}/status
+
+=================================================
+1. BMW Vehicle Sales Analysis
+
+Scenario: Analyze BMW vehicle sales from a CSV file.
+
+Sample fields:
+
+sale_id,customer_name,model,fuel_type,city,sale_date,price,quantity
+1,Arun,X5,Petrol,Chennai,2026-08-01,8500000,1
+2,Meena,iX,Electric,Bangalore,2026-08-02,9500000,1
+3,Ravi,X3,Diesel,Chennai,2026-08-03,7200000,2
+
+Trainee tasks:
+
+Read the CSV using PySpark DataFrame.
+Count total sales.
+Find sales by city.
+Find total revenue by model.
+Find the highest-priced BMW model.
+Filter only electric vehicles.
+
+Concepts covered: DataFrame, filter, groupBy, aggregation, orderBy, actions.
+
+2. BMW Connected Car Sensor Analysis
+
+Scenario: BMW connected vehicles send sensor data continuously.
+
+Sample file:
+
+vehicle_id#speed#engine_temp#battery_level#fuel_level
+BMW001#80#95#75#40
+BMW002#120#115#60#25
+BMW003#60#90#12#8
+BMW001#100#105#70#35
+
+Trainee tasks:
+
+Read the file using RDD.
+Split records using #.
+Find vehicles with engine temperature above 110.
+Find vehicles with battery below 15.
+Calculate average speed by vehicle.
+Count sensor records per vehicle.
+
+Challenge:
+
+BMW001 → average speed
+BMW002 → average speed
+BMW003 → average speed
+
+Concepts covered: RDD, map, filter, reduceByKey, key-value RDDs, actions.
+
+3. BMW Sales + Vehicle Master Join
+
+Scenario: BMW has two datasets.
+
+vehicle_sales.csv
+
+sale_id,vehicle_id,dealer_id,quantity,amount
+S001,V001,D01,1,8500000
+S002,V002,D02,1,9500000
+S003,V001,D01,2,17000000
+
+vehicle_master.csv
+
+vehicle_id,model,fuel_type
+V001,X5,Petrol
+V002,iX,Electric
+V003,X3,Diesel
+
+Trainee tasks:
+
+Read both datasets.
+Create key-value RDDs using vehicle_id.
+Join sales with vehicle master.
+Display model, fuel type, quantity, and sales amount.
+Calculate revenue by model.
+
+Expected concept:
+
+V001
+ ├─ Sales data
+ └─ Master data
+        ↓
+      JOIN
+        ↓
+X5, Petrol, Quantity, Revenue
+
+Concepts covered: join, wide transformations, shuffle, key-value RDDs, reduceByKey.
+
+4. BMW Dealer Performance Analytics
+
+Scenario: Management wants to identify top-performing BMW dealerships.
+
+Sample data:
+
+dealer_id,dealer_name,city,model,units_sold,revenue
+D01,BMW Chennai,Chennai,X5,12,102000000
+D02,BMW Bangalore,Bangalore,iX,8,76000000
+D01,BMW Chennai,Chennai,X3,15,108000000
+D03,BMW Mumbai,Mumbai,X7,10,145000000
+
+Trainee tasks:
+
+Calculate total units sold by dealer.
+Calculate total revenue by dealer.
+Find the top 3 dealers.
+Find the best-selling model in each city.
+Rank dealers based on revenue.
+
+Challenge:
+
+Rank | Dealer        | Revenue
+1    | BMW Mumbai    | ...
+2    | BMW Chennai   | ...
+3    | BMW Bangalore | ...
+
+Concepts covered: DataFrames, aggregation, window functions, rank, partitionBy, analytical queries.
+
+5. BMW Large-Scale ETL and Performance Optimization
+
+Scenario: BMW receives millions of vehicle telemetry records daily and needs an optimized ETL pipeline.
+
+Sample input:
+
+vehicle_id,timestamp,speed,temperature,battery,region
+BMW001,2026-08-26 10:00:00,85,95,78,South
+BMW002,2026-08-26 10:00:01,120,110,65,North
+BMW003,2026-08-26 10:00:02,70,88,82,South
+
+Trainee tasks:
+
+Read raw CSV.
+Remove invalid/null records.
+Convert data types.
+Filter abnormal sensor values.
+Calculate average speed by region.
+Repartition data by region.
+Write the result as Parquet.
+Compare repartition() and coalesce().
+Cache the cleaned DataFrame and reuse it.
+Examine the execution plan.
