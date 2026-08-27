@@ -40,5 +40,13 @@ master_kv = (filtered_master_data.map(lambda line: line.split(","))
 joined_data = sales_kv.join(master_kv)
 
 #print("Joined Data:")
-for line in joined_data.collect():
+#for line in joined_data.collect():
+   # print(line)
+
+#flatten the joined data to get a single RDD with all the information
+
+flattened_data = joined_data.map(lambda x: (x[0], x[1][0][0], x[1][0][1], x[1][1][0], x[1][1][1]))
+
+#print("Flattened Data:")
+for line in flattened_data.collect():
     print(line)
