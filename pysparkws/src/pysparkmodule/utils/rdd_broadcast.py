@@ -16,10 +16,14 @@ sc= spark.sparkContext
 rdd_data=(sc.textFile("src/pysparkmodule/data/bmw_customers_cleaned.csv",
                       minPartitions=4))
 
+header=rdd_data.first()
+
+split_header=header.split(",")
+
 #broadcast variable
 
 state_broadcast_data={
-    "TamilNadu": "TN",
+    "Tamil Nadu": "TN",
     "Kerala": "KL",
     "Karnataka": "KA",
     "Telangana": "TS",
@@ -35,4 +39,9 @@ state_broadcast_data={
     "Andhra Pradesh": "AP"
 }
 #map to column 7 with broadcast variable
-data=rdd_data.map(lambda x: (x[0], x[7], state_broadcast_data.get(x[7], "Unknown")))
+data=rdd_data.filter(lambda x: x != header).map(lambda x: (x.split(",")[0], x.split(",")[7], state_broadcast_data.get(x.split(",")[7], "Unknown")))
+
+#print data
+
+for row in data.collect():
+    print(row)
