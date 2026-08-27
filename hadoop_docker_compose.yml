@@ -1,0 +1,207 @@
+services:
+
+  # ==========================================================
+  # HDFS - NameNode
+  # ==========================================================
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    hostname: namenode
+    restart: unless-stopped
+
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+
+    environment:
+      - CLUSTER_NAME=hadoop
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # HDFS - DataNode
+  # ==========================================================
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    hostname: datanode
+    restart: unless-stopped
+
+    depends_on:
+      - namenode
+
+    ports:
+      - "9864:9864"
+
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - SERVICE_PRECONDITION=namenode:9870
+
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # YARN - ResourceManager
+  # ==========================================================
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8
+    container_name: resourcemanager
+    hostname: resourcemanager
+    restart: unless-stopped
+
+    depends_on:
+      - namenode
+      - datanode
+
+    ports:
+      - "8088:8088"
+
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - SERVICE_PRECONDITION=namenode:9000 namenode:9870 datanode:9864
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # YARN - NodeManager
+  # ==========================================================
+  nodemanager:
+    image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
+    container_name: nodemanager
+    hostname: nodemanager
+    restart: unless-stopped
+
+    depends_on:
+      - resourcemanager
+
+    ports:
+      - "8042:8042"
+
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - SERVICE_PRECONDITION=namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # Hadoop History Server
+  # ==========================================================
+  historyserver:
+    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    container_name: historyserver
+    hostname: historyserver
+    restart: unless-stopped
+
+    depends_on:
+      - namenode
+      - datanode
+      - resourcemanager
+
+    ports:
+      - "8188:8188"
+
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - SERVICE_PRECONDITION=namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088
+
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # Spark 4.2 Master
+  # ==========================================================
+  spark-master:
+    image: apache/spark:4.2.0-python3
+    container_name: spark-master
+    hostname: spark-master
+    restart: unless-stopped
+
+    depends_on:
+      - namenode
+      - datanode
+
+    command:
+      - /opt/spark/bin/spark-class
+      - org.apache.spark.deploy.master.Master
+      - --host
+      - spark-master
+      - --port
+      - "7077"
+      - --webui-port
+      - "8080"
+
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+
+    networks:
+      - hadoop-net
+
+
+  # ==========================================================
+  # Spark 4.2 Worker
+  # ==========================================================
+  spark-worker:
+    image: apache/spark:4.2.0-python3
+    container_name: spark-worker
+    hostname: spark-worker
+    restart: unless-stopped
+
+    depends_on:
+      - spark-master
+
+    command:
+      - /opt/spark/bin/spark-class
+      - org.apache.spark.deploy.worker.Worker
+      - spark://spark-master:7077
+      - --cores
+      - "2"
+      - --memory
+      - "2G"
+      - --webui-port
+      - "8081"
+
+    ports:
+      - "8081:8081"
+
+    networks:
+      - hadoop-net
+
+
+# ==========================================================
+# Volumes
+# ==========================================================
+volumes:
+
+  hadoop_namenode:
+
+  hadoop_datanode:
+
+  hadoop_historyserver:
+
+
+# ==========================================================
+# Network
+# ==========================================================
+networks:
+
+  hadoop-net:
+    driver: bridge
