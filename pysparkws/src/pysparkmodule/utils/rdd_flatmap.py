@@ -16,7 +16,7 @@ spark = (SparkSession.builder
 sc=spark.sparkContext
 
 #read the telemetry data from a CSV file
-telemetry_data = sc.textFile("src/data/bmw_sensor_telemetry_data_100.txt",
+telemetry_data = sc.textFile("src/data/bmw_sensor_telemetry_data_100.csv",
                              minPartitions=4)
 
 #flatmap the telemetry data to extract relevant information
