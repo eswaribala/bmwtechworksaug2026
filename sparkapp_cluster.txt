@@ -3,3 +3,8 @@
 docker cp E:\BMWTWAug2026\pysparkws\src\pysparkmodule\utils\rdd_reducebykey.py spark-master:/opt/spark/work-dir/rdd_reducebykey.py
 verify
 docker exec spark-master ls -l /opt/spark/work-dir/rdd_reducebykey.py
+
+#run the code
+docker exec -it spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 /opt/spark/work-dir/rdd_reducebykey.py
+
+
