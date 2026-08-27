@@ -1,0 +1,5 @@
+#Copy code
+#Copy rdd_reducebykey.py into Spark Master
+docker cp E:\BMWTWAug2026\pysparkws\src\pysparkmodule\utils\rdd_reducebykey.py spark-master:/opt/spark/work-dir/rdd_reducebykey.py
+verify
+docker exec spark-master ls -l /opt/spark/work-dir/rdd_reducebykey.py
