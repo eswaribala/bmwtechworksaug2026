@@ -1,0 +1,14 @@
+sale_id,customer_name,model,fuel_type,city,sale_date,price,quantity
+1001,Rahul Sharma,X5,Petrol,Mumbai,2024-01-15,8500000,1
+1002,Priya Patel,iX,Electric,Delhi,2024-02-20,9500000,1
+1003,Amit Kumar,3 Series,Diesel,Bangalore,2023-11-05,5200000,1
+1004,Sneha Reddy,i4,Electric,Hyderabad,2024-03-12,7200000,1
+1005,Vikram Singh,X3,Petrol,Chennai,2024-01-28,6800000,1
+1006,Ananya Gupta,iX,Electric,Pune,2024-04-02,9700000,1
+1007,Rohan Mehta,5 Series,Diesel,Mumbai,2023-12-18,6100000,1
+1008,Kavita Joshi,X1,Petrol,Delhi,2024-02-05,4800000,1
+1009,Rahul Sharma,X5,Petrol,Mumbai,2024-05-10,8600000,1
+1010,,iX,Electric,Delhi,2024-03-22,9400000,1
+1011,Priya Patel,i4,Electric,Delhi,2024-06-01,7100000,1
+1012,Amit Kumar,3 Series,Diesel,Bangalore,2024-01-30,,1
+1013,Sneha Reddy,iX,Electric,Hyderabad,2024-07-15,9800000,2
