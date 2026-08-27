@@ -1,0 +1,13 @@
+docker cp E:\BMWTWAug2026\pysparkws\src\pysparkmodule\data\bmw_sales_raw.csv namenode:/tmp/bmw_sales_raw.csv
+Verify
+docker exec namenode ls -l /tmp/bmw_sales_raw.csv
+Create hdfs directory
+docker exec namenode hdfs dfs -mkdir -p /bmw/input
+Upload:
+docker exec namenode hdfs dfs -put -f /tmp/bmw_sales_raw.csv /bmw/input/
+Verify 
+docker exec namenode hdfs dfs -ls /bmw/input
+Check output
+docker exec namenode hdfs dfs -cat /bmw/input/bmw_sales_raw.csv
+
+  
