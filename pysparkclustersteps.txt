@@ -1,0 +1,10 @@
+Enter the Spark master container:
+docker exec -it spark-master bash
+
+ls /opt/spark/bin
+/opt/spark/bin/spark-submit –version
+If PySpark is included in your image, try:
+/opt/spark/bin/pyspark –version
+
+Then start PySpark with:
+/opt/spark/bin/pyspark  --master spark://spark-master:7077
