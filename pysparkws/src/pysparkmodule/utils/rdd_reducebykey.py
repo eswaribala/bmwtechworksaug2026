@@ -3,11 +3,18 @@
 
 from pyspark.sql import SparkSession
 
-
+"""
 spark = (SparkSession.builder
          .appName("BMW Sensor Telemetry")
          #define cluster configuration
          .master("local[*]")
+         .config("spark.executor.memory", "2g")
+         .getOrCreate())
+"""
+spark = (SparkSession.builder
+         .appName("BMW Sensor Telemetry")
+         #define cluster configuration
+         .master("spark://spark-master:7077")
          .config("spark.executor.memory", "2g")
          .getOrCreate())
 
@@ -15,7 +22,7 @@ spark = (SparkSession.builder
 sc=spark.sparkContext
 
 #read the telemetry data from a CSV file
-sales_data = sc.textFile("src/pysparkmodule/data/bmw_sales_raw.csv",
+sales_data = sc.textFile("hdfs://namenode:9000/bmw/input/bmw_sales_raw.csv",
                          minPartitions=4)
 
 header=sales_data.first()  # extract header
