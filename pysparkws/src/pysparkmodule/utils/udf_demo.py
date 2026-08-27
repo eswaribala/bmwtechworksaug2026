@@ -42,3 +42,6 @@ classify_purchase_category_udf = udf(classify_purchase_category, StringType())
 #based on the purchase price, create a new column called "purchase_category" with the following conditions:
 # if purchase_price_inr < 1000000, then purchase_category = "budget"
 customer_df = customer_df.withColumn("purchase_category", classify_purchase_category_udf(col("purchase_price_inr")))
+
+#print the schema of the customer data
+customer_df.show()
