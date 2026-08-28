@@ -93,4 +93,6 @@ BEFORE INSERT OR UPDATE OR DELETE
 ON vehicle
 FOR EACH ROW
 EXECUTE PROCEDURE public.audittrigger();
+
+insert into vehicle(make,model,year,vin,created_at,updated_at)values('Tesla','X Series',2025,'wfeyufewuy',now(),now());
 ====================================================
