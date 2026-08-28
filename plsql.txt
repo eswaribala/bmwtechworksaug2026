@@ -87,4 +87,10 @@ BEGIN
    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER VehicleTableTrigger
+BEFORE INSERT OR UPDATE OR DELETE
+ON vehicle
+FOR EACH ROW
+EXECUTE PROCEDURE public.audittrigger();
 ====================================================
