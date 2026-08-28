@@ -55,3 +55,16 @@ $procedure$
 ================================================================
 call public.searchvehicle('BMW', NULL);
 =======================================
+
+CREATE OR REPLACE FUNCTION count_vehicles_by_make(p_make character varying)
+RETURNS int AS $$
+BEGIN
+    declare
+        vehicle_count integer;
+    begin
+        select count(*) into vehicle_count from public.vehicle where make = p_make;
+        return vehicle_count;
+    end;
+END;
+$$ LANGUAGE plpgsql;
+===========================================================
