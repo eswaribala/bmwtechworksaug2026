@@ -77,3 +77,14 @@ BEGIN
     WHERE make = p_make;
 END;
 $$ LANGUAGE plpgsql;
+=====================================
+CREATE SEQUENCE Audit_sequence start with 1000 INCREMENT BY 1 MINVALUE 1000  No MAXVALUE;
+CREATE OR REPLACE FUNCTION public.audittrigger()
+RETURNS TRIGGER AS $$
+BEGIN
+   INSERT INTO public.vehicle_audit (audit_id,vehicle_id,make,model,year,vin,created_at,updated_at)
+   VALUES (nextval('Audit_sequence'), NEW.vehicle_id, NEW.make, NEW.model, NEW.year, NEW.vin, NEW.created_at, NEW.updated_at);
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+====================================================
