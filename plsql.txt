@@ -1,0 +1,35 @@
+CREATE OR REPLACE PROCEDURE public.addvehicle(OUT p_id integer, IN p_make character varying, IN p_model character varying, IN p_year integer, IN p_vin character varying)
+ LANGUAGE plpgsql
+AS $procedure$
+BEGIN
+    INSERT INTO vehicle(
+        make,
+        model,
+        year,
+        vin,
+        created_at,
+        updated_at
+    )
+    VALUES(
+        p_make,
+        p_model,
+        p_year,
+        p_vin,
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
+    )
+    RETURNING vehicle.id INTO p_id;
+END;
+$procedure$
+  ========================================================
+  Query
+
+call public.addvehicle(
+    p_id => 0,
+    p_make => 'Toyota',
+    p_model => 'Camry',
+    p_year => 2020,
+    p_vin => '1HGCM82633A1234'
+  ==============================================================
+   
+);
