@@ -68,3 +68,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 ===========================================================
+CREATE OR REPLACE FUNCTION public.vehicleinfo(p_make character varying)
+RETURNS TABLE (v_make character varying, v_model character varying, v_year integer, v_vin character varying) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT make, model, year, vin
+    FROM public.vehicle
+    WHERE make = p_make;
+END;
+$$ LANGUAGE plpgsql;
