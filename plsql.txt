@@ -30,6 +30,26 @@ call public.addvehicle(
     p_model => 'Camry',
     p_year => 2020,
     p_vin => '1HGCM82633A1234'
-  ==============================================================
-   
+    
 );
+
+=================================
+CREATE OR REPLACE PROCEDURE public.searchvehicle(IN p_make character varying, OUT result character varying)
+ LANGUAGE plpgsql
+AS $procedure$
+declare
+    vehicle_count integer;
+BEGIN
+    select count(*) into vehicle_count from public.vehicle where make = p_make;
+    IF vehicle_count = 0 THEN
+        
+        raise EXCEPTION 'No vehicles found for the specified make: %', p_make;   
+    ELSIF vehicle_count = 1 THEN
+        select make || ' ' || model into result from public.vehicle where make = p_make;
+    ELSE
+        select string_agg(make || ' ' || model, ', ') into result from public.vehicle where make = p_make;
+    END IF;
+
+END;
+$procedure$
+================================================================
