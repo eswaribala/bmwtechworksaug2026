@@ -330,6 +330,510 @@ D01,BMW Chennai,Chennai,X5,12,102000000
 D02,BMW Bangalore,Bangalore,iX,8,76000000
 D01,BMW Chennai,Chennai,X3,15,108000000
 D03,BMW Mumbai,Mumbai,X7,10,145000000
+==========================================
+BMW Vehicle Data – Read from HDFS and Analyze with PySpark
+Upload bmw_connected_cars.csv to HDFS and use PySpark to read it.
+
+Sample columns:
+vehicle_id, model, fuel_type, region, battery_level, speed
+
+Tasks:
+
+Upload CSV to /bmw/vehicle_data/
+Read using PySpark
+Display first 10 records
+Count total vehicles
+Find all electric vehicles
+Find vehicles with battery_level < 30
+Count vehicles by region
+
+Architecture:
+CSV → HDFS → PySpark → DataFrame → Analytics
+
+BMW Sensor Logs – RDD Processing with HDFS
+Store a sensor log file in HDFS.
+
+Example:
+
+BMW001#X5#75#80
+BMW002#iX#25#65
+BMW003#i4#90#110
+
+Tasks:
+
+Read file using sc.textFile("hdfs://...")
+Split records using #
+Convert records using map()
+Filter vehicles with speed greater than 100
+Find vehicles with battery level below 30
+Use count() and collect()
+
+Concepts covered: RDD, map, filter, actions, HDFS blocks
+
+BMW Regional Vehicle Analysis – reduceByKey / groupByKey
+Use vehicle data containing:
+
+BMW001,Chennai
+BMW002,Delhi
+BMW003,Chennai
+BMW004,Mumbai
+BMW005,Delhi
+
+Tasks:
+
+Read the file from HDFS
+Create (region, 1) pairs
+Count vehicles using reduceByKey()
+Repeat using groupByKey()
+Compare both approaches
+Explain why reduceByKey() is generally more efficient
+
+Expected result:
+
+Chennai  2
+Delhi    2
+Mumbai   1
+
+BMW Sales + Vehicle Master – Distributed Join
+Store two files in HDFS:
+
+sales.csv
+
+sale_id,model,city,price
+1,X5,Chennai,8500000
+2,iX,Delhi,9500000
+3,i4,Mumbai,7200000
+
+vehicle_master.csv
+
+model,fuel_type
+X5,Petrol
+iX,Electric
+i4,Electric
+
+Tasks:
+
+Read both datasets from HDFS
+Join them using model
+Find total revenue by fuel type
+Find the highest-selling city
+Find total revenue for electric BMW vehicles
+Save output back to HDFS as Parquet
+
+Flow:
+HDFS Sales + HDFS Master → PySpark Join → Aggregate → Parquet → HDFS
+
+BMW Sensor ETL Pipeline with HDFS, Cache and Parquet
+Build a complete distributed ETL exercise.
+
+Input columns:
+
+vehicle_id
+model
+fuel_type
+region
+battery_level
+speed
+last_update
+
+Tasks:
+
+Read CSV from HDFS
+Remove null records
+Remove duplicates
+Cast battery_level and speed to numeric types
+
+Create a derived column:
+
+battery_status
+
+>= 70   → High
+30–69   → Normal
+< 30    → Low
+Cache the cleaned DataFrame
+Calculate:
+Average speed by model
+Average battery level by region
+Number of electric vehicles
+Vehicles with low battery
+Top 3 fastest vehicles
+
+Write the cleaned dataset to:
+
+/bmw/processed/vehicle_data/
+
+in Parquet format
+
+Verify the result using HDFS commands.
+=========================================
+Base tables
+CREATE TABLE vehicle (
+    vehicle_id SERIAL PRIMARY KEY,
+    vin VARCHAR(30) UNIQUE NOT NULL,
+    model VARCHAR(50),
+    fuel_type VARCHAR(20),
+    region VARCHAR(50),
+    price NUMERIC(12,2)
+);
+
+CREATE TABLE sales (
+    sale_id SERIAL PRIMARY KEY,
+    vehicle_id INT REFERENCES vehicle(vehicle_id),
+    customer_name VARCHAR(100),
+    city VARCHAR(50),
+    sale_date DATE,
+    quantity INT DEFAULT 1,
+    sale_amount NUMERIC(12,2)
+);
+
+CREATE TABLE service_history (
+    service_id SERIAL PRIMARY KEY,
+    vehicle_id INT REFERENCES vehicle(vehicle_id),
+    service_date DATE,
+    service_type VARCHAR(50),
+    service_cost NUMERIC(10,2)
+);
+
+CREATE TABLE vehicle_audit (
+    audit_id SERIAL PRIMARY KEY,
+    vehicle_id INT,
+    old_price NUMERIC(12,2),
+    new_price NUMERIC(12,2),
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+Exercise 1 — Stored Procedure: Search Vehicles
+
+Create a stored procedure:
+
+search_vehicle(p_model, OUT result)
+
+Requirements:
+
+Count vehicles for the supplied model.
+If no vehicle exists, raise an exception.
+If one vehicle exists, return its details.
+If multiple vehicles exist, concatenate the vehicle details.
+Use:
+IN parameter
+OUT parameter
+IF / ELSIF / ELSE
+RAISE EXCEPTION
+
+Example call:
+
+CALL search_vehicle('X5', NULL);
+
+Concepts: stored procedures, parameters, control flow, exception handling.
+
+Exercise 2 — Stored Procedure: Vehicle Price Update
+
+Create:
+
+update_vehicle_price(
+    p_vehicle_id,
+    p_percentage
+)
+
+Example:
+
+CALL update_vehicle_price(101, 5);
+
+If current price is:
+
+₹80,00,000
+
+a 5% increase should produce:
+
+₹84,00,000
+
+Requirements:
+
+Verify the vehicle exists.
+Reject percentages below -20 or above 20.
+Update the price.
+Return/display old price and new price.
+Handle invalid vehicle IDs.
+
+Bonus: perform the operation inside a transaction.
+
+Exercise 3 — Scalar Function: Calculate Vehicle Discount
+
+Create:
+
+calculate_discount(
+    p_price NUMERIC,
+    p_fuel_type VARCHAR
+)
+RETURNS NUMERIC
+
+Rules:
+
+Fuel Type	Discount
+Electric	8%
+Hybrid	5%
+Petrol	2%
+Diesel	2%
+
+Example:
+
+SELECT
+    model,
+    price,
+    calculate_discount(price, fuel_type) AS discount
+FROM vehicle;
+
+Then calculate final price:
+
+SELECT
+    model,
+    price,
+    price - calculate_discount(price, fuel_type)
+        AS final_price
+FROM vehicle;
+
+Concepts: PostgreSQL functions, CASE, reusable business rules.
+
+Exercise 4 — Table-Valued Function: Regional Vehicle Report
+
+Create a function:
+
+get_vehicles_by_region(p_region)
+
+returning:
+
+vehicle_id
+model
+fuel_type
+region
+price
+
+Expected usage:
+
+SELECT *
+FROM get_vehicles_by_region('Chennai');
+
+Advanced version: allow minimum price.
+
+SELECT *
+FROM get_vehicles_by_region('Chennai', 5000000);
+
+Concepts: RETURNS TABLE, query functions, parameterized reports.
+
+Exercise 5 — Trigger: Vehicle Price Audit
+
+Create a trigger that automatically records every price change.
+
+Example:
+
+UPDATE vehicle
+SET price = 9000000
+WHERE vehicle_id = 1;
+
+The trigger should automatically insert:
+
+vehicle_id
+old_price
+new_price
+changed_at
+
+into:
+
+vehicle_audit
+
+Requirements:
+
+Vehicle
+   │
+   │ UPDATE price
+   ▼
+Trigger
+   │
+   ▼
+vehicle_audit
+
+Only create an audit record if:
+
+OLD.price <> NEW.price
+
+Concepts: BEFORE/AFTER UPDATE, OLD, NEW, trigger functions.
+
+Exercise 6 — Trigger: Prevent Invalid Sales
+
+Create a trigger that prevents these operations:
+
+sale_amount <= 0
+quantity <= 0
+
+Example:
+
+INSERT INTO sales
+(
+    vehicle_id,
+    customer_name,
+    city,
+    sale_date,
+    quantity,
+    sale_amount
+)
+VALUES
+(
+    1,
+    'Arun',
+    'Chennai',
+    CURRENT_DATE,
+    -2,
+    8500000
+);
+
+Expected:
+
+ERROR: Quantity must be greater than zero
+
+Bonus rule:
+
+Prevent:
+
+sale_date > CURRENT_DATE
+
+This is a good example of using a BEFORE INSERT OR UPDATE trigger for validation.
+
+Window Function Exercises
+Exercise 7 — Ranking BMW Vehicles by Price
+
+Use:
+
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+
+Example requirement:
+
+Rank vehicles by price within each fuel type.
+
+Expected output:
+
+Model	Fuel Type	Price	Rank
+iX	Electric	9500000	1
+i7	Electric	9500000	1
+i5	Electric	8500000	2
+X7	Petrol	11000000	1
+
+Query skeleton:
+
+SELECT
+    model,
+    fuel_type,
+    price,
+    DENSE_RANK() OVER (
+        PARTITION BY fuel_type
+        ORDER BY price DESC
+    ) AS price_rank
+FROM vehicle;
+
+Exercise:
+
+Compare the output of:
+
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+
+and explain why the results differ when duplicate prices exist.
+
+Exercise 8 — LAG, LEAD and Running Total
+
+Use BMW sales history.
+
+Part A — Previous sale
+
+Display:
+
+sale_date
+sale_amount
+previous_sale
+difference
+
+Use:
+
+LAG()
+
+Example:
+
+SELECT
+    sale_date,
+    sale_amount,
+
+    LAG(sale_amount) OVER (
+        ORDER BY sale_date
+    ) AS previous_sale,
+
+    sale_amount -
+    LAG(sale_amount) OVER (
+        ORDER BY sale_date
+    ) AS difference
+
+FROM sales;
+Part B — Next sale
+
+Use:
+
+LEAD()
+
+to show the next sale amount.
+
+Part C — Running revenue
+
+Calculate cumulative BMW sales:
+
+SUM(sale_amount) OVER (
+    ORDER BY sale_date
+)
+
+Expected:
+
+Date	Sale	Running Total
+01-Aug	80L	80L
+03-Aug	90L	170L
+05-Aug	70L	240L
+Advanced Challenge — Top 3 Models by Region
+
+Use a CTE + window function.
+
+Requirement:
+
+Find the top 3 highest-revenue BMW models in each city/region.
+
+Conceptual solution:
+
+WITH model_sales AS
+(
+    SELECT
+        s.city,
+        v.model,
+        SUM(s.sale_amount) AS revenue
+    FROM sales s
+    JOIN vehicle v
+        ON s.vehicle_id = v.vehicle_id
+    GROUP BY
+        s.city,
+        v.model
+),
+ranking AS
+(
+    SELECT
+        *,
+        DENSE_RANK() OVER (
+            PARTITION BY city
+            ORDER BY revenue DESC
+        ) AS ranking
+    FROM model_sales
+)
+
+SELECT *
+FROM ranking
+WHERE ranking <= 3;
+
+This combines JOIN + GROUP BY + CTE + DENSE_RANK in one realistic analytical query.
 
 Trainee tasks:
 
@@ -371,3 +875,4 @@ Write the result as Parquet.
 Compare repartition() and coalesce().
 Cache the cleaned DataFrame and reuse it.
 Examine the execution plan.
+==================================
