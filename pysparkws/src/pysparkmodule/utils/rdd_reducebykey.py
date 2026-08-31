@@ -22,8 +22,7 @@ spark = (SparkSession.builder
 sc=spark.sparkContext
 
 #read the telemetry data from a CSV file
-sales_data = sc.textFile("hdfs://namenode:9000/bmw/input/bmw_sales_raw.csv",
-                         minPartitions=4)
+sales_data = sc.textFile("hdfs://namenode:9000/bmw/input/bmw_sales_raw.csv",minPartitions=4)
 
 header=sales_data.first()  # extract header
 
