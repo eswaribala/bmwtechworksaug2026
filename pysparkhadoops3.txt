@@ -1,0 +1,41 @@
+https://github.com/notepass/hadoop-native-win-libs/releases
+
+Use this sequence in the VS Code CMD terminal after activating your virtual environment:
+
+set HADOOP_HOME=D:\software\hadoop-3.5.0\hadoop-3.5.0
+set PATH=%HADOOP_HOME%\bin;%PATH%
+
+Verify Hadoop:
+
+echo %HADOOP_HOME%
+where winutils
+
+Then verify AWS authentication:
+
+aws sts get-caller-identity
+
+Check your S3 location:
+
+aws s3 ls s3://bmwsensordata/sensor_data/
+
+To expose AWS CLI credentials as environment variables for PySpark/S3A:
+
+aws configure export-credentials --format windows-cmd
+
+Or set them manually from the AWS CLI profile:
+
+for /f "delims=" %i in ('aws configure get aws_access_key_id') do @set "AWS_ACCESS_KEY_ID=%i"
+
+for /f "delims=" %i in ('aws configure get aws_secret_access_key') do @set "AWS_SECRET_ACCESS_KEY=%i"
+
+Then set the AWS region:
+
+set AWS_DEFAULT_REGION=us-east-1
+set AWS_REGION=us-east-1
+
+Verify everything:
+
+echo %AWS_ACCESS_KEY_ID%
+echo %AWS_DEFAULT_REGION%
+aws sts get-caller-identity
+aws s3 ls s3://bmwsensordata/sensor_data/
