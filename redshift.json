@@ -1,0 +1,103 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3BucketLevelAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketAcl",
+                "s3:GetBucketCors",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutBucketAcl",
+                "s3:PutBucketCors"
+            ],
+            "Resource": [
+                "arn:aws:s3:::redshift",
+                "arn:aws:s3:::bmwsensordata"
+            ]
+        },
+        {
+            "Sid": "S3ObjectLevelAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:ListMultipartUploadParts"
+            ],
+            "Resource": [
+                "arn:aws:s3:::redshift/*",
+                "arn:aws:s3:::bmwsensordata/*"
+            ]
+        },
+        {
+            "Sid": "S3ListAllBuckets",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "S3CreateBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "GlueCatalogAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "glue:CreateDatabase",
+                "glue:UpdateDatabase",
+                "glue:DeleteDatabase",
+                "glue:GetTable",
+                "glue:GetTables",
+                "glue:CreateTable",
+                "glue:UpdateTable",
+                "glue:DeleteTable",
+                "glue:GetPartition",
+                "glue:GetPartitions",
+                "glue:CreatePartition",
+                "glue:UpdatePartition",
+                "glue:DeletePartition",
+                "glue:BatchGetPartition",
+                "glue:BatchCreatePartition",
+                "glue:BatchDeletePartition"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AthenaFullQueryAccess",
+            "Effect": "Allow",
+            "Action": [
+                "athena:StartQueryExecution",
+                "athena:StopQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:ListQueryExecutions",
+                "athena:BatchGetQueryExecution",
+                "athena:GetWorkGroup",
+                "athena:ListWorkGroups",
+                "athena:CreateWorkGroup",
+                "athena:UpdateWorkGroup",
+                "athena:GetDataCatalog",
+                "athena:ListDataCatalogs",
+                "athena:GetDatabase",
+                "athena:GetTableMetadata",
+                "athena:ListDatabases",
+                "athena:ListTableMetadata"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
