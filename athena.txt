@@ -1,0 +1,15 @@
+CREATE EXTERNAL TABLE bmw_connected_cars (
+    vehicle_id STRING,
+    model STRING,
+    fuel_type STRING,
+    region STRING,
+    battery_level INT,
+    speed INT,
+    last_update STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION 's3://bmw-s3-bucket-2026/connecteddata/'
+TBLPROPERTIES (
+    'skip.header.line.count'='1'
+);
