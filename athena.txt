@@ -13,3 +13,15 @@ LOCATION 's3://bmw-s3-bucket-2026/connecteddata/'
 TBLPROPERTIES (
     'skip.header.line.count'='1'
 );
+=================
+{
+  "QueryString": "select vehicle_id,model,fuel_type from bmw_connected_cars;",
+  "QueryExecutionContext": {
+      "Database": "cardb",
+      "Catalog":"AwsDataCatalog"
+  },
+  "ResultConfiguration":{
+      "OutputLocation":"s3://bmw-s3-bucket-2026/results/"
+  },
+  "WorkGroup":"primary"
+}
