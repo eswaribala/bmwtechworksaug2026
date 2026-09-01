@@ -105,3 +105,20 @@ trust
         }
     ]
 }
+======================
+(awsvenv) E:\BMWTWAug2026\awsws>aws athena list-query-executions ^--work-group primary ^--max-items 3 ^--region us-east-1 ^--no-cli-pager
+{
+    "QueryExecutionIds": [
+        "0eecd27c-567e-4e24-9ead-447052ff4fa5",
+        "612fb9fe-c917-4c92-9fba-de92b1287988",
+        "da21ea51-af79-4457-8845-5a900669f7d6"
+    ],
+    "NextToken": "eyJOZXh0VG9rZW4iOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAzfQ=="
+}
+================================
+aws athena get-query-execution ^
+--query-execution-id NEW_QUERY_ID ^
+--region us-east-1 ^
+--query "QueryExecution.{State:Status.State,Reason:Status.StateChangeReason,Output:ResultConfiguration.OutputLocation}" ^
+--output table ^
+--no-cli-pager
