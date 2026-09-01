@@ -122,3 +122,5 @@ aws athena get-query-execution ^
 --query "QueryExecution.{State:Status.State,Reason:Status.StateChangeReason,Output:ResultConfiguration.OutputLocation}" ^
 --output table ^
 --no-cli-pager
+========================
+aws athena get-query-execution ^--query-execution-id 0eecd27c-567e-4e24-9ead-447052ff4fa5 ^--region us-east-1 ^--query "QueryExecution.{State:Status.State,Reason:Status.StateChangeReason,Submitted:Status.SubmissionDateTime,Completed:Status.CompletionDateTime,SQL:Query,Output:ResultConfiguration.OutputLocation}" ^--output table ^--no-cli-pager
