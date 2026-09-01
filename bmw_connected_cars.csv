@@ -1,0 +1,16 @@
+vehicle_id,model,fuel_type,region,battery_level,speed,last_update
+V001,iX,Electric,Europe,82,110,2024-07-01
+V002,X5,Petrol,Europe,0,95,2024-07-01
+V003,i4,Electric,Asia,45,130,2024-07-01
+V004,3 Series,Diesel,North America,0,80,2024-07-01
+V005,iX,Electric,Europe,15,60,2024-07-01
+V006,X3,Petrol,Asia,0,105,2024-07-01
+V007,i4,Electric,North America,90,140,2024-07-01
+V008,5 Series,Diesel,Europe,0,70,2024-07-01
+V009,iX,Electric,Asia,8,50,2024-07-01
+V010,X1,Petrol,North America,0,85,2024-07-01
+V011,i4,Electric,Europe,12,55,2024-07-01
+V012,iX,Electric,Asia,18,65,2024-07-01
+V013,i4,Electric,Europe,70,120,2024-07-01
+V014,X5,Petrol,Asia,0,100,2024-07-01
+V015,iX,Electric,North America,5,40,2024-07-01
