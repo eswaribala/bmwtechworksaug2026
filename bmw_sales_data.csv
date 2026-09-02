@@ -1,0 +1,31 @@
+sale_id,sale_date,vehicle_id,customer_name,model,segment,fuel_type,city,region,dealer_name,quantity,unit_price,discount_percent,total_amount,payment_method
+S001,2026-01-05,V001,Amit Kumar,BMW X1,Compact SUV,Petrol,Chennai,South,BMW KUN Exclusive,1,5000000,5,4750000,Loan
+S002,2026-01-12,V002,Priya Sharma,BMW iX1,Electric SUV,Electric,Bengaluru,South,BMW Navnit Motors,1,6600000,3,6402000,Loan
+S003,2026-01-19,V003,Rahul Mehta,BMW 3 Series,Luxury Sedan,Petrol,Mumbai,West,BMW Infinity Cars,1,7500000,4,7200000,Card
+S004,2026-01-27,V004,Neha Singh,BMW X3,Midsize SUV,Diesel,Delhi,North,BMW Deutsche Motoren,1,7000000,6,6580000,Loan
+S005,2026-02-03,V005,Arjun Nair,BMW i4,Electric Sedan,Electric,Kochi,South,BMW EVM Autokraft,1,7500000,2,7350000,Bank Transfer
+S006,2026-02-10,V006,Sneha Iyer,BMW X5,Luxury SUV,Diesel,Chennai,South,BMW KUN Exclusive,1,9500000,5,9025000,Loan
+S007,2026-02-16,V007,Vikram Patel,BMW 5 Series,Executive Sedan,Petrol,Ahmedabad,West,BMW Gallops Autohaus,1,7800000,4,7488000,Bank Transfer
+S008,2026-02-24,V008,Kavya Reddy,BMW iX,Electric SUV,Electric,Hyderabad,South,BMW Krishna Automobiles,1,12000000,3,11640000,Loan
+S009,2026-03-02,V009,Rohan Das,BMW X1,Compact SUV,Diesel,Kolkata,East,BMW OSL Prestige,1,5200000,5,4940000,Loan
+S010,2026-03-09,V010,Ananya Gupta,BMW 2 Series,Luxury Sedan,Petrol,Pune,West,BMW Bavaria Motors,1,4600000,2,4508000,Card
+S011,2026-03-15,V011,Karthik Rao,BMW X3,Midsize SUV,Petrol,Bengaluru,South,BMW Navnit Motors,1,7200000,4,6912000,Loan
+S012,2026-03-23,V012,Meera Joshi,BMW i7,Electric Sedan,Electric,Mumbai,West,BMW Infinity Cars,1,20300000,5,19285000,Bank Transfer
+S013,2026-04-01,V013,Sanjay Verma,BMW 3 Series,Luxury Sedan,Diesel,Delhi,North,BMW Deutsche Motoren,1,7700000,3,7469000,Loan
+S014,2026-04-08,V014,Divya Menon,BMW X5,Luxury SUV,Petrol,Kochi,South,BMW EVM Autokraft,1,9700000,6,9118000,Bank Transfer
+S015,2026-04-17,V015,Nitin Kulkarni,BMW i5,Electric Sedan,Electric,Pune,West,BMW Bavaria Motors,1,12000000,4,11520000,Loan
+S016,2026-04-25,V016,Pooja Shah,BMW 5 Series,Executive Sedan,Diesel,Ahmedabad,West,BMW Gallops Autohaus,1,8000000,5,7600000,Card
+S017,2026-05-04,V017,Aditya Roy,BMW X7,Full-size SUV,Diesel,Kolkata,East,BMW OSL Prestige,1,13000000,3,12610000,Loan
+S018,2026-05-11,V018,Lakshmi Krishnan,BMW iX1,Electric SUV,Electric,Chennai,South,BMW KUN Exclusive,1,6600000,2,6468000,Bank Transfer
+S019,2026-05-19,V019,Manish Agarwal,BMW 2 Series,Luxury Sedan,Petrol,Hyderabad,South,BMW Krishna Automobiles,1,4600000,4,4416000,Loan
+S020,2026-05-28,V020,Shreya Kapoor,BMW XM,Performance SUV,Hybrid,Delhi,North,BMW Deutsche Motoren,1,26000000,5,24700000,Bank Transfer
+S021,2026-06-06,V021,Deepak Yadav,BMW X1,Compact SUV,Petrol,Jaipur,North,BMW Sanghi Classic,1,5000000,3,4850000,Loan
+S022,2026-06-14,V022,Harini S,BMW i4,Electric Sedan,Electric,Coimbatore,South,BMW KUN Exclusive,1,7500000,4,7200000,Card
+S023,2026-06-22,V023,Akash Malhotra,BMW X3,Midsize SUV,Diesel,Chandigarh,North,BMW Krishna Automobiles,1,7000000,5,6650000,Loan
+S024,2026-07-01,V024,Nandhini R,BMW 3 Series,Luxury Sedan,Petrol,Chennai,South,BMW KUN Exclusive,1,7500000,2,7350000,Bank Transfer
+S025,2026-07-10,V025,Sameer Khan,BMW X5,Luxury SUV,Diesel,Mumbai,West,BMW Infinity Cars,1,9500000,4,9120000,Loan
+S026,2026-07-18,V026,Reshma Thomas,BMW iX,Electric SUV,Electric,Kochi,South,BMW EVM Autokraft,1,12000000,5,11400000,Bank Transfer
+S027,2026-07-27,V027,Gaurav Bansal,BMW 5 Series,Executive Sedan,Petrol,Delhi,North,BMW Deutsche Motoren,1,7800000,3,7566000,Loan
+S028,2026-08-05,V028,Sowmya Prasad,BMW i5,Electric Sedan,Electric,Bengaluru,South,BMW Navnit Motors,1,12000000,6,11280000,Card
+S029,2026-08-14,V029,Ritesh Jain,BMW X7,Full-size SUV,Petrol,Ahmedabad,West,BMW Gallops Autohaus,1,13500000,4,12960000,Bank Transfer
+S030,2026-08-24,V030,Keerthana V,BMW 2 Series,Luxury Sedan,Petrol,Hyderabad,South,BMW Krishna Automobiles,1,4600000,5,4370000,Loan
