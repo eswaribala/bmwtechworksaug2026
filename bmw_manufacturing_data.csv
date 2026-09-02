@@ -1,0 +1,73 @@
+batch_id,plant_code,plant_name,country,production_date,shift,assembly_line,model,powertrain,paint_color,units_planned,units_produced,defect_count,quality_score_pct,avg_cycle_time_minutes,energy_consumption_kwh,status
+BMW-BATCH-0001,MUC,Munich Plant,Germany,2026-08-01,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,82,77,2,98.36,45.1,73.9,Completed
+BMW-BATCH-0002,DGF,Dingolfing Plant,Germany,2026-08-02,Evening,DGF-L2,5 Series,Diesel,Alpine White,99,96,3,97.56,48,92.2,Rework Required
+BMW-BATCH-0003,REG,Regensburg Plant,Germany,2026-08-03,Night,REG-L1,X1,Petrol,Phytonic Blue,116,112,4,96.76,51,107.5,Rework Required
+BMW-BATCH-0004,SPB,Spartanburg Plant,USA,2026-08-04,Morning,SPB-L1,X5,Hybrid,Brooklyn Grey,133,128,5,95.96,54,151,Quality Hold
+BMW-BATCH-0005,CHE,Chennai Plant,India,2026-08-05,Evening,CHE-L1,3 Series,Petrol,Portimao Blue,91,91,0,99.48,52.1,87.4,Completed
+BMW-BATCH-0006,SLP,San Luis Potosi Plant,Mexico,2026-08-06,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,108,107,1,98.68,55,102.7,Completed
+BMW-BATCH-0007,MUC,Munich Plant,Germany,2026-08-07,Morning,MUC-L1,i4,Electric,Black Sapphire,125,123,2,97.88,58,174.7,Completed
+BMW-BATCH-0008,DGF,Dingolfing Plant,Germany,2026-08-08,Evening,DGF-L2,i5,Electric,Alpine White,83,80,3,97.64,60.9,113.6,Rework Required
+BMW-BATCH-0009,REG,Regensburg Plant,Germany,2026-08-09,Night,REG-L1,iX1,Electric,Phytonic Blue,100,96,4,96.84,63.9,136.3,Rework Required
+BMW-BATCH-0010,SPB,Spartanburg Plant,USA,2026-08-10,Morning,SPB-L1,X3,Petrol,Brooklyn Grey,117,112,5,96.04,66.8,107.5,Quality Hold
+BMW-BATCH-0011,CHE,Chennai Plant,India,2026-08-11,Evening,CHE-L1,X3,Petrol,Portimao Blue,134,134,0,99.56,43.5,128.6,Completed
+BMW-BATCH-0012,SLP,San Luis Potosi Plant,Mexico,2026-08-12,Night,SLP-L2,3 Series,Petrol,Mineral White,92,88,1,98.76,46.4,84.5,Completed
+BMW-BATCH-0013,MUC,Munich Plant,Germany,2026-08-13,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,109,107,2,97.96,49.4,102.7,Completed
+BMW-BATCH-0014,DGF,Dingolfing Plant,Germany,2026-08-14,Evening,DGF-L2,i7,Electric,Alpine White,126,123,3,97.16,52.4,174.7,Rework Required
+BMW-BATCH-0015,REG,Regensburg Plant,Germany,2026-08-15,Night,REG-L1,X1,Petrol,Phytonic Blue,84,80,4,96.92,55.3,76.8,Rework Required
+BMW-BATCH-0016,SPB,Spartanburg Plant,USA,2026-08-16,Morning,SPB-L1,XM,Hybrid,Brooklyn Grey,101,96,5,96.12,58.3,113.3,Quality Hold
+BMW-BATCH-0017,CHE,Chennai Plant,India,2026-08-17,Evening,CHE-L1,X1,Diesel,Portimao Blue,118,118,0,99.64,56.4,113.3,Completed
+BMW-BATCH-0018,SLP,San Luis Potosi Plant,Mexico,2026-08-18,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,135,134,1,98.84,59.3,128.6,Completed
+BMW-BATCH-0019,MUC,Munich Plant,Germany,2026-08-19,Morning,MUC-L1,i4,Electric,Black Sapphire,93,91,2,98.04,62.3,129.2,Completed
+BMW-BATCH-0020,DGF,Dingolfing Plant,Germany,2026-08-20,Evening,DGF-L2,5 Series,Diesel,Alpine White,110,107,3,97.24,65.3,102.7,Rework Required
+BMW-BATCH-0021,REG,Regensburg Plant,Germany,2026-08-21,Night,REG-L1,iX1,Electric,Phytonic Blue,127,123,4,96.44,46.7,174.7,Rework Required
+BMW-BATCH-0022,SPB,Spartanburg Plant,USA,2026-08-22,Morning,SPB-L1,X7,Petrol,Brooklyn Grey,85,80,5,96.2,49.6,76.8,Quality Hold
+BMW-BATCH-0023,CHE,Chennai Plant,India,2026-08-23,Evening,CHE-L1,5 Series,Diesel,Portimao Blue,102,99,0,99.72,47.8,95,Completed
+BMW-BATCH-0024,SLP,San Luis Potosi Plant,Mexico,2026-08-24,Night,SLP-L2,3 Series,Petrol,Mineral White,119,118,1,98.92,50.8,113.3,Completed
+BMW-BATCH-0025,MUC,Munich Plant,Germany,2026-08-01,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,136,134,2,98.12,53.7,128.6,Completed
+BMW-BATCH-0026,DGF,Dingolfing Plant,Germany,2026-08-02,Evening,DGF-L2,i5,Electric,Alpine White,94,91,3,97.32,56.6,129.2,Rework Required
+BMW-BATCH-0027,REG,Regensburg Plant,Germany,2026-08-03,Night,REG-L1,X1,Petrol,Phytonic Blue,111,107,4,96.52,59.6,102.7,Rework Required
+BMW-BATCH-0028,SPB,Spartanburg Plant,USA,2026-08-04,Morning,SPB-L1,X5,Hybrid,Brooklyn Grey,128,123,5,95.72,62.5,145.1,Quality Hold
+BMW-BATCH-0029,CHE,Chennai Plant,India,2026-08-05,Evening,CHE-L1,3 Series,Petrol,Portimao Blue,86,86,0,99.8,60.7,82.6,Completed
+BMW-BATCH-0030,SLP,San Luis Potosi Plant,Mexico,2026-08-06,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,103,102,1,99,63.6,97.9,Completed
+BMW-BATCH-0031,MUC,Munich Plant,Germany,2026-08-07,Morning,MUC-L1,i4,Electric,Black Sapphire,120,118,2,98.2,45.1,167.6,Completed
+BMW-BATCH-0032,DGF,Dingolfing Plant,Germany,2026-08-08,Evening,DGF-L2,i7,Electric,Alpine White,137,134,3,97.4,48,190.3,Rework Required
+BMW-BATCH-0033,REG,Regensburg Plant,Germany,2026-08-09,Night,REG-L1,iX1,Electric,Phytonic Blue,95,91,4,96.6,51,129.2,Rework Required
+BMW-BATCH-0034,SPB,Spartanburg Plant,USA,2026-08-10,Morning,SPB-L1,X3,Petrol,Brooklyn Grey,112,104,5,95.8,54,99.8,Quality Hold
+BMW-BATCH-0035,CHE,Chennai Plant,India,2026-08-11,Evening,CHE-L1,X3,Petrol,Portimao Blue,129,129,0,99.32,52.1,123.8,Completed
+BMW-BATCH-0036,SLP,San Luis Potosi Plant,Mexico,2026-08-12,Night,SLP-L2,3 Series,Petrol,Mineral White,87,86,1,99.08,55,82.6,Completed
+BMW-BATCH-0037,MUC,Munich Plant,Germany,2026-08-13,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,104,102,2,98.28,58,97.9,Completed
+BMW-BATCH-0038,DGF,Dingolfing Plant,Germany,2026-08-14,Evening,DGF-L2,5 Series,Diesel,Alpine White,121,118,3,97.48,60.9,113.3,Rework Required
+BMW-BATCH-0039,REG,Regensburg Plant,Germany,2026-08-15,Night,REG-L1,X1,Petrol,Phytonic Blue,138,134,4,96.68,63.9,128.6,Rework Required
+BMW-BATCH-0040,SPB,Spartanburg Plant,USA,2026-08-16,Morning,SPB-L1,XM,Hybrid,Brooklyn Grey,96,91,5,95.88,66.8,107.4,Quality Hold
+BMW-BATCH-0041,CHE,Chennai Plant,India,2026-08-17,Evening,CHE-L1,X1,Diesel,Portimao Blue,113,113,0,99.4,43.5,108.5,Completed
+BMW-BATCH-0042,SLP,San Luis Potosi Plant,Mexico,2026-08-18,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,130,129,1,98.6,46.4,123.8,Completed
+BMW-BATCH-0043,MUC,Munich Plant,Germany,2026-08-19,Morning,MUC-L1,i4,Electric,Black Sapphire,88,86,2,98.36,49.4,122.1,Completed
+BMW-BATCH-0044,DGF,Dingolfing Plant,Germany,2026-08-20,Evening,DGF-L2,i5,Electric,Alpine White,105,102,3,97.56,52.4,144.8,Rework Required
+BMW-BATCH-0045,REG,Regensburg Plant,Germany,2026-08-21,Night,REG-L1,iX1,Electric,Phytonic Blue,122,115,4,96.76,55.3,163.3,Rework Required
+BMW-BATCH-0046,SPB,Spartanburg Plant,USA,2026-08-22,Morning,SPB-L1,X7,Petrol,Brooklyn Grey,139,134,5,95.96,58.3,128.6,Quality Hold
+BMW-BATCH-0047,CHE,Chennai Plant,India,2026-08-23,Evening,CHE-L1,5 Series,Diesel,Portimao Blue,97,97,0,99.48,56.4,93.1,Completed
+BMW-BATCH-0048,SLP,San Luis Potosi Plant,Mexico,2026-08-24,Night,SLP-L2,3 Series,Petrol,Mineral White,114,113,1,98.68,59.3,108.5,Completed
+BMW-BATCH-0049,MUC,Munich Plant,Germany,2026-08-01,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,131,129,2,97.88,62.3,123.8,Completed
+BMW-BATCH-0050,DGF,Dingolfing Plant,Germany,2026-08-02,Evening,DGF-L2,i7,Electric,Alpine White,89,86,3,97.64,65.3,122.1,Rework Required
+BMW-BATCH-0051,REG,Regensburg Plant,Germany,2026-08-03,Night,REG-L1,X1,Petrol,Phytonic Blue,106,102,4,96.84,46.7,97.9,Rework Required
+BMW-BATCH-0052,SPB,Spartanburg Plant,USA,2026-08-04,Morning,SPB-L1,X5,Hybrid,Brooklyn Grey,123,118,5,96.04,49.6,139.2,Quality Hold
+BMW-BATCH-0053,CHE,Chennai Plant,India,2026-08-05,Evening,CHE-L1,3 Series,Petrol,Portimao Blue,140,140,0,99.56,47.8,134.4,Completed
+BMW-BATCH-0054,SLP,San Luis Potosi Plant,Mexico,2026-08-06,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,98,97,1,98.76,50.8,93.1,Completed
+BMW-BATCH-0055,MUC,Munich Plant,Germany,2026-08-07,Morning,MUC-L1,i4,Electric,Black Sapphire,115,113,2,97.96,53.7,160.5,Completed
+BMW-BATCH-0056,DGF,Dingolfing Plant,Germany,2026-08-08,Evening,DGF-L2,5 Series,Diesel,Alpine White,132,126,3,97.16,56.6,121,Rework Required
+BMW-BATCH-0057,REG,Regensburg Plant,Germany,2026-08-09,Night,REG-L1,iX1,Electric,Phytonic Blue,90,86,4,96.92,59.6,122.1,Rework Required
+BMW-BATCH-0058,SPB,Spartanburg Plant,USA,2026-08-10,Morning,SPB-L1,X3,Petrol,Brooklyn Grey,107,102,5,96.12,62.5,97.9,Quality Hold
+BMW-BATCH-0059,CHE,Chennai Plant,India,2026-08-11,Evening,CHE-L1,X3,Petrol,Portimao Blue,124,124,0,99.64,60.7,119,Completed
+BMW-BATCH-0060,SLP,San Luis Potosi Plant,Mexico,2026-08-12,Night,SLP-L2,3 Series,Petrol,Mineral White,82,81,1,98.84,63.6,77.8,Completed
+BMW-BATCH-0061,MUC,Munich Plant,Germany,2026-08-13,Morning,MUC-L1,3 Series,Petrol,Black Sapphire,99,97,2,98.04,45.1,93.1,Completed
+BMW-BATCH-0062,DGF,Dingolfing Plant,Germany,2026-08-14,Evening,DGF-L2,i5,Electric,Alpine White,116,113,3,97.24,48,160.5,Rework Required
+BMW-BATCH-0063,REG,Regensburg Plant,Germany,2026-08-15,Night,REG-L1,X1,Petrol,Phytonic Blue,133,129,4,96.44,51,123.8,Rework Required
+BMW-BATCH-0064,SPB,Spartanburg Plant,USA,2026-08-16,Morning,SPB-L1,XM,Hybrid,Brooklyn Grey,91,86,5,96.2,54,101.5,Quality Hold
+BMW-BATCH-0065,CHE,Chennai Plant,India,2026-08-17,Evening,CHE-L1,X1,Diesel,Portimao Blue,108,108,0,99.72,52.1,103.7,Completed
+BMW-BATCH-0066,SLP,San Luis Potosi Plant,Mexico,2026-08-18,Night,SLP-L2,2 Series Coupe,Petrol,Mineral White,125,124,1,98.92,55,119,Completed
+BMW-BATCH-0067,MUC,Munich Plant,Germany,2026-08-19,Morning,MUC-L1,i4,Electric,Black Sapphire,83,78,2,98.12,58,110.8,Completed
+BMW-BATCH-0068,DGF,Dingolfing Plant,Germany,2026-08-20,Evening,DGF-L2,i7,Electric,Alpine White,100,97,3,97.32,60.9,137.7,Rework Required
+BMW-BATCH-0069,REG,Regensburg Plant,Germany,2026-08-21,Night,REG-L1,iX1,Electric,Phytonic Blue,117,113,4,96.52,63.9,160.5,Rework Required
+BMW-BATCH-0070,SPB,Spartanburg Plant,USA,2026-08-22,Morning,SPB-L1,X7,Petrol,Brooklyn Grey,134,129,5,95.72,66.8,123.8,Quality Hold
+BMW-BATCH-0071,CHE,Chennai Plant,India,2026-08-23,Evening,CHE-L1,5 Series,Diesel,Portimao Blue,92,92,0,99.8,43.5,88.3,Completed
+BMW-BATCH-0072,SLP,San Luis Potosi Plant,Mexico,2026-08-24,Night,SLP-L2,3 Series,Petrol,Mineral White,109,108,1,99,46.4,103.7,Completed
