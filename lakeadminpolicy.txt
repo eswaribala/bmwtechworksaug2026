@@ -43,8 +43,8 @@
 				"s3:DeleteObject"
 			],
 			"Resource": [
-				"arn:aws:s3:::mybucket2026v3",
-				"arn:aws:s3:::mybucket2026v3/*"
+				"arn:aws:s3:::s3://productionbucket2026v1",
+				"arn:aws:s3:::s3://productionbucket2026v1/*"
 			]
 		},
 		{
