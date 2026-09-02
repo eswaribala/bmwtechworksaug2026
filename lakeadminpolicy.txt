@@ -1,0 +1,62 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "LakeFormationAdmin",
+			"Effect": "Allow",
+			"Action": [
+				"lakeformation:*"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "GlueCatalogAdmin",
+			"Effect": "Allow",
+			"Action": [
+				"glue:GetDatabase",
+				"glue:GetDatabases",
+				"glue:CreateDatabase",
+				"glue:UpdateDatabase",
+				"glue:DeleteDatabase",
+				"glue:GetTable",
+				"glue:GetTables",
+				"glue:CreateTable",
+				"glue:UpdateTable",
+				"glue:DeleteTable",
+				"glue:GetPartitions",
+				"glue:GetTableVersions",
+				"glue:SearchTables",
+				"glue:GetConnections"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "S3DataLakeAccess",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListAllMyBuckets",
+				"s3:GetBucketLocation",
+				"s3:ListBucket",
+				"s3:GetBucketAcl",
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::mybucket2026v3",
+				"arn:aws:s3:::mybucket2026v3/*"
+			]
+		},
+		{
+			"Sid": "IAMReadAccess",
+			"Effect": "Allow",
+			"Action": [
+				"iam:ListUsers",
+				"iam:ListRoles",
+				"iam:GetRole",
+				"iam:GetRolePolicy"
+			],
+			"Resource": "*"
+		}
+	]
+}
