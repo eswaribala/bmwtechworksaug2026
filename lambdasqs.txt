@@ -1,0 +1,20 @@
+def lambda_handler(event, context):
+
+    for record in event["Records"]:
+
+        telemetry = json.loads(record["body"])
+
+        vehicle_id = telemetry["vehicle_id"]
+        battery = telemetry["battery_level"]
+        temperature = telemetry["temperature"]
+
+        print("Vehicle:", vehicle_id)
+        print("Battery:", battery)
+        print("Temperature:", temperature)
+
+        
+
+    return {
+        "statusCode": 200,
+        "body": "Telemetry processed"
+    }
