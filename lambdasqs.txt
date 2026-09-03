@@ -1,5 +1,11 @@
 import boto3
 import json
+
+sns = boto3.client("sns")
+
+TOPIC_ARN = "arn:aws:sns:us-east-1:622997067231:bmw-vehicle-alerts"
+
+
 def lambda_handler(event, context):
 
     for record in event["Records"]:
@@ -14,7 +20,22 @@ def lambda_handler(event, context):
         print("Battery:", battery)
         print("Temperature:", temperature)
 
-        
+        if battery < 20:
+
+            response = sns.publish(
+                TopicArn=TOPIC_ARN,
+                Subject="BMW Low Battery Alert",
+                Message=f"""
+BMW Vehicle Alert
+
+Vehicle ID: {vehicle_id}
+Battery Level: {battery}%
+
+Low battery detected.
+"""
+            )
+
+            print("SNS Message ID:", response["MessageId"])
 
     return {
         "statusCode": 200,
