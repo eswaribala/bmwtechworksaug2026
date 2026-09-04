@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: machinelearning
+Version: 0.1.0
+Summary: Supervised and unsupervised ML algorithm practice
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.26
+Requires-Dist: pandas>=2.2
+Requires-Dist: scipy>=1.13
+Requires-Dist: scikit-learn>=1.5
+Requires-Dist: matplotlib>=3.9
+Requires-Dist: seaborn>=0.13
+Requires-Dist: plotly>=5.22
+Requires-Dist: tqdm>=4.66
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: skl2onnx>=1.14
+Requires-Dist: nltk>=3.9
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: wordcloud
+Requires-Dist: spacy
+Requires-Dist: transformers
+Requires-Dist: torch
+Requires-Dist: stanford-corenlp
+Requires-Dist: bertopic
+Requires-Dist: anthropic
+Requires-Dist: openai
+Requires-Dist: google-genai
+Requires-Dist: langgraph
+Requires-Dist: ipython
+Provides-Extra: nlp
+Requires-Dist: nltk>=3.9; extra == "nlp"
+Requires-Dist: gensim>=4.3; extra == "nlp"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2; extra == "dev"
+Requires-Dist: black>=24.4; extra == "dev"
+Requires-Dist: ruff>=0.4; extra == "dev"
+Requires-Dist: mypy>=1.10; extra == "dev"

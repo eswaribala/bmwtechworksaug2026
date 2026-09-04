@@ -1,12 +1,7 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
-name = "genai application"
+name = "machinelearning"
 version = "0.1.0"
-description = "A general AI application"
-
+description = "Supervised and unsupervised ML algorithm practice"
 requires-python = ">=3.10"
 dependencies = [
     # Core scientific stack
@@ -53,14 +48,21 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/azuremlapp"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
+nlp = ["nltk>=3.9", "gensim>=4.3"]
+dev = [
+    "pytest>=8.2",
+    "black>=24.4",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
 
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
