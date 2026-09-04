@@ -9,8 +9,22 @@ load_dotenv(env_path)
 client = OpenAI(api_key=os.getenv("openai_ai_key"))
 
 #use gemini llm
-gemini_api_key=os.getenv("gemini_api_key")
-client = genai.Client(api_key=gemini_api_key)
+#gemini_api_key=os.getenv("gemini_api_key")
+#client = genai.Client(api_key=gemini_api_key)
+
+zero_shot_prompt="""
+Tata Nexon EV
+Battery Electric Vehicle (BEV)
+Battery Level= 5%
+Temperature= 88°C
+return only the classification
+"""
+result=client.responses.create(
+    model="gpt-4.1-mini",
+    input=zero_shot_prompt
+)
+
+print(result.output_text)
 
 
 
