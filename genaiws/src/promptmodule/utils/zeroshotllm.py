@@ -28,7 +28,7 @@ result=client.responses.create(
 '''
 response = client.models.generate_content(
     model="gemini-2.5-flash-lite",
-    contents=zero_shot_prompt
+    contents=zero_shot_prompt,
 )
 print(response.text)
 
