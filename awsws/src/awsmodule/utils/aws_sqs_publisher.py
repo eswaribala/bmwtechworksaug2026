@@ -10,9 +10,9 @@ response = sqs.get_queue_url(
 queue_url = response["QueueUrl"]
 
 telemetry = {
-    "vehicle_id": "BMW1002",
-    "model": "BMW i4",
-    "battery_level": 15,
+    "vehicle_id": "BMW4005",
+    "model": "BMW ix7",
+    "battery_level": 12,
     "temperature": 88,
     "speed": 70
 }

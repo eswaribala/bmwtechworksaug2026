@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genai application"
+version = "0.1.0"
+description = "A general AI application"
+
+requires-python = ">=3.10"
+dependencies = [
+    # Core scientific stack
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.13",
+
+    # ML framework
+    "scikit-learn>=1.5",
+
+   
+    # Visualization
+    "matplotlib>=3.9",
+    "seaborn>=0.13",
+    "plotly>=5.22",
+
+    
+
+    # Utilities
+    "tqdm>=4.66",
+   
+    "python-dotenv>=1.0",
+    
+    "skl2onnx>=1.14",
+  
+    
+    
+    "nltk>=3.9",
+    "requests",
+     "beautifulsoup4",
+     "wordcloud",
+     "spacy",
+     "transformers",
+     "torch",
+     "stanford-corenlp",
+     "bertopic",
+     "anthropic",
+     "openai",
+     "google-genai",
+     "langgraph",
+     "ipython",
+     
+    
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/azuremlapp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
