@@ -10,31 +10,36 @@ client = OpenAI()
 prompt = """
 You are a BMW vehicle diagnostic assistant.
 
-Vehicle data:
-Battery Level: 15%
-Engine Temperature: 110°C
-Fault Code: P0217
+Vehicle telemetry:
+- Battery temperature: 58°C
+- Vehicle speed: 110 km/h
+- Cooling-fan status: Active
+- Battery load: High
+- Temperature sensor reading: Stable but unusually high
+- Previous battery fault codes: None
 
-Analyze the following three branches:
+Evaluate these three possible explanations.
 
-Branch 1 - Battery:
-Determine severity.
+Branch 1 - Cooling System Problem
+Evaluate how strongly the telemetry supports this hypothesis.
+Return: Low, Medium, or High.
 
-Branch 2 - Temperature:
-Determine severity.
+Branch 2 - Sensor Problem
+Evaluate how strongly the telemetry supports this hypothesis.
+Return: Low, Medium, or High.
 
-Branch 3 - Fault Code:
-Determine severity.
+Branch 3 - High-Load Driving
+Evaluate how strongly the telemetry supports this hypothesis.
+Return: Low, Medium, or High.
 
-Finally classify the overall vehicle condition as:
-Normal, Warning, or Critical.
+Compare the three hypotheses and select the best-supported explanation.
 
-Return only this format:
+Return ONLY this format:
 
-Battery: Warning
-Temperature: Critical
-Fault: Critical
-Final: Critical
+Cooling System: <Low/Medium/High>
+Sensor Problem: <Low/Medium/High>
+High Load Driving: <Low/Medium/High>
+Best-supported explanation: <Cooling System/Sensor Problem/High Load Driving>
 """
 
 response = client.responses.create(
@@ -42,36 +47,59 @@ response = client.responses.create(
     input=prompt
 )
 
-result = response.output_text
+result = response.output_text.strip()
 
+print("\nLLM Diagnostic Result")
+print("---------------------")
 print(result)
 
+
 # -------------------------------------------------
-# 2. Generate Tree-of-Thought diagram
+# 2. Extract best-supported explanation
 # -------------------------------------------------
 
-fig, ax = plt.subplots(figsize=(12, 7))
+best_explanation = "Unknown"
+
+for line in result.splitlines():
+    if line.lower().startswith("best-supported explanation:"):
+        best_explanation = line.split(":", 1)[1].strip()
+
+
+# -------------------------------------------------
+# 3. Generate hypothesis tree diagram
+# -------------------------------------------------
+
+fig, ax = plt.subplots(figsize=(14, 8))
 
 ax.axis("off")
 
-# Node positions
 nodes = {
-    "BMW Vehicle\nTelemetry": (0.5, 0.90),
+    "BMW Vehicle\nTelemetry": (0.50, 0.92),
 
-    "Battery\n15%": (0.20, 0.65),
-    "Temperature\n110°C": (0.50, 0.65),
-    "Fault Code\nP0217": (0.80, 0.65),
+    "Cooling System\nProblem": (0.20, 0.62),
+    "Sensor\nProblem": (0.50, 0.62),
+    "High-Load\nDriving": (0.80, 0.62),
 
-    "Warning": (0.20, 0.40),
-    "Critical ": (0.50, 0.40),
-    "Critical": (0.80, 0.40),
+    "Cooling Evidence\nTemp: 58°C\nFan: Active":
+        (0.20, 0.38),
 
-    "Compare\nBranches": (0.50, 0.20),
+    "Sensor Evidence\nReading: Stable\nNo fault codes":
+        (0.50, 0.38),
 
-    "FINAL\nCRITICAL": (0.50, 0.05)
+    "Load Evidence\nSpeed: 110 km/h\nBattery load: High":
+        (0.80, 0.38),
+
+    "Compare\nHypotheses": (0.50, 0.18),
+
+    f"BEST SUPPORTED\n{best_explanation}":
+        (0.50, 0.04)
 }
 
+
+# -------------------------------------------------
 # Draw nodes
+# -------------------------------------------------
+
 for text, (x, y) in nodes.items():
 
     ax.text(
@@ -80,7 +108,7 @@ for text, (x, y) in nodes.items():
         text,
         ha="center",
         va="center",
-        fontsize=12,
+        fontsize=11,
         bbox=dict(
             boxstyle="round,pad=0.5",
             edgecolor="black",
@@ -89,7 +117,10 @@ for text, (x, y) in nodes.items():
     )
 
 
-# Function for arrows
+# -------------------------------------------------
+# Arrow helper
+# -------------------------------------------------
+
 def arrow(start, end):
 
     x1, y1 = nodes[start]
@@ -97,8 +128,8 @@ def arrow(start, end):
 
     ax.annotate(
         "",
-        xy=(x2, y2 + 0.04),
-        xytext=(x1, y1 - 0.04),
+        xy=(x2, y2 + 0.055),
+        xytext=(x1, y1 - 0.055),
         arrowprops=dict(
             arrowstyle="->",
             linewidth=1.5
@@ -106,66 +137,82 @@ def arrow(start, end):
     )
 
 
-# Root → branches
-arrow(
-    "BMW Vehicle\nTelemetry",
-    "Battery\n15%"
-)
+# -------------------------------------------------
+# Telemetry → hypotheses
+# -------------------------------------------------
 
 arrow(
     "BMW Vehicle\nTelemetry",
-    "Temperature\n110°C"
+    "Cooling System\nProblem"
 )
 
 arrow(
     "BMW Vehicle\nTelemetry",
-    "Fault Code\nP0217"
-)
-
-
-# Branch → result
-arrow(
-    "Battery\n15%",
-    "Warning"
+    "Sensor\nProblem"
 )
 
 arrow(
-    "Temperature\n110°C",
-    "Critical "
+    "BMW Vehicle\nTelemetry",
+    "High-Load\nDriving"
+)
+
+
+# -------------------------------------------------
+# Hypotheses → supporting evidence
+# -------------------------------------------------
+
+arrow(
+    "Cooling System\nProblem",
+    "Cooling Evidence\nTemp: 58°C\nFan: Active"
 )
 
 arrow(
-    "Fault Code\nP0217",
-    "Critical"
-)
-
-
-# Results → comparison
-arrow(
-    "Warning",
-    "Compare\nBranches"
+    "Sensor\nProblem",
+    "Sensor Evidence\nReading: Stable\nNo fault codes"
 )
 
 arrow(
-    "Critical ",
-    "Compare\nBranches"
+    "High-Load\nDriving",
+    "Load Evidence\nSpeed: 110 km/h\nBattery load: High"
+)
+
+
+# -------------------------------------------------
+# Evidence → compare
+# -------------------------------------------------
+
+arrow(
+    "Cooling Evidence\nTemp: 58°C\nFan: Active",
+    "Compare\nHypotheses"
 )
 
 arrow(
-    "Critical",
-    "Compare\nBranches"
+    "Sensor Evidence\nReading: Stable\nNo fault codes",
+    "Compare\nHypotheses"
 )
 
-
-# Comparison → final result
 arrow(
-    "Compare\nBranches",
-    "FINAL\nCRITICAL"
+    "Load Evidence\nSpeed: 110 km/h\nBattery load: High",
+    "Compare\nHypotheses"
 )
 
+
+# -------------------------------------------------
+# Compare → final result
+# -------------------------------------------------
+
+arrow(
+    "Compare\nHypotheses",
+    f"BEST SUPPORTED\n{best_explanation}"
+)
+
+
+# -------------------------------------------------
+# Title
+# -------------------------------------------------
 
 plt.title(
-    "BMW Vehicle Diagnostic - Tree of Thought",
+    "BMW Battery Overheating - Tree-Based Hypothesis Evaluation",
     fontsize=16
 )
 
