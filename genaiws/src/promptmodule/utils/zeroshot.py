@@ -4,10 +4,10 @@ zero_shot_classifier = pipeline("zero-shot-classification",
                                 model="facebook/bart-large-mnli")
 
 zero_shot_prompt="""
-BMW Vehicle BMW i Series
+Tata Nexon EV
 Battery Electric Vehicle (BEV)
-Battery Level= 20%
-Temperature= 25°C
+Battery Level= 5%
+Temperature= 88°C
 """
 
 labels =["Normal","Warning","Critical"]
