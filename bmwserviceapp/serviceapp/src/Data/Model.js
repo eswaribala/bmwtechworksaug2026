@@ -1,4 +1,4 @@
-export const Models = [
+const Models = [
     {
         label: "GPT 5.6 Terra Light",
         value: "gpt-5.6-terra-light"
@@ -12,3 +12,4 @@ export const Models = [
         value: "gpt-5.6-terra-pro"
     }
 ]
+export default Models;

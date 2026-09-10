@@ -1,4 +1,4 @@
-export const Clients = [
+const Clients = [
     {
         label: "BMW",
         value: "bmw"
@@ -8,3 +8,5 @@ export const Clients = [
         value: "toyota"
     }
 ]
+
+export default Clients;
