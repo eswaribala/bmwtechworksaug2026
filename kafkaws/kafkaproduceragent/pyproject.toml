@@ -18,14 +18,13 @@ dependencies = [
     "langchain-aws",
     "langchain-core",
     "requests"
- 
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/kafkaprodapp"]
+packages = ["src/kafkaapp"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
