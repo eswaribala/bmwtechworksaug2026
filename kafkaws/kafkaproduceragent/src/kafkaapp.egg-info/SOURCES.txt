@@ -1,0 +1,6 @@
+pyproject.toml
+src/kafkaapp/__init__.py
+src/kafkaapp.egg-info/PKG-INFO
+src/kafkaapp.egg-info/SOURCES.txt
+src/kafkaapp.egg-info/dependency_links.txt
+src/kafkaapp.egg-info/top_level.txt

@@ -4,6 +4,7 @@ import ModelSelect from "../../atoms/Select/Select";
 import Clients from "../../Data/Client";
 import SendButton from "../../atoms/Button/Button";
 import Models from "../../Data/Model";
+import { useRef } from "react";
 
 export default function ToolComposer({
   message,
@@ -13,12 +14,17 @@ export default function ToolComposer({
   onModelChange,
   onSend,
 }) {
+
+  const fileRef =useRef(null);
+
   return (
+
     <div className="flex items-center justify-between px-5 pb-3">
+      <input type="file" ref={fileRef} accept="application/pdf" className="hidden" />
       <IconButton
-        icon={Plus}
+       icon={Plus}
         label="Add attachment"
-        onClick={() => console.log("Open file chooser")}
+        onClick={() => fileRef.current.click()}
       />
 
       <div className="flex items-center gap-2 sm:gap-4">

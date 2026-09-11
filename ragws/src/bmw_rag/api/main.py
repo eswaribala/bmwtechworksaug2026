@@ -11,7 +11,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173","http://localhost:5174"],
+    allow_origins=["http://localhost:5173","http://localhost:5174","https://glorious-bassoon-6pvxpvv94w25rxj-5173.app.github.dev/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
