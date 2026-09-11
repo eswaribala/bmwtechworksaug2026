@@ -1,5 +1,6 @@
 
-from pydantic import BaseModel, ConfigDict, Field,Co
+from pydantic import BaseModel, ConfigDict, Field
+from datetime import datetime
 class SalesRequest(BaseModel):
     model_config=ConfigDict(
      from_attributes=True,
@@ -14,3 +15,13 @@ class SalesRequest(BaseModel):
     region: str=Field(..., description="The region where the sale occurred"
                       , example="North America", pattern="^[A-Za-z ]+$"
                       )
+
+class SalesEvent(SalesRequest):
+    timestamp: datetime
+
+
+class AgentRequest(BaseModel):
+    message: str = Field(
+        min_length=1,
+        max_length=4000,
+    )
