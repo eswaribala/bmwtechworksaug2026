@@ -19,7 +19,8 @@ dependencies = [
     "langchain-core",
     "requests",
     "boto3",
-    "confluent-kafka[avro]"
+    "confluent-kafka[avro]",
+    "pyspark"
 ]
 
 [project.optional-dependencies]
