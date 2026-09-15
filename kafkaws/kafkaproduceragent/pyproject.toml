@@ -18,7 +18,8 @@ dependencies = [
     "langchain-aws",
     "langchain-core",
     "requests",
-    "boto3"
+    "boto3",
+    "confluent-kafka[avro]"
 ]
 
 [project.optional-dependencies]
