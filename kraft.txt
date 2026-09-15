@@ -1,0 +1,4 @@
+#create containers
+docker compose -p bmw-kraft-labs -f kraft-labs.yml up -d
+#check containers
+docker compose -p bmw-kraft-labs -f kraft-labs.yml ps
