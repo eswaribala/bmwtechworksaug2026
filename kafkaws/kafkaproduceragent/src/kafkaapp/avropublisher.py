@@ -1,7 +1,13 @@
 import os
 from pathlib import Path
+import datetime
 from dotenv import load_dotenv
 import logging
+from confluent_kafka import SerializingProducer
+from confluent_kafka.schema_registry import SchemaRegistryClient
+from confluent_kafka.schema_registry.avro import AvroSerializer
+from confluent_kafka.serialization import StringSerializer
+
 
 CURRENT_DIR = Path(__file__).parent
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -13,3 +19,61 @@ load_dotenv(ENV_PATH)
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logger = logging.getLogger(__name__)
+
+KRAFT_BOOTSTRAP_SERVERS = os.getenv("KRAFT_BOOTSTRAP_SERVERS")
+SCHEMA_PATH = os.getenv("SCHEMA_PATH", SCHEMA_PATH)
+
+KAFKA_AVRO_TOPIC = os.getenv("KAFKA_AVRO_TOPIC")
+
+SCHEMA_REGISTRY_CLIENT=os.getenv("SCHEMA_REGISTRY_CLIENT")
+
+if not KRAFT_BOOTSTRAP_SERVERS:
+    logger.error("KRAFT_BOOTSTRAP_SERVERS is not set")
+if not SCHEMA_PATH:
+    logger.error("SCHEMA_PATH is not set")
+if not KAFKA_AVRO_TOPIC:
+    logger.error("KAFKA_AVRO_TOPIC is not set")
+
+if not SCHEMA_PATH or not Path(SCHEMA_PATH).exists():
+    logger.error("SCHEMA_PATH does not exist")
+
+#read schema
+SALES_AVRO_SCHEMA=Path(SCHEMA_PATH).read_text(encoding="utf-8") if SCHEMA_PATH and Path(SCHEMA_PATH).exists() else None
+#Schema Registry Client
+Schema_Registry_Client = SchemaRegistryClient{
+    "url": SCHEMA_REGISTRY_CLIENT
+}
+
+#avro serializer
+Avro_Serializer = AvroSerializer(
+    schema_registry_client=Schema_Registry_Client,
+    schema_str=SALES_AVRO_SCHEMA
+)
+
+String_Serializer = StringSerializer('utf_8')
+
+producer = SerializingProducer(
+    {
+        "bootstrap.servers": KRAFT_BOOTSTRAP_SERVERS,
+        "key.serializer": String_Serializer,
+        "value.serializer": Avro_Serializer,
+        "acks": "all"
+    }
+)
+
+customer_event={
+    "customer_id": "12345",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "dob": datetime.date(1990, 1, 1)
+}
+producer.produce(
+    topic=KAFKA_AVRO_TOPIC,
+    key=customer_event["customer_id"],
+    value=customer_event
+)
+producer.flush()
+
+
