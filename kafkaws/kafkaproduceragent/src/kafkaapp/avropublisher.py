@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-import datetime
+from datetime import datetime, date
 from dotenv import load_dotenv
 import logging
 from confluent_kafka import SerializingProducer
@@ -62,16 +62,20 @@ producer = SerializingProducer(
         "acks": "all"
     }
 )
+def date_to_avro_days(date_string: str) -> int:
+    parsed_date = datetime.strptime(date_string, "%Y-%m-%d").date()
+    return (parsed_date - date(1970, 1, 1)).days
 
 customer_event={
     "customer_id": 12345,
-    "name": "John Doe",
+    "customer_name": "John Doe",
+    "address": "123 Main St",
     "email": "john.doe@example.com",
-    "dob": datetime.date(1990, 1, 1)
+    "dob": date_to_avro_days("1990-01-01")
 }
 producer.produce(
     topic=KAFKA_AVRO_TOPIC,
-    key=customer_event["customer_id"],
+    key=str(customer_event["customer_id"]),
     value=customer_event
 )
 producer.flush()
