@@ -2,3 +2,8 @@
 docker compose -p bmw-kraft-labs -f kraft-labs.yml up -d
 #check containers
 docker compose -p bmw-kraft-labs -f kraft-labs.yml ps
+
+Create and inspect the topic.
+docker compose -p bmw-kraft-labs -f kraft-labs.yml exec broker-1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker-1:19092 --create --topic bmw-replication --partitions 3 --replication-factor 3
+Check topics
+docker compose -p bmw-kraft-labs -f kraft-labs.yml exec broker-1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker-1:19092 --describe --topic bmw-replication
