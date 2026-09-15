@@ -54,6 +54,12 @@ Avro_Serializer = AvroSerializer(
 
 String_Serializer = StringSerializer('utf_8')
 
+def delivery_report(err, msg):
+    if err is not None:
+        logger.error(f"Delivery failed for record {msg.key()}: {err}")
+    else:
+        logger.info(f"Record {msg.key()} successfully produced to {msg.topic()} [{msg.partition()}]")
+
 producer = SerializingProducer(
     {
         "bootstrap.servers": KRAFT_BOOTSTRAP_SERVERS,
@@ -67,16 +73,17 @@ def date_to_avro_days(date_string: str) -> int:
     return (parsed_date - date(1970, 1, 1)).days
 
 customer_event={
-    "customer_id": 12345,
-    "customer_name": "John Doe",
+    "customer_id": 12347,
+    "customer_name": "Parameswari",
     "address": "123 Main St",
-    "email": "john.doe@example.com",
-    "dob": date_to_avro_days("1990-01-01")
+    "email": "parameswari@example.com",
+    "dob": date_to_avro_days("1970-01-01")
 }
 producer.produce(
     topic=KAFKA_AVRO_TOPIC,
     key=str(customer_event["customer_id"]),
-    value=customer_event
+    value=customer_event,
+    on_delivery=delivery_report
 )
 producer.flush()
 
