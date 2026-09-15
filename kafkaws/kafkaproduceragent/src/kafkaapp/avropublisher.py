@@ -27,7 +27,7 @@ SCHEMA_PATH = os.getenv("SCHEMA_PATH", SCHEMA_PATH)
 
 KAFKA_AVRO_TOPIC = os.getenv("KAFKA_AVRO_TOPIC")
 
-SCHEMA_REGISTRY_CLIENT=os.getenv("SCHEMA_REGISTRY_CLIENT")
+SCHEMA_REGISTRY_CLIENT=os.getenv("KAFKA_SCHEMA_REGISTRY_URL")
 
 if not KRAFT_BOOTSTRAP_SERVERS:
     logger.error("KRAFT_BOOTSTRAP_SERVERS is not set")
@@ -42,9 +42,9 @@ if not SCHEMA_PATH or not Path(SCHEMA_PATH).exists():
 #read schema
 SALES_AVRO_SCHEMA=Path(SCHEMA_PATH).read_text(encoding="utf-8") if SCHEMA_PATH and Path(SCHEMA_PATH).exists() else None
 #Schema Registry Client
-Schema_Registry_Client = SchemaRegistryClient{
-    "url": SCHEMA_REGISTRY_CLIENT
-}
+Schema_Registry_Client = SchemaRegistryClient(
+    {"url": SCHEMA_REGISTRY_CLIENT}
+)
 
 #avro serializer
 Avro_Serializer = AvroSerializer(
@@ -64,7 +64,7 @@ producer = SerializingProducer(
 )
 
 customer_event={
-    "customer_id": "12345",
+    "customer_id": 12345,
     "name": "John Doe",
     "email": "john.doe@example.com",
     "dob": datetime.date(1990, 1, 1)
