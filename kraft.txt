@@ -7,3 +7,9 @@ Create and inspect the topic.
 docker compose -p bmw-kraft-labs -f kraft-labs.yml exec broker-1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker-1:19092 --create --topic bmw-replication --partitions 3 --replication-factor 3
 Check topics
 docker compose -p bmw-kraft-labs -f kraft-labs.yml exec broker-1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker-1:19092 --describe --topic bmw-replication
+
+#retention
+docker compose -p bmw-kraft-labs -f kraft-labs.yml exec broker-1 /opt/kafka/bin/kafka-topics.sh --bootstrap-server broker-1:19092 --create --topic bmw-retention --partitions 1 --replication-factor 1 --config cleanup.policy=delete --config retention.ms=30000 --config segment.ms=10000
+
+Type event-1, event-2, and event-3, pressing Enter after each. Press Ctrl+C to exit.
+
