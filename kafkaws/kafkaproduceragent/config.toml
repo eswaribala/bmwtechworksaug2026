@@ -1,0 +1,13 @@
+[kafka]
+bootstrap_servers = "localhost:9092"
+topic = "salesqueue"
+group_id = "sales-storage-v1"
+auto_offset_reset = "earliest"
+source_namespace = "local-bmw-cluster-v1"
+
+[storage]
+database_path = "data/sales.db"
+
+[processing]
+max_attempts = 3
+retry_delay_seconds = 1.0
