@@ -1,0 +1,15 @@
+ akhq:
+    image: tchiotludo/akhq
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - bmw-network
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            bmw-kafka:
+              properties:
+                bootstrap.servers: "kafka:9092"
+    depends_on:
+      - kafka  
