@@ -1,0 +1,92 @@
+{
+  "bmw_data_quality_report": {
+    "dataset": "vehicle_master",
+    "execution_time": "2026-09-16T18:11:10.155040+00:00",
+    "duration_seconds": 0.197,
+    "record_summary": {
+      "total_records": 1000,
+      "valid_records": 1000,
+      "rejected_records": 0
+    },
+    "quality_checks": {
+      "null_issues": 0,
+      "duplicate_records": 0,
+      "invalid_vin": 0,
+      "invalid_dates": 0,
+      "range_violations": 0,
+      "referential_errors": 0
+    },
+    "quality_score": 100.0,
+    "score_label": "EXCELLENT",
+    "penalty_breakdown": {
+      "null_check": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 20,
+        "penalty": 0.0
+      },
+      "duplicate_check": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 15,
+        "penalty": 0.0
+      },
+      "vin_check": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 20,
+        "penalty": 0.0
+      },
+      "date_check": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 15,
+        "penalty": 0.0
+      },
+      "range_check": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 15,
+        "penalty": 0.0
+      },
+      "referential_integrity": {
+        "violations": 0,
+        "violation_rate_pct": 0.0,
+        "weight": 15,
+        "penalty": 0.0
+      }
+    },
+    "null_analysis": [
+      {
+        "column": "vehicle_id",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "vin",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "model",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "model_year",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "region",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "status",
+        "null_count": 0,
+        "null_pct": 0.0
+      }
+    ]
+  }
+}

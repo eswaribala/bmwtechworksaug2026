@@ -172,12 +172,6 @@ Example datasets:
 ```text
 Vehicle Master
 Vehicle Telemetry
-Sales
-Dealer
-Maintenance
-Warranty
-Charging Sessions
-Customer Feedback
 ```
 
 For this project, datasets can be provided as CSV files.
@@ -187,9 +181,6 @@ Example:
 ```text
 vehicle_master.csv
 telemetry.csv
-sales.csv
-maintenance.csv
-warranty.csv
 ```
 
 ---
@@ -206,11 +197,11 @@ bmw-data-quality/
 ├── raw/
 │   ├── vehicle_master/
 │   ├── telemetry/
-│   ├── sales/
-│   ├── dealer/
-│   ├── maintenance/
-│   ├── warranty/
-│   └── charging/
+│  
+│  
+│  
+│
+│
 │
 ├── processed/
 │

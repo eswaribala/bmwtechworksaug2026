@@ -1,0 +1,20 @@
+# BMW Data Quality & Governance Platform
+# Participant 12 | Pod D
+
+# Core Python
+pandas>=2.0
+numpy>=1.24
+PyYAML>=6.0
+
+# AWS
+boto3>=1.26
+
+# Testing
+pytest>=7.4
+pytest-cov>=4.0
+
+# Linting
+ruff>=0.1
+
+# Optional: PySpark (requires Java 11+)
+# pyspark>=3.4
