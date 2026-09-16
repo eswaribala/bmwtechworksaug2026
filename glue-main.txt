@@ -1,0 +1,123 @@
+# ---------------------------------------------------------
+# Glue service trust policy
+# ---------------------------------------------------------
+
+data "aws_iam_policy_document" "glue_trust" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["glue.amazonaws.com"]
+    }
+  }
+}
+
+# ---------------------------------------------------------
+# IAM role used by the AWS Glue crawler
+# ---------------------------------------------------------
+
+resource "aws_iam_role" "glue" {
+  name               = "BMWGlueCrawlerTerraformRole"
+  assume_role_policy = data.aws_iam_policy_document.glue_trust.json
+
+  tags = {
+    Environment = "dev"
+    Project     = "BMWDataLake"
+  }
+}
+
+# ---------------------------------------------------------
+# Attach the AWS-managed Glue service policy
+# ---------------------------------------------------------
+
+resource "aws_iam_role_policy_attachment" "glue_service" {
+  role       = aws_iam_role.glue.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+}
+
+# ---------------------------------------------------------
+# S3 permissions required by the Glue crawler
+# ---------------------------------------------------------
+
+data "aws_iam_policy_document" "glue_s3" {
+  statement {
+    sid    = "ListDataLakeBucket"
+    effect = "Allow"
+
+    actions = [
+      "s3:ListBucket"
+    ]
+
+    resources = [
+      var.bucket_arn
+    ]
+
+    condition {
+      test     = "StringLike"
+      variable = "s3:prefix"
+
+      values = [
+        "${var.raw_data_prefix}",
+        "${var.raw_data_prefix}/*"
+      ]
+    }
+  }
+
+  statement {
+    sid    = "ReadRawDataObjects"
+    effect = "Allow"
+
+    actions = [
+      "s3:GetObject"
+    ]
+
+    resources = [
+      "${var.bucket_arn}/${var.raw_data_prefix}/*"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "glue_s3_read" {
+  name   = "BMWGlueS3Read"
+  role   = aws_iam_role.glue.id
+  policy = data.aws_iam_policy_document.glue_s3.json
+}
+
+# ---------------------------------------------------------
+# AWS Glue Data Catalog database
+# ---------------------------------------------------------
+
+resource "aws_glue_catalog_database" "bmw" {
+  name = "bmw_terraform_database"
+}
+
+# ---------------------------------------------------------
+# AWS Glue crawler
+# ---------------------------------------------------------
+
+resource "aws_glue_crawler" "raw" {
+  name          = "bmw-terraform-raw-crawler"
+  database_name = aws_glue_catalog_database.bmw.name
+  role          = aws_iam_role.glue.arn
+
+  s3_target {
+    path = "s3://${var.bucket_name}/${var.raw_data_prefix}/"
+  }
+
+  schema_change_policy {
+    update_behavior = "UPDATE_IN_DATABASE"
+    delete_behavior = "LOG"
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.glue_service,
+    aws_iam_role_policy.glue_s3_read
+  ]
+
+  tags = {
+    Environment = "dev"
+    Project     = "BMWDataLake"
+  }
+}
