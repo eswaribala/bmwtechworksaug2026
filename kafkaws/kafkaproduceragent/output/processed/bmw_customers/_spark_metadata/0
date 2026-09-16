@@ -1,0 +1,2 @@
+v1
+{"path":"file:///E:/BMWTWAug2026/kafkaws/kafkaproduceragent/output/processed/bmw_customers/event_date=__HIVE_DEFAULT_PARTITION__/part-00000-d0ac4958-500e-4873-b347-02b85ade5c91.c000.snappy.parquet","size":3098,"isDir":false,"modificationTime":1789515322000,"blockReplication":1,"blockSize":33554432,"action":"add"}
