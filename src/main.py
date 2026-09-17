@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.utils.config import S3_BUCKET, CURATED_PREFIX, QUARANTINE_PREFIX, REPORT_PREFIX
 from src.utils.logger import BmwLogger
+from src.utils.spark_session import get_spark, stop_spark
 from src.ingestion.s3_loader import S3Loader
 from src.processing.quality_engine import QualityEngine
 from src.processing.quarantine import QuarantineManager
@@ -36,25 +37,26 @@ def run_pipeline(
     local: bool = True,
 ) -> dict:
     """
-    Execute the full BMW Data Quality pipeline.
+    Execute the full BMW Data Quality pipeline using PySpark.
 
     Returns the JSON quality report dict.
     """
     logger = BmwLogger(dataset)
     loader = S3Loader(bucket=S3_BUCKET, logger=logger)
     cw = CloudWatchLogger(dataset=dataset, logger=logger)
+    get_spark()  # warm up the shared SparkSession
 
     try:
-        # ── 1. Load raw dataset ───────────────────────────────
-        df = loader.load_csv(key=s3_key or "", local_path=input_path)
-        logger.info(f"Loaded {len(df):,} rows from {'local' if input_path else 'S3'}")
+        # ── 1. Load raw dataset (PySpark) ─────────────────────
+        df = loader.load_csv_spark(key=s3_key or "", local_path=input_path)
+        logger.info(f"Loaded {df.count():,} rows from {'local' if input_path else 'S3'}")
 
         # ── 2. Load vehicle master (for referential integrity) ─
         vm_path = vehicle_master_path or "data/sample/bmw_vehicle_master.csv"
         reference_df = None
         if Path(vm_path).exists():
-            reference_df = loader.load_csv(key="raw/vehicle_master/vehicle_master.csv", local_path=vm_path)
-            logger.info(f"Vehicle master loaded: {len(reference_df):,} rows")
+            reference_df = loader.load_csv_spark(key="raw/vehicle_master/vehicle_master.csv", local_path=vm_path)
+            logger.info(f"Vehicle master loaded: {reference_df.count():,} rows")
 
         # ── 3. Run quality engine ─────────────────────────────
         engine = QualityEngine(dataset=dataset, logger=logger)
@@ -81,7 +83,7 @@ def run_pipeline(
         if local:
             Path(curated_dir).mkdir(parents=True, exist_ok=True)
             curated_file = Path(curated_dir) / f"{dataset}_curated.csv"
-            valid_df.to_csv(curated_file, index=False)
+            valid_df.toPandas().to_csv(curated_file, index=False)
             logger.info(f"Curated data saved: {curated_file}")
 
         # ── 8. Save report ────────────────────────────────────
@@ -107,6 +109,8 @@ def run_pipeline(
         logger.error(f"Pipeline failed: {exc}")
         cw.upload_logs(logger.get_logs())
         raise
+    finally:
+        stop_spark()
 
 
 def main():

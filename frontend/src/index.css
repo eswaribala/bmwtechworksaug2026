@@ -199,6 +199,41 @@ a:hover { color: var(--text-primary); }
   font-size: 16px;
 }
 
+.sidebar-status {
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0.75rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot-on {
+  background: #00C48C;
+  box-shadow: 0 0 6px rgba(0, 196, 140, 0.6);
+}
+
+.status-dot-off {
+  background: var(--text-muted);
+}
+
 .sidebar-footer {
   padding: 1rem;
   border-top: 1px solid var(--border-subtle);
@@ -237,6 +272,76 @@ a:hover { color: var(--text-primary); }
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
+}
+
+/* ─── File Filter Bar ─────────────────────────────────────── */
+.file-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.file-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.file-filter-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.segmented-control {
+  display: inline-flex;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.segmented-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.35rem 0.85rem;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.segmented-btn:hover {
+  color: var(--text-primary);
+}
+
+.segmented-btn.active {
+  background: var(--bmw-blue);
+  color: #fff;
+}
+
+.filter-select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.filter-select:focus {
+  border-color: var(--bmw-blue-bright);
 }
 
 /* ─── Cards ─────────────────────────────────────────────────── */
@@ -553,25 +658,6 @@ a:hover { color: var(--text-primary); }
 .log-lvl-INFO  { color: #00C48C; }
 .log-lvl-WARN  { color: #FFA500; }
 .log-lvl-ERROR { color: #FF4757; }
-
-/* ─── Governance Grid ─────────────────────────────────────── */
-.governance-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.governance-table th, .governance-table td {
-  padding: 1rem 1.25rem;
-  text-align: center;
-  border: 1px solid var(--border-subtle);
-}
-
-.governance-table th { background: rgba(0,0,0,0.3); font-size: 12px; font-weight: 600; color: var(--text-muted); }
-.governance-table .role-cell { text-align: left; font-weight: 600; color: var(--text-primary); }
-.governance-table .zone-header { color: var(--bmw-blue-bright); }
-
-.access-yes { color: var(--color-excellent); font-size: 18px; }
-.access-no  { color: var(--text-muted); font-size: 18px; }
 
 /* ─── SQL Editor ─────────────────────────────────────────── */
 .sql-editor {

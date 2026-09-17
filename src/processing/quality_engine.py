@@ -2,11 +2,13 @@
 BMW Data Quality & Governance Platform — Quality Engine
 Participant 12 | Pod D
 Orchestrates all validators, routes records to valid/invalid partitions.
+Powered by PySpark for distributed dataset processing.
 """
 
-import pandas as pd
 from datetime import datetime, timezone
 from typing import Optional
+from pyspark.sql import DataFrame
+from pyspark.sql import functions as F
 from src.utils.logger import BmwLogger
 from src.utils.config import REFERENTIAL_RULES
 from src.processing.validator import (
@@ -60,7 +62,7 @@ class QualityMetrics:
 
 class QualityEngine:
     """
-    Main orchestrator — runs all validation checks and separates
+    Main orchestrator — runs all validation checks with PySpark and separates
     valid records (curated) from invalid records (quarantine).
     """
 
@@ -70,15 +72,15 @@ class QualityEngine:
 
     def run(
         self,
-        df: pd.DataFrame,
-        reference_df: Optional[pd.DataFrame] = None,
-    ) -> tuple[pd.DataFrame, pd.DataFrame, QualityMetrics]:
+        df: DataFrame,
+        reference_df: Optional[DataFrame] = None,
+    ) -> tuple[DataFrame, DataFrame, QualityMetrics]:
         """
         Execute the full quality pipeline on df.
 
         Args:
-            df:           Input raw DataFrame.
-            reference_df: Vehicle master for referential integrity checks.
+            df:           Input raw Spark DataFrame.
+            reference_df: Vehicle master Spark DataFrame for referential checks.
 
         Returns:
             (valid_df, invalid_df, metrics)
@@ -86,7 +88,8 @@ class QualityEngine:
         import time
         start = time.time()
 
-        total = len(df)
+        df = df.cache()
+        total = df.count()
         metrics = QualityMetrics(dataset=self.dataset, total_records=total)
         self.logger.pipeline_start()
         self.logger.info(f"Dataset: {self.dataset}")
@@ -100,57 +103,89 @@ class QualityEngine:
 
         # ── 2. Null check ─────────────────────────────────────
         df = check_nulls(df, self.dataset)
-        metrics.null_count = int(df["__null_fail"].sum())
         metrics.null_summary = null_summary(df, self.dataset)
-        self.logger.info(f"Null issues: {metrics.null_count:,}")
 
         # ── 3. Duplicate check ────────────────────────────────
         df = check_duplicates(df, self.dataset)
-        metrics.duplicate_count = int(df["__dup_fail"].sum())
-        self.logger.info(f"Duplicate records: {metrics.duplicate_count:,}")
 
         # ── 4. VIN check ──────────────────────────────────────
         df = check_vin(df)
-        metrics.invalid_vin_count = int(df["__vin_fail"].sum())
-        self.logger.info(f"Invalid VIN: {metrics.invalid_vin_count:,}")
 
         # ── 5. Date check ─────────────────────────────────────
         df = check_dates(df, self.dataset)
-        metrics.invalid_date_count = int(df["__date_fail"].sum())
-        self.logger.info(f"Invalid dates: {metrics.invalid_date_count:,}")
 
         # ── 6. Range check ────────────────────────────────────
         df = check_ranges(df)
-        metrics.range_violation_count = int(df["__range_fail"].sum())
-        self.logger.info(f"Range violations: {metrics.range_violation_count:,}")
 
         # ── 7. Referential integrity ──────────────────────────
         if reference_df is not None and self.dataset in REFERENTIAL_RULES:
             fk_col, _parent, pk_col = REFERENTIAL_RULES[self.dataset]
             df = check_referential_integrity(df, fk_col, reference_df, pk_col)
-            metrics.referential_error_count = int(df["__ref_fail"].sum())
-            self.logger.info(f"Referential errors: {metrics.referential_error_count:,}")
         else:
-            df["__ref_fail"] = False
+            df = df.withColumn("__ref_fail", F.lit(False))
 
         # ── 8. Combine failure flags ──────────────────────────
         fail_cols = [
             "__null_fail", "__dup_fail", "__vin_fail",
             "__date_fail", "__range_fail", "__ref_fail",
         ]
-        df["__any_fail"] = df[fail_cols].any(axis=1)
+        df = df.withColumn(
+            "__any_fail",
+            F.col(fail_cols[0]) | F.col(fail_cols[1]) | F.col(fail_cols[2]) |
+            F.col(fail_cols[3]) | F.col(fail_cols[4]) | F.col(fail_cols[5]),
+        )
 
-        # ── 9. Build error description for quarantine ─────────
-        df["__error_types"] = df.apply(self._build_error_types, axis=1)
-        df["__error_messages"] = df.apply(self._build_error_messages, axis=1)
+        # ── 9. Single-pass aggregation of all check counts ────
+        agg_row = df.select(
+            *[F.sum(F.col(c).cast("int")).alias(c) for c in fail_cols],
+        ).collect()[0]
+        metrics.null_count = int(agg_row["__null_fail"] or 0)
+        metrics.duplicate_count = int(agg_row["__dup_fail"] or 0)
+        metrics.invalid_vin_count = int(agg_row["__vin_fail"] or 0)
+        metrics.invalid_date_count = int(agg_row["__date_fail"] or 0)
+        metrics.range_violation_count = int(agg_row["__range_fail"] or 0)
+        metrics.referential_error_count = int(agg_row["__ref_fail"] or 0)
 
-        # ── 10. Split valid / invalid ─────────────────────────
+        self.logger.info(f"Null issues: {metrics.null_count:,}")
+        self.logger.info(f"Duplicate records: {metrics.duplicate_count:,}")
+        self.logger.info(f"Invalid VIN: {metrics.invalid_vin_count:,}")
+        self.logger.info(f"Invalid dates: {metrics.invalid_date_count:,}")
+        self.logger.info(f"Range violations: {metrics.range_violation_count:,}")
+        self.logger.info(f"Referential errors: {metrics.referential_error_count:,}")
+
+        # ── 10. Build error description for quarantine ─────────
+        df = df.withColumn(
+            "__error_types",
+            F.concat_ws(
+                "|",
+                F.when(F.col("__null_fail"), F.lit(ERROR_NULL)),
+                F.when(F.col("__dup_fail"), F.lit(ERROR_DUPLICATE)),
+                F.when(F.col("__vin_fail"), F.lit(ERROR_VIN)),
+                F.when(F.col("__date_fail"), F.lit(ERROR_DATE)),
+                F.when(F.col("__range_fail"), F.lit(ERROR_RANGE)),
+                F.when(F.col("__ref_fail"), F.lit(ERROR_REFERENTIAL)),
+            ),
+        )
+        df = df.withColumn(
+            "__error_messages",
+            F.concat_ws(
+                " | ",
+                F.when(F.col("__null_fail"), F.concat(F.lit("Null values in: "), F.col("__null_cols"))),
+                F.when(F.col("__dup_fail"), F.lit("Duplicate record detected")),
+                F.when(F.col("__vin_fail"), F.lit("Invalid or missing VIN")),
+                F.when(F.col("__date_fail"), F.concat(F.lit("Invalid date in: "), F.col("__date_cols"))),
+                F.when(F.col("__range_fail"), F.concat(F.lit("Out-of-range value in: "), F.col("__range_cols"))),
+                F.when(F.col("__ref_fail"), F.lit("Referential integrity violation")),
+            ),
+        )
+
+        # ── 11. Split valid / invalid ─────────────────────────
         internal_cols = [c for c in df.columns if c.startswith("__")]
-        valid_df = df[~df["__any_fail"]].drop(columns=internal_cols).reset_index(drop=True)
-        invalid_df = df[df["__any_fail"]].copy().reset_index(drop=True)
+        valid_df = df.filter(~F.col("__any_fail")).drop(*internal_cols)
+        invalid_df = df.filter(F.col("__any_fail"))
 
-        metrics.valid_records = len(valid_df)
-        metrics.rejected_records = len(invalid_df)
+        metrics.rejected_records = invalid_df.count()
+        metrics.valid_records = total - metrics.rejected_records
         metrics.duration_seconds = round(time.time() - start, 3)
 
         self.logger.records_processed(total)
@@ -158,42 +193,3 @@ class QualityEngine:
         self.logger.rejected_records(metrics.rejected_records)
 
         return valid_df, invalid_df, metrics
-
-    # ──────────────────────────────────────────────────────────
-    # Private helpers
-    # ──────────────────────────────────────────────────────────
-
-    def _build_error_types(self, row: pd.Series) -> str:
-        types = []
-        if row.get("__null_fail"):
-            types.append(ERROR_NULL)
-        if row.get("__dup_fail"):
-            types.append(ERROR_DUPLICATE)
-        if row.get("__vin_fail"):
-            types.append(ERROR_VIN)
-        if row.get("__date_fail"):
-            types.append(ERROR_DATE)
-        if row.get("__range_fail"):
-            types.append(ERROR_RANGE)
-        if row.get("__ref_fail"):
-            types.append(ERROR_REFERENTIAL)
-        return "|".join(types)
-
-    def _build_error_messages(self, row: pd.Series) -> str:
-        msgs = []
-        if row.get("__null_fail"):
-            cols = row.get("__null_cols", "")
-            msgs.append(f"Null values in: {cols}")
-        if row.get("__dup_fail"):
-            msgs.append("Duplicate record detected")
-        if row.get("__vin_fail"):
-            msgs.append("Invalid or missing VIN")
-        if row.get("__date_fail"):
-            cols = row.get("__date_cols", "")
-            msgs.append(f"Invalid date in: {cols}")
-        if row.get("__range_fail"):
-            cols = row.get("__range_cols", "")
-            msgs.append(f"Out-of-range value in: {cols}")
-        if row.get("__ref_fail"):
-            msgs.append("Referential integrity violation")
-        return " | ".join(msgs)

@@ -1,8 +1,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { getScoreColor } from '../data/mockData';
+import { getScoreColor } from '../utils/constants';
 
 interface ScoreGaugeProps {
-  score: number;
+  score: number | null | undefined;
   label: string;
 }
 
@@ -20,7 +20,9 @@ function renderNeedle(cx: number, cy: number, angle: number, r: number, color: s
 }
 
 export default function ScoreGauge({ score, label }: ScoreGaugeProps) {
-  const color = getScoreColor(score);
+  const isAvailable = score !== null && score !== undefined && !Number.isNaN(score);
+  const numericScore = isAvailable ? score : 0;
+  const color = isAvailable ? getScoreColor(numericScore) : 'var(--text-muted)';
 
   const segments = [
     { name: 'Critical',   value: 50,  color: '#FF4757' },
@@ -31,7 +33,7 @@ export default function ScoreGauge({ score, label }: ScoreGaugeProps) {
   ];
 
   // Map score 0–100 to angle 180–0 (half circle)
-  const needleAngle = 180 - (score / 100) * 180;
+  const needleAngle = isAvailable ? 180 - (numericScore / 100) * 180 : 90;
 
   return (
     <div className="score-gauge-wrap">
@@ -48,35 +50,35 @@ export default function ScoreGauge({ score, label }: ScoreGaugeProps) {
             outerRadius={100}
             stroke="none"
           >
-            {segments.map((seg, i) => (
-              <Cell key={i} fill={seg.color} opacity={0.85} />
+            {segments.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} opacity={isAvailable ? 0.9 : 0.25} />
             ))}
           </Pie>
-          {/* Needle rendered as custom active shape hack via label */}
-          <Pie
-            dataKey="value"
-            data={[{ value: 1 }]}
-            cx="50%"
-            cy="90%"
-            innerRadius={0}
-            outerRadius={0}
-            startAngle={180}
-            endAngle={0}
-            label={({ cx, cy }: { cx: number; cy: number }) =>
-              renderNeedle(cx, cy, needleAngle, 85, color)
-            }
-            labelLine={false}
-            stroke="none"
-          />
+          {isAvailable && (
+            <Pie
+              dataKey="value"
+              data={[{ value: 1 }]}
+              cx="50%"
+              cy="90%"
+              startAngle={180}
+              endAngle={0}
+              innerRadius={0}
+              outerRadius={0}
+              stroke="none"
+              isAnimationActive={false}
+              label={({ cx, cy }) => renderNeedle(cx, cy, needleAngle, 85, color)}
+            />
+          )}
         </PieChart>
       </ResponsiveContainer>
 
-      <div className="score-gauge-number" style={{ color }}>
-        {score.toFixed(1)}
-      </div>
-      <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 4 }}>/ 100</div>
-      <div className={`badge badge-${label.toLowerCase()}`}>
-        {label}
+      <div className="score-gauge-value" style={{ marginTop: '-20px' }}>
+        <div style={{ fontSize: 36, fontWeight: 900, color, lineHeight: 1 }}>
+          {isAvailable ? numericScore.toFixed(1) : '-'}
+        </div>
+        <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 4, fontWeight: 600 }}>
+          {label}
+        </div>
       </div>
     </div>
   );

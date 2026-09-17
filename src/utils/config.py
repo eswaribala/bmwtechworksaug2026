@@ -9,13 +9,22 @@ import os
 # AWS / S3
 # ────────────────────────────────────────────────
 AWS_REGION = os.getenv("AWS_REGION", "eu-central-1")
-S3_BUCKET = os.getenv("S3_BUCKET", "bmw-data-quality")
+S3_BUCKET = os.getenv("S3_BUCKET", "bmw-data-quality-532404260630")
 RAW_PREFIX = os.getenv("RAW_PREFIX", "raw")
 PROCESSED_PREFIX = os.getenv("PROCESSED_PREFIX", "processed")
 CURATED_PREFIX = os.getenv("CURATED_PREFIX", "curated")
 QUARANTINE_PREFIX = os.getenv("QUARANTINE_PREFIX", "quarantine")
 REPORT_PREFIX = os.getenv("REPORT_PREFIX", "reports")
 LOG_PREFIX = os.getenv("LOG_PREFIX", "logs")
+
+# ────────────────────────────────────────────────
+# AWS Glue / Athena
+# ────────────────────────────────────────────────
+GLUE_DATABASE = os.getenv("GLUE_DATABASE", "bmw_data_quality")
+ATHENA_WORKGROUP = os.getenv("ATHENA_WORKGROUP", "bmw-data-quality")
+ATHENA_OUTPUT_LOCATION = os.getenv(
+    "ATHENA_OUTPUT_LOCATION", f"s3://{S3_BUCKET}/reports/athena-results/"
+)
 
 # ────────────────────────────────────────────────
 # Datasets

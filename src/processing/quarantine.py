@@ -1,12 +1,14 @@
 """
 BMW Data Quality & Governance Platform — Quarantine
 Participant 12 | Pod D
-Annotates and persists invalid records to the quarantine zone.
+Annotates invalid records with PySpark; materialised to pandas only at the
+final single-file CSV/Parquet write boundary.
 """
 
-import pandas as pd
 from datetime import datetime, timezone
 from typing import Optional
+from pyspark.sql import DataFrame
+from pyspark.sql import functions as F
 from src.utils.logger import BmwLogger
 
 
@@ -20,7 +22,7 @@ class QuarantineManager:
         self.dataset = dataset
         self.logger = logger or BmwLogger(f"{dataset}_quarantine")
 
-    def prepare(self, invalid_df: pd.DataFrame) -> pd.DataFrame:
+    def prepare(self, invalid_df: DataFrame) -> DataFrame:
         """
         Enrich invalid records with quarantine metadata columns.
 
@@ -31,26 +33,30 @@ class QuarantineManager:
             quarantine_validation_rule — same as error_type (for reference)
             quarantine_timestamp      — ISO 8601 processing timestamp
         """
-        df = invalid_df.copy()
         ts = datetime.now(timezone.utc).isoformat()
+        cols = invalid_df.columns
+        error_type_expr = F.col("__error_types") if "__error_types" in cols else F.lit("UNKNOWN")
+        error_msg_expr = F.col("__error_messages") if "__error_messages" in cols else F.lit("")
 
-        # Map internal columns to quarantine metadata
-        df["quarantine_dataset"] = self.dataset
-        df["quarantine_error_type"] = df.get("__error_types", "UNKNOWN")
-        df["quarantine_error_message"] = df.get("__error_messages", "")
-        df["quarantine_validation_rule"] = df.get("__error_types", "UNKNOWN")
-        df["quarantine_timestamp"] = ts
+        df = (
+            invalid_df
+            .withColumn("quarantine_dataset", F.lit(self.dataset))
+            .withColumn("quarantine_error_type", error_type_expr)
+            .withColumn("quarantine_error_message", error_msg_expr)
+            .withColumn("quarantine_validation_rule", error_type_expr)
+            .withColumn("quarantine_timestamp", F.lit(ts))
+        )
 
         # Drop internal processing columns
         internal_cols = [c for c in df.columns if c.startswith("__")]
-        df = df.drop(columns=internal_cols, errors="ignore")
+        df = df.drop(*internal_cols)
 
-        self.logger.info(f"Prepared {len(df):,} records for quarantine")
+        self.logger.info(f"Prepared {df.count():,} records for quarantine")
         return df
 
     def save(
         self,
-        invalid_df: pd.DataFrame,
+        invalid_df: DataFrame,
         output_path: str,
         fmt: str = "csv",
     ) -> str:
@@ -58,18 +64,20 @@ class QuarantineManager:
         Save quarantine records to the given path.
 
         Args:
-            invalid_df:  DataFrame already enriched by prepare().
+            invalid_df:  Spark DataFrame already enriched by prepare().
             output_path: Local directory path or S3 key prefix.
             fmt:         'csv' or 'parquet'.
 
         Returns:
             Path or S3 key where records were written.
         """
-        import os
         from pathlib import Path
 
         ts_str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         filename = f"quarantine_{self.dataset}_{ts_str}.{fmt}"
+
+        # Materialise to pandas for a single named output file
+        pdf = invalid_df.toPandas()
 
         if output_path.startswith("s3://"):
             # S3 path — delegate to s3_loader
@@ -80,19 +88,19 @@ class QuarantineManager:
             key = f"{prefix}/{filename}".lstrip("/")
             loader = S3Loader(bucket, self.logger)
             if fmt == "parquet":
-                return loader.write_parquet(invalid_df, key)
-            return loader.write_csv(invalid_df, key)
+                return loader.write_parquet(pdf, key)
+            return loader.write_csv(pdf, key)
         else:
             # Local filesystem
             path = Path(output_path) / filename
             path.parent.mkdir(parents=True, exist_ok=True)
             if fmt == "parquet":
-                invalid_df.to_parquet(path, index=False)
+                pdf.to_parquet(path, index=False)
             else:
-                invalid_df.to_csv(path, index=False)
+                pdf.to_csv(path, index=False)
             self.logger.info(f"Quarantine saved: {path}")
             return str(path)
 
-    def sample_records(self, quarantine_df: pd.DataFrame, n: int = 5) -> list[dict]:
+    def sample_records(self, quarantine_df: DataFrame, n: int = 5) -> list[dict]:
         """Return n sample quarantine records as dicts (for reporting)."""
-        return quarantine_df.head(n).to_dict(orient="records")
+        return [row.asDict() for row in quarantine_df.limit(n).collect()]

@@ -1,65 +1,150 @@
+import { useEffect, useState } from 'react';
 import KpiCard from '../components/KpiCard';
 import ScoreGauge from '../components/ScoreGauge';
-import { DEMO_METRICS, ERROR_TYPE_COLORS } from '../data/mockData';
+import FileFilter from '../components/FileFilter';
+import { usePipeline, API_URL } from '../context/PipelineContext';
+import { ERROR_TYPE_COLORS, fmt, fmtPct, getScoreLabel } from '../utils/constants';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, PieChart, Pie, Cell, Legend,
-  AreaChart, Area
+  ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from 'recharts';
 
-const errorBreakdown = [
-  { name: 'Null Values',    count: 210, color: ERROR_TYPE_COLORS.NULL_VALUE },
-  { name: 'Duplicates',     count: 150, color: ERROR_TYPE_COLORS.DUPLICATE_RECORD },
-  { name: 'Invalid VIN',    count: 80,  color: ERROR_TYPE_COLORS.INVALID_VIN },
-  { name: 'Invalid Dates',  count: 60,  color: ERROR_TYPE_COLORS.INVALID_DATE },
-  { name: 'Out-of-Range',   count: 50,  color: ERROR_TYPE_COLORS.OUT_OF_RANGE },
-  { name: 'Ref. Integrity', count: 30,  color: ERROR_TYPE_COLORS.REFERENTIAL_INTEGRITY },
-];
-
-const donutData = [
-  { name: 'Valid Records',   value: DEMO_METRICS.valid_records,    color: '#00C48C' },
-  { name: 'Rejected Records', value: DEMO_METRICS.rejected_records, color: '#FF4757' },
-];
-
-const timelineData = [
-  { time: '08:00', score: 88.5 }, { time: '09:00', score: 90.1 },
-  { time: '10:00', score: 91.3 }, { time: '11:00', score: 94.2 },
-  { time: '12:00', score: 93.8 }, { time: '13:00', score: 95.0 },
-  { time: '14:00', score: 94.2 },
-];
-
-const penaltyData = Object.entries(DEMO_METRICS.penalty_breakdown).map(([k, v]) => ({
-  name: k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-  penalty: v.penalty,
-  weight: v.weight,
-}));
-
 export default function Dashboard() {
-  const m = DEMO_METRICS;
+  const { selectedRun, backendOnline, awsConnected } = usePipeline();
+  const [detail, setDetail] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!selectedRun?.run_id) {
+      setDetail(null);
+      return;
+    }
+    let isCurrent = true;
+    setLoading(true);
+    fetch(`${API_URL}/api/history/${selectedRun.run_id}`)
+      .then(res => (res.ok ? res.json() : null))
+      .then(data => {
+        if (isCurrent) setDetail(data);
+      })
+      .catch(() => {
+        if (isCurrent) setDetail(null);
+      })
+      .finally(() => {
+        if (isCurrent) setLoading(false);
+      });
+    return () => {
+      isCurrent = false;
+    };
+  }, [selectedRun?.run_id]);
+
+  const hasData = Boolean(selectedRun && detail);
+  const total = hasData ? detail.total_records : null;
+  const valid = hasData ? detail.valid_records : null;
+  const rejected = hasData ? detail.rejected_records : null;
+  const score = hasData ? detail.quality_score : null;
+  const label = hasData ? (detail.score_label ?? getScoreLabel(score)) : '-';
+  const duration = hasData && typeof detail.duration_seconds === 'number' ? `${detail.duration_seconds.toFixed(3)}s` : '-';
+  const execTime = hasData && detail.execution_time ? detail.execution_time.slice(0, 19).replace('T', ' ') : '-';
+
+  const validRate = hasData && total && total > 0 ? (valid / total) * 100 : null;
+  const rejectRate = hasData && total && total > 0 ? (rejected / total) * 100 : null;
+
+  const donutData = hasData
+    ? [
+        { name: 'Valid Records', value: valid ?? 0, color: '#00C48C' },
+        { name: 'Rejected Records', value: rejected ?? 0, color: '#FF4757' },
+      ]
+    : [
+        { name: 'No Data', value: 1, color: '#2a3342' },
+      ];
+
+  const errorBreakdown = hasData
+    ? [
+        { name: 'Null Values', count: detail.null_count ?? 0, color: ERROR_TYPE_COLORS.NULL_VALUE },
+        { name: 'Duplicates', count: detail.duplicate_count ?? 0, color: ERROR_TYPE_COLORS.DUPLICATE_RECORD },
+        { name: 'Invalid VIN', count: detail.invalid_vin_count ?? 0, color: ERROR_TYPE_COLORS.INVALID_VIN },
+        { name: 'Invalid Dates', count: detail.invalid_date_count ?? 0, color: ERROR_TYPE_COLORS.INVALID_DATE },
+        { name: 'Out-of-Range', count: detail.range_violation_count ?? 0, color: ERROR_TYPE_COLORS.OUT_OF_RANGE },
+        { name: 'Ref. Integrity', count: detail.referential_error_count ?? 0, color: ERROR_TYPE_COLORS.REFERENTIAL_INTEGRITY },
+      ]
+    : [];
+
+  const penaltyBreakdownObj = hasData && detail.penalty_breakdown ? detail.penalty_breakdown : {};
+  const penaltyData = Object.entries(penaltyBreakdownObj).map(([k, v]: [string, any]) => ({
+    name: k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+    penalty: typeof v.penalty === 'number' ? v.penalty : 0,
+    weight: typeof v.weight === 'number' ? v.weight : 0,
+  }));
+
+  const totalViolations = hasData
+    ? (detail.null_count ?? 0) +
+      (detail.duplicate_count ?? 0) +
+      (detail.invalid_vin_count ?? 0) +
+      (detail.invalid_date_count ?? 0) +
+      (detail.range_violation_count ?? 0) +
+      (detail.referential_error_count ?? 0)
+    : null;
 
   return (
     <div>
       <div className="page-header">
         <div className="page-header-left">
           <h1>Data Quality Dashboard</h1>
-          <p>Real-time overview of BMW dataset quality metrics · Dataset: Telemetry · {m.execution_time.slice(0,10)}</p>
+          <p>
+            Real-time quality metrics for validated BMW datasets · File: {selectedRun?.filename ?? '-'} · {execTime}
+          </p>
         </div>
         <div className="flex gap-2 items-center">
-          <div className="page-header-badge badge-excellent">
-            <span>●</span> Pipeline Healthy
+          <div className={`page-header-badge ${hasData ? 'badge-excellent' : ''}`}>
+            <span>Status</span> {backendOnline ? (hasData ? 'Ready' : 'Awaiting Data') : 'Backend Offline'}
           </div>
-          <button className="btn btn-primary">▶ Run Pipeline</button>
         </div>
       </div>
 
       <div className="page-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <FileFilter />
+
+        {!hasData && (
+          <div className="card card-body" style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+            <h3 style={{ fontSize: 16, marginBottom: 6 }}>
+              {backendOnline ? 'No Processed Records Found for this Dataset' : 'Backend Server Not Connected'}
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: 13, maxWidth: 520, margin: '0 auto' }}>
+              {backendOnline
+                ? 'Upload a CSV file in the Validate page or run the pipeline via CLI to view quality metrics.'
+                : 'Start the FastAPI backend server (port 8000) to load live validation results.'}
+            </p>
+          </div>
+        )}
 
         {/* KPI Row */}
         <div className="kpi-grid">
-          <KpiCard label="Total Records"    value={m.total_records}    color="var(--bmw-blue-bright)" sub="from BMW telemetry dataset" />
-          <KpiCard label="Valid Records"    value={m.valid_records}    color="var(--color-excellent)" sub="passed all quality checks" />
-          <KpiCard label="Rejected Records" value={m.rejected_records} color="var(--color-critical)"  sub="moved to quarantine zone" />
-          <KpiCard label="Quality Score"    value={m.quality_score}    color={m.quality_score >= 90 ? 'var(--color-excellent)' : 'var(--color-acceptable)'} unit="/ 100" format="score" sub={m.score_label} />
+          <KpiCard
+            label="Total Records"
+            value={total}
+            color="var(--bmw-blue-bright)"
+            sub={hasData ? `File: ${selectedRun?.filename}` : 'Dataset unavailable'}
+          />
+          <KpiCard
+            label="Valid Records"
+            value={valid}
+            color="var(--color-excellent)"
+            sub={hasData ? 'Passed all checks' : '-'}
+          />
+          <KpiCard
+            label="Rejected Records"
+            value={rejected}
+            color="var(--color-critical)"
+            sub={hasData ? 'Quarantine zone' : '-'}
+          />
+          <KpiCard
+            label="Quality Score"
+            value={score}
+            format="score"
+            color={score !== null && score >= 90 ? 'var(--color-excellent)' : 'var(--color-acceptable)'}
+            unit={score !== null ? '/ 100' : ''}
+            sub={label}
+          />
         </div>
 
         {/* Score Gauge + Donut */}
@@ -67,12 +152,12 @@ export default function Dashboard() {
           <div className="card">
             <div className="card-header">
               <h3>Data Quality Score</h3>
-              <span className={`badge badge-${m.score_label.toLowerCase()}`}>{m.score_label}</span>
+              <span className={`badge ${label !== '-' ? `badge-${label.toLowerCase()}` : ''}`}>{label}</span>
             </div>
             <div className="card-body">
-              <ScoreGauge score={m.quality_score} label={m.score_label} />
+              <ScoreGauge score={score} label={label} />
               <div style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: 12, color: 'var(--text-secondary)' }}>
-                Processing time: {m.duration_seconds.toFixed(3)}s · {m.total_records.toLocaleString()} records
+                Processing time: {duration} · Records: {fmt(total)}
               </div>
             </div>
           </div>
@@ -86,16 +171,16 @@ export default function Dashboard() {
                     {donutData.map((d, i) => <Cell key={i} fill={d.color} />)}
                   </Pie>
                   <Tooltip contentStyle={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 8 }} />
-                  <Legend formatter={(v) => <span style={{ color: 'var(--text-secondary)', fontSize: 12 }}>{v}</span>} />
+                  {hasData && <Legend formatter={(v) => <span style={{ color: 'var(--text-secondary)', fontSize: 12 }}>{v}</span>} />}
                 </PieChart>
               </ResponsiveContainer>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '0.5rem' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: '#00C48C' }}>{((m.valid_records/m.total_records)*100).toFixed(1)}%</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: '#00C48C' }}>{fmtPct(validRate)}</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Valid Rate</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: '#FF4757' }}>{((m.rejected_records/m.total_records)*100).toFixed(1)}%</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: '#FF4757' }}>{fmtPct(rejectRate)}</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Rejection Rate</div>
                 </div>
               </div>
@@ -105,92 +190,53 @@ export default function Dashboard() {
 
         {/* Error Breakdown Bar */}
         <div className="card">
-          <div className="card-header"><h3>Quality Issue Breakdown</h3><span style={{ fontSize: 12, color: 'var(--text-muted)' }}>580 total violations</span></div>
-          <div className="card-body">
-            <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={errorBreakdown} margin={{ top: 0, right: 20, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-subtle)" />
-                <XAxis dataKey="name" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
-                <YAxis tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
-                <Tooltip contentStyle={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 8 }} />
-                <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-                  {errorBreakdown.map((d, i) => <Cell key={i} fill={d.color} />)}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="card-header">
+            <h3>Quality Issue Breakdown</h3>
+            <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+              {totalViolations !== null ? `${fmt(totalViolations)} total violations` : '-'}
+            </span>
           </div>
-        </div>
-
-        <div className="charts-grid">
-          {/* Score Trend */}
-          <div className="card">
-            <div className="card-header"><h3>Quality Score Trend (Today)</h3></div>
-            <div className="card-body">
-              <ResponsiveContainer width="100%" height={180}>
-                <AreaChart data={timelineData} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="scoreGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%"  stopColor="var(--bmw-blue)" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="var(--bmw-blue)" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
+          <div className="card-body">
+            {hasData && errorBreakdown.length > 0 ? (
+              <ResponsiveContainer width="100%" height={220}>
+                <BarChart data={errorBreakdown} margin={{ top: 0, right: 20, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border-subtle)" />
-                  <XAxis dataKey="time" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
-                  <YAxis domain={[85, 100]} tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
+                  <XAxis dataKey="name" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
+                  <YAxis tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
                   <Tooltip contentStyle={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 8 }} />
-                  <Area type="monotone" dataKey="score" stroke="var(--bmw-blue-bright)" fill="url(#scoreGrad)" strokeWidth={2} dot={false} />
-                </AreaChart>
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                    {errorBreakdown.map((d, i) => <Cell key={i} fill={d.color} />)}
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Penalty Breakdown */}
-          <div className="card">
-            <div className="card-header"><h3>Score Penalty Breakdown</h3></div>
-            <div className="card-body">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {penaltyData.map((d) => (
-                  <div key={d.name} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{ fontSize: 12, color: 'var(--text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.name}</div>
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)', width: 60, textAlign: 'right' }}>w={d.weight}</div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: d.penalty > 0.2 ? 'var(--color-poor)' : 'var(--color-excellent)', width: 54, textAlign: 'right' }}>
-                      -{d.penalty.toFixed(3)}
-                    </div>
-                  </div>
-                ))}
-                <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 12, fontWeight: 600 }}>Final Score</span>
-                  <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--color-excellent)' }}>{m.quality_score}</span>
-                </div>
+            ) : (
+              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>
+                - No violation breakdown available -
               </div>
-            </div>
+            )}
           </div>
         </div>
 
-        {/* Null Summary */}
-        <div className="card">
-          <div className="card-header"><h3>Null Value Analysis</h3></div>
-          <div className="card-body">
-            <div className="data-table-wrap">
+        {/* Penalty Breakdown */}
+        {hasData && penaltyData.length > 0 && (
+          <div className="card">
+            <div className="card-header"><h3>Scoring Penalty Analysis</h3></div>
+            <div className="card-body" style={{ padding: 0 }}>
               <table className="data-table">
                 <thead>
-                  <tr><th>Column</th><th>Null Count</th><th>Null %</th><th>Visual</th><th>Status</th></tr>
+                  <tr>
+                    <th>Check Type</th>
+                    <th>Weight</th>
+                    <th>Penalty Deducted</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {m.null_summary.map((item) => (
-                    <tr key={item.column}>
-                      <td className="monospace">{item.column}</td>
-                      <td>{item.null_count.toLocaleString()}</td>
-                      <td>{item.null_pct.toFixed(2)}%</td>
-                      <td style={{ width: 120 }}>
-                        <div className="progress-bar-wrap">
-                          <div className="progress-bar-fill" style={{ width: `${Math.min(item.null_pct * 10, 100)}%`, background: item.null_pct > 1 ? '#FF4757' : 'var(--bmw-blue)' }} />
-                        </div>
-                      </td>
-                      <td>
-                        <span className={`badge ${item.null_pct === 0 ? 'badge-excellent' : item.null_pct < 1 ? 'badge-good' : 'badge-poor'}`}>
-                          {item.null_pct === 0 ? 'CLEAN' : item.null_pct < 1 ? 'WARNING' : 'FAIL'}
-                        </span>
+                  {penaltyData.map(p => (
+                    <tr key={p.name}>
+                      <td>{p.name}</td>
+                      <td>{p.weight}%</td>
+                      <td style={{ color: p.penalty > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        -{p.penalty.toFixed(3)}
                       </td>
                     </tr>
                   ))}
@@ -198,7 +244,7 @@ export default function Dashboard() {
               </table>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

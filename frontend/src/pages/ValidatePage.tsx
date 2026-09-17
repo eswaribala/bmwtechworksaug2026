@@ -1,9 +1,7 @@
 import { useState, useRef, type DragEvent, type ChangeEvent } from 'react';
 import Papa from 'papaparse';
-import { getScoreColor, getScoreLabel } from '../data/mockData';
-
-// ── Backend API URL (set VITE_API_URL in .env to override)
-const API_URL = (import.meta as any).env?.VITE_API_URL ?? 'http://localhost:8000';
+import { usePipeline, API_URL } from '../context/PipelineContext';
+import { getScoreColor, getScoreLabel, fmt, fmtPct } from '../utils/constants';
 
 interface ValidationResult {
   dataset: string;
@@ -16,33 +14,31 @@ interface ValidationResult {
   referentialErrorCount: number;
   score: number;
   columnStats: { column: string; nullCount: number; nullPct: number }[];
-  // AWS metadata (only populated when backend is online)
   awsConnected?: boolean;
   rawS3Path?: string | null;
   curatedPath?: string | null;
   quarantinePath?: string | null;
   reportPath?: string | null;
   source?: 'backend' | 'browser';
+  filename?: string;
+  runId?: string;
 }
 
-// ── In-browser fallback constants ──────────────────────────────────
 const VIN_REGEX = /^[A-HJ-NPR-Z0-9]{17}$/i;
 const REQUIRED_COLS_TELEMETRY = ['event_id', 'vehicle_id', 'vin', 'timestamp', 'battery_level'];
 const REQUIRED_COLS_VEHICLE_MASTER = ['vehicle_id', 'vin', 'model', 'model_year'];
 
-function detectDataset(columns: string[]): string {
+function detectDatasetFromCols(columns: string[]): string {
   if (columns.includes('event_id')) return 'telemetry';
   if (columns.includes('vehicle_id') || columns.includes('model') || columns.includes('vin')) return 'vehicle_master';
-  return 'unknown';
+  return 'telemetry';
 }
 
 function validateInBrowser(rows: Record<string, string>[], dataset: string): ValidationResult {
   const total = rows.length;
-  const required =
-    dataset === 'telemetry' ? REQUIRED_COLS_TELEMETRY : REQUIRED_COLS_VEHICLE_MASTER;
+  const required = dataset === 'telemetry' ? REQUIRED_COLS_TELEMETRY : REQUIRED_COLS_VEHICLE_MASTER;
   const cols = Object.keys(rows[0] || {});
 
-  // Null check
   let nullCount = 0;
   const colNulls: Record<string, number> = {};
   required.forEach(c => { colNulls[c] = 0; });
@@ -57,7 +53,6 @@ function validateInBrowser(rows: Record<string, string>[], dataset: string): Val
     if (rowHasNull) nullCount++;
   });
 
-  // Duplicate check
   const seen = new Set<string>();
   let duplicateCount = 0;
   const idCol = dataset === 'telemetry' ? 'event_id' : 'vehicle_id';
@@ -67,7 +62,6 @@ function validateInBrowser(rows: Record<string, string>[], dataset: string): Val
     else if (key) seen.add(key);
   });
 
-  // VIN check
   let invalidVinCount = 0;
   if (cols.includes('vin')) {
     rows.forEach(row => {
@@ -76,7 +70,6 @@ function validateInBrowser(rows: Record<string, string>[], dataset: string): Val
     });
   }
 
-  // Date check
   let invalidDateCount = 0;
   const dateCol = dataset === 'telemetry' ? 'timestamp' : null;
   if (dateCol && cols.includes(dateCol)) {
@@ -86,7 +79,6 @@ function validateInBrowser(rows: Record<string, string>[], dataset: string): Val
     });
   }
 
-  // Range check
   let rangeViolationCount = 0;
   if (cols.includes('battery_level')) {
     rows.forEach(row => {
@@ -106,26 +98,32 @@ function validateInBrowser(rows: Record<string, string>[], dataset: string): Val
   }));
 
   return {
-    dataset, totalRows: total, nullCount, duplicateCount, invalidVinCount,
-    invalidDateCount, rangeViolationCount, referentialErrorCount: 0,
-    score, columnStats, source: 'browser',
+    dataset,
+    totalRows: total,
+    nullCount,
+    duplicateCount,
+    invalidVinCount,
+    invalidDateCount,
+    rangeViolationCount,
+    referentialErrorCount: 0,
+    score,
+    columnStats,
+    source: 'browser',
   };
 }
 
-// ── Map backend JSON report to our UI shape ─────────────────────────
-function mapBackendReport(data: any, _filename?: string): ValidationResult {
+function mapBackendReport(data: any, filename?: string): ValidationResult {
   const report = data.bmw_data_quality_report || {};
   const recSummary = report.record_summary || {};
   const checks = report.quality_checks || {};
   const s3 = data.s3_paths ?? {};
 
   const rawNullList = report.null_analysis ?? data.null_summary ?? [];
-  const nullSummary: { column: string; nullCount: number; nullPct: number }[] =
-    rawNullList.map((s: any) => ({
-      column: s.column,
-      nullCount: s.null_count ?? s.nullCount ?? 0,
-      nullPct: s.null_pct ?? s.nullPct ?? 0,
-    }));
+  const nullSummary = rawNullList.map((s: any) => ({
+    column: s.column,
+    nullCount: s.null_count ?? s.nullCount ?? 0,
+    nullPct: s.null_pct ?? s.nullPct ?? 0,
+  }));
 
   return {
     dataset:               report.dataset ?? data.dataset ?? 'unknown',
@@ -144,332 +142,349 @@ function mapBackendReport(data: any, _filename?: string): ValidationResult {
     quarantinePath:        s3.quarantine ?? null,
     reportPath:            s3.report ?? null,
     source:                'backend',
+    filename,
+    runId:                 data.run_id,
   };
 }
 
-// ────────────────────────────────────────────────────────────────────
-// Component
-// ────────────────────────────────────────────────────────────────────
-
 export default function ValidatePage() {
-  const [dragging, setDragging]     = useState(false);
-  const [progress, setProgress]     = useState(0);
-  const [processing, setProcessing] = useState(false);
-  const [result, setResult]         = useState<ValidationResult | null>(null);
-  const [fileName, setFileName]     = useState('');
-  const [statusMsg, setStatusMsg]   = useState('');
-  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const { refreshHistory, setSelectedRunId, setDatasetFilter } = usePipeline();
+  const [targetDataset, setTargetDataset] = useState<'telemetry' | 'vehicle_master'>('telemetry');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [validating, setValidating] = useState(false);
+  const [result, setResult] = useState<ValidationResult | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [dragOver, setDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // ── Try real backend first, fall back to browser ────────────────
-  async function processFile(file: File) {
-    setFileName(file.name);
-    setProcessing(true);
-    setProgress(10);
-    setResult(null);
-    setStatusMsg('Connecting to quality engine…');
-
-    // 1. Try backend
-    try {
-      const form = new FormData();
-      form.append('file', file);
-      setProgress(20);
-      setStatusMsg('Uploading to S3 raw/ and running quality checks…');
-
-      const res = await fetch(`${API_URL}/upload`, { method: 'POST', body: form });
-      if (!res.ok) throw new Error(`Backend returned ${res.status}`);
-
-      const data = await res.json();
-      setBackendOnline(true);
-      setProgress(95);
-      setStatusMsg('Quality checks complete!');
-      setTimeout(() => {
-        setResult(mapBackendReport(data, file.name));
-        setProgress(100);
-        setProcessing(false);
-        setStatusMsg('');
-      }, 300);
+  const handleFile = (file: File) => {
+    if (!file.name.endsWith('.csv')) {
+      setErrorMsg('Please upload a .csv file');
       return;
-    } catch {
-      setBackendOnline(false);
-      setStatusMsg('Backend offline — running in-browser checks (no S3)…');
     }
+    setSelectedFile(file);
+    setResult(null);
+    setErrorMsg(null);
 
-    // 2. In-browser fallback
-    setProgress(30);
-    const allRows: Record<string, string>[] = [];
-    let processed = 0;
+    // Auto-select target dataset based on filename as a convenience
+    if (file.name.toLowerCase().includes('vehicle')) {
+      setTargetDataset('vehicle_master');
+    } else if (file.name.toLowerCase().includes('telemetry')) {
+      setTargetDataset('telemetry');
+    }
+  };
 
-    Papa.parse<Record<string, string>>(file, {
-      header: true,
-      skipEmptyLines: true,
-      chunk: (results, parser) => {
-        allRows.push(...results.data);
-        processed += results.data.length;
-        parser.pause();
-        setProgress(30 + Math.min(55, Math.round((processed / (file.size / 120)) * 55)));
-        setTimeout(() => parser.resume(), 0);
-      },
-      complete: () => {
-        setProgress(90);
-        const dataset = detectDataset(Object.keys(allRows[0] || {}));
-        const res = validateInBrowser(allRows, dataset);
-        setTimeout(() => {
-          setResult(res);
-          setProgress(100);
-          setProcessing(false);
-          setStatusMsg('');
-        }, 400);
-      },
-      error: () => {
-        setProcessing(false);
-        setStatusMsg('Failed to parse CSV.');
-      },
-    });
-  }
-
-  function onDrop(e: DragEvent<HTMLDivElement>) {
+  const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setDragging(false);
-    const file = e.dataTransfer.files[0];
-    if (file) processFile(file);
-  }
+    setDragOver(false);
+    if (e.dataTransfer.files?.[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
 
-  function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (file) processFile(file);
-  }
+  const onFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      handleFile(e.target.files[0]);
+    }
+  };
 
-  const scoreColor = result ? getScoreColor(result.score) : 'var(--bmw-blue)';
-  const scoreLabel = result ? getScoreLabel(result.score) : '';
+  const handleValidate = async () => {
+    if (!selectedFile) return;
+    setValidating(true);
+    setErrorMsg(null);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      formData.append('dataset', targetDataset);
+
+      const resp = await fetch(`${API_URL}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (resp.ok) {
+        const data = await resp.json();
+        const mapped = mapBackendReport(data, selectedFile.name);
+        setResult(mapped);
+        setDatasetFilter(targetDataset);
+        if (data.run_id) setSelectedRunId(data.run_id);
+        await refreshHistory();
+        setValidating(false);
+        return;
+      }
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.detail ?? 'Backend validation returned error');
+    } catch (backendErr: any) {
+      console.warn('Backend upload failed, falling back to in-browser validation:', backendErr);
+      // Browser fallback
+      Papa.parse<Record<string, string>>(selectedFile, {
+        header: true,
+        skipEmptyLines: true,
+        complete: parsed => {
+          try {
+            const res = validateInBrowser(parsed.data, targetDataset);
+            res.filename = selectedFile.name;
+            setResult(res);
+          } catch (e: any) {
+            setErrorMsg(`Validation error: ${e.message}`);
+          } finally {
+            setValidating(false);
+          }
+        },
+        error: parseErr => {
+          setErrorMsg(`CSV parse error: ${parseErr.message}`);
+          setValidating(false);
+        },
+      });
+    }
+  };
+
+  const scoreLabel = result ? getScoreLabel(result.score) : '-';
+  const scoreColor = result ? getScoreColor(result.score) : 'var(--text-muted)';
 
   return (
     <div>
       <div className="page-header">
         <div className="page-header-left">
-          <h1>Dataset Validation</h1>
-          <p>Upload a BMW CSV dataset — automatically processed through the full quality engine</p>
+          <h1>Dataset Validation & Ingestion</h1>
+          <p>Validate CSV datasets against governance rules, segregate invalid records, and upload to S3</p>
         </div>
-        {/* Backend status badge */}
-        {backendOnline !== null && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600,
-              background: backendOnline ? 'rgba(46,204,113,0.15)' : 'rgba(255,107,53,0.15)',
-              border: `1px solid ${backendOnline ? '#2ecc71' : '#FF6B35'}`,
-              color: backendOnline ? '#2ecc71' : '#FF6B35',
-            }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'currentColor' }} />
-              {backendOnline ? 'AWS Pipeline Online' : 'Browser Mode (No AWS)'}
-            </span>
-          </div>
-        )}
       </div>
 
       <div className="page-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-
-        {/* Upload Zone */}
-        <div className="card card-body"
-          style={{ padding: 0 }}
-          onDragOver={e => { e.preventDefault(); setDragging(true); }}
-          onDragLeave={() => setDragging(false)}
-          onDrop={onDrop}
-        >
-          <div className={`upload-zone ${dragging ? 'drag-over' : ''}`} onClick={() => inputRef.current?.click()}>
-            <div className="upload-icon">📂</div>
-            <h3>Drop a BMW CSV file here</h3>
-            <p style={{ marginBottom: '0.5rem' }}>
-              Supports: bmw_telemetry.csv · bmw_vehicle_master.csv · bmw_sales.csv · bmw_maintenance.csv
-            </p>
-            <p style={{ marginBottom: '1rem', fontSize: 12, color: 'var(--text-muted)' }}>
-              File is automatically uploaded to S3 raw/ and processed through the quality engine
-            </p>
-            <button className="btn btn-primary" type="button">Browse File</button>
-            <input ref={inputRef} type="file" accept=".csv" style={{ display: 'none' }} onChange={onChange} id="file-upload" />
-          </div>
-        </div>
-
-        {/* Progress */}
-        {(processing || progress > 0) && (
-          <div className="card card-body">
-            <div className="flex justify-between mb-2">
-              <span style={{ fontSize: 13 }}>Processing: <strong>{fileName}</strong></span>
-              <span style={{ fontSize: 13, color: 'var(--bmw-blue-bright)' }}>{progress}%</span>
-            </div>
-            <div className="progress-bar-wrap">
-              <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
-            </div>
-            {statusMsg && <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 8 }}>{statusMsg}</p>}
-          </div>
-        )}
-
-        {/* Results */}
-        {result && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', animation: 'countUp 0.4s ease' }}>
-
-            {/* AWS pipeline paths */}
-            {result.source === 'backend' && (
-              <div className="card card-body" style={{
-                background: 'rgba(0,90,200,0.08)', border: '1px solid rgba(0,90,200,0.25)',
-                display: 'flex', flexDirection: 'column', gap: 6,
-              }}>
-                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>
-                  {result.awsConnected ? '☁️ AWS S3 Paths' : '💾 Local Output Paths'}
-                </div>
-                {result.rawS3Path && (
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <strong>Raw:</strong> <code style={{ fontSize: 11 }}>{result.rawS3Path}</code>
-                  </div>
-                )}
-                {result.curatedPath && (
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <strong>Curated:</strong> <code style={{ fontSize: 11 }}>{result.curatedPath}</code>
-                  </div>
-                )}
-                {result.quarantinePath && (
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <strong>Quarantine:</strong> <code style={{ fontSize: 11 }}>{result.quarantinePath}</code>
-                  </div>
-                )}
-                {result.reportPath && (
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <strong>Report:</strong> <code style={{ fontSize: 11 }}>{result.reportPath}</code>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Score cards row 1 */}
-            <div className="kpi-grid">
-              <div className="kpi-card" style={{ '--accent-color': scoreColor } as React.CSSProperties}>
-                <div className="kpi-label">Quality Score</div>
-                <div className="kpi-value" style={{ color: scoreColor }}>{result.score.toFixed(1)}</div>
-                <div className="kpi-sub"><span className={`badge badge-${scoreLabel.toLowerCase()}`}>{scoreLabel}</span></div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': 'var(--bmw-blue-bright)' } as React.CSSProperties}>
-                <div className="kpi-label">Total Records</div>
-                <div className="kpi-value">{result.totalRows.toLocaleString()}</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#FF6B35' } as React.CSSProperties}>
-                <div className="kpi-label">Null Issues</div>
-                <div className="kpi-value" style={{ color: '#FF6B35' }}>{result.nullCount.toLocaleString()}</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#FFD93D' } as React.CSSProperties}>
-                <div className="kpi-label">Duplicates</div>
-                <div className="kpi-value" style={{ color: '#FFD93D' }}>{result.duplicateCount.toLocaleString()}</div>
-              </div>
-            </div>
-
-            {/* Score cards row 2 */}
-            <div className="kpi-grid">
-              <div className="kpi-card" style={{ '--accent-color': '#C77DFF' } as React.CSSProperties}>
-                <div className="kpi-label">Invalid VIN</div>
-                <div className="kpi-value" style={{ color: '#C77DFF' }}>{result.invalidVinCount.toLocaleString()}</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#74B9FF' } as React.CSSProperties}>
-                <div className="kpi-label">Invalid Dates</div>
-                <div className="kpi-value" style={{ color: '#74B9FF' }}>{result.invalidDateCount.toLocaleString()}</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#FF4757' } as React.CSSProperties}>
-                <div className="kpi-label">Range Violations</div>
-                <div className="kpi-value" style={{ color: '#FF4757' }}>{result.rangeViolationCount.toLocaleString()}</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#FFA502' } as React.CSSProperties}>
-                <div className="kpi-label">Referential Errors</div>
-                <div className="kpi-value" style={{ color: '#FFA502' }}>{result.referentialErrorCount.toLocaleString()}</div>
-              </div>
-            </div>
-
-            {/* Valid vs Rejected summary */}
-            <div className="kpi-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
-              <div className="kpi-card" style={{ '--accent-color': 'var(--color-excellent)' } as React.CSSProperties}>
-                <div className="kpi-label">Valid Records</div>
-                <div className="kpi-value" style={{ color: 'var(--color-excellent)' }}>
-                  {(result.totalRows - result.nullCount - result.duplicateCount).toLocaleString()}
-                </div>
-                <div className="kpi-sub">→ Curated S3</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': '#FF4757' } as React.CSSProperties}>
-                <div className="kpi-label">Rejected Records</div>
-                <div className="kpi-value" style={{ color: '#FF4757' }}>
-                  {(result.nullCount + result.duplicateCount + result.invalidVinCount + result.invalidDateCount + result.rangeViolationCount + result.referentialErrorCount).toLocaleString()}
-                </div>
-                <div className="kpi-sub">→ Quarantine S3</div>
-              </div>
-              <div className="kpi-card" style={{ '--accent-color': 'var(--bmw-blue-bright)' } as React.CSSProperties}>
-                <div className="kpi-label">Dataset Detected</div>
-                <div className="kpi-value" style={{ fontSize: 18, color: 'var(--bmw-blue-bright)', textTransform: 'capitalize' }}>
-                  {result.dataset}
-                </div>
-                <div className="kpi-sub">{result.source === 'backend' ? '🔴 Live Pipeline' : '🟡 Browser Mode'}</div>
-              </div>
-            </div>
-
-            {/* Column null stats */}
-            {result.columnStats.length > 0 && (
-              <div className="card">
-                <div className="card-header"><h3>Null Analysis by Column</h3></div>
-                <div className="card-body">
-                  <table className="data-table">
-                    <thead>
-                      <tr><th>Column</th><th>Null Count</th><th>Null %</th><th>Progress</th><th>Status</th></tr>
-                    </thead>
-                    <tbody>
-                      {result.columnStats.map(s => (
-                        <tr key={s.column}>
-                          <td className="monospace">{s.column}</td>
-                          <td>{s.nullCount.toLocaleString()}</td>
-                          <td>{s.nullPct.toFixed(2)}%</td>
-                          <td style={{ width: 140 }}>
-                            <div className="progress-bar-wrap">
-                              <div className="progress-bar-fill" style={{
-                                width: `${Math.min(s.nullPct * 20, 100)}%`,
-                                background: s.nullPct > 1 ? '#FF4757' : 'var(--bmw-blue)',
-                              }} />
-                            </div>
-                          </td>
-                          <td>
-                            <span className={`badge ${s.nullPct === 0 ? 'badge-excellent' : s.nullPct < 2 ? 'badge-good' : 'badge-poor'}`}>
-                              {s.nullPct === 0 ? 'CLEAN' : s.nullPct < 2 ? 'WARN' : 'FAIL'}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Validation rules reference */}
+        {/* Step 1: Target dataset selection */}
         <div className="card">
-          <div className="card-header"><h3>Validation Rules Applied</h3></div>
+          <div className="card-header">
+            <h3>1. Select Target Dataset</h3>
+            <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Choose storage partition</span>
+          </div>
           <div className="card-body">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-              {[
-                { icon: '🔴', rule: 'Null Check', desc: 'Required columns must not be empty' },
-                { icon: '🟡', rule: 'Duplicate Detection', desc: 'Unique key columns must not repeat' },
-                { icon: '🟣', rule: 'VIN Validation', desc: '17-char alphanumeric (no I/O/Q)' },
-                { icon: '🔵', rule: 'Date Validation', desc: 'ISO 8601 timestamp format check' },
-                { icon: '🔴', rule: 'Range Validation', desc: 'battery: 0–100, temp: –40–120, speed: 0–300' },
-                { icon: '🟢', rule: 'Referential Integrity', desc: 'vehicle_id must exist in master' },
-              ].map(r => (
-                <div key={r.rule} style={{
-                  padding: '0.875rem', background: 'var(--bg-glass)',
-                  borderRadius: 8, border: '1px solid var(--border-subtle)',
-                }}>
-                  <div style={{ fontSize: 20, marginBottom: 6 }}>{r.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>{r.rule}</div>
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{r.desc}</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.75rem',
+                  padding: '1rem',
+                  background: targetDataset === 'telemetry' ? 'rgba(0, 102, 204, 0.12)' : 'var(--bg-secondary)',
+                  border: targetDataset === 'telemetry' ? '1px solid var(--bmw-blue-bright)' : '1px solid var(--border-subtle)',
+                  borderRadius: 8,
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="target_dataset"
+                  value="telemetry"
+                  checked={targetDataset === 'telemetry'}
+                  onChange={() => setTargetDataset('telemetry')}
+                  style={{ marginTop: 3 }}
+                />
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>
+                    Telemetry (raw/telemetry/)
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
+                    Event streams (speed, battery, temperature, GPS). Validates schema, ranges, dates, VIN, and foreign key against vehicle master.
+                  </div>
                 </div>
-              ))}
+              </label>
+
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.75rem',
+                  padding: '1rem',
+                  background: targetDataset === 'vehicle_master' ? 'rgba(0, 102, 204, 0.12)' : 'var(--bg-secondary)',
+                  border: targetDataset === 'vehicle_master' ? '1px solid var(--bmw-blue-bright)' : '1px solid var(--border-subtle)',
+                  borderRadius: 8,
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="target_dataset"
+                  value="vehicle_master"
+                  checked={targetDataset === 'vehicle_master'}
+                  onChange={() => setTargetDataset('vehicle_master')}
+                  style={{ marginTop: 3 }}
+                />
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>
+                    Vehicle Master (raw/vehicle_master/)
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
+                    Vehicle fleet master table (vehicle_id, VIN, model, year, region, status). Used as reference catalog for foreign key checks.
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
         </div>
 
+        {/* Step 2: Upload dropzone */}
+        <div className="card">
+          <div className="card-header">
+            <h3>2. Upload CSV File</h3>
+            {selectedFile && (
+              <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                {selectedFile.name} · {(selectedFile.size / 1024).toFixed(1)} KB
+              </span>
+            )}
+          </div>
+          <div className="card-body">
+            <div
+              className={`dropzone ${dragOver ? 'drag-over' : ''}`}
+              onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={onDrop}
+              onClick={() => fileInputRef.current?.click()}
+              id="csv-dropzone"
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".csv"
+                style={{ display: 'none' }}
+                onChange={onFileInputChange}
+              />
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>
+                {selectedFile ? selectedFile.name : 'Select or Drop BMW CSV File'}
+              </div>
+              <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
+                Target partition: <strong style={{ color: 'var(--bmw-blue-bright)' }}>{targetDataset}</strong> · Maximum size: 50MB
+              </div>
+            </div>
+
+            {errorMsg && (
+              <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'rgba(255,71,87,0.12)', border: '1px solid rgba(255,71,87,0.3)', borderRadius: 6, color: 'var(--color-critical)', fontSize: 13 }}>
+                {errorMsg}
+              </div>
+            )}
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem', gap: '0.75rem' }}>
+              {selectedFile && (
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => { setSelectedFile(null); setResult(null); setErrorMsg(null); }}
+                >
+                  Clear
+                </button>
+              )}
+              <button
+                type="button"
+                className="btn btn-primary"
+                disabled={!selectedFile || validating}
+                onClick={handleValidate}
+                id="validate-btn"
+              >
+                {validating ? 'Processing Quality Pipeline...' : `Validate & Ingest to ${targetDataset}`}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3: Result Summary */}
+        {result && (
+          <div className="card" style={{ animation: 'countUp 0.35s ease' }}>
+            <div className="card-header">
+              <h3>Validation Results — {result.filename ?? result.dataset}</h3>
+              <span className={`badge badge-${scoreLabel.toLowerCase()}`}>{scoreLabel}</span>
+            </div>
+            <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+                <div style={{ padding: '1rem', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, fontWeight: 900, color: scoreColor }}>{result.score.toFixed(1)}</div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Quality Score</div>
+                </div>
+                <div style={{ padding: '1rem', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--text-primary)' }}>{fmt(result.totalRows)}</div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Total Records</div>
+                </div>
+                <div style={{ padding: '1rem', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--color-excellent)' }}>
+                    {fmt(result.totalRows - (result.nullCount + result.duplicateCount + result.invalidVinCount + result.invalidDateCount + result.rangeViolationCount + result.referentialErrorCount))}
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Valid Records</div>
+                </div>
+                <div style={{ padding: '1rem', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--color-critical)' }}>
+                    {fmt(result.nullCount + result.duplicateCount + result.invalidVinCount + result.invalidDateCount + result.rangeViolationCount + result.referentialErrorCount)}
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Violations</div>
+                </div>
+              </div>
+
+              {/* Checks breakdown */}
+              <div className="data-table-wrap">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>Quality Check Rule</th>
+                      <th>Violations</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Null Value Check</td>
+                      <td>{fmt(result.nullCount)}</td>
+                      <td style={{ color: result.nullCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.nullCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Duplicate Record Detection</td>
+                      <td>{fmt(result.duplicateCount)}</td>
+                      <td style={{ color: result.duplicateCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.duplicateCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>VIN Format Verification (ISO 3779)</td>
+                      <td>{fmt(result.invalidVinCount)}</td>
+                      <td style={{ color: result.invalidVinCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.invalidVinCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Date / Timestamp Parsing</td>
+                      <td>{fmt(result.invalidDateCount)}</td>
+                      <td style={{ color: result.invalidDateCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.invalidDateCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Out-of-Range Sensor Boundaries</td>
+                      <td>{fmt(result.rangeViolationCount)}</td>
+                      <td style={{ color: result.rangeViolationCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.rangeViolationCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Referential Integrity (vehicle_master)</td>
+                      <td>{fmt(result.referentialErrorCount)}</td>
+                      <td style={{ color: result.referentialErrorCount > 0 ? 'var(--color-critical)' : 'var(--color-excellent)' }}>
+                        {result.referentialErrorCount > 0 ? 'FAIL' : 'PASS'}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* S3 Output Paths */}
+              <div style={{ padding: '0.875rem 1rem', background: 'var(--bg-secondary)', borderRadius: 8, border: '1px solid var(--border-subtle)', fontSize: 12, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 2 }}>Storage Destinations</div>
+                <div>Curated: <span style={{ fontFamily: 'monospace', color: 'var(--bmw-blue-bright)' }}>{result.curatedPath ?? '-'}</span></div>
+                <div>Quarantine: <span style={{ fontFamily: 'monospace', color: 'var(--color-critical)' }}>{result.quarantinePath ?? '-'}</span></div>
+                <div>Report: <span style={{ fontFamily: 'monospace', color: 'var(--text-secondary)' }}>{result.reportPath ?? '-'}</span></div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

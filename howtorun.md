@@ -131,3 +131,14 @@ To run the unit and integration test suite:
 ```cmd
 pytest
 ```
+
+
+docker npm run 
+
+   docker build -t react-app .
+
+   docker run -p 5173:5173 react-app
+
+
+$env:S3_BUCKET = "bmw-data-quality-532404260630"
+$env:AWS_DEFAULT_REGION = "eu-central-1"

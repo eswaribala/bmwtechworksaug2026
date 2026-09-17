@@ -6,27 +6,28 @@ import ChecksPage from './pages/ChecksPage';
 import QuarantinePage from './pages/QuarantinePage';
 import ReportPage from './pages/ReportPage';
 import MonitorPage from './pages/MonitorPage';
-import GovernancePage from './pages/GovernancePage';
 import AthenaPage from './pages/AthenaPage';
+import { PipelineProvider } from './context/PipelineContext';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <div className="app-shell">
-        <Sidebar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/"           element={<Dashboard />} />
-            <Route path="/validate"   element={<ValidatePage />} />
-            <Route path="/checks"     element={<ChecksPage />} />
-            <Route path="/quarantine" element={<QuarantinePage />} />
-            <Route path="/report"     element={<ReportPage />} />
-            <Route path="/monitor"    element={<MonitorPage />} />
-            <Route path="/governance" element={<GovernancePage />} />
-            <Route path="/athena"     element={<AthenaPage />} />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
+    <PipelineProvider>
+      <BrowserRouter>
+        <div className="app-shell">
+          <Sidebar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/"           element={<Dashboard />} />
+              <Route path="/validate"   element={<ValidatePage />} />
+              <Route path="/checks"     element={<ChecksPage />} />
+              <Route path="/quarantine" element={<QuarantinePage />} />
+              <Route path="/report"     element={<ReportPage />} />
+              <Route path="/monitor"    element={<MonitorPage />} />
+              <Route path="/athena"     element={<AthenaPage />} />
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+    </PipelineProvider>
   );
 }

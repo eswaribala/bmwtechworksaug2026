@@ -6,6 +6,9 @@ pandas>=2.0
 numpy>=1.24
 PyYAML>=6.0
 
+# Distributed data processing (requires Java 11+)
+pyspark>=3.5
+
 # AWS
 boto3>=1.26
 
@@ -20,6 +23,3 @@ pytest-cov>=4.0
 
 # Linting
 ruff>=0.1
-
-# Optional: PySpark (requires Java 11+)
-# pyspark>=3.4

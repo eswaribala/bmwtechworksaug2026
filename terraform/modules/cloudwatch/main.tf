@@ -65,7 +65,7 @@ resource "aws_cloudwatch_log_metric_filter" "error_count" {
 resource "aws_cloudwatch_log_metric_filter" "pipeline_runs" {
   name           = "${var.project_name}-pipeline-runs"
   log_group_name = aws_cloudwatch_log_group.pipeline.name
-  pattern        = "[timestamp, level, logger, ..., label=\"PIPELINE_END\", ...]"
+  pattern        = "[timestamp, level, logger, ..., label=\"PIPELINE_END\"]"
 
   metric_transformation {
     name          = "PipelineRuns"
@@ -247,8 +247,8 @@ resource "aws_cloudwatch_dashboard" "bmw" {
         properties = {
           title  = "Active Alarms"
           alarms = [
-            "arn:aws:cloudwatch:${var.region}:*:alarm:${var.project_name}-low-quality-score",
-            "arn:aws:cloudwatch:${var.region}:*:alarm:${var.project_name}-high-error-rate",
+            aws_cloudwatch_metric_alarm.low_quality_score.arn,
+            aws_cloudwatch_metric_alarm.high_error_rate.arn,
           ]
         }
       },

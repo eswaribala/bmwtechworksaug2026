@@ -79,7 +79,26 @@ export interface LogEntry {
 export type DataZone = 'raw' | 'curated' | 'quarantine' | 'reports';
 export type UserRole = 'Data Engineer' | 'Data Analyst' | 'Business User';
 
-export interface GovernanceAccess {
-  role: UserRole;
-  zones: { [K in DataZone]: boolean };
+export interface HistoryRun {
+  run_id: string;
+  filename: string;
+  dataset: string;
+  timestamp: string;
+  total_records: number;
+  valid_records: number;
+  rejected_records: number;
+  quality_score: number;
+  score_label: ScoreLabel;
+  aws_connected: boolean;
+  s3_paths: Record<string, string>;
 }
+
+export interface AthenaQueryResult {
+  columns: string[];
+  rows: Record<string, string | number>[];
+  rowCount: number;
+  duration: string;
+  database: string;
+  region: string;
+}
+

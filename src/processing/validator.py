@@ -1,13 +1,12 @@
 """
 BMW Data Quality & Governance Platform — Validator
 Participant 12 | Pod D
-All individual validation rule implementations.
+All individual validation rule implementations, powered by PySpark.
 """
 
-import re
-import pandas as pd
-from datetime import datetime
-from typing import Optional
+from pyspark.sql import DataFrame
+from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 from src.utils.config import (
     REQUIRED_COLUMNS, VIN_REGEX, VIN_COLUMN,
     RANGE_RULES, DATE_COLUMNS, UNIQUE_KEY_COLUMNS
@@ -26,7 +25,7 @@ ERROR_REFERENTIAL = "REFERENTIAL_INTEGRITY"
 ERROR_SCHEMA = "SCHEMA_ERROR"
 
 
-def check_schema(df: pd.DataFrame, dataset: str) -> list[str]:
+def check_schema(df: DataFrame, dataset: str) -> list[str]:
     """
     Verify all required columns are present.
     Returns list of missing column names.
@@ -36,155 +35,159 @@ def check_schema(df: pd.DataFrame, dataset: str) -> list[str]:
     return missing
 
 
-def check_nulls(df: pd.DataFrame, dataset: str) -> pd.DataFrame:
+def check_nulls(df: DataFrame, dataset: str) -> DataFrame:
     """
     Flag rows that have NULL values in any required column.
 
-    Returns a copy of df with a boolean column '__null_fail' and
-    a string column '__null_cols' listing which columns are null.
+    Returns df with a boolean column '__null_fail' and a string
+    column '__null_cols' listing which columns are null.
     """
-    df = df.copy()
     required = REQUIRED_COLUMNS.get(dataset, [])
     cols_present = [c for c in required if c in df.columns]
 
-    null_mask = df[cols_present].isnull().any(axis=1)
-    df["__null_fail"] = null_mask
+    if not cols_present:
+        return df.withColumn("__null_fail", F.lit(False)).withColumn("__null_cols", F.lit(""))
 
-    def _null_cols(row):
-        return ", ".join(c for c in cols_present if pd.isnull(row[c]))
-
-    df["__null_cols"] = df.apply(_null_cols, axis=1)
+    null_flags = [F.when(F.col(c).isNull(), F.lit(c)) for c in cols_present]
+    df = df.withColumn("__null_cols", F.concat_ws(", ", *null_flags))
+    df = df.withColumn("__null_fail", F.length(F.col("__null_cols")) > 0)
     return df
 
 
-def check_duplicates(df: pd.DataFrame, dataset: str) -> pd.DataFrame:
+def check_duplicates(df: DataFrame, dataset: str) -> DataFrame:
     """
     Flag duplicate rows based on the dataset's unique key columns.
-
-    Returns df with boolean column '__dup_fail'.
+    The first occurrence (by original row order) is kept; later
+    occurrences are flagged. Returns df with boolean column '__dup_fail'.
     """
-    df = df.copy()
-    key_cols = UNIQUE_KEY_COLUMNS.get(dataset, [])
-    key_cols_present = [c for c in key_cols if c in df.columns]
+    key_cols = [c for c in UNIQUE_KEY_COLUMNS.get(dataset, []) if c in df.columns]
 
-    if key_cols_present:
-        df["__dup_fail"] = df.duplicated(subset=key_cols_present, keep="first")
+    df = df.withColumn("__row_id", F.monotonically_increasing_id())
+
+    if key_cols:
+        window = Window.partitionBy(*key_cols).orderBy("__row_id")
+        df = df.withColumn("__dup_rank", F.row_number().over(window))
+        df = df.withColumn("__dup_fail", F.col("__dup_rank") > 1).drop("__dup_rank")
     else:
-        df["__dup_fail"] = False
-    return df
+        df = df.withColumn("__dup_fail", F.lit(False))
+
+    # Preserve original ingestion order downstream
+    return df.orderBy("__row_id")
 
 
-def check_vin(df: pd.DataFrame) -> pd.DataFrame:
+def check_vin(df: DataFrame) -> DataFrame:
     """
     Validate VIN values against the BMW VIN format.
     Standard VIN: 17 alphanumeric chars (no I, O, Q).
 
     Returns df with boolean column '__vin_fail'.
     """
-    df = df.copy()
     if VIN_COLUMN not in df.columns:
-        df["__vin_fail"] = False
-        return df
+        return df.withColumn("__vin_fail", F.lit(False))
 
-    vin_pattern = re.compile(VIN_REGEX)
-
-    def _valid_vin(v) -> bool:
-        if pd.isnull(v):
-            return False
-        return bool(vin_pattern.match(str(v).strip().upper()))
-
-    df["__vin_fail"] = ~df[VIN_COLUMN].apply(_valid_vin)
-    return df
+    normalized = F.upper(F.trim(F.col(VIN_COLUMN)))
+    valid = F.col(VIN_COLUMN).isNotNull() & normalized.rlike(VIN_REGEX)
+    return df.withColumn("__vin_fail", ~valid)
 
 
-def check_dates(df: pd.DataFrame, dataset: str) -> pd.DataFrame:
+def check_dates(df: DataFrame, dataset: str) -> DataFrame:
     """
     Validate date / timestamp fields.
     Accepts ISO 8601 (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS).
 
     Returns df with boolean column '__date_fail' and '__date_cols'.
     """
-    df = df.copy()
     date_cols = [c for c in DATE_COLUMNS.get(dataset, []) if c in df.columns]
 
     if not date_cols:
-        df["__date_fail"] = False
-        df["__date_cols"] = ""
-        return df
+        return df.withColumn("__date_fail", F.lit(False)).withColumn("__date_cols", F.lit(""))
 
-    date_fail_masks = []
+    fail_flags = []
     for col in date_cols:
-        parsed = pd.to_datetime(df[col], errors="coerce")
-        date_fail_masks.append(parsed.isnull())
+        # try_to_timestamp returns NULL on unparseable input instead of raising
+        # (Spark's ANSI mode makes plain to_timestamp throw on bad strings).
+        parsed = F.coalesce(
+            F.try_to_timestamp(F.col(col), F.lit("yyyy-MM-dd HH:mm:ss")),
+            F.try_to_timestamp(F.col(col), F.lit("yyyy-MM-dd")),
+        )
+        fail_flags.append(F.when(parsed.isNull(), F.lit(col)))
 
-    combined = pd.concat(date_fail_masks, axis=1)
-    combined.columns = date_cols
-    df["__date_fail"] = combined.any(axis=1)
-    df["__date_cols"] = combined.apply(
-        lambda row: ", ".join(col for col in date_cols if row[col]), axis=1
-    )
+    df = df.withColumn("__date_cols", F.concat_ws(", ", *fail_flags))
+    df = df.withColumn("__date_fail", F.length(F.col("__date_cols")) > 0)
     return df
 
 
-def check_ranges(df: pd.DataFrame) -> pd.DataFrame:
+def check_ranges(df: DataFrame) -> DataFrame:
     """
     Check numeric columns against configured min/max ranges.
 
     Returns df with boolean column '__range_fail' and '__range_cols'.
     """
-    df = df.copy()
     applicable = {col: bounds for col, bounds in RANGE_RULES.items() if col in df.columns}
 
     if not applicable:
-        df["__range_fail"] = False
-        df["__range_cols"] = ""
-        return df
+        return df.withColumn("__range_fail", F.lit(False)).withColumn("__range_cols", F.lit(""))
 
-    fail_masks = {}
+    fail_flags = []
     for col, (lo, hi) in applicable.items():
-        numeric = pd.to_numeric(df[col], errors="coerce")
-        fail_masks[col] = (numeric < lo) | (numeric > hi) | numeric.isnull()
+        numeric = F.col(col).cast("double")
+        out_of_bounds = numeric.isNull() | (numeric < F.lit(lo)) | (numeric > F.lit(hi))
+        fail_flags.append(F.when(out_of_bounds, F.lit(col)))
 
-    fail_df = pd.DataFrame(fail_masks)
-    df["__range_fail"] = fail_df.any(axis=1)
-    df["__range_cols"] = fail_df.apply(
-        lambda row: ", ".join(col for col in fail_masks if row[col]), axis=1
-    )
+    df = df.withColumn("__range_cols", F.concat_ws(", ", *fail_flags))
+    df = df.withColumn("__range_fail", F.length(F.col("__range_cols")) > 0)
     return df
 
 
 def check_referential_integrity(
-    df: pd.DataFrame,
+    df: DataFrame,
     fk_column: str,
-    reference_df: pd.DataFrame,
+    reference_df: DataFrame,
     pk_column: str,
-) -> pd.DataFrame:
+) -> DataFrame:
     """
     Verify that every value in fk_column exists in the reference DataFrame's pk_column.
 
     Returns df with boolean column '__ref_fail'.
     """
-    df = df.copy()
     if fk_column not in df.columns:
-        df["__ref_fail"] = False
-        return df
+        return df.withColumn("__ref_fail", F.lit(False))
 
-    valid_ids = set(reference_df[pk_column].dropna().unique())
-    df["__ref_fail"] = ~df[fk_column].isin(valid_ids)
-    return df
+    df = df.withColumn("__row_id", F.monotonically_increasing_id())
+
+    ref = (
+        reference_df
+        .select(F.col(pk_column).alias("__ref_pk"))
+        .where(F.col("__ref_pk").isNotNull())
+        .distinct()
+        .withColumn("__ref_exists", F.lit(True))
+    )
+
+    joined = df.join(ref, df[fk_column] == ref["__ref_pk"], "left")
+    joined = joined.withColumn("__ref_fail", F.col("__ref_exists").isNull())
+    joined = joined.drop("__ref_pk", "__ref_exists")
+
+    return joined.orderBy("__row_id")
 
 
 # ─────────────────────────────────────────────────────
 # Null percentage summary helper
 # ─────────────────────────────────────────────────────
-def null_summary(df: pd.DataFrame, dataset: str) -> list[dict]:
+def null_summary(df: DataFrame, dataset: str) -> list[dict]:
     """Return per-column null statistics for important columns."""
     required = REQUIRED_COLUMNS.get(dataset, [])
     cols = [c for c in required if c in df.columns]
-    total = len(df)
+    total = df.count()
+
+    if not cols or total == 0:
+        return []
+
+    agg_exprs = [F.sum(F.col(c).isNull().cast("int")).alias(c) for c in cols]
+    row = df.select(*agg_exprs).collect()[0]
+
     results = []
     for col in cols:
-        null_count = int(df[col].isnull().sum())
+        null_count = int(row[col] or 0)
         null_pct = round(null_count / total * 100, 2) if total else 0.0
         results.append({"column": col, "null_count": null_count, "null_pct": null_pct})
     return results
