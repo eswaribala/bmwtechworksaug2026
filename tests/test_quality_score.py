@@ -5,7 +5,6 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import pytest
 from src.processing.quality_engine import QualityMetrics
 from src.scoring.quality_score import QualityScoreCalculator
 

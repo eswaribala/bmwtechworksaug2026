@@ -17,7 +17,7 @@ from pathlib import Path
 # Ensure project root is on the path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.utils.config import S3_BUCKET, CURATED_PREFIX, QUARANTINE_PREFIX, REPORT_PREFIX
+from src.utils.config import S3_BUCKET
 from src.utils.logger import BmwLogger
 from src.utils.spark_session import get_spark, stop_spark
 from src.ingestion.s3_loader import S3Loader

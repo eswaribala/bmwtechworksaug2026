@@ -3,8 +3,6 @@ BMW Data Quality & Governance Platform — Quality Report Generator
 Participant 12 | Pod D
 """
 
-import json
-from datetime import datetime, timezone
 from src.processing.quality_engine import QualityMetrics
 from src.scoring.quality_score import QualityScoreCalculator
 

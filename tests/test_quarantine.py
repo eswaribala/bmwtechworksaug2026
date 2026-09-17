@@ -1,12 +1,12 @@
 """
 Tests: Quarantine mechanism
 """
-import sys, tempfile
+import sys
+import tempfile
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pandas as pd
-import pytest
 from src.processing.quarantine import QuarantineManager
 
 

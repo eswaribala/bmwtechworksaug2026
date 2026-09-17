@@ -5,7 +5,6 @@ Uploads log events to AWS CloudWatch Logs; falls back to stdout gracefully.
 """
 
 import json
-import time
 from datetime import datetime, timezone
 from typing import Optional
 from src.utils.config import CLOUDWATCH_LOG_GROUP, CLOUDWATCH_LOG_STREAM_PREFIX

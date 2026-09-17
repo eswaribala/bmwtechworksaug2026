@@ -1,7 +1,7 @@
 import { useState, useRef, type DragEvent, type ChangeEvent } from 'react';
 import Papa from 'papaparse';
 import { usePipeline, API_URL } from '../context/PipelineContext';
-import { getScoreColor, getScoreLabel, fmt, fmtPct } from '../utils/constants';
+import { getScoreColor, getScoreLabel, fmt } from '../utils/constants';
 
 interface ValidationResult {
   dataset: string;
@@ -27,12 +27,6 @@ interface ValidationResult {
 const VIN_REGEX = /^[A-HJ-NPR-Z0-9]{17}$/i;
 const REQUIRED_COLS_TELEMETRY = ['event_id', 'vehicle_id', 'vin', 'timestamp', 'battery_level'];
 const REQUIRED_COLS_VEHICLE_MASTER = ['vehicle_id', 'vin', 'model', 'model_year'];
-
-function detectDatasetFromCols(columns: string[]): string {
-  if (columns.includes('event_id')) return 'telemetry';
-  if (columns.includes('vehicle_id') || columns.includes('model') || columns.includes('vin')) return 'vehicle_master';
-  return 'telemetry';
-}
 
 function validateInBrowser(rows: Record<string, string>[], dataset: string): ValidationResult {
   const total = rows.length;

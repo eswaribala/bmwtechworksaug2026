@@ -1,4 +1,4 @@
-import { usePipeline, type DatasetFilter } from '../context/PipelineContext';
+import { usePipeline } from '../context/PipelineContext';
 
 interface FileFilterProps {
   showRunSelect?: boolean;

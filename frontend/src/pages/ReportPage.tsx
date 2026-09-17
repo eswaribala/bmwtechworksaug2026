@@ -25,7 +25,6 @@ export default function ReportPage() {
   const hasData = Boolean(reportData);
   const rep = reportData?.bmw_data_quality_report ?? reportData ?? {};
   const rec = rep?.record_summary ?? reportData ?? {};
-  const chk = rep?.quality_checks ?? reportData ?? {};
 
   const score = hasData ? (reportData.quality_score ?? rep.quality_score ?? null) : null;
   const label = hasData ? (reportData.score_label ?? rep.score_label ?? getScoreLabel(score)) : '-';

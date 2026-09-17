@@ -51,7 +51,7 @@ const CHECK_DEFINITIONS: Record<CheckTab, { title: string; rule: string; impact:
 };
 
 export default function ChecksPage() {
-  const { selectedRun, datasetFilter } = usePipeline();
+  const { selectedRun } = usePipeline();
   const [activeTab, setActiveTab] = useState<CheckTab>('null');
   const [reportDetail, setReportDetail] = useState<any>(null);
   const [sampleRecords, setSampleRecords] = useState<any[]>([]);

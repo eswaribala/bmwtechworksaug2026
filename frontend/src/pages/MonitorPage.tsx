@@ -7,7 +7,7 @@ import type { LogEntry } from '../types';
 type LogLevel = 'ALL' | 'INFO' | 'WARN' | 'ERROR';
 
 export default function MonitorPage() {
-  const { selectedRun, s3Bucket, datasetFilter } = usePipeline();
+  const { selectedRun, datasetFilter } = usePipeline();
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [levelFilter, setLevelFilter] = useState<LogLevel>('ALL');
   const [loading, setLoading] = useState(false);

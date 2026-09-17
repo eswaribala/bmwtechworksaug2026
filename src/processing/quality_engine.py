@@ -15,7 +15,7 @@ from src.processing.validator import (
     check_schema, check_nulls, check_duplicates, check_vin,
     check_dates, check_ranges, check_referential_integrity, null_summary,
     ERROR_NULL, ERROR_DUPLICATE, ERROR_VIN, ERROR_DATE, ERROR_RANGE,
-    ERROR_REFERENTIAL, ERROR_SCHEMA,
+    ERROR_REFERENTIAL,
 )
 
 

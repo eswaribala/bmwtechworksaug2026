@@ -10,9 +10,8 @@ import {
 } from 'recharts';
 
 export default function Dashboard() {
-  const { selectedRun, backendOnline, awsConnected } = usePipeline();
+  const { selectedRun, backendOnline } = usePipeline();
   const [detail, setDetail] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!selectedRun?.run_id) {
@@ -20,7 +19,6 @@ export default function Dashboard() {
       return;
     }
     let isCurrent = true;
-    setLoading(true);
     fetch(`${API_URL}/api/history/${selectedRun.run_id}`)
       .then(res => (res.ok ? res.json() : null))
       .then(data => {
@@ -28,9 +26,6 @@ export default function Dashboard() {
       })
       .catch(() => {
         if (isCurrent) setDetail(null);
-      })
-      .finally(() => {
-        if (isCurrent) setLoading(false);
       });
     return () => {
       isCurrent = false;
