@@ -1,6 +1,0 @@
-# BMW Data Quality Platform — Backend Dependencies
-fastapi==0.115.0
-uvicorn[standard]==0.30.6
-python-multipart==0.0.9
-boto3==1.35.0
-pandas==2.2.2
