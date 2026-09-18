@@ -1,8 +1,8 @@
-# BMW Data Quality & Governance Platform
+# BMW Data Quality Platform
 
 **Participant 12 — BMW Connected Mobility Data & AI Platform**
 
-> A production-style data quality and governance solution for validating BMW datasets, identifying data-quality issues, quarantining bad records, and generating a measurable **Data Quality Score (0–100)**.
+> A production-style data quality solution for validating BMW datasets, identifying data-quality issues, quarantining bad records, and generating a measurable **Data Quality Score (0–100)**.
 
 ---
 
