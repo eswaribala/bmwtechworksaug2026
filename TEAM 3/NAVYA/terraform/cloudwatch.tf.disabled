@@ -1,0 +1,14 @@
+# ============================================================
+# AWS CLOUDWATCH MONITORING
+# ============================================================
+
+resource "aws_cloudwatch_log_group" "etl_logs" {
+  name              = "/bmw/enterprise-batch-etl"
+  retention_in_days = 30
+
+  tags = {
+    Project     = "BMW Enterprise Batch ETL"
+    Environment = "Development"
+    ManagedBy   = "Terraform"
+  }
+}

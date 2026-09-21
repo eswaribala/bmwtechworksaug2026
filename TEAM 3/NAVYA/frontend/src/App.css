@@ -1,0 +1,2296 @@
+/* ============================================================
+   BMW ENTERPRISE BATCH ETL
+   PREMIUM DASHBOARD
+   ============================================================ */
+
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
+:root {
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #f4f7fb;
+
+  background: #02060b;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+
+  margin: 0;
+
+  min-width: 320px;
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(0, 95, 190, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(0, 180, 255, 0.08),
+      transparent 28%
+    ),
+    #02060b;
+
+}
+
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+
+.app-shell {
+
+  width: min(
+    1320px,
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+
+  padding: 30px 0 45px;
+
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.dashboard-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 28px;
+
+}
+
+
+.brand-section {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+}
+
+
+/* ============================================================
+   BMW LOGO
+   ============================================================ */
+
+.brand-mark {
+
+  width: 72px;
+
+  height: 72px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.08),
+      rgba(4,10,18,0.95)
+    );
+
+  border: 1px solid
+    rgba(115, 170, 255, 0.35);
+
+  box-shadow:
+    0 0 18px
+      rgba(0, 112, 255, 0.28),
+    0 0 42px
+      rgba(0, 112, 255, 0.10);
+
+  overflow: hidden;
+
+}
+
+
+.bmw-logo {
+
+  width: 64px;
+
+  height: 64px;
+
+  display: block;
+
+  object-fit: contain;
+
+}
+
+
+/* ============================================================
+   BRAND TEXT
+   ============================================================ */
+
+.eyebrow {
+
+  margin: 0 0 6px;
+
+  color: #6ea7dc;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.2px;
+
+}
+
+
+.brand-text h1 {
+
+  margin: 0;
+
+  font-size: clamp(
+    26px,
+    3vw,
+    38px
+  );
+
+  line-height: 1.05;
+
+  letter-spacing: -1.3px;
+
+}
+
+
+.subtitle {
+
+  margin: 7px 0 0;
+
+  color: #7790aa;
+
+  font-size: 13px;
+
+}
+
+
+/* ============================================================
+   HEADER ACTIONS
+   ============================================================ */
+
+.header-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+
+.system-status {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 15px;
+
+  border: 1px solid
+    rgba(100, 145, 190, 0.20);
+
+  border-radius: 999px;
+
+  background:
+    rgba(8, 16, 27, 0.75);
+
+  color: #a9bdd1;
+
+  font-size: 12px;
+
+}
+
+
+.status-dot {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  display: inline-block;
+
+}
+
+
+.status-dot.online {
+
+  background: #00f59b;
+
+  box-shadow:
+    0 0 9px
+      rgba(0, 245, 155, 0.85);
+
+}
+
+
+.status-dot.offline {
+
+  background: #ff4d6d;
+
+  box-shadow:
+    0 0 9px
+      rgba(255, 77, 109, 0.75);
+
+}
+
+
+.refresh-button {
+
+  border: 1px solid
+    rgba(105, 150, 205, 0.28);
+
+  border-radius: 10px;
+
+  padding: 11px 16px;
+
+  color: #dbe9f8;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(18, 31, 50, 0.95),
+      rgba(8, 16, 28, 0.95)
+    );
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+
+.refresh-button:hover:not(:disabled) {
+
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(50, 145, 255, 0.65);
+
+  box-shadow:
+    0 8px 25px
+      rgba(0, 80, 190, 0.18);
+
+}
+
+
+.refresh-button:disabled {
+
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+}
+
+
+.refresh-icon {
+
+  display: inline-block;
+
+  margin-right: 5px;
+
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero-strip {
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 35px;
+
+  min-height: 225px;
+
+  padding: 38px 40px;
+
+  margin-bottom: 22px;
+
+  border-radius: 18px;
+
+  border: 1px solid
+    rgba(42, 137, 255, 0.38);
+
+  background:
+
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(0, 120, 255, 0.22),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(0, 190, 255, 0.09),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      135deg,
+      #071426,
+      #06101d 55%,
+      #030a12
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255,255,255,0.035),
+    0 20px 60px
+      rgba(0,0,0,0.25);
+
+}
+
+
+.hero-strip::after {
+
+  content: "";
+
+  position: absolute;
+
+  right: -90px;
+
+  bottom: -120px;
+
+  width: 350px;
+
+  height: 350px;
+
+  border: 1px solid
+    rgba(50, 140, 255, 0.15);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+}
+
+
+.hero-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 690px;
+
+}
+
+
+.hero-kicker {
+
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  color: #39a6ff;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.6px;
+
+}
+
+
+.hero-strip h2 {
+
+  margin: 0;
+
+  max-width: 680px;
+
+  font-size: clamp(
+    35px,
+    4.5vw,
+    62px
+  );
+
+  line-height: 0.98;
+
+  letter-spacing: -3px;
+
+}
+
+
+.hero-strip h2 span {
+
+  color: #49a8ff;
+
+  text-shadow:
+    0 0 30px
+      rgba(40, 140, 255, 0.28);
+
+}
+
+
+.hero-strip p {
+
+  max-width: 660px;
+
+  margin: 17px 0 0;
+
+  color: #849bb3;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+}
+
+
+/* ============================================================
+   HERO META
+   ============================================================ */
+
+.hero-meta {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+
+}
+
+
+.hero-meta-card {
+
+  min-width: 108px;
+
+  padding: 18px 16px;
+
+  border-radius: 12px;
+
+  border: 1px solid
+    rgba(100, 160, 225, 0.22);
+
+  background:
+    rgba(5, 15, 29, 0.70);
+
+  backdrop-filter: blur(10px);
+
+}
+
+
+.hero-meta-card span {
+
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #68819a;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+
+}
+
+
+.hero-meta-card strong {
+
+  color: #e8f2ff;
+
+  font-size: 13px;
+
+  letter-spacing: 0.3px;
+
+}
+
+
+.tiny-green-dot {
+
+  display: inline-block;
+
+  width: 7px;
+
+  height: 7px;
+
+  margin-right: 7px;
+
+  border-radius: 50%;
+
+  background: #00f59b;
+
+  box-shadow:
+    0 0 10px
+      rgba(0, 245, 155, 0.85);
+
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.error-banner {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 18px;
+
+  padding: 15px 18px;
+
+  border: 1px solid
+    rgba(255, 75, 105, 0.30);
+
+  border-radius: 12px;
+
+  background:
+    rgba(70, 12, 25, 0.35);
+
+}
+
+
+.error-banner div {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+.error-banner strong {
+
+  color: #ff7890;
+
+  font-size: 13px;
+
+}
+
+
+.error-banner span {
+
+  color: #bba0a8;
+
+  font-size: 12px;
+
+}
+
+
+.error-banner button {
+
+  border: 1px solid
+    rgba(255, 90, 115, 0.35);
+
+  border-radius: 8px;
+
+  padding: 8px 13px;
+
+  color: #ffd8df;
+
+  background: transparent;
+
+  cursor: pointer;
+
+}
+
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+
+.filter-bar {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+
+  padding: 12px 15px;
+
+  border: 1px solid
+    rgba(50, 145, 255, 0.30);
+
+  border-radius: 10px;
+
+  background:
+    rgba(8, 23, 43, 0.65);
+
+}
+
+
+.filter-info {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+
+.filter-info span {
+
+  color: #5e88ad;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+}
+
+
+.filter-info strong {
+
+  padding: 5px 9px;
+
+  border-radius: 6px;
+
+  color: #b9ddff;
+
+  background:
+    rgba(30, 120, 255, 0.12);
+
+  font-size: 11px;
+
+}
+
+
+.filter-bar button {
+
+  border: 0;
+
+  color: #79baff;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+}
+
+
+/* ============================================================
+   KPI GRID
+   ============================================================ */
+
+.kpi-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+
+}
+
+
+.kpi-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 120px;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  border: 1px solid
+    rgba(85, 130, 180, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 24, 38, 0.95),
+      rgba(7, 13, 22, 0.95)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255,255,255,0.025);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+}
+
+
+.kpi-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+
+  height: 130px;
+
+  right: -65px;
+
+  top: -65px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(25, 115, 255, 0.08);
+
+}
+
+
+.kpi-card:hover {
+
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(55, 145, 255, 0.42);
+
+  box-shadow:
+    0 15px 35px
+      rgba(0, 70, 150, 0.12);
+
+}
+
+
+.kpi-card.primary {
+
+  border-color:
+    rgba(40, 135, 255, 0.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 30, 58, 0.98),
+      rgba(7, 15, 28, 0.98)
+    );
+
+}
+
+
+.kpi-icon {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: 46px;
+
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(80, 160, 255, 0.35);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(30, 125, 255, 0.32),
+      rgba(7, 20, 38, 0.9)
+    );
+
+  color: #e7f4ff;
+
+  font-size: 19px;
+
+  box-shadow:
+    0 0 20px
+      rgba(0, 100, 255, 0.12);
+
+}
+
+
+.kpi-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  min-width: 0;
+
+}
+
+
+.kpi-label {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #6f87a0;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+}
+
+
+.kpi-value {
+
+  display: block;
+
+  color: #f3f7fd;
+
+  font-size: clamp(
+    21px,
+    2vw,
+    27px
+  );
+
+  line-height: 1.1;
+
+  letter-spacing: -0.8px;
+
+  white-space: nowrap;
+
+}
+
+
+.kpi-caption {
+
+  display: block;
+
+  margin-top: 7px;
+
+  color: #64778d;
+
+  font-size: 10px;
+
+}
+
+
+/* ============================================================
+   ANALYTICS GRID
+   ============================================================ */
+
+.analytics-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(330px, 1fr);
+
+  gap: 14px;
+
+}
+
+
+.dashboard-card {
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(75, 115, 155, 0.18);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 20, 31, 0.96),
+      rgba(6, 12, 20, 0.98)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255,255,255,0.025);
+
+}
+
+
+.dashboard-card.large {
+
+  min-height: 410px;
+
+}
+
+
+.card-header {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 21px 20px 0;
+
+}
+
+
+.card-eyebrow {
+
+  margin: 0 0 6px;
+
+  color: #5c9bd3;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+}
+
+
+.card-header h2 {
+
+  margin: 0;
+
+  color: #ecf4fd;
+
+  font-size: 16px;
+
+  letter-spacing: -0.3px;
+
+}
+
+
+.interactive-hint {
+
+  display: block;
+
+  margin-top: 7px;
+
+  color: #5e7185;
+
+  font-size: 10px;
+
+}
+
+
+.card-badge {
+
+  flex-shrink: 0;
+
+  padding: 8px 10px;
+
+  border: 1px solid
+    rgba(80, 135, 195, 0.20);
+
+  border-radius: 7px;
+
+  color: #88a5c1;
+
+  background:
+    rgba(30, 50, 75, 0.25);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+}
+
+
+/* ============================================================
+   CHARTS
+   ============================================================ */
+
+.chart-container {
+
+  width: 100%;
+
+  height: 305px;
+
+  padding: 15px 12px 8px;
+
+}
+
+
+.model-chart {
+
+  height: 315px;
+
+}
+
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+
+  stroke:
+    rgba(100, 135, 170, 0.10);
+
+}
+
+
+.recharts-text {
+
+  fill: #71869c;
+
+  font-size: 10px;
+
+}
+
+
+.recharts-tooltip-wrapper {
+
+  outline: none;
+
+}
+
+
+.recharts-default-tooltip {
+
+  border:
+    1px solid
+    rgba(80, 140, 210, 0.25) !important;
+
+  border-radius: 8px !important;
+
+  background:
+    rgba(5, 13, 23, 0.96) !important;
+
+  box-shadow:
+    0 15px 40px
+      rgba(0,0,0,0.35) !important;
+
+}
+
+
+.recharts-legend-item-text {
+
+  color: #8498ad !important;
+
+  font-size: 10px;
+
+}
+
+
+/* ============================================================
+   INSIGHT PANEL
+   ============================================================ */
+
+.insight-panel {
+
+  display: grid;
+
+  grid-template-columns:
+    1.4fr 1fr 1fr;
+
+  gap: 10px;
+
+  margin: 0 20px 18px;
+
+  padding: 13px;
+
+  border-radius: 10px;
+
+  border: 1px solid
+    rgba(35, 135, 255, 0.20);
+
+  background:
+    rgba(10, 31, 55, 0.45);
+
+}
+
+
+.insight-panel div {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+}
+
+
+.insight-panel span {
+
+  color: #5e85aa;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+
+}
+
+
+.insight-panel strong {
+
+  color: #e4f1ff;
+
+  font-size: 13px;
+
+}
+
+
+.region-insight {
+
+  margin: 0 20px 18px;
+
+  padding: 13px;
+
+  border-radius: 10px;
+
+  border: 1px solid
+    rgba(35, 135, 255, 0.20);
+
+  background:
+    rgba(10, 31, 55, 0.45);
+
+}
+
+
+.region-insight span {
+
+  display: block;
+
+  color: #5e85aa;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+
+}
+
+
+.region-insight strong {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color: #e4f1ff;
+
+  font-size: 15px;
+
+}
+
+
+.region-insight p {
+
+  margin: 5px 0 0;
+
+  color: #7f95aa;
+
+  font-size: 10px;
+
+}
+
+
+/* ============================================================
+   DEALER LIST
+   ============================================================ */
+
+.dealer-list {
+
+  max-height: 355px;
+
+  overflow-y: auto;
+
+  margin-top: 10px;
+
+  padding: 0 14px 12px;
+
+}
+
+
+.dealer-list::-webkit-scrollbar {
+
+  width: 4px;
+
+}
+
+
+.dealer-list::-webkit-scrollbar-thumb {
+
+  border-radius: 10px;
+
+  background:
+    rgba(70, 130, 190, 0.25);
+
+}
+
+
+.dealer-row {
+
+  display: grid;
+
+  grid-template-columns:
+    34px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 7px;
+
+  border-bottom: 1px solid
+    rgba(100, 135, 170, 0.08);
+
+  transition:
+    background 0.2s ease;
+
+}
+
+
+.dealer-row:hover {
+
+  background:
+    rgba(25, 100, 180, 0.08);
+
+}
+
+
+.dealer-rank {
+
+  color: #3f78a7;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+}
+
+
+.dealer-info {
+
+  min-width: 0;
+
+}
+
+
+.dealer-info strong {
+
+  display: block;
+
+  overflow: hidden;
+
+  color: #dce9f5;
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+}
+
+
+.dealer-info span {
+
+  display: block;
+
+  margin-top: 4px;
+
+  color: #637a91;
+
+  font-size: 9px;
+
+}
+
+
+.dealer-revenue {
+
+  text-align: right;
+
+}
+
+
+.dealer-revenue strong {
+
+  display: block;
+
+  color: #d7eaff;
+
+  font-size: 11px;
+
+}
+
+
+.dealer-revenue span {
+
+  display: block;
+
+  margin-top: 4px;
+
+  color: #637a91;
+
+  font-size: 9px;
+
+}
+
+
+/* ============================================================
+   PLATFORM GRID
+   ============================================================ */
+
+.platform-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(330px, 0.9fr)
+    minmax(0, 1.6fr);
+
+  gap: 14px;
+
+  margin-top: 14px;
+
+}
+
+
+/* ============================================================
+   DATA QUALITY
+   ============================================================ */
+
+.quality-badge {
+
+  padding: 7px 9px;
+
+  border-radius: 7px;
+
+  color: #54e5aa;
+
+  background:
+    rgba(0, 225, 145, 0.08);
+
+  border: 1px solid
+    rgba(0, 225, 145, 0.18);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+}
+
+
+.quality-list {
+
+  padding: 13px 20px 18px;
+
+}
+
+
+.quality-row {
+
+  display: grid;
+
+  grid-template-columns:
+    26px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid
+    rgba(100, 135, 170, 0.08);
+
+}
+
+
+.quality-row:last-child {
+
+  border-bottom: 0;
+
+}
+
+
+.quality-icon {
+
+  width: 24px;
+
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #4ce5ad;
+
+  background:
+    rgba(0, 220, 145, 0.08);
+
+  border: 1px solid
+    rgba(0, 220, 145, 0.16);
+
+  font-size: 11px;
+
+}
+
+
+.quality-row strong {
+
+  display: block;
+
+  color: #d7e5f3;
+
+  font-size: 11px;
+
+}
+
+
+.quality-row small {
+
+  display: block;
+
+  margin-top: 3px;
+
+  color: #61758a;
+
+  font-size: 9px;
+
+}
+
+
+.quality-status {
+
+  color: #48dca5;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* ============================================================
+   PIPELINE
+   ============================================================ */
+
+.pipeline-card {
+
+  min-width: 0;
+
+}
+
+
+.live-badge {
+
+  padding: 7px 9px;
+
+  border-radius: 7px;
+
+  color: #51e5ac;
+
+  background:
+    rgba(0, 225, 145, 0.07);
+
+  border: 1px solid
+    rgba(0, 225, 145, 0.17);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+}
+
+
+.pipeline-flow {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  min-height: 190px;
+
+  padding: 20px;
+
+  overflow-x: auto;
+
+}
+
+
+.pipeline-wrapper {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+}
+
+
+.pipeline-node {
+
+  width: 100px;
+
+  min-height: 108px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 12px 8px;
+
+  border-radius: 12px;
+
+  border: 1px solid
+    rgba(85, 125, 160, 0.18);
+
+  background:
+    rgba(8, 17, 28, 0.75);
+
+}
+
+
+.pipeline-node.active {
+
+  border-color:
+    rgba(40, 145, 255, 0.42);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 35, 64, 0.90),
+      rgba(7, 16, 28, 0.90)
+    );
+
+  box-shadow:
+    0 0 25px
+      rgba(0, 110, 255, 0.09);
+
+}
+
+
+.pipeline-icon {
+
+  color: #5daeff;
+
+  font-size: 17px;
+
+}
+
+
+.pipeline-number {
+
+  color: #3e6c91;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+}
+
+
+.pipeline-node strong {
+
+  color: #dceafa;
+
+  font-size: 10px;
+
+}
+
+
+.pipeline-node small {
+
+  color: #60758b;
+
+  font-size: 8px;
+
+  text-align: center;
+
+}
+
+
+.pipeline-arrow {
+
+  padding: 0 5px;
+
+  color: #27669a;
+
+  font-size: 18px;
+
+}
+
+
+/* ============================================================
+   PLATFORM SUMMARY
+   ============================================================ */
+
+.platform-summary {
+
+  display: grid;
+
+  grid-template-columns:
+    1.5fr
+    repeat(4, 1fr);
+
+  margin-top: 14px;
+
+  border: 1px solid
+    rgba(75, 120, 165, 0.18);
+
+  border-radius: 13px;
+
+  background:
+    rgba(7, 15, 25, 0.85);
+
+}
+
+
+.platform-summary > div {
+
+  min-height: 70px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 12px 18px;
+
+  border-right: 1px solid
+    rgba(100, 135, 170, 0.09);
+
+}
+
+
+.platform-summary > div:last-child {
+
+  border-right: 0;
+
+}
+
+
+.platform-summary span {
+
+  color: #5d7186;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+}
+
+
+.platform-summary strong {
+
+  color: #d9e8f6;
+
+  font-size: 10px;
+
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.dashboard-footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 25px 5px 5px;
+
+  color: #53677b;
+
+  font-size: 9px;
+
+}
+
+
+.dashboard-footer > div {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+}
+
+
+.dashboard-footer strong {
+
+  color: #8298ae;
+
+  font-size: 10px;
+
+}
+
+
+.footer-right {
+
+  align-items: flex-end;
+
+  text-align: right;
+
+}
+
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+
+.loading-screen {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(15, 60, 115, 0.18),
+      transparent 38%
+    ),
+    #02060b;
+
+}
+
+
+.loading-logo {
+
+  width: 92px;
+
+  height: 92px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(80, 150, 255, 0.35);
+
+  background:
+    rgba(5, 13, 23, 0.9);
+
+  box-shadow:
+    0 0 30px
+      rgba(0, 100, 255, 0.20);
+
+}
+
+
+.loading-bmw-logo {
+
+  width: 80px;
+
+  height: 80px;
+
+  object-fit: contain;
+
+  display: block;
+
+}
+
+
+.loading-spinner {
+
+  width: 26px;
+
+  height: 26px;
+
+  margin-top: 25px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(80, 140, 200, 0.15);
+
+  border-top-color:
+    #238cff;
+
+  animation:
+    spin 0.9s linear infinite;
+
+}
+
+
+.loading-screen h2 {
+
+  margin: 18px 0 5px;
+
+  color: #e9f3fc;
+
+  font-size: 20px;
+
+}
+
+
+.loading-screen p {
+
+  margin: 0;
+
+  color: #63788e;
+
+  font-size: 11px;
+
+}
+
+
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+  .app-shell {
+
+    width: min(
+      100% - 30px,
+      900px
+    );
+
+  }
+
+
+  .kpi-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+  }
+
+
+  .hero-strip {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .hero-meta {
+
+    width: 100%;
+
+  }
+
+
+  .hero-meta-card {
+
+    flex: 1;
+
+  }
+
+
+  .analytics-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .platform-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .platform-summary {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+
+  .platform-summary > div:nth-child(2),
+  .platform-summary > div:nth-child(4) {
+
+    border-right: 0;
+
+  }
+
+
+  .platform-summary > div {
+
+    border-bottom:
+      1px solid
+      rgba(100, 135, 170, 0.09);
+
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .app-shell {
+
+    width: calc(100% - 20px);
+
+    padding-top: 15px;
+
+  }
+
+
+  .dashboard-header {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .header-actions {
+
+    width: 100%;
+
+  }
+
+
+  .system-status {
+
+    flex: 1;
+
+  }
+
+
+  .refresh-button {
+
+    flex: 1;
+
+  }
+
+
+  .brand-mark {
+
+    width: 58px;
+
+    height: 58px;
+
+  }
+
+
+  .bmw-logo {
+
+    width: 51px;
+
+    height: 51px;
+
+  }
+
+
+  .brand-text h1 {
+
+    font-size: 25px;
+
+  }
+
+
+  .hero-strip {
+
+    padding: 27px 22px;
+
+  }
+
+
+  .hero-strip h2 {
+
+    font-size: 38px;
+
+    letter-spacing: -2px;
+
+  }
+
+
+  .hero-meta {
+
+    flex-wrap: wrap;
+
+  }
+
+
+  .hero-meta-card {
+
+    min-width: 90px;
+
+  }
+
+
+  .kpi-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .kpi-card {
+
+    min-height: 105px;
+
+  }
+
+
+  .chart-container {
+
+    height: 285px;
+
+  }
+
+
+  .model-chart {
+
+    height: 300px;
+
+  }
+
+
+  .insight-panel {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .platform-summary {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .platform-summary > div {
+
+    border-right: 0;
+
+  }
+
+
+  .platform-summary > div:last-child {
+
+    border-bottom: 0;
+
+  }
+
+
+  .dashboard-footer {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .footer-right {
+
+    align-items: flex-start;
+
+    text-align: left;
+
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+  .hero-strip h2 {
+
+    font-size: 31px;
+
+  }
+
+
+  .hero-meta-card {
+
+    flex: 1 1 100%;
+
+  }
+
+
+  .dealer-row {
+
+    grid-template-columns:
+      28px minmax(0, 1fr);
+
+  }
+
+
+  .dealer-revenue {
+
+    grid-column: 2;
+
+    text-align: left;
+
+  }
+
+
+  .pipeline-node {
+
+    width: 85px;
+
+  }
+
+}
