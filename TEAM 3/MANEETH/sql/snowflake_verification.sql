@@ -1,0 +1,12 @@
+-- =============================================================================
+-- LEGACY FILE — Snowflake is NOT used in this project
+-- =============================================================================
+-- This file is retained for historical reference only.
+-- The BMW Capstone P11 project uses Amazon Athena to query curated
+-- Parquet data stored in S3 via the AWS Glue Data Catalog.
+--
+-- For the current analytical queries, see:
+--   sql/athena_setup.sql  — Glue/Athena table setup
+--   sql/athena_queries.sql — analytical queries (Avg Speed, Avg Battery,
+--                            Max Temp, Fault Count, etc.)
+-- =============================================================================
