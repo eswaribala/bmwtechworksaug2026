@@ -242,6 +242,33 @@ resource "aws_iam_role_policy_attachment" "athena" {
 }
 
 # ────────────────────────────────────────────────
+# Lake Formation Policy — required once the bucket is
+# registered as a Lake Formation resource; grants the
+# pipeline role the ability to fetch temporary, LF-scoped
+# S3 credentials (glue/athena access alone is not enough).
+# ────────────────────────────────────────────────
+
+data "aws_iam_policy_document" "lakeformation" {
+  statement {
+    sid       = "LakeFormationDataAccess"
+    effect    = "Allow"
+    actions   = ["lakeformation:GetDataAccess"]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_policy" "lakeformation" {
+  name        = "${var.project_name}-lakeformation-policy"
+  description = "BMW pipeline Lake Formation data access permissions"
+  policy      = data.aws_iam_policy_document.lakeformation.json
+}
+
+resource "aws_iam_role_policy_attachment" "lakeformation" {
+  role       = aws_iam_role.pipeline.name
+  policy_arn = aws_iam_policy.lakeformation.arn
+}
+
+# ────────────────────────────────────────────────
 # Instance Profile (for EC2 use-cases)
 # ────────────────────────────────────────────────
 

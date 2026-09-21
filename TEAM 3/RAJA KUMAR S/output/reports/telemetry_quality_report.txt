@@ -1,0 +1,60 @@
+====================================================
+        BMW DATA QUALITY REPORT
+====================================================
+
+  Dataset              : Telemetry
+  Execution Time       : 2026-09-18 06:14:20
+  Processing Duration  : 11.412s
+
+----------------------------------------------------
+  RECORD SUMMARY
+----------------------------------------------------
+
+  Total Records        :    100,600
+  Valid Records        :     98,015
+  Rejected Records     :      2,585
+
+----------------------------------------------------
+  QUALITY CHECKS
+----------------------------------------------------
+
+  Null Issues          :        955
+  Duplicate Records    :        500
+  Invalid VIN          :        602
+  Invalid Dates        :        301
+  Out-of-Range Values  :        954
+  Referential Errors   :        554
+
+----------------------------------------------------
+  SCORING BREAKDOWN
+----------------------------------------------------
+
+  Null Check                : rate=  0.9%  weight=20  penalty=  0.19
+  Duplicate Check           : rate=  0.5%  weight=15  penalty=  0.07
+  Vin Check                 : rate=  0.6%  weight=20  penalty=  0.12
+  Date Check                : rate=  0.3%  weight=15  penalty=  0.04
+  Range Check               : rate=  0.9%  weight=15  penalty=  0.14
+  Referential Integrity     : rate=  0.6%  weight=15  penalty=  0.08
+
+----------------------------------------------------
+  QUALITY SCORE
+----------------------------------------------------
+
+  Score                :   99.3 / 100
+  Status               : EXCELLENT
+
+====================================================
+
+----------------------------------------------------
+  NULL ANALYSIS
+----------------------------------------------------
+
+  Column                           Null Count   Null %
+  ------------------------------ ------------ --------
+  event_id                                  0    0.00%
+  vehicle_id                              252    0.25%
+  vin                                     302    0.30%
+  timestamp                                 0    0.00%
+  battery_level                           200    0.20%
+  speed                                     0    0.00%
+  temperature                             204    0.20%

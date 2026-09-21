@@ -178,7 +178,10 @@ resource "aws_glue_catalog_table" "data_quality_report" {
   }
 
   storage_descriptor {
-    location      = "s3://${var.bucket_name}/reports/"
+    # Scoped to reports/summary/ (not the whole reports/ tree) so the table
+    # only scans flat run summaries — excludes reports/athena-results/,
+    # reports/<dataset>/*_quality_report.*, and reports/_history.json.
+    location      = "s3://${var.bucket_name}/reports/summary/"
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 

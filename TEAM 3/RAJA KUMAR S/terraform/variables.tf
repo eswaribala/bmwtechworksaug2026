@@ -94,3 +94,13 @@ variable "alarm_low_quality_threshold" {
   type        = number
   default     = 70
 }
+
+# ───────────────────────────────────────────────
+# Lake Formation
+# ───────────────────────────────────────────────
+
+variable "lakeformation_admin_arns" {
+  description = "Additional IAM user/role ARNs to register as Lake Formation data lake administrators (e.g. the ARN of the operator applying Terraform). The pipeline role is always included automatically."
+  type        = list(string)
+  default     = []
+}

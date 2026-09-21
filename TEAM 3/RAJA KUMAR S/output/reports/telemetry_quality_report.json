@@ -1,0 +1,97 @@
+{
+  "bmw_data_quality_report": {
+    "dataset": "telemetry",
+    "execution_time": "2026-09-18T06:14:20.326478+00:00",
+    "duration_seconds": 11.412,
+    "record_summary": {
+      "total_records": 100600,
+      "valid_records": 98015,
+      "rejected_records": 2585
+    },
+    "quality_checks": {
+      "null_issues": 955,
+      "duplicate_records": 500,
+      "invalid_vin": 602,
+      "invalid_dates": 301,
+      "range_violations": 954,
+      "referential_errors": 554
+    },
+    "quality_score": 99.35,
+    "score_label": "EXCELLENT",
+    "penalty_breakdown": {
+      "null_check": {
+        "violations": 955,
+        "violation_rate_pct": 0.95,
+        "weight": 20,
+        "penalty": 0.1899
+      },
+      "duplicate_check": {
+        "violations": 500,
+        "violation_rate_pct": 0.5,
+        "weight": 15,
+        "penalty": 0.0746
+      },
+      "vin_check": {
+        "violations": 602,
+        "violation_rate_pct": 0.6,
+        "weight": 20,
+        "penalty": 0.1197
+      },
+      "date_check": {
+        "violations": 301,
+        "violation_rate_pct": 0.3,
+        "weight": 15,
+        "penalty": 0.0449
+      },
+      "range_check": {
+        "violations": 954,
+        "violation_rate_pct": 0.95,
+        "weight": 15,
+        "penalty": 0.1422
+      },
+      "referential_integrity": {
+        "violations": 554,
+        "violation_rate_pct": 0.55,
+        "weight": 15,
+        "penalty": 0.0826
+      }
+    },
+    "null_analysis": [
+      {
+        "column": "event_id",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "vehicle_id",
+        "null_count": 252,
+        "null_pct": 0.25
+      },
+      {
+        "column": "vin",
+        "null_count": 302,
+        "null_pct": 0.3
+      },
+      {
+        "column": "timestamp",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "battery_level",
+        "null_count": 200,
+        "null_pct": 0.2
+      },
+      {
+        "column": "speed",
+        "null_count": 0,
+        "null_pct": 0.0
+      },
+      {
+        "column": "temperature",
+        "null_count": 204,
+        "null_pct": 0.2
+      }
+    ]
+  }
+}

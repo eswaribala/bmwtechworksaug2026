@@ -7,7 +7,7 @@ Uploads log events to AWS CloudWatch Logs; falls back to stdout gracefully.
 import json
 from datetime import datetime, timezone
 from typing import Optional
-from src.utils.config import CLOUDWATCH_LOG_GROUP, CLOUDWATCH_LOG_STREAM_PREFIX
+from src.utils.config import AWS_REGION, CLOUDWATCH_LOG_GROUP, CLOUDWATCH_LOG_STREAM_PREFIX
 from src.utils.logger import BmwLogger
 
 
@@ -83,7 +83,7 @@ class CloudWatchLogger:
             return False
         try:
             import boto3
-            cw = boto3.client("cloudwatch")
+            cw = boto3.client("cloudwatch", region_name=AWS_REGION)
             cw.put_metric_data(
                 Namespace="BMW/DataQuality",
                 MetricData=[
@@ -108,7 +108,7 @@ class CloudWatchLogger:
     def _init_client(self) -> bool:
         try:
             import boto3
-            self._client = boto3.client("logs")
+            self._client = boto3.client("logs", region_name=AWS_REGION)
             # Try to create log group and stream (idempotent)
             try:
                 self._client.create_log_group(logGroupName=self.log_group)

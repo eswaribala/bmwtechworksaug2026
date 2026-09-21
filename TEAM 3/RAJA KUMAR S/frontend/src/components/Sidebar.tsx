@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: '/report',     label: 'Quality Report' },
   { to: '/monitor',    label: 'Pipeline Monitor' },
   { to: '/athena',     label: 'Athena Explorer' },
+  { to: '/governance', label: 'Governance' },
 ];
 
 export default function Sidebar() {

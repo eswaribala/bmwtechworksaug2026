@@ -363,6 +363,23 @@ def _load_vehicle_master(s3) -> Optional[pd.DataFrame]:
     return None
 
 
+def _sanitize_nan_for_spark(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Replace pandas NaN with real None before handing a DataFrame to Spark.
+
+    pandas.read_csv() represents every missing value as NaN, including in
+    object/string columns (vin, event_id, ...). When such a column is passed
+    to spark.createDataFrame() without this conversion, the stray NaN can
+    leak through as the literal object rather than a true SQL NULL, so
+    F.col(c).isNull() silently misses it in check_nulls()/null_summary()
+    (other checks like check_vin still happen to catch it, since "nan"
+    fails their format regex — which is why nulls looked like 0 while VIN
+    failures were non-zero). Casting to object first prevents pandas from
+    silently reverting None back to NaN on numeric columns.
+    """
+    return df.astype(object).where(df.notna(), None)
+
+
 # ────────────────────────────────────────────────────────────────────
 # Core pipeline runner
 # ────────────────────────────────────────────────────────────────────
@@ -386,8 +403,11 @@ def run_pipeline_on_df(
 
     # ── 2. Quality engine (PySpark) ─────────────────────────────
     spark = get_spark()
-    spark_df = spark.createDataFrame(df)
-    reference_df = spark.createDataFrame(reference_pdf) if reference_pdf is not None else None
+    spark_df = spark.createDataFrame(_sanitize_nan_for_spark(df))
+    reference_df = (
+        spark.createDataFrame(_sanitize_nan_for_spark(reference_pdf))
+        if reference_pdf is not None else None
+    )
 
     engine = QualityEngine(dataset=dataset, logger=logger)
     valid_spark_df, invalid_spark_df, metrics = engine.run(spark_df, reference_df=reference_df)
@@ -981,23 +1001,36 @@ async def execute_athena_query(payload: dict):
 
 
 # ────────────────────────────────────────────────────────────────────
-# Governance — real S3 zones, role permissions, and Lake Formation policies
+# Governance — live AWS Lake Formation admins, resources & permission grants
 # ────────────────────────────────────────────────────────────────────
 
-@app.get("/api/governance")
-async def get_governance_info():
-    """Return governance zones, role permissions, and resource policies for the live bucket."""
-    s3 = _get_s3()
-    return JSONResponse(content={
+_GOVERNANCE_ZONES = [
+    {"id": "raw", "name": "Raw", "desc": "Original unmodified BMW datasets", "path": f"s3://{S3_BUCKET}/{RAW_PREFIX}/"},
+    {"id": "curated", "name": "Curated", "desc": "Validated records ready for analytics", "path": f"s3://{S3_BUCKET}/{CURATED_PREFIX}/"},
+    {"id": "quarantine", "name": "Quarantine", "desc": "Invalid records for investigation", "path": f"s3://{S3_BUCKET}/{QUARANTINE_PREFIX}/"},
+    {"id": "reports", "name": "Reports", "desc": "Quality reports and scoring outputs", "path": f"s3://{S3_BUCKET}/{REPORT_PREFIX}/"},
+]
+
+
+def _get_lakeformation() -> Optional[object]:
+    """Return boto3 Lake Formation client, or None if AWS creds not available."""
+    try:
+        return boto3.client("lakeformation", region_name=AWS_REGION)
+    except Exception:
+        return None
+
+
+def _static_governance_response(aws_connected: bool) -> dict:
+    """Design-time description of the access model, used when Lake Formation
+    hasn't been provisioned yet (terraform apply not run) or AWS is unreachable."""
+    return {
         "s3_bucket": S3_BUCKET,
         "region": AWS_REGION,
-        "aws_connected": s3 is not None,
-        "zones": [
-            {"id": "raw", "name": "Raw", "desc": "Original unmodified BMW datasets", "path": f"s3://{S3_BUCKET}/{RAW_PREFIX}/"},
-            {"id": "curated", "name": "Curated", "desc": "Validated records ready for analytics", "path": f"s3://{S3_BUCKET}/{CURATED_PREFIX}/"},
-            {"id": "quarantine", "name": "Quarantine", "desc": "Invalid records for investigation", "path": f"s3://{S3_BUCKET}/{QUARANTINE_PREFIX}/"},
-            {"id": "reports", "name": "Reports", "desc": "Quality reports and scoring outputs", "path": f"s3://{S3_BUCKET}/{REPORT_PREFIX}/"},
-        ],
+        "aws_connected": aws_connected,
+        "lakeformation_live": False,
+        "data_lake_admins": [],
+        "registered_resources": [],
+        "zones": _GOVERNANCE_ZONES,
         "roles": [
             {"role": "Data Engineer", "desc": "Full pipeline access — can read raw data, curated data, quarantine, and quality reports.", "zones": {"raw": True, "curated": True, "quarantine": True, "reports": True}},
             {"role": "Data Analyst", "desc": "Analytics access — can query curated data and review quality reports via Athena.", "zones": {"raw": False, "curated": True, "quarantine": False, "reports": True}},
@@ -1010,4 +1043,106 @@ async def get_governance_info():
             {"id": "P04", "resource": f"s3://{S3_BUCKET}/reports/", "action": "lakeformation:DescribeResource", "principal": "all", "effect": "Allow"},
             {"id": "P05", "resource": f"s3://{S3_BUCKET}/raw/", "action": "lakeformation:DescribeResource", "principal": "business-users", "effect": "Deny"},
         ],
-    })
+    }
+
+
+@app.get("/api/governance")
+async def get_governance_info():
+    """
+    Return governance data for the live bucket.
+
+    When Lake Formation has been provisioned (see terraform/modules/lakeformation),
+    this queries the real AWS APIs: data lake admins, registered resources, and
+    every principal/table permission grant, then derives the role→zone matrix
+    from those grants. Falls back to a static description of the intended access
+    model when Lake Formation isn't provisioned yet or AWS is unreachable.
+    """
+    s3 = _get_s3()
+    lf = _get_lakeformation()
+    if lf is None:
+        return JSONResponse(content=_static_governance_response(aws_connected=s3 is not None))
+
+    try:
+        settings = lf.get_data_lake_settings()["DataLakeSettings"]
+        admins = [a["DataLakePrincipalIdentifier"] for a in settings.get("DataLakeAdmins", [])]
+        resources = [r["ResourceArn"] for r in lf.list_resources().get("ResourceInfoList", [])]
+
+        grants = lf.list_permissions().get("PrincipalResourcePermissions", [])
+        policies = []
+        role_tables: dict[str, set[str]] = {}
+
+        for i, g in enumerate(grants, start=1):
+            principal_arn = g.get("Principal", {}).get("DataLakePrincipalIdentifier", "unknown")
+            principal = principal_arn.rsplit("/", 1)[-1] if "/" in principal_arn else principal_arn
+            resource = g.get("Resource", {})
+            table = resource.get("Table") or {}
+            database = resource.get("Database") or {}
+
+            if table:
+                db_name = table.get("DatabaseName", GLUE_DATABASE)
+                if "TableWildcard" in table:
+                    res_name, table_names = f"{db_name}.*", ["*"]
+                else:
+                    res_name, table_names = f"{db_name}.{table.get('Name', '?')}", [table.get("Name", "?")]
+                role_tables.setdefault(principal, set()).update(table_names)
+            elif database:
+                res_name = database.get("Name", GLUE_DATABASE)
+            else:
+                res_name = "catalog"
+
+            policies.append({
+                "id": f"P{i:02d}",
+                "resource": res_name,
+                "action": ", ".join(f"lakeformation:{p}" for p in g.get("Permissions", [])),
+                "principal": principal,
+                "effect": "Allow",
+            })
+
+        def has_table_access(role_hint: str, table_name: str) -> bool:
+            for principal, names in role_tables.items():
+                if role_hint in principal and ("*" in names or table_name in names):
+                    return True
+            return False
+
+        roles = [
+            {
+                "role": "Data Engineer",
+                "desc": "Full pipeline access — can read raw data, curated data, quarantine, and quality reports.",
+                "zones": {"raw": True, "curated": True, "quarantine": True, "reports": True},
+            },
+            {
+                "role": "Data Analyst",
+                "desc": "Analytics access — can query curated data and review quality reports via Athena.",
+                "zones": {
+                    "raw": False,
+                    "curated": has_table_access("data-analyst", "vehicle_master") or has_table_access("data-analyst", "telemetry"),
+                    "quarantine": False,
+                    "reports": has_table_access("data-analyst", "data_quality_report"),
+                },
+            },
+            {
+                "role": "Business User",
+                "desc": "Report-only access — can view approved quality reports and dashboard summaries.",
+                "zones": {
+                    "raw": False,
+                    "curated": False,
+                    "quarantine": False,
+                    "reports": has_table_access("business-user", "data_quality_report"),
+                },
+            },
+        ]
+
+        return JSONResponse(content={
+            "s3_bucket": S3_BUCKET,
+            "region": AWS_REGION,
+            "aws_connected": s3 is not None,
+            "lakeformation_live": True,
+            "data_lake_admins": admins,
+            "registered_resources": resources,
+            "zones": _GOVERNANCE_ZONES,
+            "roles": roles,
+            "policies": policies,
+        })
+    except Exception:
+        # Lake Formation not provisioned yet, or caller lacks LF admin visibility
+        return JSONResponse(content=_static_governance_response(aws_connected=s3 is not None))

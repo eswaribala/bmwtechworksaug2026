@@ -7,6 +7,7 @@ import QuarantinePage from './pages/QuarantinePage';
 import ReportPage from './pages/ReportPage';
 import MonitorPage from './pages/MonitorPage';
 import AthenaPage from './pages/AthenaPage';
+import GovernancePage from './pages/GovernancePage';
 import { PipelineProvider } from './context/PipelineContext';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
               <Route path="/report"     element={<ReportPage />} />
               <Route path="/monitor"    element={<MonitorPage />} />
               <Route path="/athena"     element={<AthenaPage />} />
+              <Route path="/governance" element={<GovernancePage />} />
             </Routes>
           </main>
         </div>

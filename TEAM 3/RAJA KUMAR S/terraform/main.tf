@@ -90,3 +90,26 @@ module "athena" {
 
   depends_on = [module.s3, module.glue]
 }
+
+# ╔══════════════════════════════════════════════════════╗
+# ║  Lake Formation  —  Fine-grained data governance    ║
+# ║  Registers the bucket, sets admins, creates the     ║
+# ║  Data Analyst / Business User personas, and grants  ║
+# ║  per-table SELECT/DESCRIBE permissions.             ║
+# ╚══════════════════════════════════════════════════════╝
+module "lakeformation" {
+  source = "./modules/lakeformation"
+
+  project_name            = var.project_name
+  account_id              = local.account_id
+  region                  = local.region
+  bucket_name             = local.bucket_name
+  bucket_arn              = module.s3.bucket_arn
+  athena_output_location  = module.athena.output_location
+  glue_database_name      = module.glue.database_name
+  pipeline_role_arn       = module.iam.pipeline_role_arn
+  pipeline_role_name      = module.iam.pipeline_role_name
+  data_lake_admin_arns    = var.lakeformation_admin_arns
+
+  depends_on = [module.s3, module.glue, module.iam, module.athena]
+}

@@ -48,6 +48,21 @@ output "athena_output_location" {
   value       = module.athena.output_location
 }
 
+output "lakeformation_data_analyst_role_arn" {
+  description = "ARN of the Lake Formation Data Analyst persona role."
+  value       = module.lakeformation.data_analyst_role_arn
+}
+
+output "lakeformation_business_user_role_arn" {
+  description = "ARN of the Lake Formation Business User persona role."
+  value       = module.lakeformation.business_user_role_arn
+}
+
+output "lakeformation_resource_arn" {
+  description = "ARN of the S3 bucket registered as a Lake Formation resource."
+  value       = module.lakeformation.lakeformation_resource_arn
+}
+
 output "s3_folder_structure" {
   description = "Logical folder layout inside the bucket."
   value = {

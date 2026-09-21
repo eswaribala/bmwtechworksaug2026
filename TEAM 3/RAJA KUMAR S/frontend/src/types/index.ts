@@ -79,6 +79,39 @@ export interface LogEntry {
 export type DataZone = 'raw' | 'curated' | 'quarantine' | 'reports';
 export type UserRole = 'Data Engineer' | 'Data Analyst' | 'Business User';
 
+export interface GovernanceZone {
+  id: DataZone;
+  name: string;
+  desc: string;
+  path: string;
+}
+
+export interface GovernanceRole {
+  role: UserRole;
+  desc: string;
+  zones: Record<DataZone, boolean>;
+}
+
+export interface GovernancePolicy {
+  id: string;
+  resource: string;
+  action: string;
+  principal: string;
+  effect: 'Allow' | 'Deny';
+}
+
+export interface GovernanceInfo {
+  s3_bucket: string;
+  region: string;
+  aws_connected: boolean;
+  lakeformation_live: boolean;
+  data_lake_admins: string[];
+  registered_resources: string[];
+  zones: GovernanceZone[];
+  roles: GovernanceRole[];
+  policies: GovernancePolicy[];
+}
+
 export interface HistoryRun {
   run_id: string;
   filename: string;
