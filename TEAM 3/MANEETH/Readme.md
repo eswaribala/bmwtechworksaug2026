@@ -1,4 +1,4 @@
-# BMW Capstone P11 — Real-Time Connected Vehicle Streaming & Analytics
+# BMW Capstone P11 — Real-Time Connected Vehicle Streaming & Analytics.
 
 **Participant 11 · BMW TechWorks Capstone**
 

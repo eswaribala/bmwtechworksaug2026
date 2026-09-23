@@ -1,0 +1,48 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.aws/
+
+# IDE
+.vscode/
+.idea/
+
+# React / frontend generated files
+frontend/node_modules/
+frontend/dist/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+
+# Generated ML artifacts
+artifacts/
+data/processed_features.csv
+
+# Spark generated files
+data/**/*.crc
+data/**/_SUCCESS
+data/**/part-*.csv
+
+# Terraform generated files and state
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
+terraform/crash.log
+terraform/crash.*.log

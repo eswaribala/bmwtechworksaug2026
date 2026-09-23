@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project Overview &#8212; BMW Dealer Inventory Recommendation 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Project Requirements" href="requirements.html" />
+    <link rel="prev" title="BMW Dealer Inventory Recommendation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="project-overview">
+<h1>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The BMW Dealer Inventory Recommendation system is designed to recommend
+inventory quantities for BMW vehicle models at individual dealerships.</p>
+<p>The system analyses historical sales, inventory levels, regional demand,
+and recent sales trends to estimate future demand and determine whether
+additional inventory should be stocked.</p>
+</section>
+<section id="business-problem">
+<h2>Business Problem<a class="headerlink" href="#business-problem" title="Link to this heading">¶</a></h2>
+<p>Dealers need to maintain sufficient vehicle inventory to satisfy expected
+customer demand while avoiding unnecessary excess inventory.</p>
+<p>The system addresses this problem by combining:</p>
+<ul class="simple">
+<li><p>Historical sales analysis</p></li>
+<li><p>Inventory movement analysis</p></li>
+<li><p>Regional demand analysis</p></li>
+<li><p>Machine learning based demand prediction</p></li>
+<li><p>Inventory business rules</p></li>
+<li><p>Explainable recommendation generation</p></li>
+</ul>
+</section>
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Link to this heading">¶</a></h2>
+<p>The primary objective is to generate an inventory recommendation for a
+given dealer and BMW model.</p>
+<p>The expected output contains:</p>
+<ul class="simple">
+<li><p>Dealer</p></li>
+<li><p>Model</p></li>
+<li><p>Recommended Quantity</p></li>
+<li><p>Predicted Next Month Demand</p></li>
+<li><p>Current Inventory</p></li>
+<li><p>Target Inventory</p></li>
+<li><p>Days of Inventory</p></li>
+<li><p>Sales Trend</p></li>
+<li><p>Reason</p></li>
+</ul>
+</section>
+<section id="solution-approach">
+<h2>Solution Approach<a class="headerlink" href="#solution-approach" title="Link to this heading">¶</a></h2>
+<p>The solution follows a data-to-recommendation pipeline:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Historical Sales + Inventory Data
+             |
+             v
+     Data Processing
+             |
+             v
+     Feature Engineering
+             |
+             v
+    Demand Prediction
+             |
+             v
+    Inventory Business Rules
+             |
+             v
+    Recommendation + Reason
+</pre></div>
+</div>
+</section>
+<section id="machine-learning">
+<h2>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">¶</a></h2>
+<p>Multiple regression models are evaluated for next-month demand prediction:</p>
+<ul class="simple">
+<li><p>Linear Regression</p></li>
+<li><p>Random Forest Regressor</p></li>
+<li><p>XGBoost Regressor</p></li>
+</ul>
+<p>The models are evaluated using MAE, RMSE, and R-squared on a chronological
+test period.</p>
+</section>
+<section id="application">
+<h2>Application<a class="headerlink" href="#application" title="Link to this heading">¶</a></h2>
+<p>The prediction and recommendation functionality is exposed through a
+FastAPI REST service.</p>
+<p>A React frontend provides a user interface where a dealer and BMW model
+can be selected and the recommendation can be displayed.</p>
+</section>
+<section id="cloud-and-infrastructure">
+<h2>Cloud and Infrastructure<a class="headerlink" href="#cloud-and-infrastructure" title="Link to this heading">¶</a></h2>
+<p>AWS S3 is used for cloud data storage and AWS Athena is used for SQL-based
+analytical queries.</p>
+<p>Terraform is used to define and manage the AWS infrastructure.</p>
+</section>
+<section id="testing-and-ci-cd">
+<h2>Testing and CI/CD<a class="headerlink" href="#testing-and-ci-cd" title="Link to this heading">¶</a></h2>
+<p>The project includes automated unit tests using Pytest and a GitHub Actions
+workflow for continuous integration.</p>
+<p>The CI workflow validates the Python project, executes tests, and validates
+the Terraform configuration.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Dealer Inventory Recommendation</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#business-problem">Business Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#objective">Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solution-approach">Solution Approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#machine-learning">Machine Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application">Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloud-and-infrastructure">Cloud and Infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-and-ci-cd">Testing and CI/CD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Project Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dictionary.html">Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_model.html">Machine Learning Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendation_logic.html">Recommendation Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS Cloud Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci_cd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">BMW Dealer Inventory Recommendation</a></li>
+      <li>Next: <a href="requirements.html" title="next chapter">Project Requirements</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Hemapriya.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/project_overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

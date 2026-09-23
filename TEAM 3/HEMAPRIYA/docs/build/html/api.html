@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FastAPI &#8212; BMW Dealer Inventory Recommendation 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frontend Application" href="frontend.html" />
+    <link rel="prev" title="Recommendation Logic" href="recommendation_logic.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="fastapi">
+<h1>FastAPI<a class="headerlink" href="#fastapi" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The FastAPI layer exposes the inventory recommendation functionality as a
+REST API.</p>
+<p>The API acts as the connection between the React frontend and the
+recommendation engine.</p>
+<p>The request flow is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>React Frontend
+     |
+     | HTTP Request
+     v
+   FastAPI
+     |
+     v
+Recommendation Engine
+     |
+     v
+ML Model + Business Logic
+     |
+     v
+Recommendation Result
+     |
+     v
+   FastAPI
+     |
+     | JSON Response
+     v
+React Frontend
+</pre></div>
+</div>
+</section>
+<section id="application">
+<h2>Application<a class="headerlink" href="#application" title="Link to this heading">¶</a></h2>
+<p>The FastAPI application is implemented in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>src/api/main.py
+</pre></div>
+</div>
+<p>The application provides endpoints for health checking, retrieving
+available dealers and models, and generating inventory recommendations.</p>
+</section>
+<section id="api-endpoints">
+<h2>API Endpoints<a class="headerlink" href="#api-endpoints" title="Link to this heading">¶</a></h2>
+<section id="health-check">
+<h3>Health Check<a class="headerlink" href="#health-check" title="Link to this heading">¶</a></h3>
+<p>Endpoint:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /health
+</pre></div>
+</div>
+<p>Purpose:</p>
+<p>Checks whether the API service is running.</p>
+<p>Example response:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="available-options">
+<h3>Available Options<a class="headerlink" href="#available-options" title="Link to this heading">¶</a></h3>
+<p>Endpoint:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /options
+</pre></div>
+</div>
+<p>Purpose:</p>
+<p>Returns the available dealer IDs and BMW models that can be selected by
+the user.</p>
+<p>Example response:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"dealers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"D001"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"D002"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"D003"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"2 Series"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"3 Series"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"5 Series"</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="inventory-recommendation">
+<h3>Inventory Recommendation<a class="headerlink" href="#inventory-recommendation" title="Link to this heading">¶</a></h3>
+<p>Endpoint:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>POST /recommend
+</pre></div>
+</div>
+<p>Purpose:</p>
+<p>Generates an inventory recommendation for a selected dealer and BMW
+model.</p>
+<p>Request body:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D001"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 Series"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The API validates the request and passes the dealer and model to the
+recommendation engine.</p>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading">¶</a></h2>
+<p>A successful recommendation request returns JSON containing the
+recommendation and supporting information.</p>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Dealer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D001"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 Series"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Recommended Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Predicted Next Month Demand"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.44</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Current Inventory"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Target Inventory"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Days of Inventory"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.71</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Sales Trend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stable"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demand is relatively stable, but current inventory is</span>
+<span class="s2">               below the calculated target inventory."</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-validation">
+<h2>Request Validation<a class="headerlink" href="#request-validation" title="Link to this heading">¶</a></h2>
+<p>The API uses a Pydantic request model.</p>
+<p>The request contains:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dealer_id
+model
+</pre></div>
+</div>
+<p>This provides structured validation of incoming JSON requests.</p>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h2>
+<p>The API handles different types of failures.</p>
+<section id="invalid-dealer-or-model">
+<h3>Invalid Dealer or Model<a class="headerlink" href="#invalid-dealer-or-model" title="Link to this heading">¶</a></h3>
+<p>If the requested dealer or model does not exist, the recommendation
+engine raises a validation error.</p>
+<p>The API returns an HTTP 404 response.</p>
+</section>
+<section id="internal-errors">
+<h3>Internal Errors<a class="headerlink" href="#internal-errors" title="Link to this heading">¶</a></h3>
+<p>Unexpected application errors are caught by the API layer and returned
+as HTTP 500 responses.</p>
+<p>This prevents internal exceptions from causing an uncontrolled API
+failure.</p>
+</section>
+</section>
+<section id="cors-configuration">
+<h2>CORS Configuration<a class="headerlink" href="#cors-configuration" title="Link to this heading">¶</a></h2>
+<p>Cross-Origin Resource Sharing is enabled so that the React frontend can
+communicate with the FastAPI backend during local development.</p>
+<p>The configured development origins include:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:5173
+http://127.0.0.1:5173
+</pre></div>
+</div>
+<p>The API allows the required HTTP methods and request headers.</p>
+</section>
+<section id="swagger-documentation">
+<h2>Swagger Documentation<a class="headerlink" href="#swagger-documentation" title="Link to this heading">¶</a></h2>
+<p>FastAPI automatically provides interactive API documentation.</p>
+<p>When the application is running, the Swagger interface is available at:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/docs
+</pre></div>
+</div>
+<p>The Swagger interface allows developers to:</p>
+<ul class="simple">
+<li><p>View available endpoints</p></li>
+<li><p>Inspect request schemas</p></li>
+<li><p>Enter request parameters</p></li>
+<li><p>Execute API requests</p></li>
+<li><p>View JSON responses</p></li>
+<li><p>Test error responses</p></li>
+</ul>
+<p>This makes API testing easier during development.</p>
+</section>
+<section id="running-the-api">
+<h2>Running the API<a class="headerlink" href="#running-the-api" title="Link to this heading">¶</a></h2>
+<p>From the project root, activate the Python virtual environment and run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m uvicorn src.api.main:app --reload</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--reload</span></code> option automatically reloads the application when source
+code changes during development.</p>
+</section>
+<section id="local-api-flow">
+<h2>Local API Flow<a class="headerlink" href="#local-api-flow" title="Link to this heading">¶</a></h2>
+<p>The local development architecture is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Browser
+   |
+   | React
+   v
+localhost:5173
+   |
+   | POST /recommend
+   v
+FastAPI
+localhost:8000
+   |
+   v
+Recommendation Engine
+   |
+   +--&gt; Feature Engineering
+   |
+   +--&gt; XGBoost Model
+   |
+   +--&gt; Inventory Rules
+   |
+   v
+JSON Recommendation
+</pre></div>
+</div>
+</section>
+<section id="frontend-integration">
+<h2>Frontend Integration<a class="headerlink" href="#frontend-integration" title="Link to this heading">¶</a></h2>
+<p>The React frontend sends the selected dealer and model to the
+<code class="docutils literal notranslate"><span class="pre">/recommend</span></code> endpoint.</p>
+<p>The backend processes the request and returns the recommendation as JSON.</p>
+<p>The frontend then displays the returned values to the user.</p>
+</section>
+<section id="api-design-principles">
+<h2>API Design Principles<a class="headerlink" href="#api-design-principles" title="Link to this heading">¶</a></h2>
+<p>The API is designed around the following principles:</p>
+<ul class="simple">
+<li><p>Simple REST endpoints</p></li>
+<li><p>JSON request and response format</p></li>
+<li><p>Input validation</p></li>
+<li><p>Meaningful HTTP status codes</p></li>
+<li><p>Separation between API and business logic</p></li>
+<li><p>Automatic API documentation</p></li>
+<li><p>Clear error handling</p></li>
+<li><p>Frontend/backend separation</p></li>
+</ul>
+</section>
+<section id="future-improvements">
+<h2>Future Improvements<a class="headerlink" href="#future-improvements" title="Link to this heading">¶</a></h2>
+<p>Potential API improvements include:</p>
+<ul class="simple">
+<li><p>Authentication and authorization</p></li>
+<li><p>API rate limiting</p></li>
+<li><p>Request logging</p></li>
+<li><p>Structured application logging</p></li>
+<li><p>Response caching</p></li>
+<li><p>Production deployment</p></li>
+<li><p>API versioning</p></li>
+<li><p>Health checks for dependent services</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Dealer Inventory Recommendation</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Project Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dictionary.html">Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_model.html">Machine Learning Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendation_logic.html">Recommendation Logic</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FastAPI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application">Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-endpoints">API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request-validation">Request Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cors-configuration">CORS Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swagger-documentation">Swagger Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-api">Running the API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-api-flow">Local API Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frontend-integration">Frontend Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-design-principles">API Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-improvements">Future Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS Cloud Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci_cd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="recommendation_logic.html" title="previous chapter">Recommendation Logic</a></li>
+      <li>Next: <a href="frontend.html" title="next chapter">Frontend Application</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Hemapriya.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

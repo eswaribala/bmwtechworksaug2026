@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Machine Learning Model &#8212; BMW Dealer Inventory Recommendation 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Recommendation Logic" href="recommendation_logic.html" />
+    <link rel="prev" title="Data Dictionary" href="data_dictionary.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="machine-learning-model">
+<h1>Machine Learning Model<a class="headerlink" href="#machine-learning-model" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The machine learning component predicts the expected sales for the next
+month for a specific dealer and BMW model.</p>
+<p>The predicted demand is then used by the recommendation engine to
+determine whether additional inventory is required.</p>
+<p>The machine learning workflow is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Historical Data
+     |
+     v
+Feature Engineering
+     |
+     v
+Train Multiple Models
+     |
+     +-------------------+
+     |         |         |
+     v         v         v
+   Linear     Random    XGBoost
+ Regression   Forest
+     |         |         |
+     +---------+---------+
+               |
+               v
+       Model Evaluation
+               |
+               v
+       Demand Prediction
+</pre></div>
+</div>
+</section>
+<section id="prediction-target">
+<h2>Prediction Target<a class="headerlink" href="#prediction-target" title="Link to this heading">¶</a></h2>
+<p>The target variable is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">next_month_sales</span></code></p>
+<p>The model predicts the number of vehicles expected to be sold during the
+following month.</p>
+</section>
+<section id="input-features">
+<h2>Input Features<a class="headerlink" href="#input-features" title="Link to this heading">¶</a></h2>
+<p>The model uses historical sales, inventory, regional demand, time-based,
+and categorical features.</p>
+<p>Important feature groups include:</p>
+<ul class="simple">
+<li><p>Recent sales</p></li>
+<li><p>Three-month average sales</p></li>
+<li><p>Six-month average sales</p></li>
+<li><p>Sales growth</p></li>
+<li><p>Regional model demand</p></li>
+<li><p>Days of inventory</p></li>
+<li><p>Inventory turnover</p></li>
+<li><p>Month number</p></li>
+<li><p>Quarter</p></li>
+<li><p>Dealer information</p></li>
+<li><p>BMW model information</p></li>
+<li><p>Region information</p></li>
+</ul>
+<p>Categorical variables are converted using one-hot encoding.</p>
+</section>
+<section id="training-strategy">
+<h2>Training Strategy<a class="headerlink" href="#training-strategy" title="Link to this heading">¶</a></h2>
+<p>A chronological train/test split is used instead of a random split.</p>
+<p>This is important for demand prediction because the model should be
+evaluated on future observations that were not available during training.</p>
+<p>Training period:</p>
+<ul class="simple">
+<li><p>July 2021 to December 2024</p></li>
+</ul>
+<p>Testing period:</p>
+<ul class="simple">
+<li><p>January 2025 to November 2025</p></li>
+</ul>
+<p>The training dataset contains 42 monthly periods and the test dataset
+contains 11 monthly periods.</p>
+</section>
+<section id="models-evaluated">
+<h2>Models Evaluated<a class="headerlink" href="#models-evaluated" title="Link to this heading">¶</a></h2>
+<p>Three regression models are evaluated.</p>
+<section id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">¶</a></h3>
+<p>Linear Regression provides a simple baseline model.</p>
+<p>It attempts to model the relationship between the input features and
+next-month sales using a linear relationship.</p>
+</section>
+<section id="random-forest-regressor">
+<h3>Random Forest Regressor<a class="headerlink" href="#random-forest-regressor" title="Link to this heading">¶</a></h3>
+<p>Random Forest is an ensemble model that combines multiple decision trees.</p>
+<p>It can capture non-linear relationships between sales, inventory,
+regional demand, and other features.</p>
+</section>
+<section id="xgboost-regressor">
+<h3>XGBoost Regressor<a class="headerlink" href="#xgboost-regressor" title="Link to this heading">¶</a></h3>
+<p>XGBoost is a gradient boosting algorithm that builds decision trees
+sequentially to improve prediction errors from previous trees.</p>
+<p>It is used to model more complex relationships between the engineered
+features and future demand.</p>
+</section>
+</section>
+<section id="model-evaluation">
+<h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Link to this heading">¶</a></h2>
+<p>The models are evaluated using three metrics:</p>
+<section id="mean-absolute-error">
+<h3>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Link to this heading">¶</a></h3>
+<p>MAE measures the average absolute difference between the predicted sales
+and the actual sales.</p>
+<p>A lower MAE indicates that predictions are closer to the actual values.</p>
+</section>
+<section id="root-mean-squared-error">
+<h3>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Link to this heading">¶</a></h3>
+<p>RMSE measures prediction error while giving greater weight to larger
+errors.</p>
+<p>A lower RMSE indicates lower prediction error.</p>
+</section>
+<section id="r-squared">
+<h3>R-squared<a class="headerlink" href="#r-squared" title="Link to this heading">¶</a></h3>
+<p>R-squared measures how much of the variation in the target variable is
+explained by the model.</p>
+<p>A higher R-squared indicates that the model explains more of the observed
+variation.</p>
+</section>
+</section>
+<section id="evaluation-results">
+<h2>Evaluation Results<a class="headerlink" href="#evaluation-results" title="Link to this heading">¶</a></h2>
+<p>The models were evaluated on the chronological test dataset.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 22.2%" />
+<col style="width: 22.2%" />
+<col style="width: 22.2%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>MAE</p></th>
+<th class="head"><p>RMSE</p></th>
+<th class="head"><p>R-squared</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linear Regression</p></td>
+<td><p>3.4460</p></td>
+<td><p>4.6324</p></td>
+<td><p>0.8720</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random Forest</p></td>
+<td><p>3.2463</p></td>
+<td><p>4.3699</p></td>
+<td><p>0.8861</p></td>
+</tr>
+<tr class="row-even"><td><p>XGBoost</p></td>
+<td><p>3.1760</p></td>
+<td><p>4.2790</p></td>
+<td><p>0.8908</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-selection">
+<h2>Model Selection<a class="headerlink" href="#model-selection" title="Link to this heading">¶</a></h2>
+<p>The model comparison shows that XGBoost produced the lowest MAE and RMSE
+among the evaluated models and the highest R-squared value in this
+experiment.</p>
+<p>Therefore, the trained XGBoost model is used by the recommendation
+engine for next-month demand prediction.</p>
+<p>The model is saved as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>artifacts/
+└── best_model.pkl
+</pre></div>
+</div>
+<p>The feature column configuration used during training is also saved:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>artifacts/
+└── feature_columns.pkl
+</pre></div>
+</div>
+</section>
+<section id="inference-process">
+<h2>Inference Process<a class="headerlink" href="#inference-process" title="Link to this heading">¶</a></h2>
+<p>During recommendation, the application:</p>
+<ol class="arabic simple">
+<li><p>Loads the trained model.</p></li>
+<li><p>Loads the feature column configuration.</p></li>
+<li><p>Loads the historical dealer inventory data.</p></li>
+<li><p>Recreates the required features.</p></li>
+<li><p>Selects the requested dealer and BMW model.</p></li>
+<li><p>Aligns the generated features with the training feature columns.</p></li>
+<li><p>Sends the features to the trained model.</p></li>
+<li><p>Obtains the predicted next-month demand.</p></li>
+</ol>
+<p>The prediction is then passed to the inventory recommendation logic.</p>
+</section>
+<section id="model-limitations">
+<h2>Model Limitations<a class="headerlink" href="#model-limitations" title="Link to this heading">¶</a></h2>
+<p>The model is trained using synthetic data created specifically for the
+project.</p>
+<p>Therefore, the evaluation metrics demonstrate the behaviour of the
+implemented pipeline but should not be interpreted as measurements of
+real-world BMW demand prediction accuracy.</p>
+<p>The model should be retrained and re-evaluated when real historical
+business data becomes available.</p>
+</section>
+<section id="future-improvements">
+<h2>Future Improvements<a class="headerlink" href="#future-improvements" title="Link to this heading">¶</a></h2>
+<p>Potential improvements include:</p>
+<ul class="simple">
+<li><p>Hyperparameter tuning</p></li>
+<li><p>Additional demand-related features</p></li>
+<li><p>More historical data</p></li>
+<li><p>Real business data</p></li>
+<li><p>Model monitoring</p></li>
+<li><p>Prediction drift monitoring</p></li>
+<li><p>Automated model retraining</p></li>
+<li><p>Comparison with additional forecasting approaches</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Dealer Inventory Recommendation</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Project Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dictionary.html">Data Dictionary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Machine Learning Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prediction-target">Prediction Target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-features">Input Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#training-strategy">Training Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#models-evaluated">Models Evaluated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluation-results">Evaluation Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inference-process">Inference Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-limitations">Model Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-improvements">Future Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recommendation_logic.html">Recommendation Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS Cloud Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci_cd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="data_dictionary.html" title="previous chapter">Data Dictionary</a></li>
+      <li>Next: <a href="recommendation_logic.html" title="next chapter">Recommendation Logic</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Hemapriya.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/ml_model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

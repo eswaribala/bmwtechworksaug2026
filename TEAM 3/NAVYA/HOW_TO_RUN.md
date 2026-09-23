@@ -1,4 +1,4 @@
-# BMW Enterprise Batch ETL — How to Run
+# BMW Enterprise Batch ETL — How to Run.
 
 This guide explains how to run the BMW Enterprise Batch ETL project on a Windows laptop.
 

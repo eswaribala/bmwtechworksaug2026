@@ -1,4 +1,4 @@
-# How to Run the BMW Data Quality & Governance Platform
+# How to Run the BMW Data Quality & Governance Platform.
 
 This guide provides step-by-step instructions to run the entire platform from scratch using Command Prompt (`cmd`) or PowerShell.
 
