@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Architecture &#8212; EV Range &amp; Driving Efficiency Analytics 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation and execution" href="installation.html" />
+    <link rel="prev" title="EV Range &amp; Driving Efficiency Analytics" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The application has two execution paths.</p>
+<section id="local-development">
+<h3>Local development<a class="headerlink" href="#local-development" title="Link to this heading">¶</a></h3>
+<p>The local path is intentionally simple:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>data/dataset.csv
+     |
+     v
+src.ingestion
+     |
+     v
+src.validation
+     |
+     +----------------------+
+     |                      |
+     v                      v
+pandas pipeline        PySpark pipeline
+     |                      |
+     v                      v
+data/curated_local      Parquet
+     |                      |
+     +----------+-----------+
+                |
+                v
+           FastAPI
+                |
+                v
+           Streamlit
+</pre></div>
+</div>
+</section>
+<section id="aws-production-path">
+<h3>AWS production path<a class="headerlink" href="#aws-production-path" title="Link to this heading">¶</a></h3>
+<p>The AWS path follows the project’s data-lake architecture:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw CSV
+  |
+  v
+Amazon S3 /raw/
+  |
+  v
+AWS Glue Spark job
+  |
+  v
+Amazon S3 /curated/
+  |
+  v
+AWS Glue Data Catalog
+  |
+  v
+Amazon Athena
+  |
+  v
+FastAPI / query layer
+  |
+  v
+Streamlit dashboard
+</pre></div>
+</div>
+</section>
+</section>
+<section id="main-components">
+<h2>Main components<a class="headerlink" href="#main-components" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Python/pandas</strong> - lightweight local ingestion and API data preparation.</p></li>
+<li><p><strong>PySpark</strong> - distributed-style transformation and aggregation logic.</p></li>
+<li><p><strong>Amazon S3</strong> - raw and curated object storage.</p></li>
+<li><p><strong>AWS Glue</strong> - managed Spark execution and table cataloging.</p></li>
+<li><p><strong>Amazon Athena</strong> - SQL query layer over curated Parquet.</p></li>
+<li><p><strong>FastAPI</strong> - REST interface for analytics.</p></li>
+<li><p><strong>Streamlit</strong> - interactive analytics dashboard.</p></li>
+<li><p><strong>Terraform</strong> - infrastructure-as-code for AWS resources.</p></li>
+</ul>
+</section>
+<section id="source-locations">
+<h2>Source locations<a class="headerlink" href="#source-locations" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src/ingestion/</span></code> - CSV and S3 ingestion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/validation/</span></code> - schema and basic data validation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/pyspark/</span></code> - reusable Spark transformations and analytics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/api/</span></code> - FastAPI routes and local query functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/dashboard/</span></code> - Streamlit application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scripts/glue_job.py</span></code> - AWS Glue implementation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terraform/</span></code> - infrastructure definitions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sql/</span></code> - Athena-oriented analytical SQL.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">EV Range & Driving Efficiency Analytics</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-components">Main components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-locations">Source locations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Data pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">SQL analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source_code.html">Source code reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">EV Range &amp; Driving Efficiency Analytics</a></li>
+      <li>Next: <a href="installation.html" title="next chapter">Installation and execution</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/architecture.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

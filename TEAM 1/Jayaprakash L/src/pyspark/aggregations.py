@@ -1,6 +1,13 @@
+"""PySpark aggregation functions for the analytics data layer.
+
+The functions convert event-level telemetry into vehicle, model, region,
+and daily range-trend datasets suitable for Parquet, Athena, or dashboards.
+"""
+
 from pyspark.sql import functions as F
 
 def vehicle_efficiency(df):
+    """Aggregate event telemetry into one record per vehicle/model/region."""
     return (
         df.groupBy("vehicle_id","model","region")
         .agg(
@@ -24,6 +31,7 @@ def vehicle_efficiency(df):
     )
 
 def model_efficiency(df):
+    """Aggregate vehicle metrics into model-level efficiency metrics."""
     return (
         vehicle_efficiency(df)
         .groupBy("model")
@@ -39,6 +47,7 @@ def model_efficiency(df):
     )
 
 def region_efficiency(df):
+    """Aggregate vehicle metrics into region-level efficiency metrics."""
     return (
         vehicle_efficiency(df)
         .groupBy("region")
@@ -54,6 +63,7 @@ def region_efficiency(df):
     )
 
 def range_trend(df):
+    """Aggregate estimated range and battery level by calendar date."""
     return (
         df.withColumn("date", F.to_date("timestamp"))
         .groupBy("date")

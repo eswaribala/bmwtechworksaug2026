@@ -1,3 +1,17 @@
+"""AWS Glue Spark job for the production analytics pipeline.
+
+Inputs
+------
+input_path:
+    S3 URI containing the raw telemetry CSV.
+output_path:
+    S3 URI under which curated Parquet datasets are written.
+
+The job cleans telemetry, calculates battery consumption and estimated
+range, aggregates vehicle/model/region metrics, and writes analytics
+datasets for the Glue Catalog and Athena.
+"""
+
 # AWS Glue 4.0/5.0 Spark job
 # Job parameters:
 # --input_path s3://YOUR-BUCKET/raw/vehicles/dataset.csv

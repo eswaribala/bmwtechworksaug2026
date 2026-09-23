@@ -6,3 +6,7 @@ streamlit>=1.35
 boto3>=1.34
 pyarrow>=15.0
 python-dotenv>=1.0
+# Sphinx documentation
+sphinx>=7.0
+sphinx-rtd-theme>=2.0
+sphinx-autobuild>=2024.0

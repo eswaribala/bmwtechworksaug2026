@@ -1,10 +1,22 @@
+"""Run the pandas-based local analytics pipeline.
+
+This script is the lightweight local path used to generate CSV outputs for
+the FastAPI and Streamlit applications. The production AWS path uses the
+PySpark/Glue implementation in ``scripts/glue_job.py``.
+"""
+
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import pandas as pd
 
 from src.ingestion.ingest import load_csv
 from src.validation.validate import validate_columns, clean_basic
 
-ROOT = Path(__file__).resolve().parents[1]
 df = load_csv(ROOT/"data/dataset.csv")
 validate_columns(df)
 df = clean_basic(df)

@@ -1,14 +1,20 @@
+"""Streamlit dashboard for EV range and driving-efficiency analytics.
+
+The dashboard reads curated local outputs and presents summary KPIs,
+vehicle rankings, model/region comparisons, and a range trend.
+"""
+
 import streamlit as st
 import pandas as pd
 from pathlib import Path
 
 st.set_page_config(
     page_title="EV Analytics",
-    page_icon="🚗",
+    # page_icon="🚗",
     layout="wide"
 )
 
-st.title("🚗 EV Range & Driving Efficiency Analytics")
+st.title("EV Range & Driving Efficiency Analytics")
 st.caption("Telemetry → PySpark → Curated Analytics → Dashboard")
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,7 +40,7 @@ st.divider()
 left,right = st.columns(2)
 
 with left:
-    st.subheader("🏆 Top 5 Efficiency Vehicles")
+    st.subheader("Top 5 Efficiency Vehicles")
     st.dataframe(
         vehicle.nlargest(5,"overall_efficiency")
         [["vehicle_id","model","region","overall_efficiency","total_distance_km"]],

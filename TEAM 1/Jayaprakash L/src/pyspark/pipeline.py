@@ -1,3 +1,9 @@
+"""End-to-end local PySpark analytics pipeline.
+
+The pipeline reads telemetry, applies transformations, calculates the
+analytics datasets, writes Parquet outputs, and releases Spark resources.
+"""
+
 from pathlib import Path
 from .spark_session import create_spark
 from .transform import transform_telemetry
@@ -8,6 +14,7 @@ from .aggregations import (
 from .ranking import top_vehicles, bottom_vehicles
 
 def run(input_csv, output_dir):
+    """Execute the complete local Spark pipeline and write Parquet outputs."""
     spark = create_spark()
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)

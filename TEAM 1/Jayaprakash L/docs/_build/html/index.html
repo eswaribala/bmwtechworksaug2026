@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>EV Range &amp; Driving Efficiency Analytics &#8212; EV Range &amp; Driving Efficiency Analytics 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ev-range-driving-efficiency-analytics">
+<h1>EV Range &amp; Driving Efficiency Analytics<a class="headerlink" href="#ev-range-driving-efficiency-analytics" title="Link to this heading">¶</a></h1>
+<section id="project-documentation">
+<h2>Project documentation<a class="headerlink" href="#project-documentation" title="Link to this heading">¶</a></h2>
+<p>This documentation describes the end-to-end EV analytics project:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV
+  |
+  v
+Python ingestion + validation
+  |
+  +--------------------------+
+  |                          |
+  v                          v
+Local pandas path        Amazon S3 raw
+  |                          |
+  v                          v
+Curated CSV             AWS Glue / PySpark
+  |                          |
+  v                          v
+FastAPI                S3 curated Parquet
+  |                          |
+  v                          v
+Streamlit               Glue Catalog
+                             |
+                             v
+                           Athena
+</pre></div>
+</div>
+<p>The project analyzes EV telemetry to calculate battery consumption,
+driving efficiency, estimated range, and aggregate metrics by vehicle,
+model, region, and date.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#main-components">Main components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#source-locations">Source locations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and execution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-project-dependencies">Install project dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-the-local-pipeline">Run the local pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-the-fastapi-service">Run the FastAPI service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-the-streamlit-dashboard">Run the Streamlit dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-tests">Run tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-configuration">Environment configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#build-this-sphinx-documentation">Build this Sphinx documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#live-reload-development">Live-reload development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Data pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#input-telemetry">Input telemetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#transformation-logic">Transformation logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#efficiency-formula">Efficiency formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#aggregation-outputs">Aggregation outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#spark-features-demonstrated">Spark features demonstrated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#local-versus-glue">Local versus Glue</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fastapi-application">FastAPI application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#local-data-layer">Local data layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-src.api.main">Python API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aws.html#cloud-data-flow">Cloud data flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws.html#s3-layout">S3 layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws.html#glue-job">Glue job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws.html#terraform">Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws.html#aws-notes">AWS notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">SQL analytics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#model-efficiency">Model efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#region-efficiency">Region efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#range-trend">Range trend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#vehicle-efficiency">Vehicle efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#top-and-bottom-vehicles">Top and bottom vehicles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source_code.html">Source code reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#module-src.ingestion.ingest">Ingestion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#module-src.validation.validate">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#module-src.aws.s3">AWS helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#module-src.pyspark.spark_session">PySpark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#local-runner">Local runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source_code.html#dashboard">Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="key-analytics">
+<h2>Key analytics<a class="headerlink" href="#key-analytics" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Vehicle efficiency: total distance divided by positive battery consumed.</p></li>
+<li><p>Model efficiency: model-level aggregation of vehicle metrics.</p></li>
+<li><p>Region efficiency: region-level aggregation of vehicle metrics.</p></li>
+<li><p>Range trend: daily average estimated range.</p></li>
+<li><p>Top/bottom vehicles: efficiency-based rankings.</p></li>
+</ul>
+</section>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">EV Range & Driving Efficiency Analytics</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Data pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">SQL analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source_code.html">Source code reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="architecture.html" title="next chapter">Architecture</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
