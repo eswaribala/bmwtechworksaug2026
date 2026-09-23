@@ -62,4 +62,4 @@ The `scripts/glue_job.py` file is the AWS Glue version of the Spark transformati
 
 # Final Output
  
-![Final Output](TEAM 1/Jayaprakash L/doc/proj_img2.png)
+![Final Output]("https://github.com/eswaribala/bmwtechworksaug2026/blob/02b60a6bf85cadb1ec25d91b029e718d14c083c2/TEAM%201/Jayaprakash%20L/doc/proj_img1.png")
