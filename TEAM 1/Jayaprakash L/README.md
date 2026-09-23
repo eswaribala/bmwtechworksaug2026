@@ -841,7 +841,8 @@ Use relative Markdown paths:
 
 ```md
 
-![Final Dashboard](https://github.com/eswaribala/bmwtechworksaug2026/blob/capstoneproject/TEAM%201/Jayaprakash%20L/doc/proj_img2.png)
-![Final Dashboard](https://github.com/eswaribala/bmwtechworksaug2026/blob/369b3722bc57ca12c97dfcb8e561d251d9e9b7f8/TEAM%201/Jayaprakash%20L/doc/proj_img2.png)
+![Final Dashboard](./doc/proj_img1.png)
+
+![Final Dashboard](./doc/proj_imag2.png)
 
 ```
