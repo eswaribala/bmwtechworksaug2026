@@ -59,3 +59,7 @@ The generated dataset contains 50 vehicles × 12 telemetry records.
 S3 raw → Glue/PySpark → S3 curated Parquet → Glue Catalog → Athena → FastAPI → Streamlit.
 
 The `scripts/glue_job.py` file is the AWS Glue version of the Spark transformation.
+
+# Final Output
+ 
+![Final Output](TEAM 1/Jayaprakash L/doc/proj_img2.png)
