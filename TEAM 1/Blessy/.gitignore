@@ -1,0 +1,18 @@
+# Terraform generated files and provider cache
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+
+# Terraform variable files may contain secrets
+*.tfvars
+*.tfvars.json
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Sphinx build output
+docs/_build/
