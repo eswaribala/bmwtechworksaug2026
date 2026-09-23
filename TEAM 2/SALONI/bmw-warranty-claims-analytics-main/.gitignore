@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+envwarranty/
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+*.pem
+*.key
+.aws/
+credentials
+
+# PySpark / Hadoop
+spark-warehouse/
+metastore_db/
+*.log
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build files
+*.egg-info/
+build/
+dist/
+
+# Sphinx generated files
+docs/build/
+
+# Local temporary data
+data/temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
