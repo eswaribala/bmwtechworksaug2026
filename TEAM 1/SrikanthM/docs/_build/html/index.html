@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>EV Battery Health Intelligence &#8212; EV Battery Health Intelligence 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview" href="overview.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ev-battery-health-intelligence">
+<h1>EV Battery Health Intelligence<a class="headerlink" href="#ev-battery-health-intelligence" title="Link to this heading">¶</a></h1>
+<p>Technical documentation for the EV Battery Health Intelligence project. The
+project turns vehicle telemetry, vehicle master data, and charging-session CSVs
+into one health record per vehicle, then exposes the result through Amazon S3,
+Athena, and QuickSight.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Project guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#repository-map">Repository map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#important-implementation-boundaries">Important implementation boundaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#end-to-end-flow">End-to-end flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#input-data">Input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#processing-stages">Processing stages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#output-contract">Output contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#aws-infrastructure">AWS infrastructure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations and scoring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calculations.html#vehicle-metrics">Vehicle metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculations.html#degradation-fields">Degradation fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculations.html#classification">Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculations.html#interpretation-warning">Interpretation warning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#python-environment">Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#terraform-variables">Terraform variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operations.html#local-development">Local development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations.html#aws-backed-run">AWS-backed run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations.html#terraform-provisioning">Terraform provisioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations.html#athena-and-quicksight-refresh">Athena and QuickSight refresh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations.html#operational-limitations">Operational limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#battery_health_pipeline.build_ev_battery_health_pipeline"><code class="docutils literal notranslate"><span class="pre">build_ev_battery_health_pipeline()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#battery_health_pipeline.write_parquet_to_s3"><code class="docutils literal notranslate"><span class="pre">write_parquet_to_s3()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#ingestion.read_csv_files"><code class="docutils literal notranslate"><span class="pre">read_csv_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#transforms.clean_charging_sessions"><code class="docutils literal notranslate"><span class="pre">clean_charging_sessions()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#transforms.clean_telemetry"><code class="docutils literal notranslate"><span class="pre">clean_telemetry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#transforms.clean_vehicle_master"><code class="docutils literal notranslate"><span class="pre">clean_vehicle_master()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#transforms.compute_vehicle_summary"><code class="docutils literal notranslate"><span class="pre">compute_vehicle_summary()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#transforms.enrich_vehicle_data"><code class="docutils literal notranslate"><span class="pre">enrich_vehicle_data()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#health_scoring.calculate_degradation_trend"><code class="docutils literal notranslate"><span class="pre">calculate_degradation_trend()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#health_scoring.classify_battery_health"><code class="docutils literal notranslate"><span class="pre">classify_battery_health()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#dashboard_data.build_dashboard_summary"><code class="docutils literal notranslate"><span class="pre">build_dashboard_summary()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#athena_queries.run_query"><code class="docutils literal notranslate"><span class="pre">run_query()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#generate_battery_data.build_health_profile"><code class="docutils literal notranslate"><span class="pre">build_health_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#generate_battery_data.write_charging_sessions"><code class="docutils literal notranslate"><span class="pre">write_charging_sessions()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#generate_battery_data.write_telemetry"><code class="docutils literal notranslate"><span class="pre">write_telemetry()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">EV Battery Health Intelligence</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations and scoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="overview.html" title="next chapter">Overview</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Capstone Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
