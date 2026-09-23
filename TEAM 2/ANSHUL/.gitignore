@@ -1,0 +1,50 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+**/pysparkenv/
+**/.venv/
+
+# Python caches and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local environment files
+.env
+.env.*
+*.log
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfplan
+**/*.tfvars
+!terraformbmw/**/terraform.tfvars
+crash.log
+
+# Sphinx / docs build output
+pysparkws/docs/_build/
+
+# Local build outputs
+build/
+dist/
+*.egg-info/
+
+# Data caches generated during local runs
+**/tmp/
+**/.cache/
