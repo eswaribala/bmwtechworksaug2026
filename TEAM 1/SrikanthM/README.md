@@ -110,4 +110,4 @@ Python API reference.
 
 
 output url:
-https://eu-north-1.quicksight.aws.amazon.com/sn/account/tamizh-sk/dashboards/f35efd04-f1ca-453b-9a3c-805ea77a0564
+https://eu-north-1.quicksight.aws.amazon.com/sn/account/tamizh-sk/accounts/532404260630/dashboards/f35efd04-f1ca-453b-9a3c-805ea77a0564
