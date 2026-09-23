@@ -1,4 +1,4 @@
-# 🚗 EV Range & Driving Efficiency Analytics
+# EV Range & Driving Efficiency Analytics
 
 An end-to-end data engineering and analytics project for analyzing **EV driving efficiency, battery consumption, range trends, vehicle performance, model performance, and regional performance**.
 
@@ -8,7 +8,7 @@ The project demonstrates a complete data pipeline:
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 The objective of this project is to analyze EV telemetry data and identify:
 
@@ -29,7 +29,7 @@ The generated dataset contains:
 
 ---
 
-# 🏗️ Architecture
+# Architecture
 
 The complete pipeline follows this architecture:
 
@@ -105,7 +105,7 @@ Then use:
 
 ---
 
-# 📊 Project Workflow
+# Project Workflow
 
 ## 1. Data Generation
 
@@ -127,7 +127,7 @@ Example fields:
 
 ---
 
-# 🔍 Efficiency Calculation
+# Efficiency Calculation
 
 Battery consumption is calculated using the previous telemetry record for each vehicle.
 
@@ -158,7 +158,7 @@ The vehicle records are ordered by timestamp using a PySpark window function.
 
 ---
 
-# ⚡ PySpark Processing
+#  PySpark Processing
 
 The PySpark pipeline demonstrates multiple Spark transformations and operations.
 
@@ -197,7 +197,7 @@ df = df.withColumn(
 
 ---
 
-# ☁️ AWS Architecture
+#  AWS Architecture
 
 The AWS implementation uses:
 
@@ -231,7 +231,7 @@ s3://j-project-team1/
 
 ---
 
-# 🪣 Amazon S3
+#  Amazon S3
 
 Raw telemetry data is stored in Amazon S3:
 
@@ -254,7 +254,7 @@ aws s3 ls s3://j-project-team1/raw/vehicles/
 
 ---
 
-# 🔥 AWS Glue
+#  AWS Glue
 
 AWS Glue runs the PySpark transformation job.
 
@@ -282,7 +282,7 @@ s3://j-project-team1/curated/
 
 ---
 
-# 🗂️ Glue Data Catalog
+#  Glue Data Catalog
 
 AWS Glue Crawlers discover the curated Parquet datasets and create tables in the Glue Data Catalog.
 
@@ -299,7 +299,7 @@ These tables provide metadata that allows Amazon Athena to query the Parquet dat
 
 ---
 
-# 🔎 Amazon Athena
+#  Amazon Athena
 
 Athena is used as the analytical query layer.
 
@@ -320,7 +320,7 @@ LIMIT 5;
 
 ---
 
-# 🏆 Top 5 Efficiency Vehicles
+#  Top 5 Efficiency Vehicles
 
 ```sql
 SELECT
@@ -337,7 +337,7 @@ LIMIT 5;
 
 ---
 
-# 📉 Bottom 5 Efficiency Vehicles
+#  Bottom 5 Efficiency Vehicles
 
 ```sql
 SELECT
@@ -354,7 +354,7 @@ LIMIT 5;
 
 ---
 
-# 🚘 Main Analytics
+#  Main Analytics
 
 The project generates the following analytical datasets.
 
@@ -399,7 +399,7 @@ Contains estimated range information for visualization.
 
 ---
 
-# 🚀 FastAPI
+#  FastAPI
 
 FastAPI provides the REST API layer between Athena and the dashboard.
 
@@ -455,7 +455,7 @@ GET /range-trend
 
 ---
 
-# 📊 Streamlit Dashboard
+#  Streamlit Dashboard
 
 The Streamlit application consumes the FastAPI endpoints and presents the analytics through an interactive dashboard.
 
@@ -479,7 +479,7 @@ Dashboard includes:
 
 ---
 
-# 🖼️ Dashboard / Final Output
+#  Dashboard / Final Output
 
 Place your final dashboard screenshot here:
 
@@ -490,7 +490,7 @@ doc/
 
 
 
-# 🖼️ Additional Screenshots
+#  Additional Screenshots
 
 You can add additional screenshots like this:
 
@@ -607,7 +607,7 @@ ev-range-analytics/
 
 ---
 
-# 💻 Local Setup
+#  Local Setup
 
 ## 1. Clone the repository
 
@@ -640,7 +640,7 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Run Local Pipeline
+#  Run Local Pipeline
 
 Run the pipeline from the **project root**, not from the `scripts` directory.
 
@@ -668,7 +668,7 @@ ModuleNotFoundError: No module named 'src'
 
 ---
 
-# 🔐 Environment Variables
+#  Environment Variables
 
 Create a `.env` file:
 
@@ -720,7 +720,7 @@ tests/
 
 ---
 
-# 🛠️ Technologies Used
+#  Technologies Used
 
 | Technology        | Purpose                                     |
 | ----------------- | ------------------------------------------- |
@@ -738,7 +738,7 @@ tests/
 
 ---
 
-# 🎯 Key Features
+#  Key Features
 
 * End-to-end data engineering pipeline
 * Python-based ingestion
@@ -760,7 +760,7 @@ tests/
 
 ---
 
-# 🔄 End-to-End Data Flow
+#  End-to-End Data Flow
 
 ```text
 CSV
@@ -820,7 +820,7 @@ allowing users to analyze EV efficiency at the **vehicle, model, regional, and t
 
 ---
 
-# 📷 Project Screenshots
+#  Project Screenshots
 
 All project screenshots are stored in:
 
@@ -841,7 +841,7 @@ Use relative Markdown paths:
 
 ```md
 
-![Final Dashboard]("https://github.com/eswaribala/bmwtechworksaug2026/blob/capstoneproject/TEAM%201/Jayaprakash%20L/doc/proj_img2.png")
-![Final Dashboard]("https://github.com/eswaribala/bmwtechworksaug2026/blob/369b3722bc57ca12c97dfcb8e561d251d9e9b7f8/TEAM%201/Jayaprakash%20L/doc/proj_img2.png")
+![Final Dashboard](https://github.com/eswaribala/bmwtechworksaug2026/blob/capstoneproject/TEAM%201/Jayaprakash%20L/doc/proj_img2.png)
+![Final Dashboard](https://github.com/eswaribala/bmwtechworksaug2026/blob/369b3722bc57ca12c97dfcb8e561d251d9e9b7f8/TEAM%201/Jayaprakash%20L/doc/proj_img2.png)
 
 ```
