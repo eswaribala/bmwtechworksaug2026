@@ -837,11 +837,11 @@ doc/
 ├── proj_imag2.png
 ```
 
-Use relative Markdown paths:
 
-```md
+
+
 
 ![Final Dashboard](https://raw.githubusercontent.com/eswaribala/bmwtechworksaug2026/capstoneproject/TEAM%201/Jayaprakash%20L/doc/proj_img1.png)
 ![Final Dashboard](https://github.com/eswaribala/bmwtechworksaug2026/blob/capstoneproject/TEAM%201/Jayaprakash%20L/doc/proj_img2.png?raw=true)
 
-```
+
