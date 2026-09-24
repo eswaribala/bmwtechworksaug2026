@@ -4,8 +4,10 @@ Results and Business Insights
 Processing Results
 ------------------
 
-The completed solution processed 210 vehicles and generated curated analytical
-outputs for reporting.
+* **Total vehicles processed:** 210
+* **Curated outputs:** ``maintenance_risk_score.csv`` and
+	``top10_risk_vehicles.csv``
+* **Consumers:** Amazon Athena and Amazon QuickSight
 
 Generated Files
 ---------------
@@ -15,36 +17,26 @@ Generated Files
 	 maintenance_risk_score.csv
 	 top10_risk_vehicles.csv
 
-The files were uploaded to the curated S3 layer and made available to Athena
-and QuickSight.
+The files were uploaded to the curated S3 layer for analysis and reporting.
 
-Risk Categories
----------------
+.. figure:: ../submission_screenshots/04_sphinx_documentation.png
+	:alt: Generated Sphinx project documentation
+	:width: 800px
+	:align: center
 
-Vehicles are classified as High, Medium, or Low risk. This converts technical
-measurements into an operational prioritization framework.
+	Sphinx documentation generated for the BMW Predictive Maintenance System.
 
-Business Insights
------------------
+Key Insights
+------------
 
-* **Maintenance prioritization:** High-risk vehicles can be reviewed first.
-* **Reliability monitoring:** Frequent faults and repeated maintenance can
-	reveal recurring problems.
-* **Usage and wear analysis:** High mileage can indicate accumulated wear.
-* **Operating-condition monitoring:** Temperature trends can highlight abnormal
-	conditions.
-* **Regional comparison:** Average regional risk can support resource planning.
+* **Risk distribution:** Vehicles are grouped into High, Medium, and Low risk
+	for operational prioritization.
+* **Top-risk vehicles:** The top-ten output identifies vehicles requiring
+	immediate review.
+* **Main risk factors:** High mileage, frequent faults, frequent maintenance,
+	and temperature trends contribute to risk.
+* **Regional insights:** Average risk by region supports resource planning and
+	comparison of operating conditions.
 
-Decision Support
-----------------
-
-The system moves maintenance analysis from a purely reactive process toward a
-risk-based process. Teams can focus attention on vehicles most likely to need
-intervention instead of treating all vehicles equally.
-
-Interpretation Considerations
------------------------------
-
-Risk scores are decision-support indicators, not guaranteed failure
-predictions. They should be considered alongside engineering judgment,
-inspection results, vehicle age, operating conditions, and service history.
+Risk scores support maintenance decisions and should be reviewed alongside
+inspection results and service history.

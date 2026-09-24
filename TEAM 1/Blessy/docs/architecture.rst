@@ -4,7 +4,8 @@ System Architecture
 Architecture Overview
 ---------------------
 
-The system follows a layered data-processing architecture:
+The workflow moves validated CSV data through PySpark processing into AWS
+analytics and reporting:
 
 .. code-block:: text
 
@@ -28,44 +29,48 @@ The system follows a layered data-processing architecture:
 	   v
    Amazon QuickSight Dashboard
 
-Source Layer
-------------
+Implementation Flow
+-------------------
 
-CSV files provide vehicle information, historical maintenance records,
-telemetry measurements, and fault records.
+* **Input:** Vehicle master, maintenance, telemetry, and fault CSV files.
+* **Validation:** Python checks file structure, required fields, identifiers,
+	nulls, duplicates, and data types.
+* **Transformation:** PySpark joins datasets by vehicle identifier and derives
+	mileage, fault, maintenance, temperature, and regional metrics.
+* **Scoring:** The pipeline calculates a risk score and assigns a risk category.
+* **Storage and reporting:** Curated CSV files are published to S3 for Athena
+	queries and QuickSight dashboards.
 
-Validation Layer
-----------------
+Curated Outputs
+---------------
 
-Python validation confirms that files exist, required columns are available,
-data types are valid, identifiers are consistent, and missing or duplicate
-records are identified before transformation.
-
-Transformation Layer
---------------------
-
-PySpark joins the validated datasets using a common vehicle identifier. It
-creates vehicle-level metrics, derives risk indicators, calculates risk
-scores, and assigns risk categories.
-
-Curated Storage Layer
----------------------
-
-Amazon S3 stores the analytical outputs:
+Amazon S3 stores:
 
 * ``curated/maintenance_risk_score.csv``
 * ``curated/top10_risk_vehicles.csv``
 
-Analytics and Visualization Layers
------------------------------------
+.. figure:: ../submission_screenshots/03_s3_curated_files.png
+	:alt: Curated files stored in Amazon S3
+	:width: 800px
+	:align: center
 
-Amazon Athena provides serverless SQL access to the curated S3 data. Amazon
-QuickSight connects to the analytical data and presents metrics, charts, and
-tables in the BMW Predictive Maintenance Dashboard.
+	Curated maintenance risk files stored in the Amazon S3 output location.
 
-Design Benefits
----------------
+Infrastructure Evidence
+-----------------------
 
-This architecture separates ingestion, processing, storage, and reporting. It
-also provides repeatable infrastructure, scalable processing, serverless
-querying, and self-service business intelligence.
+Terraform provisions the S3 bucket, IAM role, and CloudWatch log group used by
+the solution.
+
+.. figure:: ../submission_screenshots/05_terraform_resources.png
+	:alt: AWS resources provisioned with Terraform
+	:width: 800px
+	:align: center
+
+	AWS resources provisioned through the project's Terraform configuration.
+
+Review Summary
+--------------
+
+The architecture separates validation, transformation, storage, analysis, and
+visualization so each stage can be tested and reviewed independently.
