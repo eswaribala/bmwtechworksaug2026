@@ -1,0 +1,16 @@
+body {
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+div.document {
+    max-width: 1100px;
+}
+
+code, pre {
+    font-family: "Cascadia Code", Consolas, monospace;
+}
+
+table.docutils th {
+    background: #2f4f5f;
+    color: #ffffff;
+}

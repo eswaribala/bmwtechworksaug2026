@@ -1,0 +1,5 @@
+aws_region           = "eu-north-1"
+project_name         = "bmw_dealer_score_performace"
+environment          = "dev"
+bucket_name          = "bmw_dealer_score_performace"
+quicksight_role_name = ""

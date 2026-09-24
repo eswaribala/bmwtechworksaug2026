@@ -1,3 +1,5 @@
+Capstone Project documentation link:https://anshuls-workspace.github.io/bmw_sales_trend_and_forecast/
+
 # BMW Sales Data Pipeline
 
 This project builds a data pipeline for BMW sales analytics using Python, PySpark, AWS S3, Terraform, Snowflake, and QuickSight. The project is structured to keep the original ETL flow intact while adding a separate forecasting layer for next-month revenue prediction.

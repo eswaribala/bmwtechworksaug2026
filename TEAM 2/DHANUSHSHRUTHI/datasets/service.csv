@@ -1,0 +1,201 @@
+service_id,dealer_id,service_date,service_type,service_count
+V001,D001,2025-01-03,Oil Service,3
+V002,D002,2025-01-04,Brake Inspection,2
+V003,D003,2025-01-05,Vehicle Inspection,4
+V004,D004,2025-01-07,Tire Service,3
+V005,D005,2025-01-09,Oil Service,5
+V006,D006,2025-01-11,Repair,2
+V007,D007,2025-01-13,Vehicle Inspection,4
+V008,D008,2025-01-15,Brake Inspection,3
+V009,D009,2025-01-17,Repair,5
+V010,D010,2025-01-19,Oil Service,2
+V011,D001,2025-02-03,Brake Inspection,4
+V012,D002,2025-02-04,Vehicle Inspection,3
+V013,D003,2025-02-05,Tire Service,5
+V014,D004,2025-02-07,Oil Service,2
+V015,D005,2025-02-09,Repair,4
+V016,D006,2025-02-11,Vehicle Inspection,3
+V017,D007,2025-02-13,Brake Inspection,5
+V018,D008,2025-02-15,Repair,2
+V019,D009,2025-02-17,Oil Service,4
+V020,D010,2025-02-19,Tire Service,3
+V021,D001,2025-03-03,Vehicle Inspection,5
+V022,D002,2025-03-04,Tire Service,2
+V023,D003,2025-03-05,Oil Service,4
+V024,D004,2025-03-07,Repair,3
+V025,D005,2025-03-09,Vehicle Inspection,5
+V026,D006,2025-03-11,Brake Inspection,2
+V027,D007,2025-03-13,Repair,4
+V028,D008,2025-03-15,Oil Service,3
+V029,D009,2025-03-17,Tire Service,5
+V030,D010,2025-03-19,Vehicle Inspection,2
+V031,D001,2025-04-03,Tire Service,2
+V032,D002,2025-04-04,Oil Service,4
+V033,D003,2025-04-05,Repair,3
+V034,D004,2025-04-07,Vehicle Inspection,5
+V035,D005,2025-04-09,Brake Inspection,2
+V036,D006,2025-04-11,Repair,4
+V037,D007,2025-04-13,Oil Service,3
+V038,D008,2025-04-15,Tire Service,5
+V039,D009,2025-04-17,Vehicle Inspection,2
+V040,D010,2025-04-19,Brake Inspection,4
+V041,D001,2025-05-03,Oil Service,3
+V042,D002,2025-05-04,Repair,5
+V043,D003,2025-05-05,Vehicle Inspection,2
+V044,D004,2025-05-07,Brake Inspection,4
+V045,D005,2025-05-09,Repair,3
+V046,D006,2025-05-11,Oil Service,5
+V047,D007,2025-05-13,Tire Service,2
+V048,D008,2025-05-15,Vehicle Inspection,4
+V049,D009,2025-05-17,Brake Inspection,3
+V050,D010,2025-05-19,Repair,5
+V051,D001,2025-06-03,Repair,4
+V052,D002,2025-06-04,Vehicle Inspection,2
+V053,D003,2025-06-05,Brake Inspection,5
+V054,D004,2025-06-07,Oil Service,3
+V055,D005,2025-06-09,Tire Service,4
+V056,D006,2025-06-11,Vehicle Inspection,2
+V057,D007,2025-06-13,Brake Inspection,5
+V058,D008,2025-06-15,Repair,3
+V059,D009,2025-06-17,Oil Service,4
+V060,D010,2025-06-19,Tire Service,2
+V061,D001,2025-07-03,Vehicle Inspection,5
+V062,D002,2025-07-04,Brake Inspection,3
+V063,D003,2025-07-05,Repair,4
+V064,D004,2025-07-07,Oil Service,2
+V065,D005,2025-07-09,Tire Service,5
+V066,D006,2025-07-11,Vehicle Inspection,3
+V067,D007,2025-07-13,Brake Inspection,4
+V068,D008,2025-07-15,Repair,2
+V069,D009,2025-07-17,Oil Service,5
+V070,D010,2025-07-19,Tire Service,3
+V071,D001,2025-08-03,Brake Inspection,2
+V072,D002,2025-08-04,Repair,4
+V073,D003,2025-08-05,Oil Service,3
+V074,D004,2025-08-07,Tire Service,5
+V075,D005,2025-08-09,Vehicle Inspection,2
+V076,D006,2025-08-11,Brake Inspection,4
+V077,D007,2025-08-13,Repair,3
+V078,D008,2025-08-15,Oil Service,5
+V079,D009,2025-08-17,Tire Service,2
+V080,D010,2025-08-19,Vehicle Inspection,4
+V081,D001,2025-09-03,Repair,3
+V082,D002,2025-09-04,Oil Service,5
+V083,D003,2025-09-05,Tire Service,2
+V084,D004,2025-09-07,Vehicle Inspection,4
+V085,D005,2025-09-09,Brake Inspection,3
+V086,D006,2025-09-11,Repair,5
+V087,D007,2025-09-13,Oil Service,2
+V088,D008,2025-09-15,Tire Service,4
+V089,D009,2025-09-17,Vehicle Inspection,3
+V090,D010,2025-09-19,Brake Inspection,5
+V091,D001,2025-10-03,Oil Service,4
+V092,D002,2025-10-04,Tire Service,2
+V093,D003,2025-10-05,Vehicle Inspection,5
+V094,D004,2025-10-07,Brake Inspection,3
+V095,D005,2025-10-09,Repair,4
+V096,D006,2025-10-11,Oil Service,2
+V097,D007,2025-10-13,Tire Service,5
+V098,D008,2025-10-15,Vehicle Inspection,3
+V099,D009,2025-10-17,Brake Inspection,4
+V100,D010,2025-10-19,Repair,2
+V101,D001,2025-11-03,Tire Service,5
+V102,D002,2025-11-04,Vehicle Inspection,3
+V103,D003,2025-11-05,Brake Inspection,4
+V104,D004,2025-11-07,Repair,2
+V105,D005,2025-11-09,Oil Service,5
+V106,D006,2025-11-11,Tire Service,3
+V107,D007,2025-11-13,Vehicle Inspection,4
+V108,D008,2025-11-15,Brake Inspection,2
+V109,D009,2025-11-17,Repair,5
+V110,D010,2025-11-19,Oil Service,3
+V111,D001,2025-12-03,Vehicle Inspection,2
+V112,D002,2025-12-04,Brake Inspection,5
+V113,D003,2025-12-05,Repair,3
+V114,D004,2025-12-07,Oil Service,4
+V115,D005,2025-12-09,Tire Service,2
+V116,D006,2025-12-11,Vehicle Inspection,5
+V117,D007,2025-12-13,Brake Inspection,3
+V118,D008,2025-12-15,Repair,4
+V119,D009,2025-12-17,Oil Service,2
+V120,D010,2025-12-19,Tire Service,5
+V121,D001,2025-01-21,Vehicle Inspection,3
+V122,D002,2025-01-22,Repair,4
+V123,D003,2025-01-23,Oil Service,2
+V124,D004,2025-01-24,Tire Service,5
+V125,D005,2025-01-25,Brake Inspection,3
+V126,D006,2025-02-21,Vehicle Inspection,4
+V127,D007,2025-02-22,Repair,2
+V128,D008,2025-02-23,Oil Service,5
+V129,D009,2025-02-24,Tire Service,3
+V130,D010,2025-02-25,Brake Inspection,4
+V131,D001,2025-03-21,Vehicle Inspection,3
+V132,D002,2025-03-22,Repair,4
+V133,D003,2025-03-23,Oil Service,2
+V134,D004,2025-03-24,Tire Service,5
+V135,D005,2025-03-25,Brake Inspection,3
+V136,D006,2025-04-21,Vehicle Inspection,4
+V137,D007,2025-04-22,Repair,2
+V138,D008,2025-04-23,Oil Service,5
+V139,D009,2025-04-24,Tire Service,3
+V140,D010,2025-04-25,Brake Inspection,4
+V141,D001,2025-05-21,Vehicle Inspection,3
+V142,D002,2025-05-22,Repair,4
+V143,D003,2025-05-23,Oil Service,2
+V144,D004,2025-05-24,Tire Service,5
+V145,D005,2025-05-25,Brake Inspection,3
+V146,D006,2025-06-21,Vehicle Inspection,4
+V147,D007,2025-06-22,Repair,2
+V148,D008,2025-06-23,Oil Service,5
+V149,D009,2025-06-24,Tire Service,3
+V150,D010,2025-06-25,Brake Inspection,4
+V151,D001,2025-07-21,Vehicle Inspection,3
+V152,D002,2025-07-22,Repair,4
+V153,D003,2025-07-23,Oil Service,2
+V154,D004,2025-07-24,Tire Service,5
+V155,D005,2025-07-25,Brake Inspection,3
+V156,D006,2025-08-21,Vehicle Inspection,4
+V157,D007,2025-08-22,Repair,2
+V158,D008,2025-08-23,Oil Service,5
+V159,D009,2025-08-24,Tire Service,3
+V160,D010,2025-08-25,Brake Inspection,4
+V161,D001,2025-09-21,Vehicle Inspection,3
+V162,D002,2025-09-22,Repair,4
+V163,D003,2025-09-23,Oil Service,2
+V164,D004,2025-09-24,Tire Service,5
+V165,D005,2025-09-25,Brake Inspection,3
+V166,D006,2025-10-21,Vehicle Inspection,4
+V167,D007,2025-10-22,Repair,2
+V168,D008,2025-10-23,Oil Service,5
+V169,D009,2025-10-24,Tire Service,3
+V170,D010,2025-10-25,Brake Inspection,4
+V171,D001,2025-11-21,Vehicle Inspection,3
+V172,D002,2025-11-22,Repair,4
+V173,D003,2025-11-23,Oil Service,2
+V174,D004,2025-11-24,Tire Service,5
+V175,D005,2025-11-25,Brake Inspection,3
+V176,D006,2025-12-21,Vehicle Inspection,4
+V177,D007,2025-12-22,Repair,2
+V178,D008,2025-12-23,Oil Service,5
+V179,D009,2025-12-24,Tire Service,3
+V180,D010,2025-12-25,Brake Inspection,4
+V181,D001,2025-02-26,Repair,2
+V182,D002,2025-03-26,Oil Service,3
+V183,D003,2025-04-26,Tire Service,4
+V184,D004,2025-05-26,Vehicle Inspection,2
+V185,D005,2025-06-26,Brake Inspection,3
+V186,D006,2025-07-26,Repair,4
+V187,D007,2025-08-26,Oil Service,2
+V188,D008,2025-09-26,Tire Service,3
+V189,D009,2025-10-26,Vehicle Inspection,4
+V190,D010,2025-11-26,Brake Inspection,2
+V191,D001,2025-12-26,Repair,3
+V192,D002,2025-01-26,Oil Service,4
+V193,D003,2025-02-27,Tire Service,2
+V194,D004,2025-03-27,Vehicle Inspection,3
+V195,D005,2025-04-27,Brake Inspection,4
+V196,D006,2025-05-27,Repair,2
+V197,D007,2025-06-27,Oil Service,3
+V198,D008,2025-07-27,Tire Service,4
+V199,D009,2025-08-27,Vehicle Inspection,2
+V200,D010,2025-09-27,Brake Inspection,3

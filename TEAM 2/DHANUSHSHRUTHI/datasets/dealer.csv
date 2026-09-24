@@ -1,0 +1,11 @@
+dealer_id,dealer_name,region,city
+D001,BMW Munich Central,Europe,Munich
+D002,BMW Berlin Premium,Europe,Berlin
+D003,BMW Paris Etoile,Europe,Paris
+D004,BMW Milan Motors,Europe,Milan
+D005,BMW Dubai Autodrome,Middle East,Dubai
+D006,BMW New York Metropolitan,North America,New York
+D007,BMW Los Angeles Pacific,North America,Los Angeles
+D008,BMW Toronto North,North America,Toronto
+D009,BMW Singapore Performance,Asia Pacific,Singapore
+D010,BMW Sydney Harbour,Asia Pacific,Sydney
