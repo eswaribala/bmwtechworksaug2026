@@ -65,3 +65,11 @@ Do not run `terraform apply` until the trainer provides the AWS account, region,
 - Testing: five automated tests in `tests/`.
 - Monitoring: structured logs and CloudWatch metric filter for critical alerts.
 - Recovery: SQS redrive policy sends repeatedly failing messages to a dead-letter queue.
+
+  ## Final Output
+
+  ![Final Dashboard](./docs/image(1).png)
+  ![Final Dashboard](./docs/image(2).png)
+  ![Final Dashboard](./docs/image(3).png)
+  ![Final Dashboard](./docs/image(4).png)
+  ![Final Dashboard](./docs/image.png)
