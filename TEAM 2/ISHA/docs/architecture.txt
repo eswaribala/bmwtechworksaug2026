@@ -1,0 +1,132 @@
++--------------------------------------------------+
+|                 BMW Data Sources                 |
++--------------------------------------------------+
+|                                                  |
+|  maintenance_large_100k.csv                      |
+|  dealer_large.csv                                |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|              PySpark ETL Processing              |
++--------------------------------------------------+
+|                                                  |
+|  • Data Validation                               |
+|  • Null Handling                                 |
+|  • Duplicate Removal                             |
+|  • Feature Engineering                           |
+|      repair_cost = parts_cost + labour_cost      |
+|  • Maintenance + Dealer Join                     |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|            Curated Output Datasets               |
++--------------------------------------------------+
+|                                                  |
+|  maintenance_cleaned.csv                         |
+|  maintenance_dealer_joined.csv                   |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|             Infrastructure as Code               |
++--------------------------------------------------+
+|                                                  |
+|               Terraform                          |
+|                                                  |
+|  • S3 Bucket Creation                            |
+|  • Athena Database Creation                      |
+|  • Athena Workgroup Creation                     |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|                 Amazon S3 Data Lake              |
++--------------------------------------------------+
+|                                                  |
+| processed/maintenance_cleaned/                   |
+| processed/maintenance_dealer_joined/             |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|                 Amazon Athena                    |
++--------------------------------------------------+
+|                                                  |
+| Table:                                            |
+| maintenance_dealer_joined                        |
+|                                                  |
+| Analytics View:                                  |
+| dealer_capacity_metrics                          |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|               Business KPI Layer                 |
++--------------------------------------------------+
+|                                                  |
+|  KPI 1: Services Per Day                         |
+|  KPI 2: Average Repair Cost                      |
+|  KPI 3: Average Service Interval                 |
+|  KPI 4: Capacity Utilization %                   |
+|                                                  |
+| Dealer Classification:                           |
+|  • OVERLOADED (>90%)                             |
+|  • OPTIMAL (60%-90%)                             |
+|  • UNDER_UTILIZED (<60%)                         |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|             Amazon QuickSight Dashboard          |
++--------------------------------------------------+
+|                                                  |
+| KPI Cards                                        |
+| • Total Dealers                                  |
+| • Average Services Per Day                       |
+| • Average Repair Cost                            |
+| • Average Capacity Utilization %                 |
+|                                                  |
+| Visualizations                                   |
+| • Dealer Status Distribution                     |
+| • Dealer Utilization Ranking                     |
+| • Utilization by Region                          |
+| • Repair Cost by Region                          |
+| • Dealer KPI Summary Table                       |
+|                                                  |
+| Filters                                          |
+| • Region                                         |
+| • City                                           |
+| • Dealer Status                                  |
+| • Dealer Name                                    |
+|                                                  |
++----------------------+---------------------------+
+                       |
+                       v
+
++--------------------------------------------------+
+|                Business Insights                 |
++--------------------------------------------------+
+|                                                  |
+| • Identify overloaded service centres            |
+| • Identify under-utilized service centres        |
+| • Analyze dealer performance                     |
+| • Compare regional utilization                   |
+| • Compare repair costs across regions            |
+|                                                  |
++--------------------------------------------------+

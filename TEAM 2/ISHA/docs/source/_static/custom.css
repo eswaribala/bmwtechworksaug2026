@@ -1,0 +1,29 @@
+/* Custom Sphinx styling */
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f8f9fb;
+    color: #1f2937;
+}
+
+.wy-nav-content {
+    max-width: 1100px;
+}
+
+.wy-side-nav-search {
+    background: #0d1b2a;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: #eaf2ff;
+}
+
+.rst-content .highlight {
+    background: #f3f6fb;
+}
+
+.rst-content code.literal {
+    background: #eef2ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
