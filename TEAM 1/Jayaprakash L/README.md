@@ -827,20 +827,10 @@ All project screenshots are stored in:
 doc/
 ```
 
-Recommended structure:
-
-```text
-doc/
-├── architecture.png
-├── proj_img1.png
-├── athena.png
-├── glue.png
-├── s3.png
-└── fastapi.png
-```
 
 
-![Final Dashboard](./doc/proj_img2.png)
 
 ![Final Dashboard](./doc/proj_img1.png)
+
+![Final Dashboard](./doc/proj_img2.png)
 
