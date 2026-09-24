@@ -68,8 +68,8 @@ Do not run `terraform apply` until the trainer provides the AWS account, region,
 
   ## Final Output
 
-  ![Final Dashboard](./docs/image(1).png)
-  ![Final Dashboard](./docs/image(2).png)
-  ![Final Dashboard](./docs/image(3).png)
-  ![Final Dashboard](./docs/image(4).png)
-  ![Final Dashboard](./docs/image.png)
+  ![Final Dashboard](./output/image(1).png)
+  ![Final Dashboard](./output/image(2).png)
+  ![Final Dashboard](./output/image(3).png)
+  ![Final Dashboard](./output/image(4).png)
+  ![Final Dashboard](./output/image.png)
