@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Terraform Infrastructure &#8212; BMW Dealer Inventory Recommendation 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="AWS Cloud Services" href="aws.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="terraform-infrastructure">
+<h1>Terraform Infrastructure<a class="headerlink" href="#terraform-infrastructure" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>Terraform is used as Infrastructure as Code (IaC) for the AWS resources
+required by the project.</p>
+<p>Instead of creating and configuring cloud infrastructure manually,
+Terraform describes the required infrastructure in configuration files.</p>
+<p>The project currently uses Terraform to manage the Amazon S3 storage
+infrastructure.</p>
+</section>
+<section id="infrastructure-flow">
+<h2>Infrastructure Flow<a class="headerlink" href="#infrastructure-flow" title="Link to this heading">¶</a></h2>
+<p>The infrastructure flow is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Terraform Configuration
+         |
+         v
+   Terraform Plan
+         |
+         v
+   Terraform Apply
+         |
+         v
+    AWS Resources
+         |
+         v
+     Amazon S3
+</pre></div>
+</div>
+</section>
+<section id="terraform-configuration">
+<h2>Terraform Configuration<a class="headerlink" href="#terraform-configuration" title="Link to this heading">¶</a></h2>
+<p>The Terraform configuration is located in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>terraform/
+|
++-- main.tf
++-- .terraform/
++-- terraform.tfstate
++-- terraform.tfstate.backup
+</pre></div>
+</div>
+</section>
+<section id="provider">
+<h2>Provider<a class="headerlink" href="#provider" title="Link to this heading">¶</a></h2>
+<p>The project uses the AWS Terraform provider.</p>
+<p>The configured AWS region is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>us-east-1
+</pre></div>
+</div>
+<p>The AWS provider is defined in <code class="docutils literal notranslate"><span class="pre">main.tf</span></code>.</p>
+</section>
+<section id="s3-bucket">
+<h2>S3 Bucket<a class="headerlink" href="#s3-bucket" title="Link to this heading">¶</a></h2>
+<p>Terraform manages the project S3 bucket:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bmw-dealer-inventory-recommendation-2026
+</pre></div>
+</div>
+<p>The bucket is used to store project data and Athena query results.</p>
+</section>
+<section id="managed-resources">
+<h2>Managed Resources<a class="headerlink" href="#managed-resources" title="Link to this heading">¶</a></h2>
+<p>The Terraform configuration manages the following S3 resources.</p>
+<section id="id1">
+<h3>S3 Bucket<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>The main S3 bucket is defined using:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aws_s3_bucket.inventory
+</pre></div>
+</div>
+<p>The bucket contains tags identifying the project, environment, and
+Terraform management.</p>
+</section>
+<section id="bucket-versioning">
+<h3>Bucket Versioning<a class="headerlink" href="#bucket-versioning" title="Link to this heading">¶</a></h3>
+<p>S3 versioning is enabled using:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aws_s3_bucket_versioning.inventory
+</pre></div>
+</div>
+<p>Versioning helps maintain previous versions of objects stored in the
+bucket.</p>
+</section>
+<section id="server-side-encryption">
+<h3>Server-Side Encryption<a class="headerlink" href="#server-side-encryption" title="Link to this heading">¶</a></h3>
+<p>Server-side encryption is enabled using:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aws_s3_bucket_server_side_encryption_configuration.inventory
+</pre></div>
+</div>
+<p>The configured encryption algorithm is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AES256
+</pre></div>
+</div>
+<p>This provides encryption for objects stored in the S3 bucket.</p>
+</section>
+<section id="public-access-block">
+<h3>Public Access Block<a class="headerlink" href="#public-access-block" title="Link to this heading">¶</a></h3>
+<p>Public access is blocked using:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aws_s3_bucket_public_access_block.inventory
+</pre></div>
+</div>
+<p>The configuration enables:</p>
+<ul class="simple">
+<li><p>Block public ACLs</p></li>
+<li><p>Block public bucket policies</p></li>
+<li><p>Ignore public ACLs</p></li>
+<li><p>Restrict public buckets</p></li>
+</ul>
+<p>This helps prevent accidental public exposure of the project data.</p>
+</section>
+</section>
+<section id="terraform-workflow">
+<h2>Terraform Workflow<a class="headerlink" href="#terraform-workflow" title="Link to this heading">¶</a></h2>
+<p>The normal Terraform workflow is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write Configuration
+       |
+       v
+terraform fmt
+       |
+       v
+terraform init
+       |
+       v
+terraform validate
+       |
+       v
+terraform plan
+       |
+       v
+terraform apply
+</pre></div>
+</div>
+<section id="terraform-init">
+<h3>Terraform Init<a class="headerlink" href="#terraform-init" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">init</span></code> command initializes the Terraform working
+directory and downloads the required provider.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform init</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform-format">
+<h3>Terraform Format<a class="headerlink" href="#terraform-format" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">fmt</span></code> command formats Terraform configuration files.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform fmt</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform-validate">
+<h3>Terraform Validate<a class="headerlink" href="#terraform-validate" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">validate</span></code> command checks whether the Terraform
+configuration is syntactically valid and internally consistent.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform validate</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform-plan">
+<h3>Terraform Plan<a class="headerlink" href="#terraform-plan" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code> command shows the infrastructure changes that
+Terraform intends to make.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform plan</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform-apply">
+<h3>Terraform Apply<a class="headerlink" href="#terraform-apply" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code> command applies the planned infrastructure
+changes to AWS.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform apply</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="terraform-state">
+<h2>Terraform State<a class="headerlink" href="#terraform-state" title="Link to this heading">¶</a></h2>
+<p>Terraform maintains state information to track the AWS resources managed
+by the configuration.</p>
+<p>The project uses:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>terraform.tfstate
+</pre></div>
+</div>
+<p>The state file should not be committed to Git because it can contain
+infrastructure information that is not appropriate for source control.</p>
+<p>The project therefore ignores Terraform state files through
+<code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
+</section>
+<section id="terraform-and-github-actions">
+<h2>Terraform and GitHub Actions<a class="headerlink" href="#terraform-and-github-actions" title="Link to this heading">¶</a></h2>
+<p>Terraform validation is also included in the GitHub Actions CI workflow.</p>
+<p>The CI pipeline performs:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Git Push / Pull Request
+        |
+        v
+  GitHub Actions
+        |
+        v
+  terraform init
+        |
+        v
+  terraform validate
+        |
+        v
+  terraform fmt -check
+</pre></div>
+</div>
+<p>This ensures that Terraform configuration remains valid and properly
+formatted.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">¶</a></h2>
+<p>The Terraform configuration includes several security controls for the
+S3 bucket.</p>
+<p>These include:</p>
+<ul class="simple">
+<li><p>Server-side encryption</p></li>
+<li><p>Public access blocking</p></li>
+<li><p>Bucket versioning</p></li>
+</ul>
+<p>AWS credentials are not stored in the Terraform source files.</p>
+<p>Credentials should be provided through the AWS environment or an
+appropriate authenticated AWS mechanism.</p>
+</section>
+<section id="infrastructure-reproducibility">
+<h2>Infrastructure Reproducibility<a class="headerlink" href="#infrastructure-reproducibility" title="Link to this heading">¶</a></h2>
+<p>One of the main advantages of Terraform is reproducibility.</p>
+<p>Another developer can initialize the Terraform configuration and review
+the planned infrastructure using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform init</span>
+
+<span class="go">terraform validate</span>
+
+<span class="go">terraform plan</span>
+</pre></div>
+</div>
+<p>The configuration therefore acts as a documented definition of the AWS
+infrastructure required by the project.</p>
+</section>
+<section id="current-scope">
+<h2>Current Scope<a class="headerlink" href="#current-scope" title="Link to this heading">¶</a></h2>
+<p>The current Terraform implementation focuses on the S3 infrastructure
+used by the project.</p>
+<p>AWS Athena is used for analytics over the S3 data, but Athena resources
+are not currently managed by the Terraform configuration.</p>
+<p>Future infrastructure improvements may include:</p>
+<ul class="simple">
+<li><p>Athena infrastructure</p></li>
+<li><p>IAM roles and policies</p></li>
+<li><p>CloudWatch resources</p></li>
+<li><p>Additional S3 lifecycle policies</p></li>
+<li><p>Automated deployment infrastructure</p></li>
+<li><p>Environment-specific configurations</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Dealer Inventory Recommendation</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Project Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dictionary.html">Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_model.html">Machine Learning Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendation_logic.html">Recommendation Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS Cloud Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Terraform Infrastructure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-flow">Infrastructure Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-configuration">Terraform Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#provider">Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#s3-bucket">S3 Bucket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#managed-resources">Managed Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-workflow">Terraform Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-state">Terraform State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-and-github-actions">Terraform and GitHub Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-reproducibility">Infrastructure Reproducibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-scope">Current Scope</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci_cd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="aws.html" title="previous chapter">AWS Cloud Services</a></li>
+      <li>Next: <a href="testing.html" title="next chapter">Testing</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Hemapriya.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/terraform.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

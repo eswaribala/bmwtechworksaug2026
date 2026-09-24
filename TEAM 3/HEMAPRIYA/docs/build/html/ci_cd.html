@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CI/CD Pipeline &#8212; BMW Dealer Inventory Recommendation 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Testing" href="testing.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ci-cd-pipeline">
+<h1>CI/CD Pipeline<a class="headerlink" href="#ci-cd-pipeline" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The project uses GitHub Actions to automate continuous integration (CI)
+checks.</p>
+<p>The current workflow focuses on validating the Python application and
+Terraform configuration whenever changes are pushed or a pull request is
+created.</p>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading">¶</a></h2>
+<p>Continuous Integration automatically checks whether new code changes
+continue to work with the existing project.</p>
+<p>The current CI pipeline performs:</p>
+<ul class="simple">
+<li><p>Repository checkout</p></li>
+<li><p>Python environment setup</p></li>
+<li><p>Dependency installation</p></li>
+<li><p>Automated testing</p></li>
+<li><p>Terraform initialization</p></li>
+<li><p>Terraform validation</p></li>
+<li><p>Terraform formatting validation</p></li>
+</ul>
+</section>
+<section id="github-actions-workflow">
+<h2>GitHub Actions Workflow<a class="headerlink" href="#github-actions-workflow" title="Link to this heading">¶</a></h2>
+<p>The workflow is stored at:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.github/
+└── workflows/
+    └── ci.yml
+</pre></div>
+</div>
+</section>
+<section id="workflow-triggers">
+<h2>Workflow Triggers<a class="headerlink" href="#workflow-triggers" title="Link to this heading">¶</a></h2>
+<p>The workflow runs when code is pushed to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>main
+develop
+</pre></div>
+</div>
+<p>It also runs when a pull request targets:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>main
+develop
+</pre></div>
+</div>
+</section>
+<section id="ci-pipeline-flow">
+<h2>CI Pipeline Flow<a class="headerlink" href="#ci-pipeline-flow" title="Link to this heading">¶</a></h2>
+<p>The workflow can be represented as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Developer
+    |
+    v
+Git Push / Pull Request
+    |
+    v
+GitHub Actions
+    |
+    v
+Checkout Repository
+    |
+    v
+Setup Python
+    |
+    v
+Install Dependencies
+    |
+    v
+Run Pytest
+    |
+    v
+Terraform Init
+    |
+    v
+Terraform Validate
+    |
+    v
+Terraform Format Check
+    |
+    v
+CI Result
+</pre></div>
+</div>
+</section>
+<section id="python-environment">
+<h2>Python Environment<a class="headerlink" href="#python-environment" title="Link to this heading">¶</a></h2>
+<p>The CI workflow uses Python 3.12.</p>
+<p>The workflow installs the project dependencies using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install --upgrade pip</span>
+<span class="go">pip install -r requirements.txt</span>
+<span class="go">pip install pytest</span>
+</pre></div>
+</div>
+</section>
+<section id="automated-tests">
+<h2>Automated Tests<a class="headerlink" href="#automated-tests" title="Link to this heading">¶</a></h2>
+<p>The CI pipeline runs the recommendation test suite using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest -p no:anyio tests/test_recommendation.py -v</span>
+</pre></div>
+</div>
+<p>The tests verify:</p>
+<ul class="simple">
+<li><p>Valid recommendations</p></li>
+<li><p>Invalid dealers</p></li>
+<li><p>Invalid models</p></li>
+<li><p>Non-negative recommendation quantities</p></li>
+<li><p>Required output fields</p></li>
+</ul>
+</section>
+<section id="terraform-validation">
+<h2>Terraform Validation<a class="headerlink" href="#terraform-validation" title="Link to this heading">¶</a></h2>
+<p>Terraform configuration is also validated automatically.</p>
+<p>The workflow initializes Terraform using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform init</span>
+</pre></div>
+</div>
+<p>It then validates the configuration using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform validate</span>
+</pre></div>
+</div>
+<p>The workflow also checks formatting using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform fmt -check</span>
+</pre></div>
+</div>
+</section>
+<section id="ci-success-criteria">
+<h2>CI Success Criteria<a class="headerlink" href="#ci-success-criteria" title="Link to this heading">¶</a></h2>
+<p>A successful CI run requires the automated checks to complete without
+errors.</p>
+<p>The main validation stages are:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Dependencies
+    |
+    v
+Tests
+    |
+    v
+Terraform Init
+    |
+    v
+Terraform Validate
+    |
+    v
+Terraform Format Check
+</pre></div>
+</div>
+</section>
+<section id="continuous-delivery">
+<h2>Continuous Delivery<a class="headerlink" href="#continuous-delivery" title="Link to this heading">¶</a></h2>
+<p>Continuous Delivery (CD) refers to automatically preparing or deploying
+validated application changes to an environment.</p>
+<p>The current project does not automatically deploy the application to
+AWS through GitHub Actions.</p>
+<p>The current implementation focuses on CI validation.</p>
+<p>This separation avoids automatically changing AWS infrastructure from
+every development push while the project is still under development.</p>
+</section>
+<section id="future-cd-architecture">
+<h2>Future CD Architecture<a class="headerlink" href="#future-cd-architecture" title="Link to this heading">¶</a></h2>
+<p>A future deployment pipeline could follow:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Git Push
+   |
+   v
+GitHub Actions
+   |
+   v
+Run Tests
+   |
+   v
+Validate Terraform
+   |
+   v
+Build Application
+   |
+   v
+Deployment Approval
+   |
+   v
+Deploy Infrastructure
+   |
+   v
+Deploy Application
+   |
+   v
+Production Environment
+</pre></div>
+</div>
+</section>
+<section id="infrastructure-deployment">
+<h2>Infrastructure Deployment<a class="headerlink" href="#infrastructure-deployment" title="Link to this heading">¶</a></h2>
+<p>Terraform can be used as part of a future CD workflow to deploy or
+update AWS infrastructure.</p>
+<p>Before enabling automated deployment, the workflow should use a secure
+AWS authentication mechanism rather than storing long-lived AWS access
+keys in the repository.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">¶</a></h2>
+<p>The CI/CD workflow should not contain:</p>
+<ul class="simple">
+<li><p>AWS access keys</p></li>
+<li><p>AWS secret keys</p></li>
+<li><p>Passwords</p></li>
+<li><p>API keys</p></li>
+<li><p>Database credentials</p></li>
+</ul>
+<p>Sensitive configuration should be supplied through secure GitHub Actions
+secrets or an appropriate short-lived identity mechanism.</p>
+</section>
+<section id="branch-strategy">
+<h2>Branch Strategy<a class="headerlink" href="#branch-strategy" title="Link to this heading">¶</a></h2>
+<p>The current CI workflow validates changes on:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code></p></li>
+</ul>
+<p>Pull requests targeting these branches are also validated.</p>
+<p>This allows code changes to be checked before they are merged.</p>
+</section>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading">¶</a></h2>
+<p>The CI pipeline provides:</p>
+<ul class="simple">
+<li><p>Automated testing</p></li>
+<li><p>Consistent validation</p></li>
+<li><p>Early detection of errors</p></li>
+<li><p>Terraform configuration checks</p></li>
+<li><p>Reduced manual verification</p></li>
+<li><p>Repeatable development checks</p></li>
+</ul>
+</section>
+<section id="future-improvements">
+<h2>Future Improvements<a class="headerlink" href="#future-improvements" title="Link to this heading">¶</a></h2>
+<p>Potential CI/CD improvements include:</p>
+<ul class="simple">
+<li><p>Code coverage reporting</p></li>
+<li><p>Static code analysis</p></li>
+<li><p>Security scanning</p></li>
+<li><p>Dependency vulnerability scanning</p></li>
+<li><p>Automated frontend tests</p></li>
+<li><p>Docker image build validation</p></li>
+<li><p>AWS deployment</p></li>
+<li><p>Infrastructure deployment through Terraform</p></li>
+<li><p>Environment-specific deployments</p></li>
+<li><p>Deployment approval gates</p></li>
+<li><p>Post-deployment health checks</p></li>
+<li><p>Rollback automation</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Dealer Inventory Recommendation</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Project Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dictionary.html">Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml_model.html">Machine Learning Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendation_logic.html">Recommendation Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS Cloud Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CI/CD Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-actions-workflow">GitHub Actions Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow-triggers">Workflow Triggers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ci-pipeline-flow">CI Pipeline Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-environment">Python Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-tests">Automated Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-validation">Terraform Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ci-success-criteria">CI Success Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-delivery">Continuous Delivery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-cd-architecture">Future CD Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-deployment">Infrastructure Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#branch-strategy">Branch Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-improvements">Future Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="testing.html" title="previous chapter">Testing</a></li>
+      <li>Next: <a href="deployment.html" title="next chapter">Deployment</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Hemapriya.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/ci_cd.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
