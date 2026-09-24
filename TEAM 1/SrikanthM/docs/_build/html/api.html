@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python API reference &#8212; EV Battery Health Intelligence 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Operations" href="operations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="python-api-reference">
+<h1>Python API reference<a class="headerlink" href="#python-api-reference" title="Link to this heading">¶</a></h1>
+<p>The following pages are generated directly from the source docstrings and
+signatures with Sphinx autodoc.</p>
+<dl class="py function" id="module-battery_health_pipeline">
+<dt class="sig sig-object py" id="battery_health_pipeline.build_ev_battery_health_pipeline">
+<span class="sig-prename descclassname"><span class="pre">battery_health_pipeline.</span></span><span class="sig-name descname"><span class="pre">build_ev_battery_health_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/battery_health_pipeline.html#build_ev_battery_health_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#battery_health_pipeline.build_ev_battery_health_pipeline" title="Link to this definition">¶</a></dt>
+<dd><p>Build the EV battery health dataset and classify each vehicle.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="battery_health_pipeline.write_parquet_to_s3">
+<span class="sig-prename descclassname"><span class="pre">battery_health_pipeline.</span></span><span class="sig-name descname"><span class="pre">write_parquet_to_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/battery_health_pipeline.html#write_parquet_to_s3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#battery_health_pipeline.write_parquet_to_s3" title="Link to this definition">¶</a></dt>
+<dd><p>Write a Spark Parquet dataset locally, then upload its files to S3.</p>
+</dd></dl>
+
+<dl class="py function" id="module-ingestion">
+<dt class="sig sig-object py" id="ingestion.read_csv_files">
+<span class="sig-prename descclassname"><span class="pre">ingestion.</span></span><span class="sig-name descname"><span class="pre">read_csv_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spark</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.SparkSession</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pyspark.sql.DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ingestion.html#read_csv_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ingestion.read_csv_files" title="Link to this definition">¶</a></dt>
+<dd><p>Read the raw source CSV files into Spark DataFrames.</p>
+</dd></dl>
+
+<dl class="py function" id="module-transforms">
+<dt class="sig sig-object py" id="transforms.clean_charging_sessions">
+<span class="sig-prename descclassname"><span class="pre">transforms.</span></span><span class="sig-name descname"><span class="pre">clean_charging_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/transforms.html#clean_charging_sessions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transforms.clean_charging_sessions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transforms.clean_telemetry">
+<span class="sig-prename descclassname"><span class="pre">transforms.</span></span><span class="sig-name descname"><span class="pre">clean_telemetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/transforms.html#clean_telemetry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transforms.clean_telemetry" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transforms.clean_vehicle_master">
+<span class="sig-prename descclassname"><span class="pre">transforms.</span></span><span class="sig-name descname"><span class="pre">clean_vehicle_master</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/transforms.html#clean_vehicle_master"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transforms.clean_vehicle_master" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transforms.compute_vehicle_summary">
+<span class="sig-prename descclassname"><span class="pre">transforms.</span></span><span class="sig-name descname"><span class="pre">compute_vehicle_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/transforms.html#compute_vehicle_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transforms.compute_vehicle_summary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transforms.enrich_vehicle_data">
+<span class="sig-prename descclassname"><span class="pre">transforms.</span></span><span class="sig-name descname"><span class="pre">enrich_vehicle_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">telemetry_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_master_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/transforms.html#enrich_vehicle_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transforms.enrich_vehicle_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-health_scoring">
+<dt class="sig sig-object py" id="health_scoring.calculate_degradation_trend">
+<span class="sig-prename descclassname"><span class="pre">health_scoring.</span></span><span class="sig-name descname"><span class="pre">calculate_degradation_trend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/health_scoring.html#calculate_degradation_trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#health_scoring.calculate_degradation_trend" title="Link to this definition">¶</a></dt>
+<dd><p>Estimate battery degradation trend using SoH slope across time.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="health_scoring.classify_battery_health">
+<span class="sig-prename descclassname"><span class="pre">health_scoring.</span></span><span class="sig-name descname"><span class="pre">classify_battery_health</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/health_scoring.html#classify_battery_health"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#health_scoring.classify_battery_health" title="Link to this definition">¶</a></dt>
+<dd><p>Assign health categories based on thresholds.</p>
+</dd></dl>
+
+<dl class="py function" id="module-dashboard_data">
+<dt class="sig sig-object py" id="dashboard_data.build_dashboard_summary">
+<span class="sig-prename descclassname"><span class="pre">dashboard_data.</span></span><span class="sig-name descname"><span class="pre">build_dashboard_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_summary_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charging_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyspark.sql.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyspark.sql.DataFrame</span></span></span><a class="reference internal" href="_modules/dashboard_data.html#build_dashboard_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard_data.build_dashboard_summary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function" id="module-athena_queries">
+<dt class="sig sig-object py" id="athena_queries.run_query">
+<span class="sig-prename descclassname"><span class="pre">athena_queries.</span></span><span class="sig-name descname"><span class="pre">run_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/athena_queries.html#run_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#athena_queries.run_query" title="Link to this definition">¶</a></dt>
+<dd><p>Run an Athena query and return the result rows as dictionaries.</p>
+</dd></dl>
+
+<dl class="py function" id="module-generate_battery_data">
+<dt class="sig sig-object py" id="generate_battery_data.build_health_profile">
+<span class="sig-prename descclassname"><span class="pre">generate_battery_data.</span></span><span class="sig-name descname"><span class="pre">build_health_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/generate_battery_data.html#build_health_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#generate_battery_data.build_health_profile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_battery_data.write_charging_sessions">
+<span class="sig-prename descclassname"><span class="pre">generate_battery_data.</span></span><span class="sig-name descname"><span class="pre">write_charging_sessions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/generate_battery_data.html#write_charging_sessions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#generate_battery_data.write_charging_sessions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_battery_data.write_telemetry">
+<span class="sig-prename descclassname"><span class="pre">generate_battery_data.</span></span><span class="sig-name descname"><span class="pre">write_telemetry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/generate_battery_data.html#write_telemetry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#generate_battery_data.write_telemetry" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">EV Battery Health Intelligence</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations and scoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#battery_health_pipeline.build_ev_battery_health_pipeline"><code class="docutils literal notranslate"><span class="pre">build_ev_battery_health_pipeline()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery_health_pipeline.write_parquet_to_s3"><code class="docutils literal notranslate"><span class="pre">write_parquet_to_s3()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ingestion.read_csv_files"><code class="docutils literal notranslate"><span class="pre">read_csv_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms.clean_charging_sessions"><code class="docutils literal notranslate"><span class="pre">clean_charging_sessions()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms.clean_telemetry"><code class="docutils literal notranslate"><span class="pre">clean_telemetry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms.clean_vehicle_master"><code class="docutils literal notranslate"><span class="pre">clean_vehicle_master()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms.compute_vehicle_summary"><code class="docutils literal notranslate"><span class="pre">compute_vehicle_summary()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms.enrich_vehicle_data"><code class="docutils literal notranslate"><span class="pre">enrich_vehicle_data()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#health_scoring.calculate_degradation_trend"><code class="docutils literal notranslate"><span class="pre">calculate_degradation_trend()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#health_scoring.classify_battery_health"><code class="docutils literal notranslate"><span class="pre">classify_battery_health()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard_data.build_dashboard_summary"><code class="docutils literal notranslate"><span class="pre">build_dashboard_summary()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#athena_queries.run_query"><code class="docutils literal notranslate"><span class="pre">run_query()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate_battery_data.build_health_profile"><code class="docutils literal notranslate"><span class="pre">build_health_profile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate_battery_data.write_charging_sessions"><code class="docutils literal notranslate"><span class="pre">write_charging_sessions()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate_battery_data.write_telemetry"><code class="docutils literal notranslate"><span class="pre">write_telemetry()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="operations.html" title="previous chapter">Operations</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Capstone Project Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

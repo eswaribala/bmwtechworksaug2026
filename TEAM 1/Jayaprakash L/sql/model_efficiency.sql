@@ -1,0 +1,4 @@
+SELECT model, total_distance_km,
+total_battery_consumed, overall_efficiency
+FROM ev_model_efficiency
+ORDER BY overall_efficiency DESC;

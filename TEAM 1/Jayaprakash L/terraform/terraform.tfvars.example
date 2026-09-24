@@ -1,0 +1,3 @@
+aws_region = "ap-south-1"
+bucket_name = "REPLACE-WITH-YOUR-GLOBALLY-UNIQUE-BUCKET"
+glue_database_name = "ev_range_analytics"

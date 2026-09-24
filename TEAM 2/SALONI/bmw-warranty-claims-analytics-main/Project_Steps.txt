@@ -1,0 +1,316 @@
+BMW WARRANTY CLAIMS ANALYTICS
+PROJECT RUN GUIDE
+=================
+
+1. PROJECT SETUP
+
+---
+
+```powershell
+cd C:\bmw-warranty-claims-analytics
+.\envwarranty\Scripts\Activate.ps1
+```
+
+Configure Windows Hadoop:
+
+```powershell
+$env:HADOOP_HOME = "C:\hadoop-win-utils"
+$env:Path += ";C:\hadoop-win-utils\bin"
+$pythonPath = (Get-Command python).Source
+$env:PYSPARK_PYTHON = $pythonPath
+$env:PYSPARK_DRIVER_PYTHON = $pythonPath
+```
+
+Verify:
+
+```powershell
+java -version
+python -c "import pyspark; print(pyspark.__version__)"
+aws sts get-caller-identity
+```
+
+Expected:
+
+* Java: 24.0.1
+* PySpark: 4.2.0
+* AWS credentials: valid
+
+2. UPLOAD RAW DATA TO S3
+
+---
+
+```powershell
+aws s3 cp ".\data\sample\warranty_claims.csv" "s3://bmw-warranty-claims-532404260630/raw/warranty/warranty_claims.csv"
+
+aws s3 cp ".\data\sample\vehicle_master.csv" "s3://bmw-warranty-claims-532404260630/raw/vehicle_master/vehicle_master.csv"
+```
+
+Verify:
+
+```powershell
+aws s3 ls "s3://bmw-warranty-claims-532404260630/raw/warranty/"
+aws s3 ls "s3://bmw-warranty-claims-532404260630/raw/vehicle_master/"
+```
+
+3. RUN PYSPARK PIPELINE
+
+---
+
+Basic Spark test:
+
+```powershell
+python .\src\processing\test_spark.py
+```
+
+Run the main pipeline:
+
+```powershell
+python .\src\processing\validate_warranty.py
+```
+
+Expected results:
+
+```text
+Warranty claims:       1500
+Vehicle records:        200
+Valid claims:           1496
+Rejected claims:           4
+Enriched claims:        1496
+```
+
+Processed data:
+
+```text
+s3://bmw-warranty-claims-532404260630/processed/
+├── warranty_valid/
+├── warranty_rejected/
+└── warranty_enriched/
+```
+
+4. RUN AUTOMATED TESTS
+
+---
+
+```powershell
+python -m pytest .\tests -v
+```
+
+Expected:
+
+```text
+6 passed
+```
+
+5. TERRAFORM
+
+---
+
+```powershell
+cd .\terraform
+
+terraform init
+terraform validate
+terraform plan
+terraform apply
+
+cd ..
+```
+
+Terraform manages the AWS infrastructure, including S3 and Glue resources.
+
+**Do not commit `.terraform/` or Terraform state files to GitHub.**
+
+6. ATHENA
+
+---
+
+Database:
+
+```text
+bmw_warranty_analytics
+```
+
+Verify processed records:
+
+```sql
+SELECT COUNT(*) 
+FROM warranty_valid;
+```
+
+Expected:
+
+```text
+1496
+```
+
+7. SNOWFLAKE
+
+---
+
+Database:
+
+```text
+BMW_WARRANTY_ANALYTICS
+```
+
+Schema:
+
+```text
+WARRANTY
+```
+
+Table:
+
+```text
+WARRANTY_CLAIMS
+```
+
+Verify:
+
+```sql
+SELECT COUNT(*)
+FROM BMW_WARRANTY_ANALYTICS.WARRANTY.WARRANTY_CLAIMS;
+```
+
+Expected:
+
+```text
+1496
+```
+
+Top warranty-cost components:
+
+```sql
+SELECT
+    COMPONENT,
+    COUNT(*) AS CLAIM_COUNT,
+    SUM(CLAIM_AMOUNT) AS TOTAL_WARRANTY_COST
+FROM BMW_WARRANTY_ANALYTICS.WARRANTY.WARRANTY_CLAIMS
+GROUP BY COMPONENT
+ORDER BY TOTAL_WARRANTY_COST DESC
+LIMIT 3;
+```
+
+Results:
+
+```text
+Engine        249 claims    1,272,385.88
+Transmission  219 claims      871,574.62
+Battery       192 claims      535,335.24
+```
+
+8. QUICKSIGHT
+
+---
+
+QuickSight uses the processed warranty dataset through Athena.
+
+Dashboard:
+
+```text
+BMW Warranty Claims Analytics Dashboard
+```
+
+Key metrics:
+
+```text
+Total Claims:          1,496
+Total Claim Amount:    3,895,096.49
+Average Claim Amount:  2,603.67
+```
+
+Dashboard includes:
+
+* Claims by Status
+* Claims by Component
+* Claim Amount by Component
+* Monthly Claim Amount Trend
+* Monthly Claim Count Trend
+* Average Claim Amount by Status
+
+SPICE is used for efficient dashboard querying.
+
+9. SPHINX DOCUMENTATION
+
+---
+
+Build documentation:
+
+```powershell
+python -m sphinx -b html docs/source docs/build/html
+```
+
+Open:
+
+```powershell
+Start-Process ".\docs\build\html\index.html"
+```
+
+10. GITHUB
+
+---
+
+Check changes:
+
+```powershell
+git status
+```
+
+Add and commit:
+
+```powershell
+git add .
+git commit -m "Update project documentation"
+```
+
+Push:
+
+```powershell
+git push
+```
+
+Verify the repository contains only required project files.
+
+11. PROJECT FLOW
+
+---
+
+```text
+Raw CSV
+   ↓
+Amazon S3
+   ↓
+PySpark Validation & Enrichment
+   ↓
+Processed Parquet
+   ↓
+AWS Glue
+   ↓
+Athena
+   ↓
+Snowflake
+   ↓
+QuickSight Dashboard
+```
+
+Supporting components:
+
+```text
+Terraform → Infrastructure as Code
+Pytest    → Automated Testing
+Sphinx    → Documentation
+```
+
+## FINAL VALIDATION
+
+✓ S3 data available
+✓ PySpark pipeline successful
+✓ 1,496 valid records
+✓ 4 rejected records
+✓ 1,496 enriched records
+✓ 6 automated tests passed
+✓ Athena verified
+✓ Snowflake analytics verified
+✓ QuickSight dashboard published
+✓ Sphinx documentation built
+✓ GitHub repository updated

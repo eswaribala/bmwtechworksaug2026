@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Source code reference &#8212; EV Range &amp; Driving Efficiency Analytics 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="SQL analytics" href="sql.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="source-code-reference">
+<h1>Source code reference<a class="headerlink" href="#source-code-reference" title="Link to this heading">¶</a></h1>
+<p>The following pages are generated from Python module docstrings. The
+docstrings and comments are intentionally kept in the implementation so
+the source code remains self-documenting.</p>
+<section id="module-src.ingestion.ingest">
+<span id="ingestion"></span><h2>Ingestion<a class="headerlink" href="#module-src.ingestion.ingest" title="Link to this heading">¶</a></h2>
+<p>CSV ingestion utilities for the EV telemetry pipeline.</p>
+<p>The ingestion layer reads the project’s telemetry CSV file and parses the
+<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> column as a pandas datetime column. Keeping ingestion small
+and deterministic makes it reusable from validation and local workflows.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ingestion.ingest.load_csv">
+<span class="sig-prename descclassname"><span class="pre">src.ingestion.ingest.</span></span><span class="sig-name descname"><span class="pre">load_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ingestion/ingest.html#load_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ingestion.ingest.load_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Load a telemetry CSV and parse <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> as datetime values.</p>
+</dd></dl>
+
+<p id="module-src.ingestion.upload_to_s3">Upload the project’s raw telemetry CSV to Amazon S3.</p>
+<p>The target bucket and raw prefix are read from environment variables. The
+module is intended for the AWS ingestion step and reuses the shared S3
+client helper from <a class="reference internal" href="#module-src.aws.s3" title="src.aws.s3"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.aws.s3</span></code></a>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ingestion.upload_to_s3.main">
+<span class="sig-prename descclassname"><span class="pre">src.ingestion.upload_to_s3.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ingestion/upload_to_s3.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ingestion.upload_to_s3.main" title="Link to this definition">¶</a></dt>
+<dd><p>Upload the project telemetry CSV to the configured S3 raw prefix.</p>
+</dd></dl>
+
+</section>
+<section id="module-src.validation.validate">
+<span id="validation"></span><h2>Validation<a class="headerlink" href="#module-src.validation.validate" title="Link to this heading">¶</a></h2>
+<p>Validation and basic data-quality rules for EV telemetry.</p>
+<p>The validation layer checks that all required telemetry fields exist and
+removes records that cannot participate in the analytics calculations.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.validation.validate.clean_basic">
+<span class="sig-prename descclassname"><span class="pre">src.validation.validate.</span></span><span class="sig-name descname"><span class="pre">clean_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/validation/validate.html#clean_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.validation.validate.clean_basic" title="Link to this definition">¶</a></dt>
+<dd><p>Remove unusable rows and enforce basic telemetry value ranges.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.validation.validate.validate_columns">
+<span class="sig-prename descclassname"><span class="pre">src.validation.validate.</span></span><span class="sig-name descname"><span class="pre">validate_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/validation/validate.html#validate_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.validation.validate.validate_columns" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that every required telemetry column is present.</p>
+</dd></dl>
+
+</section>
+<section id="module-src.aws.s3">
+<span id="aws-helpers"></span><h2>AWS helpers<a class="headerlink" href="#module-src.aws.s3" title="Link to this heading">¶</a></h2>
+<p>Amazon S3 helper functions used by the ingestion layer.</p>
+<p>The module creates a boto3 S3 client using <code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code> and exposes a
+small upload helper so application code does not need to repeat bucket
+configuration or S3 URI construction.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.aws.s3.upload_file">
+<span class="sig-prename descclassname"><span class="pre">src.aws.s3.</span></span><span class="sig-name descname"><span class="pre">upload_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/aws/s3.html#upload_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.aws.s3.upload_file" title="Link to this definition">¶</a></dt>
+<dd><p>Upload a local file to the configured S3 bucket and return its S3 URI.</p>
+</dd></dl>
+
+</section>
+<section id="module-src.pyspark.spark_session">
+<span id="pyspark"></span><h2>PySpark<a class="headerlink" href="#module-src.pyspark.spark_session" title="Link to this heading">¶</a></h2>
+<p>Spark session configuration for local EV analytics.</p>
+<p>The project uses a local Spark session for development and testing. The
+same transformation functions can be reused by an AWS Glue Spark job.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.spark_session.create_spark">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.spark_session.</span></span><span class="sig-name descname"><span class="pre">create_spark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EV-Range-Analytics'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/spark_session.html#create_spark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.spark_session.create_spark" title="Link to this definition">¶</a></dt>
+<dd><p>Create and configure the Spark session used by local analytics.</p>
+</dd></dl>
+
+<p id="module-src.pyspark.transform">Core PySpark telemetry transformations.</p>
+<p>This module demonstrates the project’s required Spark processing patterns:
+null handling, filtering, a window function, derived columns, and guarded
+efficiency calculations.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.transform.transform_telemetry">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.transform.</span></span><span class="sig-name descname"><span class="pre">transform_telemetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/transform.html#transform_telemetry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.transform.transform_telemetry" title="Link to this definition">¶</a></dt>
+<dd><p>Clean telemetry and derive battery consumption, efficiency, and range.</p>
+</dd></dl>
+
+<p id="module-src.pyspark.aggregations">PySpark aggregation functions for the analytics data layer.</p>
+<p>The functions convert event-level telemetry into vehicle, model, region,
+and daily range-trend datasets suitable for Parquet, Athena, or dashboards.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.aggregations.model_efficiency">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.aggregations.</span></span><span class="sig-name descname"><span class="pre">model_efficiency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/aggregations.html#model_efficiency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.aggregations.model_efficiency" title="Link to this definition">¶</a></dt>
+<dd><p>Aggregate vehicle metrics into model-level efficiency metrics.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.aggregations.range_trend">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.aggregations.</span></span><span class="sig-name descname"><span class="pre">range_trend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/aggregations.html#range_trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.aggregations.range_trend" title="Link to this definition">¶</a></dt>
+<dd><p>Aggregate estimated range and battery level by calendar date.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.aggregations.region_efficiency">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.aggregations.</span></span><span class="sig-name descname"><span class="pre">region_efficiency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/aggregations.html#region_efficiency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.aggregations.region_efficiency" title="Link to this definition">¶</a></dt>
+<dd><p>Aggregate vehicle metrics into region-level efficiency metrics.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.aggregations.vehicle_efficiency">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.aggregations.</span></span><span class="sig-name descname"><span class="pre">vehicle_efficiency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/aggregations.html#vehicle_efficiency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.aggregations.vehicle_efficiency" title="Link to this definition">¶</a></dt>
+<dd><p>Aggregate event telemetry into one record per vehicle/model/region.</p>
+</dd></dl>
+
+<p id="module-src.pyspark.ranking">Ranking helpers for vehicle efficiency analysis.</p>
+<p>The module provides both a reusable window-based rank and simple top/bottom
+selection functions for dashboard and reporting outputs.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.ranking.bottom_vehicles">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.ranking.</span></span><span class="sig-name descname"><span class="pre">bottom_vehicles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/ranking.html#bottom_vehicles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.ranking.bottom_vehicles" title="Link to this definition">¶</a></dt>
+<dd><p>Return the lowest-efficiency vehicles.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.ranking.ranked_vehicles">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.ranking.</span></span><span class="sig-name descname"><span class="pre">ranked_vehicles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/ranking.html#ranked_vehicles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.ranking.ranked_vehicles" title="Link to this definition">¶</a></dt>
+<dd><p>Add a global efficiency rank using a Spark window.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.ranking.top_vehicles">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.ranking.</span></span><span class="sig-name descname"><span class="pre">top_vehicles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/ranking.html#top_vehicles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.ranking.top_vehicles" title="Link to this definition">¶</a></dt>
+<dd><p>Return the highest-efficiency vehicles.</p>
+</dd></dl>
+
+<p id="module-src.pyspark.pipeline">End-to-end local PySpark analytics pipeline.</p>
+<p>The pipeline reads telemetry, applies transformations, calculates the
+analytics datasets, writes Parquet outputs, and releases Spark resources.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.pyspark.pipeline.run">
+<span class="sig-prename descclassname"><span class="pre">src.pyspark.pipeline.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_csv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pyspark/pipeline.html#run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.pyspark.pipeline.run" title="Link to this definition">¶</a></dt>
+<dd><p>Execute the complete local Spark pipeline and write Parquet outputs.</p>
+</dd></dl>
+
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">"""Tests for the telemetry validation rules.</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="sd">The tests protect the input contract by checking required-column validation</span>
+<span class="linenos"> 4</span><span class="sd">and basic record-cleaning behavior.</span>
+<span class="linenos"> 5</span><span class="sd">"""</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">src.validation.validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_columns</span><span class="p">,</span> <span class="n">clean_basic</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">def</span><span class="w"> </span><span class="nf">test_validation</span><span class="p">():</span>
+<span class="linenos">11</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="linenos">12</span>        <span class="s2">"vehicle_id"</span><span class="p">:[</span><span class="s2">"BMW1001"</span><span class="p">],</span>
+<span class="linenos">13</span>        <span class="s2">"model"</span><span class="p">:[</span><span class="s2">"BMW i4"</span><span class="p">],</span>
+<span class="linenos">14</span>        <span class="s2">"region"</span><span class="p">:[</span><span class="s2">"Chennai"</span><span class="p">],</span>
+<span class="linenos">15</span>        <span class="s2">"timestamp"</span><span class="p">:[</span><span class="s2">"2026-09-01"</span><span class="p">],</span>
+<span class="linenos">16</span>        <span class="s2">"speed_kmh"</span><span class="p">:[</span><span class="mi">50</span><span class="p">],</span>
+<span class="linenos">17</span>        <span class="s2">"battery_percent"</span><span class="p">:[</span><span class="mi">90</span><span class="p">],</span>
+<span class="linenos">18</span>        <span class="s2">"distance_km"</span><span class="p">:[</span><span class="mi">10</span><span class="p">],</span>
+<span class="linenos">19</span>        <span class="s2">"temperature_c"</span><span class="p">:[</span><span class="mi">30</span><span class="p">],</span>
+<span class="linenos">20</span>        <span class="s2">"charging"</span><span class="p">:[</span><span class="kc">False</span><span class="p">]</span>
+<span class="linenos">21</span>    <span class="p">})</span>
+<span class="linenos">22</span>    <span class="k">assert</span> <span class="n">validate_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">clean_basic</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="local-runner">
+<h2>Local runner<a class="headerlink" href="#local-runner" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">"""Run the pandas-based local analytics pipeline.</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="sd">This script is the lightweight local path used to generate CSV outputs for</span>
+<span class="linenos"> 4</span><span class="sd">the FastAPI and Streamlit applications. The production AWS path uses the</span>
+<span class="linenos"> 5</span><span class="sd">PySpark/Glue implementation in ``scripts/glue_job.py``.</span>
+<span class="linenos"> 6</span><span class="sd">"""</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos"> 9</span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">12</span><span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span><span class="p">))</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="kn">from</span><span class="w"> </span><span class="nn">src.ingestion.ingest</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_csv</span>
+<span class="linenos">18</span><span class="kn">from</span><span class="w"> </span><span class="nn">src.validation.validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_columns</span><span class="p">,</span> <span class="n">clean_basic</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="n">df</span> <span class="o">=</span> <span class="n">load_csv</span><span class="p">(</span><span class="n">ROOT</span><span class="o">/</span><span class="s2">"data/dataset.csv"</span><span class="p">)</span>
+<span class="linenos">21</span><span class="n">validate_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="linenos">22</span><span class="n">df</span> <span class="o">=</span> <span class="n">clean_basic</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">df</span><span class="p">[</span><span class="s2">"previous_battery"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"vehicle_id"</span><span class="p">)[</span><span class="s2">"battery_percent"</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">df</span><span class="p">[</span><span class="s2">"battery_consumed"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"previous_battery"</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">"battery_percent"</span><span class="p">]</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">df</span><span class="p">[</span><span class="s2">"efficiency"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">28</span>    <span class="n">df</span><span class="p">[</span><span class="s2">"distance_km"</span><span class="p">]</span> <span class="o">/</span>
+<span class="linenos">29</span>    <span class="n">df</span><span class="p">[</span><span class="s2">"battery_consumed"</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"battery_consumed"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">30</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">df</span><span class="p">[</span><span class="s2">"estimated_range_km"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"battery_percent"</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">"efficiency"</span><span class="p">]</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="n">out</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">/</span><span class="s2">"data/curated_local"</span>
+<span class="linenos">35</span><span class="n">out</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="n">vehicle</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">38</span>    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"vehicle_id"</span><span class="p">,</span><span class="s2">"model"</span><span class="p">,</span><span class="s2">"region"</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">39</span>      <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos">40</span>          <span class="n">total_distance_km</span><span class="o">=</span><span class="p">(</span><span class="s2">"distance_km"</span><span class="p">,</span><span class="s2">"sum"</span><span class="p">),</span>
+<span class="linenos">41</span>          <span class="n">total_battery_consumed</span><span class="o">=</span><span class="p">(</span>
+<span class="linenos">42</span>              <span class="s2">"battery_consumed"</span><span class="p">,</span>
+<span class="linenos">43</span>              <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="linenos">44</span>          <span class="p">),</span>
+<span class="linenos">45</span>          <span class="n">avg_speed_kmh</span><span class="o">=</span><span class="p">(</span><span class="s2">"speed_kmh"</span><span class="p">,</span><span class="s2">"mean"</span><span class="p">),</span>
+<span class="linenos">46</span>          <span class="n">avg_temperature_c</span><span class="o">=</span><span class="p">(</span><span class="s2">"temperature_c"</span><span class="p">,</span><span class="s2">"mean"</span><span class="p">),</span>
+<span class="linenos">47</span>          <span class="n">avg_estimated_range_km</span><span class="o">=</span><span class="p">(</span><span class="s2">"estimated_range_km"</span><span class="p">,</span><span class="s2">"mean"</span><span class="p">)</span>
+<span class="linenos">48</span>      <span class="p">)</span>
+<span class="linenos">49</span><span class="p">)</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="n">vehicle</span><span class="p">[</span><span class="s2">"overall_efficiency"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">52</span>    <span class="n">vehicle</span><span class="p">[</span><span class="s2">"total_distance_km"</span><span class="p">]</span> <span class="o">/</span>
+<span class="linenos">53</span>    <span class="n">vehicle</span><span class="p">[</span><span class="s2">"total_battery_consumed"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="linenos">54</span><span class="p">)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">57</span>    <span class="n">vehicle</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"model"</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">58</span>    <span class="p">[[</span><span class="s2">"total_distance_km"</span><span class="p">,</span><span class="s2">"total_battery_consumed"</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="linenos">59</span><span class="p">)</span>
+<span class="linenos">60</span><span class="n">model</span><span class="p">[</span><span class="s2">"overall_efficiency"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">61</span>    <span class="n">model</span><span class="p">[</span><span class="s2">"total_distance_km"</span><span class="p">]</span> <span class="o">/</span>
+<span class="linenos">62</span>    <span class="n">model</span><span class="p">[</span><span class="s2">"total_battery_consumed"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="linenos">63</span><span class="p">)</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="n">region</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">66</span>    <span class="n">vehicle</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">67</span>    <span class="p">[[</span><span class="s2">"total_distance_km"</span><span class="p">,</span><span class="s2">"total_battery_consumed"</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="linenos">68</span><span class="p">)</span>
+<span class="linenos">69</span><span class="n">region</span><span class="p">[</span><span class="s2">"overall_efficiency"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">70</span>    <span class="n">region</span><span class="p">[</span><span class="s2">"total_distance_km"</span><span class="p">]</span> <span class="o">/</span>
+<span class="linenos">71</span>    <span class="n">region</span><span class="p">[</span><span class="s2">"total_battery_consumed"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="linenos">72</span><span class="p">)</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span><span class="n">trend</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">75</span>    <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">)</span>
+<span class="linenos">76</span>      <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"date"</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">77</span>      <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos">78</span>          <span class="n">avg_estimated_range_km</span><span class="o">=</span><span class="p">(</span><span class="s2">"estimated_range_km"</span><span class="p">,</span><span class="s2">"mean"</span><span class="p">),</span>
+<span class="linenos">79</span>          <span class="n">avg_battery_percent</span><span class="o">=</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">,</span><span class="s2">"mean"</span><span class="p">)</span>
+<span class="linenos">80</span>      <span class="p">)</span>
+<span class="linenos">81</span><span class="p">)</span>
+<span class="linenos">82</span>
+<span class="linenos">83</span><span class="n">vehicle</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"overall_efficiency"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"vehicle_efficiency.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">84</span><span class="n">model</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"model_efficiency.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">85</span><span class="n">region</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"region_efficiency.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">86</span><span class="n">trend</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"range_trend.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">87</span><span class="n">vehicle</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"overall_efficiency"</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"top_vehicles.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">88</span><span class="n">vehicle</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"overall_efficiency"</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="o">/</span><span class="s2">"bottom_vehicles.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">89</span>
+<span class="linenos">90</span><span class="nb">print</span><span class="p">(</span><span class="s2">"Pipeline completed."</span><span class="p">)</span>
+<span class="linenos">91</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Output: </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dashboard">
+<h2>Dashboard<a class="headerlink" href="#dashboard" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">"""Streamlit dashboard for EV range and driving-efficiency analytics.</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="sd">The dashboard reads curated local outputs and presents summary KPIs,</span>
+<span class="linenos"> 4</span><span class="sd">vehicle rankings, model/region comparisons, and a range trend.</span>
+<span class="linenos"> 5</span><span class="sd">"""</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="linenos"> 8</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos"> 9</span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span>
+<span class="linenos">12</span>    <span class="n">page_title</span><span class="o">=</span><span class="s2">"EV Analytics"</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="c1"># page_icon="🚗",</span>
+<span class="linenos">14</span>    <span class="n">layout</span><span class="o">=</span><span class="s2">"wide"</span>
+<span class="linenos">15</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"EV Range &amp; Driving Efficiency Analytics"</span><span class="p">)</span>
+<span class="linenos">18</span><span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span><span class="s2">"Telemetry → PySpark → Curated Analytics → Dashboard"</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos">21</span><span class="n">DATA</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">/</span><span class="s2">"data/curated_local"</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s2">"vehicle_efficiency.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<span class="linenos">24</span>    <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Run `python scripts/run_local_pipeline.py` first."</span><span class="p">)</span>
+<span class="linenos">25</span>    <span class="n">st</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">vehicle</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s2">"vehicle_efficiency.csv"</span><span class="p">)</span>
+<span class="linenos">28</span><span class="n">model</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s2">"model_efficiency.csv"</span><span class="p">)</span>
+<span class="linenos">29</span><span class="n">region</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s2">"region_efficiency.csv"</span><span class="p">)</span>
+<span class="linenos">30</span><span class="n">trend</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s2">"range_trend.csv"</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">,</span><span class="n">c3</span><span class="p">,</span><span class="n">c4</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="linenos">33</span><span class="n">c1</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">"Total Vehicles"</span><span class="p">,</span> <span class="n">vehicle</span><span class="o">.</span><span class="n">vehicle_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+<span class="linenos">34</span><span class="n">c2</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">"Avg Efficiency"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vehicle</span><span class="o">.</span><span class="n">overall_efficiency</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> km/%"</span><span class="p">)</span>
+<span class="linenos">35</span><span class="n">c3</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">"Avg Estimated Range"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vehicle</span><span class="o">.</span><span class="n">avg_estimated_range_km</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km"</span><span class="p">)</span>
+<span class="linenos">36</span><span class="n">c4</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">"Total Distance"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vehicle</span><span class="o">.</span><span class="n">total_distance_km</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km"</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="n">st</span><span class="o">.</span><span class="n">divider</span><span class="p">()</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="n">left</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="k">with</span> <span class="n">left</span><span class="p">:</span>
+<span class="linenos">43</span>    <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Top 5 Efficiency Vehicles"</span><span class="p">)</span>
+<span class="linenos">44</span>    <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span>
+<span class="linenos">45</span>        <span class="n">vehicle</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="s2">"overall_efficiency"</span><span class="p">)</span>
+<span class="linenos">46</span>        <span class="p">[[</span><span class="s2">"vehicle_id"</span><span class="p">,</span><span class="s2">"model"</span><span class="p">,</span><span class="s2">"region"</span><span class="p">,</span><span class="s2">"overall_efficiency"</span><span class="p">,</span><span class="s2">"total_distance_km"</span><span class="p">]],</span>
+<span class="linenos">47</span>        <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">48</span>        <span class="n">hide_index</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">49</span>    <span class="p">)</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="k">with</span> <span class="n">right</span><span class="p">:</span>
+<span class="linenos">52</span>    <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Bottom 5 Efficiency Vehicles"</span><span class="p">)</span>
+<span class="linenos">53</span>    <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span>
+<span class="linenos">54</span>        <span class="n">vehicle</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="s2">"overall_efficiency"</span><span class="p">)</span>
+<span class="linenos">55</span>        <span class="p">[[</span><span class="s2">"vehicle_id"</span><span class="p">,</span><span class="s2">"model"</span><span class="p">,</span><span class="s2">"region"</span><span class="p">,</span><span class="s2">"overall_efficiency"</span><span class="p">,</span><span class="s2">"total_distance_km"</span><span class="p">]],</span>
+<span class="linenos">56</span>        <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">57</span>        <span class="n">hide_index</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">58</span>    <span class="p">)</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Efficiency by Vehicle"</span><span class="p">)</span>
+<span class="linenos">61</span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span>
+<span class="linenos">62</span>    <span class="n">vehicle</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"overall_efficiency"</span><span class="p">)</span>
+<span class="linenos">63</span>    <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"vehicle_id"</span><span class="p">)[</span><span class="s2">"overall_efficiency"</span><span class="p">]</span>
+<span class="linenos">64</span><span class="p">)</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span><span class="n">left</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span><span class="k">with</span> <span class="n">left</span><span class="p">:</span>
+<span class="linenos">69</span>    <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Efficiency by Model"</span><span class="p">)</span>
+<span class="linenos">70</span>    <span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)[</span><span class="s2">"overall_efficiency"</span><span class="p">])</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span><span class="k">with</span> <span class="n">right</span><span class="p">:</span>
+<span class="linenos">73</span>    <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Efficiency by Region"</span><span class="p">)</span>
+<span class="linenos">74</span>    <span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)[</span><span class="s2">"overall_efficiency"</span><span class="p">])</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">"Range Trend"</span><span class="p">)</span>
+<span class="linenos">77</span><span class="n">trend</span><span class="p">[</span><span class="s2">"date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">trend</span><span class="p">[</span><span class="s2">"date"</span><span class="p">])</span>
+<span class="linenos">78</span><span class="n">st</span><span class="o">.</span><span class="n">line_chart</span><span class="p">(</span>
+<span class="linenos">79</span>    <span class="n">trend</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"date"</span><span class="p">)[</span><span class="s2">"avg_estimated_range_km"</span><span class="p">]</span>
+<span class="linenos">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">EV Range & Driving Efficiency Analytics</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Data pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">AWS deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">SQL analytics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Source code reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.ingestion.ingest">Ingestion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.validation.validate">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.aws.s3">AWS helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.pyspark.spark_session">PySpark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-runner">Local runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard">Dashboard</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="sql.html" title="previous chapter">SQL analytics</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/source_code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

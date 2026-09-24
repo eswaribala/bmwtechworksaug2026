@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AWS deployment &#8212; EV Range &amp; Driving Efficiency Analytics 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SQL analytics" href="sql.html" />
+    <link rel="prev" title="API" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="aws-deployment">
+<h1>AWS deployment<a class="headerlink" href="#aws-deployment" title="Link to this heading">¶</a></h1>
+<section id="cloud-data-flow">
+<h2>Cloud data flow<a class="headerlink" href="#cloud-data-flow" title="Link to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S3 raw
+   |
+   v
+AWS Glue Spark
+   |
+   +--&gt; vehicle_efficiency/
+   +--&gt; model_efficiency/
+   +--&gt; region_efficiency/
+   +--&gt; range_trend/
+   |
+   v
+Glue Crawler / Data Catalog
+   |
+   v
+Athena
+   |
+   v
+FastAPI / Dashboard
+</pre></div>
+</div>
+</section>
+<section id="s3-layout">
+<h2>S3 layout<a class="headerlink" href="#s3-layout" title="Link to this heading">¶</a></h2>
+<p>A recommended object layout is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>s3://&lt;bucket&gt;/
+  raw/
+    vehicles/
+      dataset.csv
+  curated/
+    vehicle_efficiency/
+    model_efficiency/
+    region_efficiency/
+    range_trend/
+    top_vehicles/
+    bottom_vehicles/
+  athena-results/
+</pre></div>
+</div>
+</section>
+<section id="glue-job">
+<h2>Glue job<a class="headerlink" href="#glue-job" title="Link to this heading">¶</a></h2>
+<p>The complete AWS Glue source is included below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sd">"""AWS Glue Spark job for the production analytics pipeline.</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="sd">Inputs</span>
+<span class="linenos">  4</span><span class="sd">------</span>
+<span class="linenos">  5</span><span class="sd">input_path:</span>
+<span class="linenos">  6</span><span class="sd">    S3 URI containing the raw telemetry CSV.</span>
+<span class="linenos">  7</span><span class="sd">output_path:</span>
+<span class="linenos">  8</span><span class="sd">    S3 URI under which curated Parquet datasets are written.</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="sd">The job cleans telemetry, calculates battery consumption and estimated</span>
+<span class="linenos"> 11</span><span class="sd">range, aggregates vehicle/model/region metrics, and writes analytics</span>
+<span class="linenos"> 12</span><span class="sd">datasets for the Glue Catalog and Athena.</span>
+<span class="linenos"> 13</span><span class="sd">"""</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="c1"># AWS Glue 4.0/5.0 Spark job</span>
+<span class="linenos"> 16</span><span class="c1"># Job parameters:</span>
+<span class="linenos"> 17</span><span class="c1"># --input_path s3://YOUR-BUCKET/raw/vehicles/dataset.csv</span>
+<span class="linenos"> 18</span><span class="c1"># --output_path s3://YOUR-BUCKET/curated</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="linenos"> 21</span><span class="kn">from</span><span class="w"> </span><span class="nn">awsglue.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">getResolvedOptions</span>
+<span class="linenos"> 22</span><span class="kn">from</span><span class="w"> </span><span class="nn">awsglue.context</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlueContext</span>
+<span class="linenos"> 23</span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.context</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkContext</span>
+<span class="linenos"> 24</span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
+<span class="linenos"> 25</span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.window</span><span class="w"> </span><span class="kn">import</span> <span class="n">Window</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="n">args</span> <span class="o">=</span> <span class="n">getResolvedOptions</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">,</span> <span class="p">[</span><span class="s2">"input_path"</span><span class="p">,</span><span class="s2">"output_path"</span><span class="p">])</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">()</span>
+<span class="linenos"> 30</span><span class="n">glueContext</span> <span class="o">=</span> <span class="n">GlueContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
+<span class="linenos"> 31</span><span class="n">spark</span> <span class="o">=</span> <span class="n">glueContext</span><span class="o">.</span><span class="n">spark_session</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos"> 34</span>    <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"header"</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 35</span>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"inferSchema"</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 36</span>    <span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"input_path"</span><span class="p">])</span>
+<span class="linenos"> 37</span><span class="p">)</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 40</span>    <span class="s2">"vehicle_id"</span><span class="p">,</span><span class="s2">"model"</span><span class="p">,</span><span class="s2">"region"</span><span class="p">,</span><span class="s2">"timestamp"</span><span class="p">,</span>
+<span class="linenos"> 41</span>    <span class="s2">"speed_kmh"</span><span class="p">,</span><span class="s2">"battery_percent"</span><span class="p">,</span><span class="s2">"distance_km"</span>
+<span class="linenos"> 42</span><span class="p">])</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+<span class="linenos"> 45</span>    <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"speed_kmh"</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+<span class="linenos"> 46</span>    <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"distance_km"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+<span class="linenos"> 47</span>    <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 48</span><span class="p">)</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">"vehicle_id"</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">)</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos"> 53</span>    <span class="s2">"previous_battery"</span><span class="p">,</span>
+<span class="linenos"> 54</span>    <span class="n">F</span><span class="o">.</span><span class="n">lag</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="linenos"> 55</span><span class="p">)</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos"> 58</span>    <span class="s2">"battery_consumed"</span><span class="p">,</span>
+<span class="linenos"> 59</span>    <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"previous_battery"</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">)</span>
+<span class="linenos"> 60</span><span class="p">)</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos"> 63</span>    <span class="s2">"event_efficiency"</span><span class="p">,</span>
+<span class="linenos"> 64</span>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span>
+<span class="linenos"> 65</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_consumed"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos"> 66</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"distance_km"</span><span class="p">)</span> <span class="o">/</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_consumed"</span><span class="p">)</span>
+<span class="linenos"> 67</span>    <span class="p">)</span>
+<span class="linenos"> 68</span><span class="p">)</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos"> 71</span>    <span class="s2">"estimated_range_km"</span><span class="p">,</span>
+<span class="linenos"> 72</span>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span>
+<span class="linenos"> 73</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"event_efficiency"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos"> 74</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"event_efficiency"</span><span class="p">)</span>
+<span class="linenos"> 75</span>    <span class="p">)</span>
+<span class="linenos"> 76</span><span class="p">)</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="n">vehicle</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos"> 79</span>    <span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">"vehicle_id"</span><span class="p">,</span><span class="s2">"model"</span><span class="p">,</span><span class="s2">"region"</span><span class="p">)</span>
+<span class="linenos"> 80</span>      <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos"> 81</span>          <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"distance_km"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">),</span>
+<span class="linenos"> 82</span>          <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+<span class="linenos"> 83</span>              <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_consumed"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos"> 84</span>                     <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"battery_consumed"</span><span class="p">))</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 85</span>          <span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">),</span>
+<span class="linenos"> 86</span>          <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">"speed_kmh"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_speed_kmh"</span><span class="p">),</span>
+<span class="linenos"> 87</span>          <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">"temperature_c"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_temperature_c"</span><span class="p">),</span>
+<span class="linenos"> 88</span>          <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">"estimated_range_km"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_estimated_range_km"</span><span class="p">)</span>
+<span class="linenos"> 89</span>      <span class="p">)</span>
+<span class="linenos"> 90</span>      <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos"> 91</span>          <span class="s2">"overall_efficiency"</span><span class="p">,</span>
+<span class="linenos"> 92</span>          <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">)</span> <span class="o">/</span>
+<span class="linenos"> 93</span>          <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span>
+<span class="linenos"> 94</span>      <span class="p">)</span>
+<span class="linenos"> 95</span><span class="p">)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos"> 98</span>    <span class="n">vehicle</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)</span>
+<span class="linenos"> 99</span>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos">100</span>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">),</span>
+<span class="linenos">101</span>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span>
+<span class="linenos">102</span>    <span class="p">)</span>
+<span class="linenos">103</span>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos">104</span>        <span class="s2">"overall_efficiency"</span><span class="p">,</span>
+<span class="linenos">105</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">)</span> <span class="o">/</span>
+<span class="linenos">106</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span>
+<span class="linenos">107</span>    <span class="p">)</span>
+<span class="linenos">108</span><span class="p">)</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="n">region</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">111</span>    <span class="n">vehicle</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)</span>
+<span class="linenos">112</span>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos">113</span>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">),</span>
+<span class="linenos">114</span>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span>
+<span class="linenos">115</span>    <span class="p">)</span>
+<span class="linenos">116</span>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<span class="linenos">117</span>        <span class="s2">"overall_efficiency"</span><span class="p">,</span>
+<span class="linenos">118</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_distance_km"</span><span class="p">)</span> <span class="o">/</span>
+<span class="linenos">119</span>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_battery_consumed"</span><span class="p">)</span>
+<span class="linenos">120</span>    <span class="p">)</span>
+<span class="linenos">121</span><span class="p">)</span>
+<span class="linenos">122</span>
+<span class="linenos">123</span><span class="n">trend</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">124</span>    <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"date"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">))</span>
+<span class="linenos">125</span>    <span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">"date"</span><span class="p">)</span>
+<span class="linenos">126</span>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<span class="linenos">127</span>        <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">"estimated_range_km"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_estimated_range_km"</span><span class="p">),</span>
+<span class="linenos">128</span>        <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">"battery_percent"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_battery_percent"</span><span class="p">)</span>
+<span class="linenos">129</span>    <span class="p">)</span>
+<span class="linenos">130</span><span class="p">)</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="n">vehicle</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"output_path"</span><span class="p">]</span><span class="o">+</span><span class="s2">"/vehicle_efficiency/"</span><span class="p">)</span>
+<span class="linenos">133</span><span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"output_path"</span><span class="p">]</span><span class="o">+</span><span class="s2">"/model_efficiency/"</span><span class="p">)</span>
+<span class="linenos">134</span><span class="n">region</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"output_path"</span><span class="p">]</span><span class="o">+</span><span class="s2">"/region_efficiency/"</span><span class="p">)</span>
+<span class="linenos">135</span><span class="n">trend</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"output_path"</span><span class="p">]</span><span class="o">+</span><span class="s2">"/range_trend/"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform">
+<h2>Terraform<a class="headerlink" href="#terraform" title="Link to this heading">¶</a></h2>
+<p>The infrastructure definitions are included directly from the repository.</p>
+<div class="highlight-terraform notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&gt;= 1.6.0"</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"hashicorp/aws"</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"~&gt; 6.0"</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.aws_region</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket"</span><span class="w"> </span><span class="nv">"ev_analytics"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.bucket_name</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">    </span><span class="na">Project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"EV Range Analytics"</span>
+<span class="linenos">21</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket_versioning"</span><span class="w"> </span><span class="nv">"ev_analytics"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">25</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.ev_analytics.id</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">  </span><span class="nb">versioning_configuration</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">    </span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Enabled"</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">30</span><span class="p">}</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket_server_side_encryption_configuration"</span><span class="w"> </span><span class="nv">"ev_analytics"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.ev_analytics.id</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">  </span><span class="nb">rule</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">36</span><span class="w">    </span><span class="nb">apply_server_side_encryption_by_default</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">37</span><span class="w">      </span><span class="na">sse_algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AES256"</span>
+<span class="linenos">38</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">39</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">40</span><span class="p">}</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_glue_catalog_database"</span><span class="w"> </span><span class="nv">"ev"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">43</span><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.glue_database_name</span>
+<span class="linenos">44</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-terraform notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kr">variable</span><span class="w"> </span><span class="nv">"aws_region"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="na">type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="na">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+<span class="linenos"> 4</span><span class="p">}</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kr">variable</span><span class="w"> </span><span class="nv">"bucket_name"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="linenos"> 8</span><span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="kr">variable</span><span class="w"> </span><span class="nv">"glue_database_name"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">  </span><span class="na">type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="linenos">12</span><span class="w">  </span><span class="na">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ev_range_analytics"</span>
+<span class="linenos">13</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-terraform notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kr">output</span><span class="w"> </span><span class="nv">"bucket_name"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.ev_analytics.bucket</span>
+<span class="linenos">3</span><span class="p">}</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="kr">output</span><span class="w"> </span><span class="nv">"glue_database"</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">6</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_glue_catalog_database.ev.name</span>
+<span class="linenos">7</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-terraform notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+<span class="linenos">2</span><span class="na">bucket_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"REPLACE-WITH-YOUR-GLOBALLY-UNIQUE-BUCKET"</span>
+<span class="linenos">3</span><span class="na">glue_database_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ev_range_analytics"</span>
+</pre></div>
+</div>
+</section>
+<section id="aws-notes">
+<h2>AWS notes<a class="headerlink" href="#aws-notes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Ensure the S3 bucket and Athena query-results location are in the same
+AWS region.</p></li>
+<li><p>The Glue crawler should target the curated Parquet prefix.</p></li>
+<li><p>The Glue service role needs the required S3 and Glue permissions.</p></li>
+<li><p>Do not place AWS access keys directly in source code.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">EV Range & Driving Efficiency Analytics</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Data pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AWS deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cloud-data-flow">Cloud data flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#s3-layout">S3 layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glue-job">Glue job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform">Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aws-notes">AWS notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">SQL analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source_code.html">Source code reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter">API</a></li>
+      <li>Next: <a href="sql.html" title="next chapter">SQL analytics</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/aws.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
