@@ -1,0 +1,1001 @@
+vehicle_id,model,city,battery_date,battery_percentage,battery_status
+1001,BMW X1,Chennai,2026-06-01,92,Healthy
+1002,BMW X3,Chennai,2026-06-01,86,Healthy
+1003,BMW 3 Series,Mumbai,2026-06-01,78,Healthy
+1004,BMW X5,Delhi,2026-06-01,81,Healthy
+1005,BMW i4,Chennai,2026-06-01,48,Warning
+1006,BMW iX,Bengaluru,2026-06-01,35,Critical
+1007,BMW X1,Mumbai,2026-06-01,74,Healthy
+1008,BMW X3,Delhi,2026-06-01,68,Healthy
+1009,BMW 5 Series,Chennai,2026-06-01,89,Healthy
+1010,BMW i4,Bengaluru,2026-06-01,52,Warning
+1011,BMW 7 Series,Mumbai,2026-07-01,78,Healthy
+1012,BMW i4,Chennai,2026-06-01,88,Healthy
+1013,BMW iX,Chennai,2026-08-01,73,Healthy
+1014,BMW X3,Bengaluru,2026-05-15,98,Healthy
+1015,BMW 5 Series,Bengaluru,2026-06-01,82,Healthy
+1016,BMW X5,Chennai,2026-08-15,49,Warning
+1017,BMW X1,Hyderabad,2026-08-15,46,Warning
+1018,BMW X3,Mumbai,2026-08-01,78,Healthy
+1019,BMW 5 Series,Mumbai,2026-08-15,53,Warning
+1020,BMW i7,Chennai,2026-06-01,76,Healthy
+1021,BMW 7 Series,Ahmedabad,2026-05-15,81,Healthy
+1022,BMW 3 Series,Pune,2026-08-01,51,Warning
+1023,BMW i5,Delhi,2026-05-01,88,Healthy
+1024,BMW 3 Series,Ahmedabad,2026-08-01,52,Warning
+1025,BMW X1,Delhi,2026-07-15,88,Healthy
+1026,BMW X5,Hyderabad,2026-05-15,48,Warning
+1027,BMW 3 Series,Bengaluru,2026-06-15,95,Healthy
+1028,BMW X3,Hyderabad,2026-05-15,62,Healthy
+1029,BMW 5 Series,Ahmedabad,2026-05-15,60,Healthy
+1030,BMW 3 Series,Kolkata,2026-05-15,84,Healthy
+1031,BMW X1,Ahmedabad,2026-08-15,86,Healthy
+1032,BMW X1,Pune,2026-08-15,89,Healthy
+1033,BMW 5 Series,Hyderabad,2026-05-15,73,Healthy
+1034,BMW X3,Chennai,2026-05-15,47,Warning
+1035,BMW X1,Ahmedabad,2026-08-15,90,Healthy
+1036,BMW X1,Chennai,2026-08-01,80,Healthy
+1037,BMW 3 Series,Delhi,2026-06-01,90,Healthy
+1038,BMW X3,Kolkata,2026-08-01,84,Healthy
+1039,BMW i7,Kolkata,2026-06-15,26,Critical
+1040,BMW X5,Mumbai,2026-08-15,61,Healthy
+1041,BMW iX,Delhi,2026-06-15,34,Critical
+1042,BMW X1,Pune,2026-05-01,97,Healthy
+1043,BMW i7,Delhi,2026-07-01,25,Critical
+1044,BMW i7,Chennai,2026-06-01,32,Critical
+1045,BMW i5,Pune,2026-05-15,75,Healthy
+1046,BMW 7 Series,Pune,2026-05-15,81,Healthy
+1047,BMW X5,Ahmedabad,2026-06-15,69,Healthy
+1048,BMW 5 Series,Hyderabad,2026-08-15,82,Healthy
+1049,BMW 3 Series,Pune,2026-08-15,96,Healthy
+1050,BMW 5 Series,Bengaluru,2026-08-01,74,Healthy
+1051,BMW X7,Delhi,2026-05-01,92,Healthy
+1052,BMW i4,Kolkata,2026-06-15,87,Healthy
+1053,BMW X5,Bengaluru,2026-07-15,97,Healthy
+1054,BMW X3,Bengaluru,2026-06-01,93,Healthy
+1055,BMW X7,Delhi,2026-07-01,55,Warning
+1056,BMW 7 Series,Pune,2026-05-15,58,Healthy
+1057,BMW 5 Series,Delhi,2026-07-01,83,Healthy
+1058,BMW X1,Delhi,2026-08-01,91,Healthy
+1059,BMW i7,Chennai,2026-06-15,73,Healthy
+1060,BMW i4,Ahmedabad,2026-07-01,82,Healthy
+1061,BMW 5 Series,Pune,2026-08-15,77,Healthy
+1062,BMW X1,Bengaluru,2026-05-15,87,Healthy
+1063,BMW i7,Chennai,2026-05-01,70,Healthy
+1064,BMW i5,Bengaluru,2026-08-15,85,Healthy
+1065,BMW X5,Ahmedabad,2026-08-15,83,Healthy
+1066,BMW 7 Series,Chennai,2026-06-15,86,Healthy
+1067,BMW X1,Ahmedabad,2026-07-01,71,Healthy
+1068,BMW 3 Series,Hyderabad,2026-06-01,98,Healthy
+1069,BMW X3,Ahmedabad,2026-05-01,90,Healthy
+1070,BMW X7,Mumbai,2026-07-15,47,Warning
+1071,BMW 7 Series,Delhi,2026-06-15,86,Healthy
+1072,BMW iX,Bengaluru,2026-08-01,79,Healthy
+1073,BMW iX,Hyderabad,2026-08-01,48,Warning
+1074,BMW X3,Bengaluru,2026-07-01,77,Healthy
+1075,BMW i4,Pune,2026-06-01,70,Healthy
+1076,BMW i7,Kolkata,2026-08-01,34,Critical
+1077,BMW i7,Ahmedabad,2026-07-15,37,Warning
+1078,BMW i4,Pune,2026-08-15,59,Healthy
+1079,BMW 7 Series,Delhi,2026-07-15,85,Healthy
+1080,BMW i4,Ahmedabad,2026-05-01,55,Warning
+1081,BMW i7,Kolkata,2026-05-15,32,Critical
+1082,BMW X7,Kolkata,2026-07-01,97,Healthy
+1083,BMW 5 Series,Pune,2026-05-01,76,Healthy
+1084,BMW X3,Ahmedabad,2026-06-15,58,Healthy
+1085,BMW X7,Kolkata,2026-08-01,46,Warning
+1086,BMW i7,Bengaluru,2026-08-01,52,Warning
+1087,BMW X3,Ahmedabad,2026-06-15,90,Healthy
+1088,BMW X7,Kolkata,2026-06-15,51,Warning
+1089,BMW X7,Chennai,2026-08-01,95,Healthy
+1090,BMW X3,Ahmedabad,2026-08-15,82,Healthy
+1091,BMW iX,Mumbai,2026-07-15,56,Healthy
+1092,BMW 7 Series,Ahmedabad,2026-05-01,67,Healthy
+1093,BMW 5 Series,Chennai,2026-08-15,66,Healthy
+1094,BMW X5,Chennai,2026-06-15,62,Healthy
+1095,BMW i4,Ahmedabad,2026-07-01,58,Healthy
+1096,BMW 7 Series,Mumbai,2026-07-15,50,Warning
+1097,BMW X3,Bengaluru,2026-08-01,45,Warning
+1098,BMW i7,Kolkata,2026-05-01,29,Critical
+1099,BMW 7 Series,Ahmedabad,2026-05-01,56,Healthy
+1100,BMW 7 Series,Delhi,2026-05-15,96,Healthy
+1101,BMW X7,Mumbai,2026-05-01,80,Healthy
+1102,BMW i4,Mumbai,2026-08-15,47,Warning
+1103,BMW iX,Hyderabad,2026-05-01,50,Warning
+1104,BMW 7 Series,Kolkata,2026-07-01,85,Healthy
+1105,BMW X7,Delhi,2026-08-01,97,Healthy
+1106,BMW X1,Hyderabad,2026-05-15,98,Healthy
+1107,BMW 5 Series,Hyderabad,2026-05-01,72,Healthy
+1108,BMW X1,Kolkata,2026-07-01,62,Healthy
+1109,BMW i4,Kolkata,2026-06-15,62,Healthy
+1110,BMW X3,Mumbai,2026-07-01,97,Healthy
+1111,BMW i7,Chennai,2026-05-15,59,Healthy
+1112,BMW X3,Hyderabad,2026-05-01,72,Healthy
+1113,BMW X7,Kolkata,2026-08-01,69,Healthy
+1114,BMW 3 Series,Ahmedabad,2026-07-01,73,Healthy
+1115,BMW X3,Pune,2026-05-15,57,Healthy
+1116,BMW 7 Series,Kolkata,2026-05-15,91,Healthy
+1117,BMW i7,Delhi,2026-08-15,80,Healthy
+1118,BMW i4,Hyderabad,2026-05-15,84,Healthy
+1119,BMW 5 Series,Hyderabad,2026-06-01,63,Healthy
+1120,BMW iX,Pune,2026-05-15,79,Healthy
+1121,BMW iX,Delhi,2026-05-01,27,Critical
+1122,BMW 5 Series,Bengaluru,2026-08-01,79,Healthy
+1123,BMW i7,Delhi,2026-06-01,72,Healthy
+1124,BMW X1,Hyderabad,2026-05-01,81,Healthy
+1125,BMW i7,Hyderabad,2026-05-01,55,Warning
+1126,BMW i5,Ahmedabad,2026-08-15,65,Healthy
+1127,BMW 3 Series,Bengaluru,2026-07-15,94,Healthy
+1128,BMW X5,Bengaluru,2026-08-15,69,Healthy
+1129,BMW i5,Kolkata,2026-07-15,33,Critical
+1130,BMW 3 Series,Ahmedabad,2026-05-15,90,Healthy
+1131,BMW X7,Bengaluru,2026-07-15,53,Warning
+1132,BMW X3,Pune,2026-05-01,46,Warning
+1133,BMW X7,Hyderabad,2026-08-01,65,Healthy
+1134,BMW i4,Ahmedabad,2026-08-15,65,Healthy
+1135,BMW i7,Chennai,2026-05-01,48,Warning
+1136,BMW i5,Delhi,2026-06-15,46,Warning
+1137,BMW X1,Ahmedabad,2026-08-15,83,Healthy
+1138,BMW i5,Ahmedabad,2026-07-01,81,Healthy
+1139,BMW 3 Series,Bengaluru,2026-08-01,95,Healthy
+1140,BMW X7,Delhi,2026-07-01,75,Healthy
+1141,BMW i5,Bengaluru,2026-06-15,28,Critical
+1142,BMW i4,Kolkata,2026-06-15,22,Critical
+1143,BMW X3,Pune,2026-06-01,60,Healthy
+1144,BMW X3,Bengaluru,2026-07-15,72,Healthy
+1145,BMW i4,Ahmedabad,2026-08-01,60,Healthy
+1146,BMW i5,Hyderabad,2026-07-01,86,Healthy
+1147,BMW 3 Series,Kolkata,2026-07-15,91,Healthy
+1148,BMW 3 Series,Ahmedabad,2026-08-01,53,Warning
+1149,BMW i7,Pune,2026-08-01,84,Healthy
+1150,BMW i4,Kolkata,2026-07-01,88,Healthy
+1151,BMW X3,Delhi,2026-08-15,74,Healthy
+1152,BMW 7 Series,Delhi,2026-05-15,65,Healthy
+1153,BMW X3,Mumbai,2026-07-01,65,Healthy
+1154,BMW 5 Series,Hyderabad,2026-05-01,84,Healthy
+1155,BMW 5 Series,Mumbai,2026-07-01,89,Healthy
+1156,BMW X7,Delhi,2026-06-01,63,Healthy
+1157,BMW 7 Series,Hyderabad,2026-06-15,86,Healthy
+1158,BMW iX,Delhi,2026-07-15,46,Warning
+1159,BMW X3,Ahmedabad,2026-08-15,54,Warning
+1160,BMW X7,Hyderabad,2026-08-01,68,Healthy
+1161,BMW X5,Kolkata,2026-08-15,63,Healthy
+1162,BMW iX,Hyderabad,2026-05-15,89,Healthy
+1163,BMW X5,Chennai,2026-08-01,48,Warning
+1164,BMW i7,Ahmedabad,2026-05-15,67,Healthy
+1165,BMW i5,Hyderabad,2026-06-01,68,Healthy
+1166,BMW i5,Mumbai,2026-05-15,44,Warning
+1167,BMW iX,Delhi,2026-08-15,71,Healthy
+1168,BMW 5 Series,Kolkata,2026-08-15,85,Healthy
+1169,BMW X3,Ahmedabad,2026-08-01,66,Healthy
+1170,BMW 3 Series,Pune,2026-05-01,84,Healthy
+1171,BMW 3 Series,Mumbai,2026-07-15,68,Healthy
+1172,BMW X5,Pune,2026-05-01,94,Healthy
+1173,BMW i5,Chennai,2026-07-01,80,Healthy
+1174,BMW 7 Series,Ahmedabad,2026-08-15,88,Healthy
+1175,BMW i4,Pune,2026-05-01,49,Warning
+1176,BMW 7 Series,Chennai,2026-06-15,67,Healthy
+1177,BMW i7,Pune,2026-08-15,27,Critical
+1178,BMW X7,Chennai,2026-05-15,75,Healthy
+1179,BMW i7,Ahmedabad,2026-07-15,51,Warning
+1180,BMW i4,Kolkata,2026-07-01,70,Healthy
+1181,BMW 7 Series,Mumbai,2026-06-15,70,Healthy
+1182,BMW iX,Chennai,2026-08-01,40,Warning
+1183,BMW i5,Hyderabad,2026-08-01,53,Warning
+1184,BMW i5,Mumbai,2026-08-01,85,Healthy
+1185,BMW i4,Bengaluru,2026-07-01,54,Warning
+1186,BMW iX,Delhi,2026-05-01,45,Warning
+1187,BMW 3 Series,Hyderabad,2026-08-01,93,Healthy
+1188,BMW X7,Delhi,2026-07-01,82,Healthy
+1189,BMW 5 Series,Bengaluru,2026-08-15,93,Healthy
+1190,BMW 7 Series,Hyderabad,2026-07-01,58,Healthy
+1191,BMW iX,Delhi,2026-08-15,72,Healthy
+1192,BMW 5 Series,Kolkata,2026-06-15,67,Healthy
+1193,BMW i7,Hyderabad,2026-07-15,61,Healthy
+1194,BMW X7,Hyderabad,2026-06-01,73,Healthy
+1195,BMW 5 Series,Hyderabad,2026-08-01,78,Healthy
+1196,BMW X5,Kolkata,2026-05-15,79,Healthy
+1197,BMW 3 Series,Kolkata,2026-08-15,78,Healthy
+1198,BMW 5 Series,Kolkata,2026-05-15,96,Healthy
+1199,BMW i7,Hyderabad,2026-07-15,64,Healthy
+1200,BMW X3,Kolkata,2026-06-01,89,Healthy
+1201,BMW 7 Series,Kolkata,2026-07-15,98,Healthy
+1202,BMW i7,Hyderabad,2026-05-15,68,Healthy
+1203,BMW X1,Kolkata,2026-07-01,45,Warning
+1204,BMW i4,Mumbai,2026-07-01,37,Warning
+1205,BMW X5,Delhi,2026-07-15,72,Healthy
+1206,BMW 7 Series,Bengaluru,2026-06-01,65,Healthy
+1207,BMW i4,Hyderabad,2026-06-15,50,Warning
+1208,BMW X5,Mumbai,2026-08-01,46,Warning
+1209,BMW i5,Pune,2026-08-01,27,Critical
+1210,BMW X1,Delhi,2026-05-15,56,Healthy
+1211,BMW X3,Pune,2026-05-15,59,Healthy
+1212,BMW i7,Pune,2026-05-01,57,Healthy
+1213,BMW X3,Chennai,2026-05-01,71,Healthy
+1214,BMW X5,Kolkata,2026-07-01,51,Warning
+1215,BMW X1,Bengaluru,2026-05-01,49,Warning
+1216,BMW X7,Kolkata,2026-08-01,70,Healthy
+1217,BMW i5,Mumbai,2026-08-15,58,Healthy
+1218,BMW 5 Series,Ahmedabad,2026-06-01,73,Healthy
+1219,BMW 3 Series,Kolkata,2026-05-15,64,Healthy
+1220,BMW iX,Pune,2026-06-01,93,Healthy
+1221,BMW i7,Ahmedabad,2026-05-15,42,Warning
+1222,BMW X7,Mumbai,2026-08-01,84,Healthy
+1223,BMW X3,Chennai,2026-06-01,96,Healthy
+1224,BMW X1,Pune,2026-07-01,94,Healthy
+1225,BMW 5 Series,Chennai,2026-06-01,64,Healthy
+1226,BMW 7 Series,Kolkata,2026-06-15,60,Healthy
+1227,BMW 5 Series,Pune,2026-08-15,54,Warning
+1228,BMW i7,Ahmedabad,2026-07-01,34,Critical
+1229,BMW i5,Ahmedabad,2026-08-01,72,Healthy
+1230,BMW i4,Chennai,2026-05-01,51,Warning
+1231,BMW X1,Mumbai,2026-07-01,58,Healthy
+1232,BMW 7 Series,Chennai,2026-08-01,46,Warning
+1233,BMW X7,Delhi,2026-07-15,97,Healthy
+1234,BMW i7,Bengaluru,2026-07-15,57,Healthy
+1235,BMW X1,Ahmedabad,2026-06-01,93,Healthy
+1236,BMW i4,Pune,2026-06-15,27,Critical
+1237,BMW X1,Chennai,2026-06-15,79,Healthy
+1238,BMW i4,Chennai,2026-06-15,32,Critical
+1239,BMW 3 Series,Delhi,2026-08-01,56,Healthy
+1240,BMW X1,Chennai,2026-08-15,46,Warning
+1241,BMW X5,Delhi,2026-08-01,62,Healthy
+1242,BMW i5,Ahmedabad,2026-07-01,79,Healthy
+1243,BMW X7,Ahmedabad,2026-07-01,56,Healthy
+1244,BMW X5,Kolkata,2026-08-01,47,Warning
+1245,BMW 5 Series,Delhi,2026-08-01,87,Healthy
+1246,BMW 7 Series,Delhi,2026-05-01,50,Warning
+1247,BMW iX,Mumbai,2026-08-15,27,Critical
+1248,BMW i7,Bengaluru,2026-07-01,21,Critical
+1249,BMW X1,Pune,2026-07-01,92,Healthy
+1250,BMW i4,Bengaluru,2026-07-01,23,Critical
+1251,BMW X1,Mumbai,2026-06-01,59,Healthy
+1252,BMW X1,Hyderabad,2026-06-01,86,Healthy
+1253,BMW X3,Ahmedabad,2026-06-01,54,Warning
+1254,BMW 5 Series,Bengaluru,2026-08-15,95,Healthy
+1255,BMW i7,Pune,2026-06-01,73,Healthy
+1256,BMW 3 Series,Mumbai,2026-05-15,58,Healthy
+1257,BMW X1,Hyderabad,2026-06-01,78,Healthy
+1258,BMW 3 Series,Delhi,2026-08-15,68,Healthy
+1259,BMW iX,Kolkata,2026-05-15,38,Warning
+1260,BMW i5,Bengaluru,2026-07-01,39,Warning
+1261,BMW 3 Series,Kolkata,2026-05-15,60,Healthy
+1262,BMW X1,Kolkata,2026-07-15,64,Healthy
+1263,BMW i4,Hyderabad,2026-07-15,72,Healthy
+1264,BMW X1,Ahmedabad,2026-05-01,59,Healthy
+1265,BMW X5,Bengaluru,2026-05-15,66,Healthy
+1266,BMW 7 Series,Chennai,2026-07-15,69,Healthy
+1267,BMW 5 Series,Hyderabad,2026-07-15,49,Warning
+1268,BMW 3 Series,Pune,2026-07-15,71,Healthy
+1269,BMW X3,Chennai,2026-06-15,58,Healthy
+1270,BMW iX,Bengaluru,2026-08-01,28,Critical
+1271,BMW iX,Pune,2026-08-01,43,Warning
+1272,BMW X5,Delhi,2026-05-15,49,Warning
+1273,BMW X5,Mumbai,2026-08-15,69,Healthy
+1274,BMW X7,Mumbai,2026-06-01,97,Healthy
+1275,BMW i5,Bengaluru,2026-08-15,36,Warning
+1276,BMW X5,Bengaluru,2026-06-01,54,Warning
+1277,BMW 3 Series,Delhi,2026-08-01,82,Healthy
+1278,BMW 5 Series,Kolkata,2026-07-01,78,Healthy
+1279,BMW X3,Ahmedabad,2026-05-01,60,Healthy
+1280,BMW i5,Bengaluru,2026-05-01,51,Warning
+1281,BMW iX,Delhi,2026-05-01,40,Warning
+1282,BMW 3 Series,Delhi,2026-08-01,54,Warning
+1283,BMW 7 Series,Chennai,2026-07-01,62,Healthy
+1284,BMW i5,Bengaluru,2026-05-15,60,Healthy
+1285,BMW X1,Delhi,2026-06-01,70,Healthy
+1286,BMW X7,Ahmedabad,2026-05-15,85,Healthy
+1287,BMW 5 Series,Ahmedabad,2026-07-15,64,Healthy
+1288,BMW X1,Kolkata,2026-05-15,81,Healthy
+1289,BMW 3 Series,Kolkata,2026-05-15,88,Healthy
+1290,BMW X5,Kolkata,2026-07-01,88,Healthy
+1291,BMW X3,Delhi,2026-08-15,87,Healthy
+1292,BMW i7,Mumbai,2026-08-01,31,Critical
+1293,BMW X1,Chennai,2026-05-15,64,Healthy
+1294,BMW X7,Bengaluru,2026-07-01,70,Healthy
+1295,BMW i4,Hyderabad,2026-07-15,82,Healthy
+1296,BMW X5,Mumbai,2026-08-01,92,Healthy
+1297,BMW 7 Series,Delhi,2026-06-01,76,Healthy
+1298,BMW i4,Kolkata,2026-06-01,82,Healthy
+1299,BMW X1,Pune,2026-07-15,50,Warning
+1300,BMW 5 Series,Pune,2026-05-15,72,Healthy
+1301,BMW 3 Series,Chennai,2026-07-01,51,Warning
+1302,BMW iX,Chennai,2026-07-15,78,Healthy
+1303,BMW 7 Series,Hyderabad,2026-07-15,82,Healthy
+1304,BMW X7,Pune,2026-06-01,82,Healthy
+1305,BMW 5 Series,Hyderabad,2026-07-01,89,Healthy
+1306,BMW X3,Ahmedabad,2026-06-15,66,Healthy
+1307,BMW 7 Series,Pune,2026-05-15,58,Healthy
+1308,BMW 5 Series,Mumbai,2026-06-15,66,Healthy
+1309,BMW X3,Mumbai,2026-08-15,56,Healthy
+1310,BMW 7 Series,Chennai,2026-05-01,50,Warning
+1311,BMW 7 Series,Pune,2026-07-15,69,Healthy
+1312,BMW X1,Mumbai,2026-07-01,94,Healthy
+1313,BMW i7,Delhi,2026-06-15,79,Healthy
+1314,BMW i7,Ahmedabad,2026-08-15,21,Critical
+1315,BMW X1,Hyderabad,2026-08-01,74,Healthy
+1316,BMW i4,Delhi,2026-07-15,80,Healthy
+1317,BMW X7,Hyderabad,2026-07-15,85,Healthy
+1318,BMW iX,Chennai,2026-08-15,80,Healthy
+1319,BMW X5,Hyderabad,2026-05-15,62,Healthy
+1320,BMW 7 Series,Bengaluru,2026-08-01,77,Healthy
+1321,BMW 7 Series,Pune,2026-06-15,92,Healthy
+1322,BMW 7 Series,Pune,2026-06-15,65,Healthy
+1323,BMW i4,Hyderabad,2026-05-01,86,Healthy
+1324,BMW X3,Bengaluru,2026-08-15,91,Healthy
+1325,BMW 5 Series,Chennai,2026-08-01,93,Healthy
+1326,BMW iX,Mumbai,2026-07-15,73,Healthy
+1327,BMW i4,Mumbai,2026-05-15,69,Healthy
+1328,BMW i5,Bengaluru,2026-05-01,90,Healthy
+1329,BMW X5,Chennai,2026-08-01,66,Healthy
+1330,BMW 3 Series,Delhi,2026-06-15,53,Warning
+1331,BMW 3 Series,Delhi,2026-08-15,58,Healthy
+1332,BMW 3 Series,Chennai,2026-06-15,92,Healthy
+1333,BMW X3,Delhi,2026-05-15,84,Healthy
+1334,BMW i7,Kolkata,2026-07-15,65,Healthy
+1335,BMW iX,Hyderabad,2026-08-15,76,Healthy
+1336,BMW X7,Ahmedabad,2026-05-15,71,Healthy
+1337,BMW X3,Delhi,2026-07-15,59,Healthy
+1338,BMW 5 Series,Mumbai,2026-07-01,50,Warning
+1339,BMW 3 Series,Hyderabad,2026-06-15,87,Healthy
+1340,BMW X7,Pune,2026-05-01,60,Healthy
+1341,BMW X1,Delhi,2026-05-01,95,Healthy
+1342,BMW 7 Series,Pune,2026-07-01,94,Healthy
+1343,BMW 5 Series,Hyderabad,2026-06-01,49,Warning
+1344,BMW 7 Series,Hyderabad,2026-05-15,92,Healthy
+1345,BMW X7,Chennai,2026-07-15,84,Healthy
+1346,BMW 7 Series,Delhi,2026-07-15,72,Healthy
+1347,BMW X3,Kolkata,2026-07-01,62,Healthy
+1348,BMW X7,Hyderabad,2026-05-15,51,Warning
+1349,BMW X7,Chennai,2026-06-15,70,Healthy
+1350,BMW iX,Kolkata,2026-05-15,76,Healthy
+1351,BMW 3 Series,Pune,2026-07-15,51,Warning
+1352,BMW 7 Series,Ahmedabad,2026-08-15,83,Healthy
+1353,BMW 5 Series,Mumbai,2026-05-01,60,Healthy
+1354,BMW 3 Series,Bengaluru,2026-05-01,46,Warning
+1355,BMW X3,Pune,2026-08-01,91,Healthy
+1356,BMW X7,Kolkata,2026-07-15,90,Healthy
+1357,BMW 7 Series,Chennai,2026-06-15,64,Healthy
+1358,BMW i4,Pune,2026-06-01,71,Healthy
+1359,BMW i4,Hyderabad,2026-07-01,43,Warning
+1360,BMW i4,Delhi,2026-05-01,77,Healthy
+1361,BMW i4,Pune,2026-07-15,51,Warning
+1362,BMW 7 Series,Chennai,2026-05-01,78,Healthy
+1363,BMW 5 Series,Bengaluru,2026-05-15,94,Healthy
+1364,BMW iX,Chennai,2026-06-15,34,Critical
+1365,BMW X3,Kolkata,2026-07-01,98,Healthy
+1366,BMW X1,Pune,2026-07-15,61,Healthy
+1367,BMW 7 Series,Ahmedabad,2026-07-01,52,Warning
+1368,BMW i4,Chennai,2026-05-01,31,Critical
+1369,BMW 3 Series,Bengaluru,2026-05-15,73,Healthy
+1370,BMW X1,Hyderabad,2026-08-01,62,Healthy
+1371,BMW X5,Mumbai,2026-07-15,61,Healthy
+1372,BMW i4,Kolkata,2026-05-01,64,Healthy
+1373,BMW i4,Delhi,2026-05-01,30,Critical
+1374,BMW X5,Pune,2026-08-01,62,Healthy
+1375,BMW X7,Mumbai,2026-08-15,58,Healthy
+1376,BMW 7 Series,Delhi,2026-07-15,82,Healthy
+1377,BMW 5 Series,Kolkata,2026-06-01,68,Healthy
+1378,BMW iX,Kolkata,2026-06-15,71,Healthy
+1379,BMW X5,Hyderabad,2026-08-01,63,Healthy
+1380,BMW iX,Delhi,2026-06-01,32,Critical
+1381,BMW X7,Ahmedabad,2026-05-15,62,Healthy
+1382,BMW 3 Series,Ahmedabad,2026-05-15,86,Healthy
+1383,BMW X5,Hyderabad,2026-08-15,79,Healthy
+1384,BMW i4,Bengaluru,2026-05-01,74,Healthy
+1385,BMW X3,Bengaluru,2026-05-01,87,Healthy
+1386,BMW i4,Delhi,2026-07-01,82,Healthy
+1387,BMW 5 Series,Pune,2026-08-15,64,Healthy
+1388,BMW X5,Kolkata,2026-07-01,77,Healthy
+1389,BMW 7 Series,Hyderabad,2026-07-15,56,Healthy
+1390,BMW i4,Mumbai,2026-06-01,30,Critical
+1391,BMW X3,Delhi,2026-05-15,77,Healthy
+1392,BMW X1,Ahmedabad,2026-06-15,86,Healthy
+1393,BMW 3 Series,Ahmedabad,2026-08-01,87,Healthy
+1394,BMW i5,Pune,2026-08-15,81,Healthy
+1395,BMW i5,Hyderabad,2026-06-15,51,Warning
+1396,BMW i7,Hyderabad,2026-05-01,31,Critical
+1397,BMW 5 Series,Delhi,2026-08-15,97,Healthy
+1398,BMW i4,Mumbai,2026-06-01,46,Warning
+1399,BMW 7 Series,Chennai,2026-06-15,81,Healthy
+1400,BMW X7,Bengaluru,2026-08-15,79,Healthy
+1401,BMW 7 Series,Ahmedabad,2026-05-15,47,Warning
+1402,BMW 5 Series,Ahmedabad,2026-05-01,95,Healthy
+1403,BMW iX,Mumbai,2026-08-01,94,Healthy
+1404,BMW i7,Delhi,2026-08-01,80,Healthy
+1405,BMW X1,Chennai,2026-05-15,69,Healthy
+1406,BMW 5 Series,Delhi,2026-05-01,79,Healthy
+1407,BMW i4,Chennai,2026-07-01,27,Critical
+1408,BMW 3 Series,Mumbai,2026-08-15,76,Healthy
+1409,BMW X7,Bengaluru,2026-08-01,87,Healthy
+1410,BMW i5,Mumbai,2026-06-15,51,Warning
+1411,BMW i5,Kolkata,2026-08-01,60,Healthy
+1412,BMW iX,Mumbai,2026-07-01,68,Healthy
+1413,BMW 3 Series,Chennai,2026-08-01,63,Healthy
+1414,BMW 3 Series,Mumbai,2026-06-01,71,Healthy
+1415,BMW iX,Bengaluru,2026-05-15,31,Critical
+1416,BMW i5,Ahmedabad,2026-05-01,48,Warning
+1417,BMW iX,Hyderabad,2026-05-15,43,Warning
+1418,BMW X1,Hyderabad,2026-08-01,73,Healthy
+1419,BMW iX,Ahmedabad,2026-05-01,38,Warning
+1420,BMW X7,Kolkata,2026-08-15,70,Healthy
+1421,BMW X3,Delhi,2026-05-01,83,Healthy
+1422,BMW X7,Chennai,2026-05-15,87,Healthy
+1423,BMW X3,Kolkata,2026-05-15,83,Healthy
+1424,BMW i7,Kolkata,2026-07-15,30,Critical
+1425,BMW 5 Series,Pune,2026-05-15,48,Warning
+1426,BMW i4,Ahmedabad,2026-06-01,23,Critical
+1427,BMW i5,Pune,2026-07-15,90,Healthy
+1428,BMW i7,Hyderabad,2026-05-15,82,Healthy
+1429,BMW i5,Pune,2026-06-01,93,Healthy
+1430,BMW iX,Pune,2026-06-15,57,Healthy
+1431,BMW i7,Delhi,2026-07-01,88,Healthy
+1432,BMW i7,Kolkata,2026-06-01,41,Warning
+1433,BMW X7,Kolkata,2026-06-15,92,Healthy
+1434,BMW 7 Series,Pune,2026-07-15,74,Healthy
+1435,BMW 7 Series,Mumbai,2026-07-01,86,Healthy
+1436,BMW 5 Series,Mumbai,2026-05-15,81,Healthy
+1437,BMW X1,Hyderabad,2026-06-15,87,Healthy
+1438,BMW X7,Pune,2026-06-01,75,Healthy
+1439,BMW X1,Delhi,2026-07-01,58,Healthy
+1440,BMW X5,Chennai,2026-05-01,71,Healthy
+1441,BMW 7 Series,Bengaluru,2026-08-15,72,Healthy
+1442,BMW 7 Series,Hyderabad,2026-05-01,47,Warning
+1443,BMW X1,Delhi,2026-06-01,90,Healthy
+1444,BMW 7 Series,Ahmedabad,2026-05-01,91,Healthy
+1445,BMW 5 Series,Pune,2026-07-15,91,Healthy
+1446,BMW iX,Bengaluru,2026-08-15,60,Healthy
+1447,BMW 5 Series,Hyderabad,2026-06-15,89,Healthy
+1448,BMW iX,Kolkata,2026-07-01,20,Critical
+1449,BMW 7 Series,Delhi,2026-05-01,88,Healthy
+1450,BMW 7 Series,Ahmedabad,2026-05-15,50,Warning
+1451,BMW i4,Mumbai,2026-06-15,57,Healthy
+1452,BMW 3 Series,Hyderabad,2026-08-01,88,Healthy
+1453,BMW i4,Bengaluru,2026-08-01,92,Healthy
+1454,BMW X3,Ahmedabad,2026-07-01,90,Healthy
+1455,BMW 3 Series,Ahmedabad,2026-08-15,67,Healthy
+1456,BMW 3 Series,Ahmedabad,2026-08-01,74,Healthy
+1457,BMW i5,Hyderabad,2026-07-01,24,Critical
+1458,BMW i7,Chennai,2026-08-15,38,Warning
+1459,BMW X7,Kolkata,2026-05-15,82,Healthy
+1460,BMW i7,Mumbai,2026-07-15,62,Healthy
+1461,BMW i5,Mumbai,2026-08-01,53,Warning
+1462,BMW iX,Kolkata,2026-07-01,80,Healthy
+1463,BMW X5,Ahmedabad,2026-08-01,88,Healthy
+1464,BMW 3 Series,Chennai,2026-06-15,78,Healthy
+1465,BMW 3 Series,Mumbai,2026-07-01,57,Healthy
+1466,BMW i7,Kolkata,2026-05-01,85,Healthy
+1467,BMW i7,Chennai,2026-08-15,95,Healthy
+1468,BMW 3 Series,Pune,2026-07-01,53,Warning
+1469,BMW X7,Chennai,2026-05-15,87,Healthy
+1470,BMW X1,Chennai,2026-05-01,73,Healthy
+1471,BMW 3 Series,Bengaluru,2026-05-15,70,Healthy
+1472,BMW 5 Series,Delhi,2026-08-01,95,Healthy
+1473,BMW 7 Series,Kolkata,2026-06-01,85,Healthy
+1474,BMW i4,Delhi,2026-05-15,85,Healthy
+1475,BMW iX,Ahmedabad,2026-05-01,69,Healthy
+1476,BMW 7 Series,Chennai,2026-07-15,82,Healthy
+1477,BMW 3 Series,Chennai,2026-08-01,91,Healthy
+1478,BMW 5 Series,Mumbai,2026-05-01,47,Warning
+1479,BMW i7,Chennai,2026-08-15,20,Critical
+1480,BMW 5 Series,Ahmedabad,2026-07-01,65,Healthy
+1481,BMW iX,Delhi,2026-06-01,52,Warning
+1482,BMW 5 Series,Chennai,2026-07-01,67,Healthy
+1483,BMW i4,Bengaluru,2026-06-01,44,Warning
+1484,BMW X7,Chennai,2026-08-15,62,Healthy
+1485,BMW 5 Series,Hyderabad,2026-05-15,47,Warning
+1486,BMW i4,Mumbai,2026-05-15,77,Healthy
+1487,BMW i4,Ahmedabad,2026-05-15,28,Critical
+1488,BMW 7 Series,Chennai,2026-06-15,54,Warning
+1489,BMW 7 Series,Ahmedabad,2026-08-01,89,Healthy
+1490,BMW i4,Bengaluru,2026-05-01,57,Healthy
+1491,BMW X3,Bengaluru,2026-06-15,69,Healthy
+1492,BMW 7 Series,Delhi,2026-05-15,63,Healthy
+1493,BMW i4,Chennai,2026-05-01,64,Healthy
+1494,BMW X5,Mumbai,2026-07-15,80,Healthy
+1495,BMW X7,Chennai,2026-05-15,54,Warning
+1496,BMW X7,Mumbai,2026-07-15,71,Healthy
+1497,BMW X7,Hyderabad,2026-07-01,66,Healthy
+1498,BMW 3 Series,Delhi,2026-07-15,88,Healthy
+1499,BMW X3,Hyderabad,2026-05-01,90,Healthy
+1500,BMW X3,Chennai,2026-06-15,49,Warning
+1501,BMW X1,Pune,2026-06-01,65,Healthy
+1502,BMW 7 Series,Kolkata,2026-08-01,69,Healthy
+1503,BMW 5 Series,Chennai,2026-06-15,66,Healthy
+1504,BMW X7,Pune,2026-07-01,57,Healthy
+1505,BMW iX,Bengaluru,2026-07-01,68,Healthy
+1506,BMW i7,Delhi,2026-06-01,80,Healthy
+1507,BMW i5,Kolkata,2026-07-15,62,Healthy
+1508,BMW X1,Bengaluru,2026-05-01,67,Healthy
+1509,BMW X5,Hyderabad,2026-06-15,81,Healthy
+1510,BMW X7,Pune,2026-07-15,81,Healthy
+1511,BMW iX,Chennai,2026-08-15,55,Warning
+1512,BMW i4,Hyderabad,2026-05-01,31,Critical
+1513,BMW 7 Series,Pune,2026-05-15,88,Healthy
+1514,BMW i5,Bengaluru,2026-08-01,75,Healthy
+1515,BMW i4,Pune,2026-07-01,94,Healthy
+1516,BMW i5,Hyderabad,2026-07-15,71,Healthy
+1517,BMW X3,Pune,2026-08-01,67,Healthy
+1518,BMW iX,Delhi,2026-07-15,64,Healthy
+1519,BMW X5,Chennai,2026-05-15,64,Healthy
+1520,BMW i7,Ahmedabad,2026-08-01,39,Warning
+1521,BMW X5,Ahmedabad,2026-05-15,61,Healthy
+1522,BMW X7,Pune,2026-08-01,61,Healthy
+1523,BMW X3,Delhi,2026-07-15,69,Healthy
+1524,BMW i4,Kolkata,2026-08-01,26,Critical
+1525,BMW iX,Ahmedabad,2026-08-01,69,Healthy
+1526,BMW X5,Hyderabad,2026-05-15,93,Healthy
+1527,BMW i7,Ahmedabad,2026-07-15,64,Healthy
+1528,BMW 3 Series,Chennai,2026-07-15,72,Healthy
+1529,BMW X3,Mumbai,2026-07-01,54,Warning
+1530,BMW iX,Hyderabad,2026-05-01,67,Healthy
+1531,BMW iX,Delhi,2026-08-15,63,Healthy
+1532,BMW 7 Series,Kolkata,2026-08-15,86,Healthy
+1533,BMW 7 Series,Hyderabad,2026-08-01,71,Healthy
+1534,BMW X3,Bengaluru,2026-06-01,78,Healthy
+1535,BMW iX,Kolkata,2026-08-15,33,Critical
+1536,BMW i7,Ahmedabad,2026-05-15,58,Healthy
+1537,BMW i4,Kolkata,2026-07-01,44,Warning
+1538,BMW 3 Series,Chennai,2026-07-01,89,Healthy
+1539,BMW i5,Chennai,2026-06-01,62,Healthy
+1540,BMW X3,Pune,2026-08-15,96,Healthy
+1541,BMW i7,Bengaluru,2026-05-15,23,Critical
+1542,BMW X3,Hyderabad,2026-06-01,81,Healthy
+1543,BMW iX,Kolkata,2026-08-01,39,Warning
+1544,BMW X1,Bengaluru,2026-07-01,51,Warning
+1545,BMW X5,Delhi,2026-07-15,95,Healthy
+1546,BMW 7 Series,Kolkata,2026-05-15,96,Healthy
+1547,BMW X1,Hyderabad,2026-07-01,61,Healthy
+1548,BMW i7,Delhi,2026-05-01,58,Healthy
+1549,BMW iX,Pune,2026-07-15,55,Warning
+1550,BMW X7,Bengaluru,2026-07-15,61,Healthy
+1551,BMW X3,Pune,2026-08-01,74,Healthy
+1552,BMW 7 Series,Chennai,2026-08-01,65,Healthy
+1553,BMW 3 Series,Delhi,2026-08-15,98,Healthy
+1554,BMW 7 Series,Mumbai,2026-06-15,62,Healthy
+1555,BMW X5,Ahmedabad,2026-07-15,97,Healthy
+1556,BMW X7,Kolkata,2026-06-15,70,Healthy
+1557,BMW i7,Mumbai,2026-08-15,90,Healthy
+1558,BMW i4,Delhi,2026-07-01,95,Healthy
+1559,BMW 3 Series,Mumbai,2026-07-15,95,Healthy
+1560,BMW 3 Series,Kolkata,2026-05-01,59,Healthy
+1561,BMW X5,Bengaluru,2026-07-01,51,Warning
+1562,BMW X7,Kolkata,2026-05-01,64,Healthy
+1563,BMW i4,Bengaluru,2026-05-15,22,Critical
+1564,BMW i5,Chennai,2026-07-15,83,Healthy
+1565,BMW iX,Ahmedabad,2026-05-15,86,Healthy
+1566,BMW X7,Chennai,2026-06-15,84,Healthy
+1567,BMW i7,Bengaluru,2026-05-01,58,Healthy
+1568,BMW X5,Pune,2026-07-01,53,Warning
+1569,BMW 3 Series,Pune,2026-08-01,62,Healthy
+1570,BMW iX,Mumbai,2026-08-01,69,Healthy
+1571,BMW iX,Chennai,2026-06-01,70,Healthy
+1572,BMW 5 Series,Mumbai,2026-08-01,46,Warning
+1573,BMW 5 Series,Kolkata,2026-08-01,70,Healthy
+1574,BMW X7,Chennai,2026-06-01,61,Healthy
+1575,BMW i5,Kolkata,2026-05-01,84,Healthy
+1576,BMW 7 Series,Kolkata,2026-06-15,89,Healthy
+1577,BMW i7,Delhi,2026-05-15,68,Healthy
+1578,BMW X3,Hyderabad,2026-08-15,49,Warning
+1579,BMW i5,Hyderabad,2026-08-01,85,Healthy
+1580,BMW X5,Chennai,2026-06-01,88,Healthy
+1581,BMW X5,Ahmedabad,2026-05-15,69,Healthy
+1582,BMW 3 Series,Pune,2026-06-01,70,Healthy
+1583,BMW 3 Series,Pune,2026-06-01,53,Warning
+1584,BMW 5 Series,Kolkata,2026-08-15,77,Healthy
+1585,BMW X1,Kolkata,2026-05-15,75,Healthy
+1586,BMW i5,Pune,2026-06-15,55,Warning
+1587,BMW 7 Series,Delhi,2026-08-15,68,Healthy
+1588,BMW X5,Ahmedabad,2026-06-15,57,Healthy
+1589,BMW X7,Ahmedabad,2026-07-01,90,Healthy
+1590,BMW X5,Bengaluru,2026-08-01,82,Healthy
+1591,BMW 5 Series,Kolkata,2026-07-01,91,Healthy
+1592,BMW i7,Bengaluru,2026-08-01,89,Healthy
+1593,BMW i7,Kolkata,2026-06-01,57,Healthy
+1594,BMW 7 Series,Hyderabad,2026-08-01,48,Warning
+1595,BMW X1,Hyderabad,2026-06-15,63,Healthy
+1596,BMW 7 Series,Kolkata,2026-07-01,94,Healthy
+1597,BMW X5,Chennai,2026-08-15,55,Warning
+1598,BMW 7 Series,Kolkata,2026-06-15,50,Warning
+1599,BMW 7 Series,Hyderabad,2026-07-01,45,Warning
+1600,BMW i5,Bengaluru,2026-07-01,32,Critical
+1601,BMW i4,Hyderabad,2026-07-01,33,Critical
+1602,BMW i5,Delhi,2026-07-15,59,Healthy
+1603,BMW i7,Pune,2026-08-01,57,Healthy
+1604,BMW 5 Series,Kolkata,2026-08-15,97,Healthy
+1605,BMW X1,Pune,2026-07-15,57,Healthy
+1606,BMW i4,Pune,2026-06-15,35,Critical
+1607,BMW i5,Bengaluru,2026-05-01,83,Healthy
+1608,BMW 5 Series,Ahmedabad,2026-07-15,75,Healthy
+1609,BMW i7,Pune,2026-06-15,65,Healthy
+1610,BMW 7 Series,Hyderabad,2026-06-01,57,Healthy
+1611,BMW i4,Hyderabad,2026-06-01,84,Healthy
+1612,BMW 7 Series,Chennai,2026-05-01,71,Healthy
+1613,BMW iX,Mumbai,2026-05-15,33,Critical
+1614,BMW X5,Ahmedabad,2026-05-15,90,Healthy
+1615,BMW 7 Series,Kolkata,2026-06-15,86,Healthy
+1616,BMW iX,Delhi,2026-08-01,21,Critical
+1617,BMW i4,Bengaluru,2026-06-01,56,Healthy
+1618,BMW 3 Series,Delhi,2026-07-01,81,Healthy
+1619,BMW i4,Kolkata,2026-06-15,30,Critical
+1620,BMW X1,Bengaluru,2026-07-15,51,Warning
+1621,BMW X7,Chennai,2026-05-01,72,Healthy
+1622,BMW 3 Series,Delhi,2026-06-01,67,Healthy
+1623,BMW X5,Bengaluru,2026-07-15,69,Healthy
+1624,BMW X1,Chennai,2026-05-15,85,Healthy
+1625,BMW X7,Delhi,2026-06-15,51,Warning
+1626,BMW i5,Pune,2026-05-15,35,Critical
+1627,BMW iX,Chennai,2026-08-15,41,Warning
+1628,BMW i5,Pune,2026-05-01,35,Critical
+1629,BMW i4,Kolkata,2026-06-15,61,Healthy
+1630,BMW 3 Series,Hyderabad,2026-08-01,90,Healthy
+1631,BMW X5,Bengaluru,2026-05-15,56,Healthy
+1632,BMW 5 Series,Kolkata,2026-08-15,88,Healthy
+1633,BMW 3 Series,Bengaluru,2026-05-01,55,Warning
+1634,BMW 7 Series,Delhi,2026-07-01,58,Healthy
+1635,BMW i5,Bengaluru,2026-07-01,88,Healthy
+1636,BMW X1,Pune,2026-05-01,67,Healthy
+1637,BMW i7,Pune,2026-06-01,52,Warning
+1638,BMW X3,Delhi,2026-05-01,53,Warning
+1639,BMW X5,Mumbai,2026-06-01,48,Warning
+1640,BMW 5 Series,Pune,2026-07-01,64,Healthy
+1641,BMW 5 Series,Ahmedabad,2026-05-15,78,Healthy
+1642,BMW 3 Series,Mumbai,2026-05-15,95,Healthy
+1643,BMW 7 Series,Pune,2026-06-01,97,Healthy
+1644,BMW iX,Bengaluru,2026-06-15,48,Warning
+1645,BMW i7,Mumbai,2026-05-15,50,Warning
+1646,BMW X7,Chennai,2026-07-01,86,Healthy
+1647,BMW 3 Series,Ahmedabad,2026-07-01,79,Healthy
+1648,BMW X1,Hyderabad,2026-07-01,83,Healthy
+1649,BMW i5,Bengaluru,2026-05-15,88,Healthy
+1650,BMW iX,Pune,2026-05-15,86,Healthy
+1651,BMW i7,Hyderabad,2026-06-01,51,Warning
+1652,BMW X3,Hyderabad,2026-06-01,52,Warning
+1653,BMW 3 Series,Delhi,2026-06-01,83,Healthy
+1654,BMW iX,Kolkata,2026-06-01,61,Healthy
+1655,BMW 3 Series,Bengaluru,2026-06-15,95,Healthy
+1656,BMW X1,Kolkata,2026-06-01,89,Healthy
+1657,BMW X7,Pune,2026-08-15,53,Warning
+1658,BMW X1,Pune,2026-08-15,48,Warning
+1659,BMW X7,Kolkata,2026-08-01,88,Healthy
+1660,BMW X7,Hyderabad,2026-08-15,58,Healthy
+1661,BMW 5 Series,Mumbai,2026-05-01,95,Healthy
+1662,BMW X7,Delhi,2026-05-15,72,Healthy
+1663,BMW i7,Ahmedabad,2026-07-15,38,Warning
+1664,BMW 3 Series,Ahmedabad,2026-06-15,84,Healthy
+1665,BMW iX,Pune,2026-05-15,91,Healthy
+1666,BMW 5 Series,Chennai,2026-05-01,86,Healthy
+1667,BMW i7,Kolkata,2026-06-01,56,Healthy
+1668,BMW iX,Mumbai,2026-08-15,28,Critical
+1669,BMW iX,Hyderabad,2026-07-01,51,Warning
+1670,BMW X3,Bengaluru,2026-07-01,82,Healthy
+1671,BMW i5,Bengaluru,2026-06-01,25,Critical
+1672,BMW 3 Series,Pune,2026-07-15,62,Healthy
+1673,BMW i5,Chennai,2026-05-01,46,Warning
+1674,BMW X5,Kolkata,2026-06-01,87,Healthy
+1675,BMW iX,Ahmedabad,2026-08-01,23,Critical
+1676,BMW X3,Chennai,2026-07-15,58,Healthy
+1677,BMW X1,Pune,2026-08-01,89,Healthy
+1678,BMW iX,Mumbai,2026-07-15,35,Critical
+1679,BMW 7 Series,Mumbai,2026-07-15,78,Healthy
+1680,BMW 7 Series,Pune,2026-05-15,56,Healthy
+1681,BMW X7,Pune,2026-07-01,96,Healthy
+1682,BMW X3,Hyderabad,2026-05-15,56,Healthy
+1683,BMW i5,Bengaluru,2026-05-01,89,Healthy
+1684,BMW X1,Kolkata,2026-07-01,57,Healthy
+1685,BMW 5 Series,Chennai,2026-08-01,89,Healthy
+1686,BMW i5,Ahmedabad,2026-05-01,77,Healthy
+1687,BMW X5,Hyderabad,2026-06-01,79,Healthy
+1688,BMW X1,Bengaluru,2026-07-15,93,Healthy
+1689,BMW i7,Ahmedabad,2026-06-01,63,Healthy
+1690,BMW 5 Series,Ahmedabad,2026-08-15,55,Warning
+1691,BMW iX,Pune,2026-08-15,86,Healthy
+1692,BMW 5 Series,Mumbai,2026-06-15,77,Healthy
+1693,BMW i7,Mumbai,2026-05-01,60,Healthy
+1694,BMW X1,Delhi,2026-06-01,80,Healthy
+1695,BMW 3 Series,Delhi,2026-06-15,74,Healthy
+1696,BMW X5,Delhi,2026-07-01,71,Healthy
+1697,BMW X3,Kolkata,2026-07-01,50,Warning
+1698,BMW 5 Series,Kolkata,2026-08-01,90,Healthy
+1699,BMW 5 Series,Pune,2026-05-01,45,Warning
+1700,BMW i4,Chennai,2026-06-01,34,Critical
+1701,BMW X3,Hyderabad,2026-07-01,78,Healthy
+1702,BMW X5,Delhi,2026-05-01,79,Healthy
+1703,BMW i4,Kolkata,2026-08-15,95,Healthy
+1704,BMW 7 Series,Ahmedabad,2026-06-01,77,Healthy
+1705,BMW 7 Series,Ahmedabad,2026-06-15,49,Warning
+1706,BMW 5 Series,Ahmedabad,2026-07-15,65,Healthy
+1707,BMW X1,Bengaluru,2026-05-01,97,Healthy
+1708,BMW i7,Delhi,2026-07-01,53,Warning
+1709,BMW i7,Kolkata,2026-07-15,80,Healthy
+1710,BMW i4,Bengaluru,2026-05-01,83,Healthy
+1711,BMW 3 Series,Ahmedabad,2026-07-15,47,Warning
+1712,BMW X7,Mumbai,2026-05-15,54,Warning
+1713,BMW i5,Mumbai,2026-06-01,77,Healthy
+1714,BMW 7 Series,Pune,2026-07-01,51,Warning
+1715,BMW X1,Mumbai,2026-06-01,89,Healthy
+1716,BMW i4,Delhi,2026-06-01,48,Warning
+1717,BMW X1,Pune,2026-07-01,50,Warning
+1718,BMW iX,Chennai,2026-06-15,37,Warning
+1719,BMW i5,Chennai,2026-06-15,35,Critical
+1720,BMW i4,Hyderabad,2026-08-01,89,Healthy
+1721,BMW iX,Bengaluru,2026-05-15,48,Warning
+1722,BMW i4,Chennai,2026-05-15,21,Critical
+1723,BMW iX,Pune,2026-08-15,35,Critical
+1724,BMW X3,Mumbai,2026-06-01,84,Healthy
+1725,BMW X1,Ahmedabad,2026-08-15,71,Healthy
+1726,BMW X5,Hyderabad,2026-08-15,88,Healthy
+1727,BMW X3,Mumbai,2026-06-15,93,Healthy
+1728,BMW 5 Series,Pune,2026-06-15,68,Healthy
+1729,BMW i5,Bengaluru,2026-05-01,83,Healthy
+1730,BMW i7,Mumbai,2026-07-15,39,Warning
+1731,BMW 5 Series,Kolkata,2026-05-15,76,Healthy
+1732,BMW 7 Series,Kolkata,2026-05-15,62,Healthy
+1733,BMW X3,Delhi,2026-05-01,85,Healthy
+1734,BMW X1,Pune,2026-05-01,77,Healthy
+1735,BMW X1,Bengaluru,2026-07-15,47,Warning
+1736,BMW i5,Kolkata,2026-07-15,59,Healthy
+1737,BMW iX,Mumbai,2026-05-15,26,Critical
+1738,BMW iX,Hyderabad,2026-07-01,50,Warning
+1739,BMW 7 Series,Pune,2026-07-15,91,Healthy
+1740,BMW iX,Chennai,2026-06-01,74,Healthy
+1741,BMW X7,Chennai,2026-07-15,91,Healthy
+1742,BMW X3,Kolkata,2026-06-01,49,Warning
+1743,BMW i5,Ahmedabad,2026-08-01,36,Warning
+1744,BMW i5,Kolkata,2026-07-01,37,Warning
+1745,BMW 5 Series,Chennai,2026-07-01,46,Warning
+1746,BMW iX,Delhi,2026-05-15,73,Healthy
+1747,BMW 3 Series,Hyderabad,2026-05-15,87,Healthy
+1748,BMW X5,Ahmedabad,2026-07-15,46,Warning
+1749,BMW X7,Ahmedabad,2026-08-15,82,Healthy
+1750,BMW X3,Hyderabad,2026-06-01,90,Healthy
+1751,BMW 3 Series,Ahmedabad,2026-06-01,98,Healthy
+1752,BMW X1,Hyderabad,2026-05-15,59,Healthy
+1753,BMW i5,Bengaluru,2026-07-01,70,Healthy
+1754,BMW iX,Chennai,2026-07-15,40,Warning
+1755,BMW 7 Series,Ahmedabad,2026-05-15,90,Healthy
+1756,BMW 3 Series,Pune,2026-06-01,93,Healthy
+1757,BMW X7,Bengaluru,2026-08-01,48,Warning
+1758,BMW 5 Series,Bengaluru,2026-06-01,59,Healthy
+1759,BMW X1,Mumbai,2026-05-01,98,Healthy
+1760,BMW i4,Bengaluru,2026-08-01,57,Healthy
+1761,BMW iX,Chennai,2026-07-15,56,Healthy
+1762,BMW 3 Series,Hyderabad,2026-07-15,59,Healthy
+1763,BMW X1,Kolkata,2026-08-01,91,Healthy
+1764,BMW 3 Series,Hyderabad,2026-08-15,52,Warning
+1765,BMW X3,Pune,2026-07-01,61,Healthy
+1766,BMW iX,Kolkata,2026-08-01,75,Healthy
+1767,BMW X3,Chennai,2026-07-15,87,Healthy
+1768,BMW 7 Series,Hyderabad,2026-05-01,73,Healthy
+1769,BMW i5,Chennai,2026-08-01,84,Healthy
+1770,BMW X5,Chennai,2026-08-15,69,Healthy
+1771,BMW X5,Ahmedabad,2026-05-15,52,Warning
+1772,BMW 7 Series,Kolkata,2026-06-01,88,Healthy
+1773,BMW iX,Kolkata,2026-08-15,70,Healthy
+1774,BMW i7,Kolkata,2026-05-01,47,Warning
+1775,BMW X5,Pune,2026-05-15,59,Healthy
+1776,BMW iX,Bengaluru,2026-08-15,31,Critical
+1777,BMW i5,Bengaluru,2026-07-15,79,Healthy
+1778,BMW i7,Delhi,2026-05-15,80,Healthy
+1779,BMW i7,Hyderabad,2026-07-01,85,Healthy
+1780,BMW i7,Kolkata,2026-08-15,34,Critical
+1781,BMW i4,Pune,2026-08-01,81,Healthy
+1782,BMW i7,Chennai,2026-05-01,45,Warning
+1783,BMW X7,Ahmedabad,2026-08-01,47,Warning
+1784,BMW X1,Mumbai,2026-06-01,97,Healthy
+1785,BMW 5 Series,Pune,2026-06-15,92,Healthy
+1786,BMW X7,Mumbai,2026-05-15,79,Healthy
+1787,BMW X3,Kolkata,2026-08-15,97,Healthy
+1788,BMW 7 Series,Chennai,2026-06-01,93,Healthy
+1789,BMW X5,Ahmedabad,2026-07-15,58,Healthy
+1790,BMW iX,Kolkata,2026-08-01,34,Critical
+1791,BMW 5 Series,Hyderabad,2026-06-01,68,Healthy
+1792,BMW 5 Series,Pune,2026-06-01,63,Healthy
+1793,BMW X5,Pune,2026-08-15,74,Healthy
+1794,BMW i5,Chennai,2026-06-15,27,Critical
+1795,BMW X5,Kolkata,2026-07-01,89,Healthy
+1796,BMW i5,Kolkata,2026-07-15,47,Warning
+1797,BMW i7,Ahmedabad,2026-07-15,43,Warning
+1798,BMW 5 Series,Bengaluru,2026-08-01,73,Healthy
+1799,BMW 5 Series,Delhi,2026-08-01,85,Healthy
+1800,BMW X7,Hyderabad,2026-05-01,59,Healthy
+1801,BMW i7,Ahmedabad,2026-07-15,23,Critical
+1802,BMW iX,Pune,2026-07-01,44,Warning
+1803,BMW X7,Hyderabad,2026-07-15,53,Warning
+1804,BMW i5,Bengaluru,2026-07-01,82,Healthy
+1805,BMW X1,Kolkata,2026-07-01,68,Healthy
+1806,BMW X7,Kolkata,2026-08-01,94,Healthy
+1807,BMW i7,Mumbai,2026-06-01,51,Warning
+1808,BMW i7,Hyderabad,2026-05-01,71,Healthy
+1809,BMW X7,Ahmedabad,2026-08-01,85,Healthy
+1810,BMW 3 Series,Hyderabad,2026-05-15,57,Healthy
+1811,BMW 7 Series,Chennai,2026-07-01,57,Healthy
+1812,BMW 5 Series,Hyderabad,2026-06-01,69,Healthy
+1813,BMW X1,Kolkata,2026-08-15,77,Healthy
+1814,BMW X5,Chennai,2026-05-15,66,Healthy
+1815,BMW 3 Series,Mumbai,2026-05-15,73,Healthy
+1816,BMW X3,Chennai,2026-08-01,55,Warning
+1817,BMW i7,Delhi,2026-06-15,25,Critical
+1818,BMW 5 Series,Mumbai,2026-05-15,96,Healthy
+1819,BMW 3 Series,Pune,2026-07-01,89,Healthy
+1820,BMW X1,Chennai,2026-05-15,63,Healthy
+1821,BMW X5,Delhi,2026-07-15,50,Warning
+1822,BMW 5 Series,Pune,2026-05-15,87,Healthy
+1823,BMW iX,Pune,2026-08-01,23,Critical
+1824,BMW i5,Hyderabad,2026-08-01,75,Healthy
+1825,BMW 3 Series,Mumbai,2026-05-15,98,Healthy
+1826,BMW i7,Mumbai,2026-05-01,89,Healthy
+1827,BMW 7 Series,Hyderabad,2026-07-01,50,Warning
+1828,BMW X3,Pune,2026-07-15,85,Healthy
+1829,BMW iX,Kolkata,2026-06-01,93,Healthy
+1830,BMW 5 Series,Delhi,2026-05-15,95,Healthy
+1831,BMW X3,Delhi,2026-08-15,96,Healthy
+1832,BMW i7,Mumbai,2026-06-01,35,Critical
+1833,BMW X3,Hyderabad,2026-08-15,89,Healthy
+1834,BMW X1,Hyderabad,2026-08-01,54,Warning
+1835,BMW X1,Bengaluru,2026-06-15,79,Healthy
+1836,BMW i4,Ahmedabad,2026-06-15,71,Healthy
+1837,BMW 5 Series,Mumbai,2026-08-01,70,Healthy
+1838,BMW X1,Ahmedabad,2026-07-01,95,Healthy
+1839,BMW X7,Mumbai,2026-06-01,96,Healthy
+1840,BMW 5 Series,Pune,2026-06-01,56,Healthy
+1841,BMW i7,Bengaluru,2026-06-15,95,Healthy
+1842,BMW X5,Chennai,2026-07-01,86,Healthy
+1843,BMW X3,Delhi,2026-08-15,47,Warning
+1844,BMW 7 Series,Pune,2026-06-01,92,Healthy
+1845,BMW i7,Ahmedabad,2026-05-01,91,Healthy
+1846,BMW X1,Ahmedabad,2026-07-15,54,Warning
+1847,BMW i7,Ahmedabad,2026-05-15,39,Warning
+1848,BMW 7 Series,Pune,2026-06-01,96,Healthy
+1849,BMW X1,Hyderabad,2026-05-15,81,Healthy
+1850,BMW iX,Bengaluru,2026-07-15,27,Critical
+1851,BMW i7,Delhi,2026-05-15,54,Warning
+1852,BMW X1,Mumbai,2026-05-15,96,Healthy
+1853,BMW 5 Series,Kolkata,2026-06-01,49,Warning
+1854,BMW 7 Series,Ahmedabad,2026-06-01,75,Healthy
+1855,BMW i7,Kolkata,2026-07-15,85,Healthy
+1856,BMW X5,Kolkata,2026-08-01,54,Warning
+1857,BMW i4,Hyderabad,2026-05-01,36,Warning
+1858,BMW iX,Kolkata,2026-07-15,71,Healthy
+1859,BMW 5 Series,Mumbai,2026-08-01,84,Healthy
+1860,BMW i4,Hyderabad,2026-06-15,67,Healthy
+1861,BMW i7,Chennai,2026-08-01,67,Healthy
+1862,BMW i5,Bengaluru,2026-08-15,74,Healthy
+1863,BMW i5,Pune,2026-05-15,78,Healthy
+1864,BMW iX,Chennai,2026-05-01,66,Healthy
+1865,BMW 5 Series,Bengaluru,2026-07-01,76,Healthy
+1866,BMW 7 Series,Pune,2026-08-01,53,Warning
+1867,BMW iX,Pune,2026-06-01,93,Healthy
+1868,BMW X1,Pune,2026-07-15,53,Warning
+1869,BMW X7,Pune,2026-08-15,98,Healthy
+1870,BMW i5,Ahmedabad,2026-08-15,49,Warning
+1871,BMW X7,Pune,2026-06-15,98,Healthy
+1872,BMW i5,Mumbai,2026-08-15,70,Healthy
+1873,BMW iX,Hyderabad,2026-06-01,76,Healthy
+1874,BMW X3,Delhi,2026-05-01,87,Healthy
+1875,BMW i7,Chennai,2026-05-15,58,Healthy
+1876,BMW 7 Series,Delhi,2026-05-15,77,Healthy
+1877,BMW X1,Delhi,2026-08-01,93,Healthy
+1878,BMW X1,Mumbai,2026-08-15,89,Healthy
+1879,BMW i4,Mumbai,2026-06-01,64,Healthy
+1880,BMW i4,Mumbai,2026-08-15,51,Warning
+1881,BMW X3,Bengaluru,2026-06-15,47,Warning
+1882,BMW 3 Series,Chennai,2026-06-15,82,Healthy
+1883,BMW iX,Ahmedabad,2026-08-15,77,Healthy
+1884,BMW X3,Pune,2026-08-01,49,Warning
+1885,BMW 7 Series,Chennai,2026-08-15,71,Healthy
+1886,BMW iX,Bengaluru,2026-08-01,95,Healthy
+1887,BMW i7,Pune,2026-07-01,37,Warning
+1888,BMW X5,Pune,2026-06-15,61,Healthy
+1889,BMW 3 Series,Chennai,2026-07-01,89,Healthy
+1890,BMW iX,Delhi,2026-05-15,70,Healthy
+1891,BMW i4,Ahmedabad,2026-06-01,81,Healthy
+1892,BMW 3 Series,Chennai,2026-07-15,65,Healthy
+1893,BMW 5 Series,Delhi,2026-08-15,59,Healthy
+1894,BMW i5,Mumbai,2026-08-01,42,Warning
+1895,BMW i5,Delhi,2026-08-01,55,Warning
+1896,BMW i4,Hyderabad,2026-07-15,32,Critical
+1897,BMW X7,Ahmedabad,2026-06-01,71,Healthy
+1898,BMW 7 Series,Hyderabad,2026-06-01,78,Healthy
+1899,BMW i4,Delhi,2026-05-15,40,Warning
+1900,BMW i7,Ahmedabad,2026-07-01,73,Healthy
+1901,BMW 3 Series,Pune,2026-06-01,98,Healthy
+1902,BMW iX,Delhi,2026-07-15,35,Critical
+1903,BMW X3,Hyderabad,2026-05-15,71,Healthy
+1904,BMW iX,Chennai,2026-06-15,59,Healthy
+1905,BMW X1,Kolkata,2026-08-01,89,Healthy
+1906,BMW X1,Ahmedabad,2026-08-15,76,Healthy
+1907,BMW i5,Bengaluru,2026-05-15,23,Critical
+1908,BMW X5,Kolkata,2026-06-15,92,Healthy
+1909,BMW 5 Series,Ahmedabad,2026-07-01,60,Healthy
+1910,BMW 3 Series,Kolkata,2026-05-01,59,Healthy
+1911,BMW 7 Series,Pune,2026-08-01,74,Healthy
+1912,BMW 7 Series,Chennai,2026-05-01,92,Healthy
+1913,BMW iX,Kolkata,2026-08-15,56,Healthy
+1914,BMW X3,Chennai,2026-07-01,73,Healthy
+1915,BMW 3 Series,Kolkata,2026-05-01,78,Healthy
+1916,BMW 3 Series,Ahmedabad,2026-05-01,92,Healthy
+1917,BMW X7,Bengaluru,2026-07-01,96,Healthy
+1918,BMW 3 Series,Ahmedabad,2026-07-01,78,Healthy
+1919,BMW iX,Delhi,2026-05-01,28,Critical
+1920,BMW 3 Series,Hyderabad,2026-06-15,88,Healthy
+1921,BMW 7 Series,Pune,2026-07-01,45,Warning
+1922,BMW 5 Series,Kolkata,2026-05-01,75,Healthy
+1923,BMW X7,Kolkata,2026-06-15,87,Healthy
+1924,BMW i5,Kolkata,2026-05-15,88,Healthy
+1925,BMW X7,Chennai,2026-05-15,63,Healthy
+1926,BMW 7 Series,Pune,2026-08-01,86,Healthy
+1927,BMW X1,Delhi,2026-08-01,57,Healthy
+1928,BMW 5 Series,Pune,2026-08-15,53,Warning
+1929,BMW X3,Mumbai,2026-07-01,57,Healthy
+1930,BMW 7 Series,Ahmedabad,2026-06-15,84,Healthy
+1931,BMW iX,Chennai,2026-06-01,52,Warning
+1932,BMW i4,Ahmedabad,2026-05-01,49,Warning
+1933,BMW iX,Chennai,2026-06-01,92,Healthy
+1934,BMW i4,Kolkata,2026-06-01,38,Warning
+1935,BMW i7,Delhi,2026-07-01,73,Healthy
+1936,BMW X1,Kolkata,2026-06-01,89,Healthy
+1937,BMW i5,Hyderabad,2026-07-01,37,Warning
+1938,BMW X7,Kolkata,2026-07-15,45,Warning
+1939,BMW i4,Ahmedabad,2026-05-15,89,Healthy
+1940,BMW 5 Series,Bengaluru,2026-07-01,86,Healthy
+1941,BMW i5,Kolkata,2026-06-01,22,Critical
+1942,BMW X5,Hyderabad,2026-06-15,62,Healthy
+1943,BMW iX,Kolkata,2026-06-15,36,Warning
+1944,BMW i5,Kolkata,2026-05-01,49,Warning
+1945,BMW i5,Bengaluru,2026-07-01,20,Critical
+1946,BMW i4,Kolkata,2026-08-01,33,Critical
+1947,BMW 7 Series,Delhi,2026-05-01,90,Healthy
+1948,BMW 5 Series,Kolkata,2026-05-15,77,Healthy
+1949,BMW i4,Pune,2026-06-01,42,Warning
+1950,BMW i5,Ahmedabad,2026-08-15,24,Critical
+1951,BMW X7,Hyderabad,2026-08-01,59,Healthy
+1952,BMW 5 Series,Hyderabad,2026-07-15,72,Healthy
+1953,BMW i7,Chennai,2026-05-15,32,Critical
+1954,BMW X5,Mumbai,2026-05-01,83,Healthy
+1955,BMW i5,Bengaluru,2026-08-01,67,Healthy
+1956,BMW 7 Series,Pune,2026-05-15,93,Healthy
+1957,BMW X7,Bengaluru,2026-06-15,52,Warning
+1958,BMW X1,Mumbai,2026-05-15,70,Healthy
+1959,BMW X3,Ahmedabad,2026-07-15,51,Warning
+1960,BMW i5,Hyderabad,2026-06-01,31,Critical
+1961,BMW X3,Bengaluru,2026-08-15,65,Healthy
+1962,BMW 5 Series,Pune,2026-07-01,72,Healthy
+1963,BMW 7 Series,Pune,2026-06-15,47,Warning
+1964,BMW 3 Series,Hyderabad,2026-06-15,74,Healthy
+1965,BMW i7,Delhi,2026-08-15,71,Healthy
+1966,BMW X7,Ahmedabad,2026-08-01,88,Healthy
+1967,BMW X7,Pune,2026-05-01,71,Healthy
+1968,BMW X3,Mumbai,2026-08-15,65,Healthy
+1969,BMW X7,Ahmedabad,2026-06-15,75,Healthy
+1970,BMW i7,Bengaluru,2026-06-15,57,Healthy
+1971,BMW X1,Hyderabad,2026-07-15,60,Healthy
+1972,BMW X7,Kolkata,2026-08-01,81,Healthy
+1973,BMW X3,Pune,2026-08-01,77,Healthy
+1974,BMW 3 Series,Pune,2026-07-01,45,Warning
+1975,BMW iX,Hyderabad,2026-05-01,91,Healthy
+1976,BMW X1,Kolkata,2026-05-15,79,Healthy
+1977,BMW i5,Chennai,2026-05-01,33,Critical
+1978,BMW 3 Series,Ahmedabad,2026-06-01,79,Healthy
+1979,BMW X1,Chennai,2026-08-01,71,Healthy
+1980,BMW X1,Bengaluru,2026-08-15,66,Healthy
+1981,BMW iX,Delhi,2026-07-15,64,Healthy
+1982,BMW 3 Series,Mumbai,2026-07-15,50,Warning
+1983,BMW X5,Kolkata,2026-05-15,79,Healthy
+1984,BMW X3,Delhi,2026-07-01,53,Warning
+1985,BMW i4,Hyderabad,2026-05-01,38,Warning
+1986,BMW i5,Pune,2026-06-01,40,Warning
+1987,BMW i7,Pune,2026-05-01,78,Healthy
+1988,BMW X5,Ahmedabad,2026-06-15,98,Healthy
+1989,BMW X3,Ahmedabad,2026-07-01,68,Healthy
+1990,BMW i4,Mumbai,2026-07-15,43,Warning
+1991,BMW i4,Delhi,2026-06-15,43,Warning
+1992,BMW X7,Bengaluru,2026-05-01,68,Healthy
+1993,BMW iX,Delhi,2026-07-15,69,Healthy
+1994,BMW X5,Hyderabad,2026-06-01,49,Warning
+1995,BMW X3,Mumbai,2026-08-01,70,Healthy
+1996,BMW i4,Delhi,2026-08-01,25,Critical
+1997,BMW X1,Bengaluru,2026-06-01,69,Healthy
+1998,BMW X7,Hyderabad,2026-07-01,59,Healthy
+1999,BMW iX,Delhi,2026-08-01,59,Healthy
+2000,BMW X5,Pune,2026-05-15,47,Warning

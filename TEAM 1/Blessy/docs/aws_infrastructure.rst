@@ -1,46 +1,37 @@
 AWS Infrastructure
 ==================
 
-Infrastructure as Code
-----------------------
+Terraform provisions the core AWS resources and keeps the deployment
+repeatable and reviewable.
 
-Terraform defines and provisions the core AWS resources, making the
-infrastructure repeatable, reviewable, and maintainable across environments.
+Amazon S3
+---------
 
-Amazon S3 Bucket
-----------------
-
-The project uses the bucket:
+Bucket:
 
 .. code-block:: text
 
 	bmw-maintenance-risk-score-blessy-2026
 
-The bucket stores curated risk-score outputs. Terraform applies the project
-and environment tags ``BMW Predictive Maintenance`` and ``Dev``.
-
-Curated objects are stored at:
+Curated objects:
 
 .. code-block:: text
 
 	curated/maintenance_risk_score.csv
 	curated/top10_risk_vehicles.csv
 
-CloudWatch Log Group
---------------------
+IAM
+---
 
-The log group ``/aws/bmw-maintenance`` is configured with seven days of log
-retention to support operational monitoring while controlling storage costs.
+Role: ``bmw-maintenance-role``
 
-IAM Role
---------
+CloudWatch
+----------
 
-The project defines the role ``bmw-maintenance-role``. Its trust policy allows
-the Amazon EC2 service to assume the role. Production deployments should add
-only the minimum permissions required by the workload.
+Log group: ``/aws/bmw-maintenance``
 
-Example Terraform Workflow
---------------------------
+Terraform Workflow
+------------------
 
 .. code-block:: console
 
@@ -49,10 +40,5 @@ Example Terraform Workflow
 	terraform plan
 	terraform apply
 
-Security Considerations
------------------------
-
-Recommended production practices include least-privilege IAM policies, S3
-encryption, versioning, blocked public access, protected Terraform state,
-separate environments, resource tagging, and avoiding credentials in source
-code.
+The infrastructure supports the S3 storage, monitoring, and access needs of
+the predictive-maintenance workflow.

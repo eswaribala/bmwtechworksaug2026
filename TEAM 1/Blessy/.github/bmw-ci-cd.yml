@@ -1,0 +1,66 @@
+name: BMW Predictive Maintenance CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+
+  validate-project:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Dependencies
+      run: |
+        pip install sphinx pandas pyspark
+
+    - name: Validate Python Files
+      run: |
+        python -m compileall src
+
+    - name: Verify Project Structure
+      run: |
+        test -d src
+        test -d terraform
+        test -d docs
+        test -d tests
+        test -d data
+
+    - name: Build Sphinx Documentation
+      run: |
+        sphinx-build -b html docs docs/_build
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Format Check
+      run: |
+        cd terraform
+        terraform fmt -check
+
+    - name: Terraform Validate
+      run: |
+        cd terraform
+        terraform init -backend=false
+        terraform validate
+
+    - name: Success
+      run: |
+        echo "BMW Predictive Maintenance CI/CD completed successfully"

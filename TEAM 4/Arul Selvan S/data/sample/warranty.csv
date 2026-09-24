@@ -1,0 +1,1001 @@
+vehicle_id,model,city,warranty_date,fault_type,warranty_cost
+1001,BMW X1,Chennai,2026-02-10,Engine,45000
+1002,BMW X3,Chennai,2026-02-22,Electrical,65000
+1005,BMW i4,Chennai,2026-03-18,Battery,125000
+1009,BMW 5 Series,Chennai,2026-05-11,Infotainment,55000
+1003,BMW 3 Series,Mumbai,2026-02-28,Brake,38000
+1007,BMW X1,Mumbai,2026-04-02,Suspension,42000
+1004,BMW X5,Delhi,2026-03-05,Engine,95000
+1008,BMW X3,Delhi,2026-04-20,Electrical,72000
+1006,BMW iX,Bengaluru,2026-04-15,Battery,145000
+1010,BMW i4,Bengaluru,2026-05-20,Charging,85000
+1011,BMW i5,Pune,2026-03-02,Charging,117000
+1012,BMW X7,Pune,2026-03-24,Transmission,67000
+1013,BMW 3 Series,Mumbai,2026-07-19,Cooling,64000
+1014,BMW X5,Ahmedabad,2026-07-08,Infotainment,51000
+1015,BMW iX,Ahmedabad,2026-05-17,Electrical,72000
+1016,BMW X3,Kolkata,2026-07-02,Battery,142000
+1017,BMW i4,Pune,2026-08-11,Battery,122000
+1018,BMW X1,Pune,2026-02-21,Charging,94000
+1019,BMW i4,Delhi,2026-07-24,Suspension,45000
+1020,BMW iX,Mumbai,2026-04-10,Battery,150000
+1021,BMW X5,Kolkata,2026-01-27,Steering,80000
+1022,BMW 3 Series,Hyderabad,2026-08-09,Battery,133000
+1023,BMW i7,Bengaluru,2026-08-14,Charging,81000
+1024,BMW 7 Series,Mumbai,2026-07-09,Infotainment,57000
+1025,BMW 3 Series,Ahmedabad,2026-07-06,Suspension,32000
+1026,BMW X5,Pune,2026-02-24,AC,56000
+1027,BMW 5 Series,Delhi,2026-03-18,Transmission,60000
+1028,BMW i4,Ahmedabad,2026-07-09,Cooling,46000
+1029,BMW X5,Delhi,2026-08-01,Brake,27000
+1030,BMW X1,Delhi,2026-08-04,Steering,43000
+1031,BMW iX,Delhi,2026-02-27,Transmission,63000
+1032,BMW X1,Bengaluru,2026-08-22,Brake,46000
+1033,BMW i4,Hyderabad,2026-02-12,Cooling,36000
+1034,BMW X1,Mumbai,2026-06-18,AC,50000
+1035,BMW 7 Series,Delhi,2026-03-20,Suspension,51000
+1036,BMW X3,Delhi,2026-04-26,Cooling,36000
+1037,BMW 3 Series,Chennai,2026-02-02,Suspension,45000
+1038,BMW iX,Bengaluru,2026-03-07,Transmission,91000
+1039,BMW i4,Delhi,2026-08-06,Brake,54000
+1040,BMW i4,Kolkata,2026-04-14,Cooling,37000
+1041,BMW X1,Bengaluru,2026-06-10,Battery,159000
+1042,BMW X3,Delhi,2026-04-17,Battery,156000
+1043,BMW 7 Series,Pune,2026-01-10,Suspension,38000
+1044,BMW 7 Series,Pune,2026-05-22,Steering,46000
+1045,BMW 3 Series,Kolkata,2026-02-18,Electrical,70000
+1046,BMW i5,Kolkata,2026-03-11,Suspension,54000
+1047,BMW X3,Kolkata,2026-06-01,Cooling,65000
+1048,BMW i5,Chennai,2026-08-14,Suspension,63000
+1049,BMW 5 Series,Bengaluru,2026-01-04,Transmission,118000
+1050,BMW iX,Pune,2026-05-12,Infotainment,43000
+1051,BMW 7 Series,Ahmedabad,2026-04-13,Charging,91000
+1052,BMW X5,Hyderabad,2026-07-18,Cooling,72000
+1053,BMW iX,Kolkata,2026-05-23,Charging,120000
+1054,BMW i4,Bengaluru,2026-06-23,Transmission,126000
+1055,BMW i7,Chennai,2026-03-20,Cooling,58000
+1056,BMW 5 Series,Bengaluru,2026-02-11,Electrical,66000
+1057,BMW 7 Series,Pune,2026-06-17,AC,34000
+1058,BMW 5 Series,Mumbai,2026-07-19,Cooling,62000
+1059,BMW 3 Series,Chennai,2026-06-21,Battery,94000
+1060,BMW 3 Series,Ahmedabad,2026-04-24,Transmission,94000
+1061,BMW X7,Kolkata,2026-05-28,Brake,40000
+1062,BMW i4,Bengaluru,2026-04-06,Suspension,63000
+1063,BMW X1,Bengaluru,2026-08-03,Brake,30000
+1064,BMW iX,Kolkata,2026-01-28,Steering,41000
+1065,BMW 7 Series,Delhi,2026-02-01,Charging,96000
+1066,BMW 3 Series,Kolkata,2026-03-12,Engine,46000
+1067,BMW X7,Chennai,2026-04-26,Cooling,58000
+1068,BMW X7,Hyderabad,2026-03-23,AC,67000
+1069,BMW i4,Kolkata,2026-03-14,Steering,49000
+1070,BMW i4,Bengaluru,2026-04-26,Cooling,36000
+1071,BMW 7 Series,Bengaluru,2026-03-14,AC,37000
+1072,BMW X7,Kolkata,2026-03-16,Charging,119000
+1073,BMW i7,Kolkata,2026-03-28,Brake,49000
+1074,BMW i5,Chennai,2026-03-06,Suspension,44000
+1075,BMW i4,Kolkata,2026-05-23,Charging,106000
+1076,BMW i7,Delhi,2026-03-21,Engine,57000
+1077,BMW i7,Kolkata,2026-02-06,AC,48000
+1078,BMW i7,Kolkata,2026-05-09,Cooling,52000
+1079,BMW X1,Chennai,2026-01-02,Transmission,104000
+1080,BMW 5 Series,Kolkata,2026-01-13,Engine,50000
+1081,BMW 3 Series,Ahmedabad,2026-04-26,AC,53000
+1082,BMW i5,Pune,2026-02-25,Brake,46000
+1083,BMW X5,Mumbai,2026-05-27,Charging,84000
+1084,BMW X1,Mumbai,2026-07-04,Suspension,53000
+1085,BMW i7,Bengaluru,2026-03-22,Charging,74000
+1086,BMW i5,Delhi,2026-06-04,Battery,146000
+1087,BMW i7,Pune,2026-07-25,Infotainment,37000
+1088,BMW 7 Series,Delhi,2026-01-26,Infotainment,80000
+1089,BMW 7 Series,Delhi,2026-05-20,Electrical,86000
+1090,BMW X7,Pune,2026-05-09,Infotainment,40000
+1091,BMW 7 Series,Mumbai,2026-01-06,Electrical,72000
+1092,BMW 5 Series,Delhi,2026-05-02,Battery,169000
+1093,BMW i7,Ahmedabad,2026-03-14,Brake,31000
+1094,BMW X1,Hyderabad,2026-03-23,Transmission,77000
+1095,BMW 7 Series,Kolkata,2026-07-26,AC,56000
+1096,BMW i4,Delhi,2026-08-27,Transmission,94000
+1097,BMW 5 Series,Hyderabad,2026-05-24,Suspension,59000
+1098,BMW i5,Ahmedabad,2026-01-27,Charging,116000
+1099,BMW iX,Mumbai,2026-08-02,Battery,148000
+1100,BMW 7 Series,Kolkata,2026-02-24,Infotainment,51000
+1101,BMW X3,Pune,2026-04-22,Suspension,62000
+1102,BMW iX,Chennai,2026-03-09,Suspension,65000
+1103,BMW X3,Bengaluru,2026-01-22,Battery,177000
+1104,BMW 7 Series,Kolkata,2026-07-21,Battery,139000
+1105,BMW 3 Series,Delhi,2026-02-13,AC,61000
+1106,BMW X5,Chennai,2026-06-03,Suspension,41000
+1107,BMW X3,Mumbai,2026-07-01,Transmission,66000
+1108,BMW X7,Ahmedabad,2026-05-12,Steering,40000
+1109,BMW 5 Series,Chennai,2026-04-12,Transmission,94000
+1110,BMW i5,Chennai,2026-07-06,Transmission,83000
+1111,BMW iX,Pune,2026-03-16,Suspension,43000
+1112,BMW iX,Bengaluru,2026-04-16,Brake,52000
+1113,BMW X5,Bengaluru,2026-06-23,Suspension,36000
+1114,BMW i5,Chennai,2026-03-28,Engine,52000
+1115,BMW i5,Mumbai,2026-05-21,Steering,76000
+1116,BMW X7,Mumbai,2026-05-27,Steering,74000
+1117,BMW 5 Series,Bengaluru,2026-08-27,Infotainment,53000
+1118,BMW X5,Delhi,2026-06-03,Battery,88000
+1119,BMW 5 Series,Chennai,2026-04-27,Battery,107000
+1120,BMW 5 Series,Chennai,2026-04-25,Charging,106000
+1121,BMW iX,Bengaluru,2026-06-22,Transmission,105000
+1122,BMW iX,Ahmedabad,2026-04-13,Brake,48000
+1123,BMW 3 Series,Chennai,2026-02-06,Engine,59000
+1124,BMW 7 Series,Bengaluru,2026-06-06,Battery,176000
+1125,BMW 5 Series,Bengaluru,2026-01-17,Engine,57000
+1126,BMW 3 Series,Delhi,2026-02-01,Battery,138000
+1127,BMW i7,Pune,2026-02-18,Cooling,72000
+1128,BMW X5,Pune,2026-05-21,Brake,39000
+1129,BMW i7,Bengaluru,2026-04-08,Electrical,42000
+1130,BMW i7,Delhi,2026-02-16,Engine,50000
+1131,BMW X3,Mumbai,2026-01-06,Charging,58000
+1132,BMW X5,Delhi,2026-08-13,AC,45000
+1133,BMW i5,Delhi,2026-05-28,Infotainment,79000
+1134,BMW 5 Series,Chennai,2026-02-19,Infotainment,45000
+1135,BMW i7,Bengaluru,2026-03-01,AC,39000
+1136,BMW 7 Series,Bengaluru,2026-01-21,Infotainment,66000
+1137,BMW i7,Mumbai,2026-05-25,Suspension,54000
+1138,BMW 3 Series,Bengaluru,2026-08-11,Transmission,101000
+1139,BMW X5,Delhi,2026-02-11,Brake,40000
+1140,BMW i7,Hyderabad,2026-05-10,Brake,27000
+1141,BMW X3,Ahmedabad,2026-07-10,Transmission,78000
+1142,BMW X3,Kolkata,2026-07-21,Transmission,119000
+1143,BMW iX,Bengaluru,2026-02-24,Infotainment,51000
+1144,BMW X1,Bengaluru,2026-05-21,Electrical,49000
+1145,BMW X1,Delhi,2026-07-17,Charging,105000
+1146,BMW 3 Series,Kolkata,2026-04-01,Battery,165000
+1147,BMW 3 Series,Hyderabad,2026-03-27,Brake,41000
+1148,BMW iX,Chennai,2026-03-28,Steering,62000
+1149,BMW X7,Kolkata,2026-04-09,Infotainment,63000
+1150,BMW 7 Series,Mumbai,2026-06-21,Brake,30000
+1151,BMW i4,Kolkata,2026-05-25,Battery,92000
+1152,BMW X5,Chennai,2026-01-02,Suspension,52000
+1153,BMW i5,Pune,2026-03-05,AC,57000
+1154,BMW i7,Mumbai,2026-06-08,Steering,70000
+1155,BMW X1,Delhi,2026-01-09,Infotainment,63000
+1156,BMW iX,Ahmedabad,2026-07-08,Steering,41000
+1157,BMW iX,Mumbai,2026-05-16,Battery,187000
+1158,BMW 7 Series,Mumbai,2026-01-23,Steering,54000
+1159,BMW 5 Series,Ahmedabad,2026-07-06,Brake,57000
+1160,BMW i7,Chennai,2026-06-27,Steering,85000
+1161,BMW X3,Bengaluru,2026-03-08,Engine,61000
+1162,BMW X3,Bengaluru,2026-07-13,AC,58000
+1163,BMW X1,Ahmedabad,2026-04-11,Transmission,126000
+1164,BMW X3,Kolkata,2026-04-16,Electrical,68000
+1165,BMW X7,Bengaluru,2026-02-22,Electrical,79000
+1166,BMW X5,Hyderabad,2026-08-04,Charging,113000
+1167,BMW X3,Bengaluru,2026-07-26,Brake,34000
+1168,BMW i5,Pune,2026-04-27,Electrical,62000
+1169,BMW i7,Kolkata,2026-08-18,Transmission,127000
+1170,BMW i4,Bengaluru,2026-03-18,Battery,122000
+1171,BMW i4,Chennai,2026-02-12,Engine,90000
+1172,BMW 3 Series,Mumbai,2026-07-06,Steering,68000
+1173,BMW iX,Pune,2026-03-20,AC,50000
+1174,BMW i4,Hyderabad,2026-08-21,Brake,39000
+1175,BMW 3 Series,Kolkata,2026-07-02,Battery,120000
+1176,BMW 3 Series,Ahmedabad,2026-03-13,Cooling,58000
+1177,BMW X1,Ahmedabad,2026-02-23,Engine,78000
+1178,BMW iX,Chennai,2026-08-06,Charging,99000
+1179,BMW i7,Kolkata,2026-05-07,Cooling,46000
+1180,BMW 7 Series,Bengaluru,2026-02-16,Brake,43000
+1181,BMW X1,Delhi,2026-02-23,Transmission,94000
+1182,BMW i4,Mumbai,2026-02-13,Electrical,53000
+1183,BMW X7,Hyderabad,2026-03-16,Brake,36000
+1184,BMW iX,Mumbai,2026-02-11,Suspension,57000
+1185,BMW X3,Chennai,2026-07-15,Electrical,62000
+1186,BMW i5,Pune,2026-05-23,AC,65000
+1187,BMW X5,Ahmedabad,2026-08-08,Suspension,36000
+1188,BMW X1,Mumbai,2026-06-09,Cooling,56000
+1189,BMW X1,Hyderabad,2026-01-06,Infotainment,58000
+1190,BMW 3 Series,Mumbai,2026-02-18,Electrical,54000
+1191,BMW X1,Ahmedabad,2026-02-21,Battery,87000
+1192,BMW 3 Series,Hyderabad,2026-02-04,Suspension,46000
+1193,BMW X5,Chennai,2026-06-23,AC,54000
+1194,BMW 3 Series,Mumbai,2026-03-02,Cooling,66000
+1195,BMW X7,Ahmedabad,2026-08-18,Engine,54000
+1196,BMW i7,Chennai,2026-01-16,AC,60000
+1197,BMW X3,Pune,2026-04-22,Cooling,69000
+1198,BMW X7,Chennai,2026-03-17,Engine,46000
+1199,BMW 5 Series,Hyderabad,2026-03-27,Cooling,42000
+1200,BMW i5,Kolkata,2026-07-04,AC,64000
+1201,BMW i4,Chennai,2026-07-26,Engine,80000
+1202,BMW X1,Chennai,2026-02-14,Infotainment,79000
+1203,BMW X7,Kolkata,2026-05-24,Steering,47000
+1204,BMW X7,Delhi,2026-05-23,Suspension,64000
+1205,BMW X3,Delhi,2026-01-02,Transmission,80000
+1206,BMW i7,Delhi,2026-02-04,Infotainment,47000
+1207,BMW 7 Series,Delhi,2026-04-10,AC,47000
+1208,BMW i5,Kolkata,2026-04-07,AC,60000
+1209,BMW X5,Pune,2026-01-17,AC,49000
+1210,BMW iX,Chennai,2026-06-10,Transmission,75000
+1211,BMW 5 Series,Hyderabad,2026-05-03,Electrical,55000
+1212,BMW X1,Ahmedabad,2026-01-23,Cooling,40000
+1213,BMW 7 Series,Pune,2026-05-07,Brake,28000
+1214,BMW iX,Ahmedabad,2026-07-14,Infotainment,40000
+1215,BMW i7,Ahmedabad,2026-01-08,Electrical,86000
+1216,BMW i7,Hyderabad,2026-08-26,Brake,29000
+1217,BMW 5 Series,Delhi,2026-06-17,Engine,85000
+1218,BMW 7 Series,Delhi,2026-01-13,AC,33000
+1219,BMW X7,Kolkata,2026-01-14,Infotainment,50000
+1220,BMW i5,Ahmedabad,2026-08-24,Infotainment,74000
+1221,BMW i4,Hyderabad,2026-01-16,Cooling,40000
+1222,BMW X7,Hyderabad,2026-07-15,Steering,50000
+1223,BMW X7,Chennai,2026-03-19,Electrical,71000
+1224,BMW 3 Series,Ahmedabad,2026-02-25,Steering,78000
+1225,BMW 7 Series,Kolkata,2026-02-18,Charging,112000
+1226,BMW 7 Series,Delhi,2026-08-09,Suspension,44000
+1227,BMW 5 Series,Mumbai,2026-07-02,Electrical,81000
+1228,BMW X7,Ahmedabad,2026-03-25,Infotainment,70000
+1229,BMW i7,Hyderabad,2026-05-25,AC,46000
+1230,BMW X5,Bengaluru,2026-01-24,Infotainment,72000
+1231,BMW X1,Pune,2026-04-25,Engine,75000
+1232,BMW X7,Delhi,2026-04-03,Infotainment,67000
+1233,BMW i7,Mumbai,2026-04-07,Electrical,89000
+1234,BMW X1,Bengaluru,2026-08-13,AC,41000
+1235,BMW i7,Bengaluru,2026-05-15,Battery,148000
+1236,BMW i5,Mumbai,2026-04-09,Brake,46000
+1237,BMW 7 Series,Hyderabad,2026-04-20,Infotainment,53000
+1238,BMW i4,Delhi,2026-08-18,Electrical,94000
+1239,BMW X7,Ahmedabad,2026-07-15,Battery,116000
+1240,BMW i5,Chennai,2026-07-26,Cooling,58000
+1241,BMW iX,Bengaluru,2026-06-09,Steering,47000
+1242,BMW X7,Bengaluru,2026-06-27,Steering,47000
+1243,BMW X5,Delhi,2026-08-02,Charging,104000
+1244,BMW i7,Ahmedabad,2026-07-17,Suspension,54000
+1245,BMW i5,Hyderabad,2026-06-16,Electrical,49000
+1246,BMW 7 Series,Chennai,2026-03-20,Brake,26000
+1247,BMW X1,Delhi,2026-05-11,AC,47000
+1248,BMW X5,Chennai,2026-07-09,Brake,55000
+1249,BMW iX,Ahmedabad,2026-01-04,Engine,98000
+1250,BMW 5 Series,Chennai,2026-04-14,Charging,94000
+1251,BMW i7,Ahmedabad,2026-04-19,Engine,65000
+1252,BMW i7,Delhi,2026-02-26,Charging,61000
+1253,BMW 3 Series,Bengaluru,2026-05-20,Engine,87000
+1254,BMW i5,Bengaluru,2026-08-20,Engine,92000
+1255,BMW 7 Series,Pune,2026-03-28,Charging,62000
+1256,BMW 5 Series,Ahmedabad,2026-05-12,Electrical,60000
+1257,BMW i4,Ahmedabad,2026-05-18,Transmission,121000
+1258,BMW 3 Series,Hyderabad,2026-04-03,Suspension,35000
+1259,BMW iX,Hyderabad,2026-08-14,Transmission,92000
+1260,BMW i4,Chennai,2026-03-23,Suspension,40000
+1261,BMW 7 Series,Chennai,2026-04-03,Steering,77000
+1262,BMW i4,Pune,2026-02-04,Steering,59000
+1263,BMW 3 Series,Ahmedabad,2026-03-26,Battery,87000
+1264,BMW iX,Bengaluru,2026-02-21,Steering,53000
+1265,BMW X3,Chennai,2026-08-19,AC,51000
+1266,BMW X1,Ahmedabad,2026-05-23,Charging,94000
+1267,BMW X5,Ahmedabad,2026-06-23,Transmission,75000
+1268,BMW 5 Series,Bengaluru,2026-07-17,Engine,99000
+1269,BMW i7,Bengaluru,2026-03-14,Engine,92000
+1270,BMW X3,Delhi,2026-07-19,Infotainment,53000
+1271,BMW iX,Mumbai,2026-05-09,Electrical,88000
+1272,BMW X7,Bengaluru,2026-04-24,Engine,61000
+1273,BMW 7 Series,Ahmedabad,2026-04-15,Brake,34000
+1274,BMW 7 Series,Kolkata,2026-04-28,Engine,96000
+1275,BMW X7,Ahmedabad,2026-02-01,Brake,47000
+1276,BMW 3 Series,Kolkata,2026-01-17,AC,55000
+1277,BMW iX,Mumbai,2026-04-26,Charging,119000
+1278,BMW X7,Pune,2026-01-25,Battery,87000
+1279,BMW X3,Pune,2026-02-05,AC,35000
+1280,BMW X7,Chennai,2026-08-16,Charging,102000
+1281,BMW X3,Mumbai,2026-07-22,AC,35000
+1282,BMW i5,Mumbai,2026-06-08,Steering,67000
+1283,BMW i5,Hyderabad,2026-06-18,Cooling,44000
+1284,BMW X5,Kolkata,2026-07-22,Suspension,40000
+1285,BMW X7,Kolkata,2026-03-19,Transmission,95000
+1286,BMW 3 Series,Mumbai,2026-01-06,Electrical,52000
+1287,BMW X7,Mumbai,2026-01-17,Engine,46000
+1288,BMW 7 Series,Chennai,2026-01-10,Engine,87000
+1289,BMW 5 Series,Chennai,2026-04-28,Suspension,33000
+1290,BMW i4,Delhi,2026-02-07,Suspension,53000
+1291,BMW X7,Kolkata,2026-06-13,Brake,50000
+1292,BMW X7,Chennai,2026-02-15,Charging,79000
+1293,BMW 5 Series,Ahmedabad,2026-07-15,Steering,68000
+1294,BMW i4,Delhi,2026-04-16,Brake,56000
+1295,BMW 3 Series,Mumbai,2026-02-24,Engine,81000
+1296,BMW i5,Hyderabad,2026-06-10,AC,52000
+1297,BMW iX,Pune,2026-04-19,Brake,26000
+1298,BMW i5,Bengaluru,2026-01-21,Steering,87000
+1299,BMW 5 Series,Mumbai,2026-01-28,Suspension,41000
+1300,BMW i4,Kolkata,2026-01-19,AC,57000
+1301,BMW i4,Chennai,2026-05-09,Electrical,59000
+1302,BMW i7,Delhi,2026-06-08,Engine,100000
+1303,BMW X5,Hyderabad,2026-04-13,Suspension,57000
+1304,BMW iX,Kolkata,2026-01-28,Engine,79000
+1305,BMW i5,Bengaluru,2026-06-17,Battery,179000
+1306,BMW 7 Series,Kolkata,2026-07-02,Battery,125000
+1307,BMW i7,Delhi,2026-05-22,Suspension,64000
+1308,BMW 5 Series,Delhi,2026-07-04,Charging,99000
+1309,BMW X3,Pune,2026-03-28,Cooling,54000
+1310,BMW i5,Ahmedabad,2026-06-04,Electrical,94000
+1311,BMW i7,Delhi,2026-01-09,Battery,87000
+1312,BMW i5,Chennai,2026-03-21,Brake,55000
+1313,BMW X1,Kolkata,2026-01-25,Charging,61000
+1314,BMW X5,Mumbai,2026-06-11,Infotainment,68000
+1315,BMW i5,Pune,2026-06-25,Steering,74000
+1316,BMW X5,Kolkata,2026-07-12,Cooling,34000
+1317,BMW 7 Series,Delhi,2026-05-23,Battery,173000
+1318,BMW 7 Series,Chennai,2026-08-11,Charging,121000
+1319,BMW X7,Bengaluru,2026-07-10,Transmission,117000
+1320,BMW X1,Delhi,2026-08-07,Brake,51000
+1321,BMW i7,Pune,2026-08-03,Infotainment,65000
+1322,BMW i7,Chennai,2026-03-13,Battery,99000
+1323,BMW 5 Series,Chennai,2026-04-27,Steering,74000
+1324,BMW i4,Pune,2026-06-11,Suspension,44000
+1325,BMW X1,Kolkata,2026-02-05,Charging,86000
+1326,BMW i5,Hyderabad,2026-02-02,Brake,42000
+1327,BMW X5,Kolkata,2026-02-18,Battery,182000
+1328,BMW i5,Delhi,2026-01-20,AC,51000
+1329,BMW 7 Series,Bengaluru,2026-02-28,Brake,30000
+1330,BMW i5,Pune,2026-01-23,Brake,40000
+1331,BMW 7 Series,Bengaluru,2026-02-06,Cooling,66000
+1332,BMW 3 Series,Bengaluru,2026-07-18,Brake,28000
+1333,BMW i4,Chennai,2026-07-04,Charging,89000
+1334,BMW i7,Kolkata,2026-05-04,Electrical,49000
+1335,BMW i7,Kolkata,2026-05-05,Battery,117000
+1336,BMW i4,Bengaluru,2026-04-07,Brake,55000
+1337,BMW i4,Kolkata,2026-07-27,Engine,74000
+1338,BMW i7,Kolkata,2026-08-12,Cooling,58000
+1339,BMW X3,Ahmedabad,2026-05-16,Suspension,30000
+1340,BMW i7,Ahmedabad,2026-03-04,Charging,76000
+1341,BMW X5,Bengaluru,2026-06-20,Battery,174000
+1342,BMW iX,Mumbai,2026-04-03,Engine,48000
+1343,BMW X5,Mumbai,2026-03-16,Engine,76000
+1344,BMW X7,Chennai,2026-02-10,Brake,38000
+1345,BMW X7,Bengaluru,2026-04-01,Infotainment,47000
+1346,BMW iX,Pune,2026-07-22,Suspension,30000
+1347,BMW i4,Pune,2026-03-23,Electrical,88000
+1348,BMW X5,Delhi,2026-01-06,Infotainment,52000
+1349,BMW i4,Chennai,2026-03-06,Brake,32000
+1350,BMW i7,Mumbai,2026-06-16,Battery,127000
+1351,BMW i4,Mumbai,2026-07-18,Transmission,68000
+1352,BMW i4,Ahmedabad,2026-08-07,Charging,105000
+1353,BMW 3 Series,Mumbai,2026-07-08,Charging,110000
+1354,BMW i5,Pune,2026-08-12,AC,32000
+1355,BMW 7 Series,Hyderabad,2026-03-14,Brake,48000
+1356,BMW X7,Chennai,2026-04-26,Brake,54000
+1357,BMW X5,Delhi,2026-03-17,Steering,62000
+1358,BMW X5,Delhi,2026-07-11,Cooling,66000
+1359,BMW 3 Series,Hyderabad,2026-06-21,Suspension,40000
+1360,BMW X7,Delhi,2026-04-25,Battery,129000
+1361,BMW X1,Kolkata,2026-01-03,Transmission,70000
+1362,BMW i7,Delhi,2026-08-01,Electrical,51000
+1363,BMW X1,Kolkata,2026-08-08,Transmission,85000
+1364,BMW 7 Series,Mumbai,2026-08-08,Transmission,86000
+1365,BMW X3,Ahmedabad,2026-02-05,AC,64000
+1366,BMW i5,Ahmedabad,2026-05-17,Transmission,64000
+1367,BMW iX,Ahmedabad,2026-06-03,Suspension,45000
+1368,BMW X7,Bengaluru,2026-06-07,AC,66000
+1369,BMW 5 Series,Mumbai,2026-01-06,Infotainment,71000
+1370,BMW iX,Mumbai,2026-04-26,Electrical,44000
+1371,BMW X3,Delhi,2026-08-16,Charging,123000
+1372,BMW iX,Mumbai,2026-01-13,Battery,142000
+1373,BMW 3 Series,Ahmedabad,2026-07-18,Battery,182000
+1374,BMW i7,Mumbai,2026-06-11,Suspension,29000
+1375,BMW 5 Series,Delhi,2026-05-24,Cooling,39000
+1376,BMW i5,Ahmedabad,2026-07-12,Battery,108000
+1377,BMW 3 Series,Chennai,2026-04-26,Charging,94000
+1378,BMW i7,Chennai,2026-03-02,Infotainment,37000
+1379,BMW i7,Ahmedabad,2026-08-15,Steering,76000
+1380,BMW 5 Series,Kolkata,2026-02-07,AC,68000
+1381,BMW X7,Chennai,2026-06-22,Charging,83000
+1382,BMW 7 Series,Delhi,2026-05-16,Engine,85000
+1383,BMW X1,Bengaluru,2026-04-17,Cooling,53000
+1384,BMW X1,Chennai,2026-05-15,Charging,85000
+1385,BMW i4,Bengaluru,2026-01-26,Electrical,83000
+1386,BMW 3 Series,Delhi,2026-04-28,Electrical,59000
+1387,BMW 7 Series,Mumbai,2026-03-25,AC,48000
+1388,BMW i7,Kolkata,2026-01-21,Suspension,33000
+1389,BMW i4,Ahmedabad,2026-08-12,Suspension,62000
+1390,BMW i7,Pune,2026-04-09,Steering,61000
+1391,BMW iX,Hyderabad,2026-04-07,Transmission,86000
+1392,BMW 3 Series,Bengaluru,2026-08-12,Battery,86000
+1393,BMW X5,Delhi,2026-03-10,Steering,43000
+1394,BMW X1,Pune,2026-04-09,Transmission,122000
+1395,BMW i4,Pune,2026-05-20,Transmission,110000
+1396,BMW 3 Series,Bengaluru,2026-07-08,Battery,176000
+1397,BMW i5,Hyderabad,2026-01-15,Suspension,61000
+1398,BMW i5,Delhi,2026-01-22,Charging,56000
+1399,BMW X7,Chennai,2026-04-26,AC,39000
+1400,BMW X7,Delhi,2026-05-06,Transmission,79000
+1401,BMW iX,Pune,2026-04-01,Cooling,64000
+1402,BMW 5 Series,Kolkata,2026-01-06,Suspension,62000
+1403,BMW X3,Mumbai,2026-05-05,Engine,59000
+1404,BMW X3,Kolkata,2026-01-20,Battery,95000
+1405,BMW iX,Hyderabad,2026-06-10,Transmission,62000
+1406,BMW X5,Bengaluru,2026-04-14,AC,46000
+1407,BMW i5,Kolkata,2026-02-11,Engine,83000
+1408,BMW i5,Chennai,2026-07-24,Battery,178000
+1409,BMW i5,Bengaluru,2026-08-15,Infotainment,75000
+1410,BMW 7 Series,Kolkata,2026-06-14,Suspension,59000
+1411,BMW X5,Kolkata,2026-02-04,Engine,54000
+1412,BMW i4,Delhi,2026-03-04,Brake,43000
+1413,BMW i7,Mumbai,2026-02-26,Steering,42000
+1414,BMW 5 Series,Ahmedabad,2026-04-22,Steering,62000
+1415,BMW 7 Series,Bengaluru,2026-04-08,Battery,86000
+1416,BMW iX,Mumbai,2026-07-18,AC,42000
+1417,BMW X5,Hyderabad,2026-01-13,Cooling,58000
+1418,BMW X3,Ahmedabad,2026-08-06,Transmission,91000
+1419,BMW 3 Series,Ahmedabad,2026-05-06,Engine,56000
+1420,BMW i7,Ahmedabad,2026-03-17,Brake,42000
+1421,BMW 5 Series,Mumbai,2026-07-01,Battery,178000
+1422,BMW X1,Delhi,2026-07-08,Brake,52000
+1423,BMW X3,Kolkata,2026-05-12,Battery,160000
+1424,BMW X7,Kolkata,2026-02-17,Transmission,112000
+1425,BMW i4,Bengaluru,2026-05-28,Transmission,60000
+1426,BMW i4,Ahmedabad,2026-01-09,Infotainment,72000
+1427,BMW 7 Series,Delhi,2026-06-13,AC,54000
+1428,BMW X3,Chennai,2026-01-07,Transmission,89000
+1429,BMW 3 Series,Ahmedabad,2026-01-28,Infotainment,52000
+1430,BMW i7,Chennai,2026-04-26,Engine,69000
+1431,BMW 5 Series,Bengaluru,2026-07-09,Transmission,74000
+1432,BMW iX,Kolkata,2026-06-04,Electrical,92000
+1433,BMW 3 Series,Pune,2026-02-04,Steering,71000
+1434,BMW i7,Bengaluru,2026-03-15,Engine,66000
+1435,BMW 5 Series,Ahmedabad,2026-08-26,Infotainment,46000
+1436,BMW X5,Mumbai,2026-06-14,Brake,55000
+1437,BMW 7 Series,Mumbai,2026-01-11,Infotainment,65000
+1438,BMW 7 Series,Mumbai,2026-05-14,Electrical,62000
+1439,BMW iX,Pune,2026-06-04,AC,50000
+1440,BMW i5,Ahmedabad,2026-08-25,Electrical,87000
+1441,BMW X1,Bengaluru,2026-02-02,Steering,69000
+1442,BMW X3,Bengaluru,2026-01-20,Battery,104000
+1443,BMW X5,Bengaluru,2026-07-05,Charging,64000
+1444,BMW i4,Bengaluru,2026-07-13,Battery,144000
+1445,BMW i7,Pune,2026-05-17,Transmission,90000
+1446,BMW X5,Mumbai,2026-01-01,Cooling,56000
+1447,BMW i7,Delhi,2026-04-24,Cooling,54000
+1448,BMW 5 Series,Delhi,2026-05-28,Transmission,91000
+1449,BMW 3 Series,Pune,2026-08-17,Cooling,35000
+1450,BMW X5,Hyderabad,2026-08-05,Battery,121000
+1451,BMW X7,Delhi,2026-08-11,AC,46000
+1452,BMW i5,Pune,2026-07-15,Brake,43000
+1453,BMW i4,Chennai,2026-04-18,Suspension,34000
+1454,BMW 7 Series,Ahmedabad,2026-07-09,Battery,95000
+1455,BMW i5,Bengaluru,2026-02-26,Cooling,54000
+1456,BMW 7 Series,Delhi,2026-03-26,Battery,138000
+1457,BMW i5,Chennai,2026-01-23,Infotainment,40000
+1458,BMW iX,Bengaluru,2026-08-09,Battery,90000
+1459,BMW i5,Kolkata,2026-01-15,Suspension,56000
+1460,BMW X3,Pune,2026-04-20,Steering,52000
+1461,BMW 3 Series,Mumbai,2026-04-23,Cooling,46000
+1462,BMW i7,Bengaluru,2026-07-03,Charging,55000
+1463,BMW X3,Chennai,2026-01-04,Transmission,91000
+1464,BMW X3,Bengaluru,2026-07-24,Engine,98000
+1465,BMW i7,Hyderabad,2026-07-25,Steering,43000
+1466,BMW X3,Chennai,2026-05-08,Infotainment,73000
+1467,BMW i4,Bengaluru,2026-04-28,Brake,32000
+1468,BMW i7,Bengaluru,2026-03-03,Steering,41000
+1469,BMW X1,Ahmedabad,2026-01-10,Engine,86000
+1470,BMW i5,Kolkata,2026-04-10,Cooling,48000
+1471,BMW X3,Ahmedabad,2026-06-17,Cooling,40000
+1472,BMW i7,Mumbai,2026-07-16,Battery,139000
+1473,BMW i4,Hyderabad,2026-07-04,Electrical,76000
+1474,BMW iX,Kolkata,2026-03-20,Electrical,77000
+1475,BMW 7 Series,Bengaluru,2026-03-27,Engine,87000
+1476,BMW 5 Series,Kolkata,2026-03-13,Engine,65000
+1477,BMW i7,Delhi,2026-08-01,Engine,90000
+1478,BMW X7,Ahmedabad,2026-01-06,Brake,33000
+1479,BMW X3,Hyderabad,2026-07-13,AC,60000
+1480,BMW i5,Kolkata,2026-06-24,Cooling,44000
+1481,BMW i4,Ahmedabad,2026-07-16,Brake,32000
+1482,BMW i7,Ahmedabad,2026-08-01,Engine,92000
+1483,BMW 5 Series,Delhi,2026-08-21,Battery,139000
+1484,BMW iX,Pune,2026-04-18,Infotainment,54000
+1485,BMW i5,Bengaluru,2026-05-22,Brake,33000
+1486,BMW 3 Series,Bengaluru,2026-08-05,Suspension,36000
+1487,BMW X1,Bengaluru,2026-06-17,Suspension,34000
+1488,BMW 7 Series,Hyderabad,2026-06-12,Battery,153000
+1489,BMW 5 Series,Kolkata,2026-03-09,Cooling,60000
+1490,BMW i4,Chennai,2026-02-03,Steering,71000
+1491,BMW i5,Kolkata,2026-04-26,Engine,57000
+1492,BMW X7,Pune,2026-03-25,Steering,83000
+1493,BMW i4,Chennai,2026-02-05,Suspension,34000
+1494,BMW X1,Delhi,2026-06-08,Charging,90000
+1495,BMW X5,Mumbai,2026-02-27,Suspension,43000
+1496,BMW i4,Pune,2026-06-20,Brake,35000
+1497,BMW i7,Bengaluru,2026-02-02,Electrical,86000
+1498,BMW i4,Kolkata,2026-06-05,Electrical,91000
+1499,BMW i4,Bengaluru,2026-06-20,Charging,72000
+1500,BMW X1,Pune,2026-07-18,Infotainment,50000
+1501,BMW i5,Mumbai,2026-04-11,Brake,33000
+1502,BMW iX,Bengaluru,2026-01-02,Suspension,31000
+1503,BMW 5 Series,Kolkata,2026-04-01,Suspension,40000
+1504,BMW X5,Mumbai,2026-06-15,Infotainment,79000
+1505,BMW i5,Bengaluru,2026-06-19,AC,59000
+1506,BMW X7,Pune,2026-07-16,Charging,115000
+1507,BMW iX,Mumbai,2026-06-22,Engine,68000
+1508,BMW 7 Series,Bengaluru,2026-07-14,Engine,75000
+1509,BMW 5 Series,Hyderabad,2026-03-23,Engine,89000
+1510,BMW 7 Series,Ahmedabad,2026-05-28,Suspension,48000
+1511,BMW X3,Kolkata,2026-07-21,Transmission,84000
+1512,BMW X3,Kolkata,2026-08-06,Transmission,121000
+1513,BMW i7,Pune,2026-02-27,Steering,43000
+1514,BMW 7 Series,Bengaluru,2026-04-13,Steering,71000
+1515,BMW X3,Kolkata,2026-06-18,Electrical,65000
+1516,BMW i4,Ahmedabad,2026-01-20,Brake,46000
+1517,BMW X3,Mumbai,2026-02-22,AC,60000
+1518,BMW i4,Chennai,2026-03-06,Cooling,39000
+1519,BMW 5 Series,Bengaluru,2026-03-05,Brake,55000
+1520,BMW iX,Chennai,2026-07-06,Infotainment,60000
+1521,BMW iX,Pune,2026-03-05,Charging,119000
+1522,BMW X3,Hyderabad,2026-02-25,Cooling,38000
+1523,BMW i4,Hyderabad,2026-02-08,Infotainment,65000
+1524,BMW X1,Ahmedabad,2026-07-06,Transmission,98000
+1525,BMW 3 Series,Hyderabad,2026-06-02,Brake,32000
+1526,BMW X5,Mumbai,2026-08-20,AC,64000
+1527,BMW 5 Series,Kolkata,2026-08-06,Brake,40000
+1528,BMW X1,Chennai,2026-04-12,Battery,159000
+1529,BMW i4,Ahmedabad,2026-02-04,AC,67000
+1530,BMW i7,Mumbai,2026-05-01,AC,66000
+1531,BMW X1,Chennai,2026-08-14,Steering,61000
+1532,BMW X1,Bengaluru,2026-02-27,Cooling,62000
+1533,BMW X5,Hyderabad,2026-01-26,Charging,94000
+1534,BMW 7 Series,Delhi,2026-04-05,Transmission,77000
+1535,BMW i5,Pune,2026-03-16,Infotainment,64000
+1536,BMW i7,Ahmedabad,2026-03-01,Brake,54000
+1537,BMW X3,Hyderabad,2026-07-09,Steering,80000
+1538,BMW 5 Series,Chennai,2026-04-13,Battery,108000
+1539,BMW X7,Pune,2026-08-14,Electrical,47000
+1540,BMW i7,Bengaluru,2026-08-28,Infotainment,45000
+1541,BMW X3,Ahmedabad,2026-07-28,Suspension,40000
+1542,BMW i7,Hyderabad,2026-02-18,Transmission,86000
+1543,BMW X3,Pune,2026-02-13,Transmission,113000
+1544,BMW 5 Series,Bengaluru,2026-05-19,Engine,92000
+1545,BMW X1,Chennai,2026-08-09,Engine,55000
+1546,BMW i4,Pune,2026-04-25,Cooling,54000
+1547,BMW X1,Ahmedabad,2026-08-24,Electrical,60000
+1548,BMW i4,Chennai,2026-02-24,Charging,98000
+1549,BMW X1,Mumbai,2026-04-06,Infotainment,74000
+1550,BMW X5,Bengaluru,2026-03-10,Cooling,56000
+1551,BMW X1,Delhi,2026-05-03,Steering,62000
+1552,BMW i5,Chennai,2026-03-18,Transmission,107000
+1553,BMW i5,Kolkata,2026-08-17,Engine,76000
+1554,BMW X1,Ahmedabad,2026-04-14,AC,56000
+1555,BMW i5,Chennai,2026-07-24,Infotainment,62000
+1556,BMW i4,Hyderabad,2026-07-16,Infotainment,43000
+1557,BMW 7 Series,Kolkata,2026-08-01,AC,32000
+1558,BMW i4,Kolkata,2026-01-25,Engine,47000
+1559,BMW X5,Hyderabad,2026-08-04,Suspension,33000
+1560,BMW X3,Hyderabad,2026-08-21,Electrical,69000
+1561,BMW X5,Bengaluru,2026-02-11,Suspension,61000
+1562,BMW i4,Kolkata,2026-06-22,AC,49000
+1563,BMW i7,Kolkata,2026-03-25,Engine,74000
+1564,BMW X7,Delhi,2026-01-17,Electrical,45000
+1565,BMW X3,Hyderabad,2026-06-09,Transmission,84000
+1566,BMW iX,Kolkata,2026-03-15,AC,63000
+1567,BMW i7,Delhi,2026-04-10,Cooling,72000
+1568,BMW 3 Series,Kolkata,2026-08-16,Battery,101000
+1569,BMW i7,Delhi,2026-07-06,Transmission,71000
+1570,BMW i4,Bengaluru,2026-06-15,Infotainment,67000
+1571,BMW X1,Chennai,2026-01-23,Charging,63000
+1572,BMW 5 Series,Chennai,2026-06-08,Charging,95000
+1573,BMW 5 Series,Hyderabad,2026-04-18,Brake,34000
+1574,BMW X3,Pune,2026-08-14,Transmission,129000
+1575,BMW 5 Series,Bengaluru,2026-08-28,Suspension,40000
+1576,BMW iX,Chennai,2026-08-03,Charging,90000
+1577,BMW 7 Series,Chennai,2026-07-06,Engine,85000
+1578,BMW i5,Mumbai,2026-03-21,Transmission,120000
+1579,BMW 3 Series,Chennai,2026-08-19,Infotainment,63000
+1580,BMW i5,Delhi,2026-08-07,Infotainment,78000
+1581,BMW iX,Bengaluru,2026-06-11,Transmission,95000
+1582,BMW X3,Delhi,2026-07-10,Steering,53000
+1583,BMW X5,Mumbai,2026-05-15,Charging,77000
+1584,BMW X1,Pune,2026-01-20,Electrical,89000
+1585,BMW X7,Pune,2026-04-28,Transmission,128000
+1586,BMW i5,Chennai,2026-03-07,Charging,83000
+1587,BMW X3,Chennai,2026-01-20,Charging,94000
+1588,BMW X3,Ahmedabad,2026-02-03,AC,70000
+1589,BMW 3 Series,Ahmedabad,2026-02-04,Electrical,58000
+1590,BMW i5,Hyderabad,2026-06-17,Engine,71000
+1591,BMW i4,Bengaluru,2026-03-05,Transmission,89000
+1592,BMW 7 Series,Chennai,2026-07-27,Electrical,82000
+1593,BMW i5,Hyderabad,2026-03-11,Brake,52000
+1594,BMW 7 Series,Pune,2026-05-10,Transmission,115000
+1595,BMW X7,Hyderabad,2026-02-09,Charging,76000
+1596,BMW iX,Hyderabad,2026-06-27,Infotainment,78000
+1597,BMW iX,Hyderabad,2026-03-16,Battery,86000
+1598,BMW i4,Ahmedabad,2026-07-11,Cooling,54000
+1599,BMW X3,Ahmedabad,2026-01-21,Charging,59000
+1600,BMW iX,Hyderabad,2026-02-17,Engine,68000
+1601,BMW iX,Ahmedabad,2026-01-24,AC,66000
+1602,BMW X7,Chennai,2026-03-26,Electrical,84000
+1603,BMW i7,Pune,2026-03-19,Electrical,94000
+1604,BMW i4,Ahmedabad,2026-04-07,Infotainment,41000
+1605,BMW X7,Bengaluru,2026-07-26,Brake,44000
+1606,BMW 5 Series,Kolkata,2026-03-24,Infotainment,37000
+1607,BMW 3 Series,Bengaluru,2026-04-23,Electrical,72000
+1608,BMW iX,Kolkata,2026-02-06,Steering,87000
+1609,BMW X7,Bengaluru,2026-01-02,Steering,86000
+1610,BMW i4,Bengaluru,2026-05-06,Charging,87000
+1611,BMW X1,Kolkata,2026-05-20,Electrical,78000
+1612,BMW X5,Delhi,2026-03-28,Suspension,31000
+1613,BMW 3 Series,Hyderabad,2026-01-17,Infotainment,38000
+1614,BMW 5 Series,Delhi,2026-04-24,Brake,58000
+1615,BMW X7,Chennai,2026-04-05,Steering,80000
+1616,BMW X7,Chennai,2026-07-22,Electrical,51000
+1617,BMW i4,Hyderabad,2026-05-14,Electrical,93000
+1618,BMW X5,Bengaluru,2026-06-15,Charging,92000
+1619,BMW 7 Series,Ahmedabad,2026-04-28,AC,63000
+1620,BMW X3,Bengaluru,2026-07-20,Battery,147000
+1621,BMW 7 Series,Kolkata,2026-02-19,Suspension,42000
+1622,BMW iX,Hyderabad,2026-08-27,Steering,73000
+1623,BMW i5,Pune,2026-07-06,Battery,88000
+1624,BMW i4,Kolkata,2026-03-22,Engine,71000
+1625,BMW 7 Series,Pune,2026-08-26,Electrical,72000
+1626,BMW X5,Hyderabad,2026-07-10,Suspension,45000
+1627,BMW i7,Chennai,2026-02-19,Steering,55000
+1628,BMW 7 Series,Kolkata,2026-07-08,Suspension,51000
+1629,BMW X3,Kolkata,2026-07-14,Suspension,44000
+1630,BMW i4,Kolkata,2026-02-22,AC,64000
+1631,BMW 3 Series,Ahmedabad,2026-08-09,Brake,57000
+1632,BMW i4,Pune,2026-01-24,AC,56000
+1633,BMW X5,Bengaluru,2026-06-14,Battery,84000
+1634,BMW i7,Hyderabad,2026-01-19,Charging,117000
+1635,BMW X3,Ahmedabad,2026-02-04,Cooling,53000
+1636,BMW iX,Bengaluru,2026-01-07,AC,33000
+1637,BMW iX,Chennai,2026-04-24,Infotainment,37000
+1638,BMW i7,Mumbai,2026-02-10,Battery,126000
+1639,BMW iX,Pune,2026-04-24,Charging,71000
+1640,BMW iX,Chennai,2026-07-22,Battery,176000
+1641,BMW X1,Delhi,2026-06-12,Brake,46000
+1642,BMW 7 Series,Mumbai,2026-05-12,Charging,76000
+1643,BMW 5 Series,Chennai,2026-06-25,Steering,66000
+1644,BMW i5,Kolkata,2026-05-18,Battery,117000
+1645,BMW i7,Ahmedabad,2026-02-20,Cooling,44000
+1646,BMW iX,Kolkata,2026-08-23,Charging,85000
+1647,BMW i4,Pune,2026-05-19,AC,38000
+1648,BMW X5,Hyderabad,2026-06-27,AC,32000
+1649,BMW 5 Series,Mumbai,2026-03-04,Suspension,47000
+1650,BMW i7,Delhi,2026-02-10,Suspension,51000
+1651,BMW X1,Ahmedabad,2026-03-01,AC,36000
+1652,BMW X1,Bengaluru,2026-06-15,Electrical,57000
+1653,BMW 5 Series,Hyderabad,2026-08-25,AC,56000
+1654,BMW iX,Mumbai,2026-07-25,Suspension,55000
+1655,BMW i7,Mumbai,2026-02-16,Steering,81000
+1656,BMW X1,Chennai,2026-08-08,Engine,99000
+1657,BMW i7,Pune,2026-01-16,Battery,121000
+1658,BMW X5,Pune,2026-08-21,Steering,69000
+1659,BMW i4,Mumbai,2026-08-17,Infotainment,76000
+1660,BMW X1,Mumbai,2026-05-04,Infotainment,57000
+1661,BMW 3 Series,Kolkata,2026-01-08,Brake,41000
+1662,BMW 3 Series,Ahmedabad,2026-05-10,AC,32000
+1663,BMW i4,Hyderabad,2026-06-20,AC,42000
+1664,BMW i5,Delhi,2026-08-06,Battery,164000
+1665,BMW iX,Pune,2026-04-17,Suspension,62000
+1666,BMW i7,Delhi,2026-01-23,Infotainment,65000
+1667,BMW i4,Delhi,2026-03-27,Transmission,107000
+1668,BMW 5 Series,Chennai,2026-06-01,Battery,94000
+1669,BMW i4,Pune,2026-05-11,Cooling,46000
+1670,BMW 5 Series,Bengaluru,2026-04-28,Suspension,32000
+1671,BMW X5,Hyderabad,2026-04-15,Engine,92000
+1672,BMW 7 Series,Chennai,2026-03-24,Suspension,44000
+1673,BMW i4,Ahmedabad,2026-03-24,AC,34000
+1674,BMW X1,Bengaluru,2026-07-27,Battery,142000
+1675,BMW 3 Series,Kolkata,2026-06-01,Infotainment,46000
+1676,BMW 3 Series,Chennai,2026-01-22,Brake,27000
+1677,BMW 3 Series,Mumbai,2026-01-10,Cooling,72000
+1678,BMW X5,Ahmedabad,2026-07-20,Electrical,51000
+1679,BMW X5,Mumbai,2026-03-01,Charging,117000
+1680,BMW 5 Series,Mumbai,2026-02-17,Steering,71000
+1681,BMW i5,Bengaluru,2026-08-12,Transmission,81000
+1682,BMW X1,Mumbai,2026-06-14,Engine,66000
+1683,BMW i5,Kolkata,2026-07-20,Suspension,35000
+1684,BMW 5 Series,Kolkata,2026-06-27,Brake,35000
+1685,BMW X5,Ahmedabad,2026-04-09,Transmission,68000
+1686,BMW 5 Series,Pune,2026-08-07,AC,36000
+1687,BMW X5,Chennai,2026-04-15,Cooling,55000
+1688,BMW i5,Pune,2026-08-21,Engine,60000
+1689,BMW 3 Series,Bengaluru,2026-01-19,AC,61000
+1690,BMW 7 Series,Delhi,2026-02-21,Cooling,39000
+1691,BMW X7,Hyderabad,2026-05-11,Cooling,72000
+1692,BMW i4,Delhi,2026-05-28,Engine,52000
+1693,BMW X3,Delhi,2026-06-28,Electrical,80000
+1694,BMW i4,Bengaluru,2026-01-05,Engine,97000
+1695,BMW 5 Series,Hyderabad,2026-01-28,Engine,96000
+1696,BMW 5 Series,Kolkata,2026-04-24,Battery,92000
+1697,BMW i4,Hyderabad,2026-04-18,Transmission,68000
+1698,BMW 7 Series,Hyderabad,2026-01-19,Electrical,88000
+1699,BMW i4,Delhi,2026-02-02,Cooling,44000
+1700,BMW i4,Ahmedabad,2026-05-19,Cooling,48000
+1701,BMW X1,Kolkata,2026-04-12,Cooling,71000
+1702,BMW i4,Delhi,2026-08-11,Brake,39000
+1703,BMW 5 Series,Kolkata,2026-01-25,Steering,46000
+1704,BMW 5 Series,Kolkata,2026-08-11,Charging,60000
+1705,BMW 7 Series,Hyderabad,2026-08-05,Cooling,66000
+1706,BMW X5,Mumbai,2026-03-24,Cooling,63000
+1707,BMW X3,Mumbai,2026-08-25,AC,65000
+1708,BMW 3 Series,Hyderabad,2026-07-06,Transmission,126000
+1709,BMW 7 Series,Kolkata,2026-08-08,Charging,74000
+1710,BMW X5,Hyderabad,2026-07-16,Engine,63000
+1711,BMW i4,Bengaluru,2026-08-18,Infotainment,80000
+1712,BMW X5,Ahmedabad,2026-04-19,Steering,65000
+1713,BMW iX,Ahmedabad,2026-01-13,Charging,119000
+1714,BMW 3 Series,Bengaluru,2026-03-12,Charging,78000
+1715,BMW X5,Chennai,2026-07-03,Cooling,64000
+1716,BMW X3,Hyderabad,2026-03-12,Transmission,60000
+1717,BMW X1,Hyderabad,2026-04-16,Cooling,72000
+1718,BMW iX,Pune,2026-03-21,Battery,179000
+1719,BMW 7 Series,Bengaluru,2026-02-17,Engine,77000
+1720,BMW 3 Series,Delhi,2026-01-16,Steering,75000
+1721,BMW X7,Hyderabad,2026-07-28,Steering,87000
+1722,BMW X7,Bengaluru,2026-02-20,Brake,48000
+1723,BMW X7,Hyderabad,2026-08-22,Suspension,46000
+1724,BMW 3 Series,Hyderabad,2026-04-04,Cooling,50000
+1725,BMW 7 Series,Ahmedabad,2026-02-03,Engine,52000
+1726,BMW X3,Kolkata,2026-07-05,Transmission,68000
+1727,BMW i4,Ahmedabad,2026-06-06,Transmission,67000
+1728,BMW i7,Mumbai,2026-07-23,Electrical,51000
+1729,BMW 5 Series,Delhi,2026-05-27,Infotainment,74000
+1730,BMW iX,Ahmedabad,2026-07-28,Infotainment,74000
+1731,BMW i4,Ahmedabad,2026-06-27,Battery,159000
+1732,BMW iX,Mumbai,2026-02-15,Suspension,63000
+1733,BMW 5 Series,Chennai,2026-02-26,Steering,52000
+1734,BMW 3 Series,Chennai,2026-05-26,Charging,80000
+1735,BMW 5 Series,Pune,2026-08-03,Engine,52000
+1736,BMW i5,Kolkata,2026-03-25,Suspension,54000
+1737,BMW X3,Ahmedabad,2026-04-04,Transmission,123000
+1738,BMW 3 Series,Hyderabad,2026-05-13,AC,59000
+1739,BMW X1,Ahmedabad,2026-08-21,Brake,33000
+1740,BMW i4,Bengaluru,2026-03-26,Infotainment,76000
+1741,BMW X7,Ahmedabad,2026-05-09,Infotainment,52000
+1742,BMW 5 Series,Mumbai,2026-07-04,AC,45000
+1743,BMW i5,Ahmedabad,2026-05-21,Steering,82000
+1744,BMW i4,Chennai,2026-05-17,Suspension,46000
+1745,BMW X1,Kolkata,2026-07-09,Charging,83000
+1746,BMW 5 Series,Ahmedabad,2026-04-19,Electrical,77000
+1747,BMW i5,Ahmedabad,2026-06-01,Transmission,80000
+1748,BMW 5 Series,Hyderabad,2026-07-20,Cooling,60000
+1749,BMW X5,Hyderabad,2026-06-02,Infotainment,77000
+1750,BMW 3 Series,Bengaluru,2026-07-11,Brake,47000
+1751,BMW X3,Mumbai,2026-02-25,Charging,79000
+1752,BMW i7,Hyderabad,2026-02-17,Infotainment,53000
+1753,BMW 5 Series,Bengaluru,2026-01-23,Cooling,54000
+1754,BMW 3 Series,Bengaluru,2026-03-24,Brake,42000
+1755,BMW 5 Series,Ahmedabad,2026-07-12,Electrical,52000
+1756,BMW 7 Series,Chennai,2026-02-24,Transmission,79000
+1757,BMW i4,Kolkata,2026-05-19,Transmission,62000
+1758,BMW X5,Mumbai,2026-07-25,Transmission,82000
+1759,BMW X1,Pune,2026-05-07,Suspension,59000
+1760,BMW 3 Series,Ahmedabad,2026-01-05,Engine,72000
+1761,BMW X1,Chennai,2026-06-22,Charging,94000
+1762,BMW X5,Hyderabad,2026-01-22,Infotainment,60000
+1763,BMW 7 Series,Delhi,2026-03-21,AC,47000
+1764,BMW i4,Delhi,2026-03-09,Battery,86000
+1765,BMW X7,Mumbai,2026-04-19,Battery,130000
+1766,BMW i5,Hyderabad,2026-03-22,Suspension,31000
+1767,BMW iX,Hyderabad,2026-07-07,Charging,102000
+1768,BMW i7,Hyderabad,2026-03-06,AC,35000
+1769,BMW X1,Ahmedabad,2026-01-26,Steering,82000
+1770,BMW 7 Series,Ahmedabad,2026-07-08,Engine,83000
+1771,BMW X5,Delhi,2026-02-09,Suspension,64000
+1772,BMW X7,Bengaluru,2026-01-26,Engine,71000
+1773,BMW X7,Pune,2026-06-27,Electrical,86000
+1774,BMW X5,Hyderabad,2026-07-17,Transmission,87000
+1775,BMW iX,Ahmedabad,2026-01-01,Charging,95000
+1776,BMW X1,Ahmedabad,2026-02-01,Engine,46000
+1777,BMW X5,Delhi,2026-08-09,Suspension,54000
+1778,BMW 7 Series,Pune,2026-03-16,Suspension,61000
+1779,BMW i7,Bengaluru,2026-06-19,Steering,74000
+1780,BMW i5,Chennai,2026-07-04,Electrical,87000
+1781,BMW i7,Mumbai,2026-05-08,Cooling,41000
+1782,BMW 3 Series,Pune,2026-08-14,Transmission,59000
+1783,BMW 5 Series,Kolkata,2026-01-09,Infotainment,56000
+1784,BMW X3,Mumbai,2026-06-14,Suspension,43000
+1785,BMW X7,Bengaluru,2026-01-07,Cooling,41000
+1786,BMW i7,Chennai,2026-06-18,Brake,50000
+1787,BMW 5 Series,Hyderabad,2026-04-15,Brake,56000
+1788,BMW X1,Hyderabad,2026-02-05,Engine,65000
+1789,BMW iX,Delhi,2026-05-26,Cooling,44000
+1790,BMW i7,Pune,2026-04-12,Transmission,119000
+1791,BMW X7,Pune,2026-01-10,Cooling,49000
+1792,BMW X5,Kolkata,2026-04-23,Cooling,56000
+1793,BMW X3,Mumbai,2026-03-07,Engine,101000
+1794,BMW i7,Bengaluru,2026-05-01,Electrical,75000
+1795,BMW X3,Chennai,2026-01-11,Electrical,45000
+1796,BMW X1,Delhi,2026-04-08,Steering,83000
+1797,BMW i5,Hyderabad,2026-02-03,Brake,38000
+1798,BMW iX,Pune,2026-04-07,AC,66000
+1799,BMW 3 Series,Pune,2026-04-13,Cooling,69000
+1800,BMW X5,Chennai,2026-05-23,Charging,70000
+1801,BMW X7,Mumbai,2026-01-22,Suspension,64000
+1802,BMW i5,Kolkata,2026-01-06,Battery,84000
+1803,BMW 3 Series,Kolkata,2026-08-19,Steering,74000
+1804,BMW 7 Series,Pune,2026-08-21,Transmission,84000
+1805,BMW iX,Chennai,2026-02-23,Electrical,75000
+1806,BMW X3,Ahmedabad,2026-01-28,Suspension,49000
+1807,BMW X5,Bengaluru,2026-03-07,Cooling,60000
+1808,BMW X5,Ahmedabad,2026-02-10,Battery,88000
+1809,BMW i5,Kolkata,2026-03-21,Steering,71000
+1810,BMW X5,Bengaluru,2026-01-11,Transmission,62000
+1811,BMW i7,Ahmedabad,2026-08-15,Cooling,62000
+1812,BMW i4,Chennai,2026-01-13,Engine,84000
+1813,BMW 3 Series,Hyderabad,2026-06-06,Transmission,58000
+1814,BMW X3,Mumbai,2026-02-08,Charging,117000
+1815,BMW X5,Hyderabad,2026-02-10,Engine,51000
+1816,BMW X1,Delhi,2026-02-04,Infotainment,37000
+1817,BMW iX,Bengaluru,2026-01-03,Steering,47000
+1818,BMW i5,Chennai,2026-08-25,Engine,59000
+1819,BMW X3,Chennai,2026-03-27,Engine,71000
+1820,BMW X3,Bengaluru,2026-04-24,Suspension,62000
+1821,BMW i7,Delhi,2026-02-19,Battery,110000
+1822,BMW i7,Mumbai,2026-01-15,Charging,72000
+1823,BMW X7,Bengaluru,2026-01-23,Electrical,67000
+1824,BMW 3 Series,Chennai,2026-06-17,Transmission,89000
+1825,BMW 3 Series,Pune,2026-08-19,Electrical,88000
+1826,BMW 7 Series,Kolkata,2026-07-10,Suspension,43000
+1827,BMW i4,Hyderabad,2026-03-01,Engine,59000
+1828,BMW iX,Ahmedabad,2026-08-25,Cooling,49000
+1829,BMW i5,Pune,2026-01-11,Infotainment,37000
+1830,BMW X1,Delhi,2026-06-20,Cooling,60000
+1831,BMW 5 Series,Mumbai,2026-03-26,Infotainment,38000
+1832,BMW i4,Pune,2026-04-22,Charging,90000
+1833,BMW i7,Chennai,2026-06-18,Cooling,38000
+1834,BMW i5,Hyderabad,2026-04-15,Suspension,34000
+1835,BMW iX,Ahmedabad,2026-01-01,Charging,79000
+1836,BMW X5,Kolkata,2026-03-26,Steering,50000
+1837,BMW 3 Series,Mumbai,2026-04-07,Brake,33000
+1838,BMW 7 Series,Mumbai,2026-03-26,Steering,81000
+1839,BMW i5,Kolkata,2026-04-26,Brake,32000
+1840,BMW i5,Delhi,2026-02-27,Infotainment,50000
+1841,BMW i4,Pune,2026-05-14,Cooling,56000
+1842,BMW 7 Series,Hyderabad,2026-08-10,Cooling,69000
+1843,BMW 5 Series,Mumbai,2026-01-08,Cooling,41000
+1844,BMW 7 Series,Chennai,2026-03-26,Electrical,90000
+1845,BMW i7,Mumbai,2026-06-13,Brake,37000
+1846,BMW X5,Mumbai,2026-05-17,Infotainment,52000
+1847,BMW X7,Hyderabad,2026-08-04,Battery,157000
+1848,BMW X3,Mumbai,2026-05-20,Infotainment,41000
+1849,BMW 7 Series,Kolkata,2026-02-19,Infotainment,55000
+1850,BMW i4,Pune,2026-03-11,Infotainment,42000
+1851,BMW 7 Series,Mumbai,2026-08-04,AC,37000
+1852,BMW 3 Series,Mumbai,2026-05-20,AC,67000
+1853,BMW 7 Series,Delhi,2026-05-11,Brake,40000
+1854,BMW X7,Ahmedabad,2026-03-11,Suspension,36000
+1855,BMW i5,Bengaluru,2026-05-21,Charging,71000
+1856,BMW iX,Kolkata,2026-08-16,Transmission,103000
+1857,BMW 3 Series,Kolkata,2026-06-17,Infotainment,56000
+1858,BMW i4,Kolkata,2026-08-20,Suspension,48000
+1859,BMW 7 Series,Bengaluru,2026-06-26,Engine,62000
+1860,BMW X5,Delhi,2026-04-26,Battery,188000
+1861,BMW i7,Mumbai,2026-02-03,Suspension,59000
+1862,BMW 5 Series,Bengaluru,2026-06-25,Electrical,53000
+1863,BMW X1,Ahmedabad,2026-08-10,Engine,77000
+1864,BMW X3,Kolkata,2026-04-07,AC,66000
+1865,BMW i4,Pune,2026-08-10,Electrical,83000
+1866,BMW X3,Ahmedabad,2026-07-11,Steering,61000
+1867,BMW 3 Series,Mumbai,2026-05-06,Battery,109000
+1868,BMW iX,Hyderabad,2026-05-03,Engine,71000
+1869,BMW i7,Mumbai,2026-02-28,Infotainment,42000
+1870,BMW i7,Bengaluru,2026-03-13,Charging,85000
+1871,BMW 3 Series,Pune,2026-02-14,Brake,28000
+1872,BMW i5,Kolkata,2026-07-03,Infotainment,54000
+1873,BMW 7 Series,Pune,2026-03-04,Transmission,130000
+1874,BMW X3,Hyderabad,2026-03-02,Electrical,73000
+1875,BMW X1,Kolkata,2026-04-02,AC,48000
+1876,BMW 5 Series,Kolkata,2026-03-13,Cooling,58000
+1877,BMW i5,Ahmedabad,2026-04-07,Steering,55000
+1878,BMW iX,Mumbai,2026-07-12,Engine,70000
+1879,BMW X1,Kolkata,2026-07-10,Infotainment,47000
+1880,BMW X1,Chennai,2026-06-22,Transmission,62000
+1881,BMW X5,Pune,2026-02-09,Battery,107000
+1882,BMW i4,Kolkata,2026-04-12,Charging,104000
+1883,BMW i5,Chennai,2026-07-02,Steering,68000
+1884,BMW X7,Mumbai,2026-02-18,Electrical,64000
+1885,BMW i4,Kolkata,2026-07-12,Battery,131000
+1886,BMW X7,Bengaluru,2026-03-11,Suspension,61000
+1887,BMW 7 Series,Delhi,2026-05-26,Electrical,68000
+1888,BMW i4,Mumbai,2026-06-21,Transmission,102000
+1889,BMW i5,Chennai,2026-05-19,Steering,43000
+1890,BMW i4,Bengaluru,2026-01-07,Cooling,60000
+1891,BMW 7 Series,Kolkata,2026-01-08,Transmission,67000
+1892,BMW 7 Series,Ahmedabad,2026-07-01,AC,56000
+1893,BMW i5,Pune,2026-06-06,Engine,86000
+1894,BMW X3,Chennai,2026-03-07,AC,48000
+1895,BMW 7 Series,Bengaluru,2026-02-14,Infotainment,69000
+1896,BMW X1,Delhi,2026-06-09,Suspension,47000
+1897,BMW X7,Hyderabad,2026-02-06,Brake,36000
+1898,BMW X5,Kolkata,2026-03-05,Charging,88000
+1899,BMW 5 Series,Delhi,2026-01-18,Electrical,89000
+1900,BMW i5,Hyderabad,2026-02-22,Cooling,58000
+1901,BMW 5 Series,Delhi,2026-05-07,Brake,40000
+1902,BMW X5,Bengaluru,2026-07-17,Suspension,43000
+1903,BMW 5 Series,Chennai,2026-02-23,Cooling,46000
+1904,BMW X3,Delhi,2026-03-26,Steering,77000
+1905,BMW i4,Ahmedabad,2026-06-22,Engine,98000
+1906,BMW 5 Series,Kolkata,2026-04-12,Infotainment,49000
+1907,BMW X3,Hyderabad,2026-05-25,AC,43000
+1908,BMW X7,Ahmedabad,2026-04-13,Engine,74000
+1909,BMW 7 Series,Pune,2026-02-02,AC,47000
+1910,BMW 3 Series,Hyderabad,2026-05-08,Battery,156000
+1911,BMW iX,Hyderabad,2026-04-27,Charging,62000
+1912,BMW i4,Hyderabad,2026-07-21,Engine,90000
+1913,BMW X3,Bengaluru,2026-08-26,Engine,55000
+1914,BMW X1,Delhi,2026-02-07,Engine,85000
+1915,BMW X1,Pune,2026-02-15,Infotainment,43000
+1916,BMW iX,Delhi,2026-06-25,AC,35000
+1917,BMW X1,Chennai,2026-03-08,Charging,59000
+1918,BMW i7,Ahmedabad,2026-04-17,Battery,107000
+1919,BMW 7 Series,Chennai,2026-02-24,Engine,75000
+1920,BMW 5 Series,Mumbai,2026-08-19,Transmission,112000
+1921,BMW X7,Ahmedabad,2026-01-22,Infotainment,62000
+1922,BMW X5,Kolkata,2026-03-18,Infotainment,40000
+1923,BMW 7 Series,Kolkata,2026-08-14,AC,41000
+1924,BMW 5 Series,Ahmedabad,2026-06-21,Transmission,127000
+1925,BMW 7 Series,Pune,2026-08-15,Cooling,55000
+1926,BMW 5 Series,Mumbai,2026-02-09,Battery,90000
+1927,BMW i5,Hyderabad,2026-05-21,Infotainment,48000
+1928,BMW i5,Chennai,2026-05-18,AC,54000
+1929,BMW i7,Mumbai,2026-06-05,Charging,111000
+1930,BMW X1,Kolkata,2026-02-08,Electrical,82000
+1931,BMW i7,Chennai,2026-08-11,Steering,63000
+1932,BMW 7 Series,Hyderabad,2026-01-16,Electrical,90000
+1933,BMW i5,Ahmedabad,2026-08-19,Infotainment,63000
+1934,BMW i4,Bengaluru,2026-01-09,Transmission,87000
+1935,BMW iX,Mumbai,2026-02-24,Engine,82000
+1936,BMW 7 Series,Delhi,2026-02-13,Infotainment,57000
+1937,BMW i4,Hyderabad,2026-07-09,Transmission,80000
+1938,BMW 3 Series,Ahmedabad,2026-07-25,Electrical,64000
+1939,BMW i5,Ahmedabad,2026-05-15,Cooling,44000
+1940,BMW 7 Series,Hyderabad,2026-05-20,Battery,183000
+1941,BMW 7 Series,Chennai,2026-02-14,Infotainment,77000
+1942,BMW X7,Mumbai,2026-02-11,Electrical,72000
+1943,BMW 5 Series,Bengaluru,2026-02-23,Charging,78000
+1944,BMW 3 Series,Mumbai,2026-03-25,Charging,102000
+1945,BMW 7 Series,Bengaluru,2026-06-22,Suspension,30000
+1946,BMW 5 Series,Chennai,2026-08-09,Steering,49000
+1947,BMW 3 Series,Hyderabad,2026-03-21,Brake,41000
+1948,BMW X3,Ahmedabad,2026-03-16,Steering,78000
+1949,BMW 3 Series,Hyderabad,2026-06-09,Suspension,52000
+1950,BMW X3,Hyderabad,2026-08-06,Brake,45000
+1951,BMW X7,Mumbai,2026-06-28,Infotainment,60000
+1952,BMW i7,Ahmedabad,2026-06-17,Electrical,82000
+1953,BMW 7 Series,Chennai,2026-01-04,AC,47000
+1954,BMW i7,Chennai,2026-02-04,Brake,58000
+1955,BMW i7,Pune,2026-07-16,Cooling,44000
+1956,BMW iX,Chennai,2026-01-05,Battery,157000
+1957,BMW i5,Pune,2026-06-13,Electrical,77000
+1958,BMW 3 Series,Kolkata,2026-02-22,AC,64000
+1959,BMW 3 Series,Ahmedabad,2026-03-22,Brake,31000
+1960,BMW 7 Series,Kolkata,2026-03-03,Steering,83000
+1961,BMW 5 Series,Delhi,2026-08-09,Battery,94000
+1962,BMW i5,Mumbai,2026-06-28,AC,70000
+1963,BMW i4,Ahmedabad,2026-01-12,Brake,46000
+1964,BMW X3,Pune,2026-07-06,Steering,62000
+1965,BMW i4,Chennai,2026-05-13,Brake,32000
+1966,BMW i4,Pune,2026-05-22,Steering,42000
+1967,BMW 7 Series,Pune,2026-03-20,Battery,120000
+1968,BMW i7,Pune,2026-07-11,Steering,68000
+1969,BMW X3,Mumbai,2026-06-18,Infotainment,68000
+1970,BMW 3 Series,Mumbai,2026-08-01,AC,64000
+1971,BMW 7 Series,Delhi,2026-02-08,AC,38000
+1972,BMW i7,Mumbai,2026-03-20,Electrical,62000
+1973,BMW 7 Series,Chennai,2026-01-17,Engine,68000
+1974,BMW X5,Bengaluru,2026-03-22,Suspension,31000
+1975,BMW iX,Mumbai,2026-04-18,Cooling,55000
+1976,BMW 5 Series,Delhi,2026-08-26,Charging,112000
+1977,BMW X7,Chennai,2026-01-14,Battery,182000
+1978,BMW X7,Pune,2026-03-22,Battery,179000
+1979,BMW X7,Pune,2026-02-10,Transmission,116000
+1980,BMW i4,Ahmedabad,2026-08-24,Transmission,91000
+1981,BMW 3 Series,Ahmedabad,2026-02-03,Electrical,88000
+1982,BMW 7 Series,Bengaluru,2026-08-25,AC,49000
+1983,BMW 7 Series,Bengaluru,2026-08-02,Transmission,109000
+1984,BMW X1,Pune,2026-01-09,Battery,133000
+1985,BMW i7,Mumbai,2026-02-04,Brake,42000
+1986,BMW 3 Series,Hyderabad,2026-07-05,Brake,52000
+1987,BMW i5,Kolkata,2026-06-16,Battery,147000
+1988,BMW i5,Kolkata,2026-06-05,AC,49000
+1989,BMW 3 Series,Ahmedabad,2026-08-22,Engine,76000
+1990,BMW X3,Delhi,2026-05-22,Suspension,62000
+1991,BMW 5 Series,Hyderabad,2026-08-01,Transmission,94000
+1992,BMW X7,Bengaluru,2026-07-27,Engine,73000
+1993,BMW 3 Series,Mumbai,2026-07-05,Brake,42000
+1994,BMW X1,Hyderabad,2026-01-16,Steering,72000
+1995,BMW 5 Series,Kolkata,2026-01-09,AC,60000
+1996,BMW 7 Series,Hyderabad,2026-03-11,AC,64000
+1997,BMW 7 Series,Bengaluru,2026-08-06,Brake,38000
+1998,BMW 5 Series,Bengaluru,2026-04-03,Electrical,51000
+1999,BMW i7,Pune,2026-06-01,Electrical,51000
+2000,BMW iX,Hyderabad,2026-08-27,Brake,49000

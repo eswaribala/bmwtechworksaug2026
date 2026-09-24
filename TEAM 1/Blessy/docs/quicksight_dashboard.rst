@@ -1,11 +1,8 @@
 QuickSight Dashboard
 ====================
 
-Dashboard Overview
--------------------
-
-The BMW Predictive Maintenance Dashboard provides an operational view of
-vehicle maintenance risk using the curated Athena dataset.
+The BMW Predictive Maintenance Dashboard presents curated Athena data as an
+operational view for maintenance teams.
 
 Dashboard Name
 --------------
@@ -14,66 +11,40 @@ Dashboard Name
 
 	BMW Predictive Maintenance Dashboard
 
-Dashboard Features
-------------------
+Dashboard Screenshot
+--------------------
 
-Total Vehicles Monitored
-~~~~~~~~~~~~~~~~~~~~~~~~
+.. figure:: ../submission_screenshots/01_dashboard.png
+	:alt: BMW Predictive Maintenance Dashboard
+	:width: 800px
+	:align: center
 
-Displays the total number of vehicles in the analytical dataset. The completed
-project monitors 210 vehicles.
+	BMW Predictive Maintenance Dashboard showing the project's key risk
+	monitoring and prioritization views.
 
-Risk Category Distribution
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Visuals and Business Value
+--------------------------
 
-Shows the count or percentage of High, Medium, and Low risk vehicles.
+* **Total Vehicles Monitored**
+	* **Purpose:** Shows the size of the analytical fleet.
+	* **Business value:** Establishes the reporting scope for maintenance teams.
+* **Risk Category Distribution**
+	* **Purpose:** Compares High, Medium, and Low risk vehicles.
+	* **Business value:** Supports workload prioritization.
+* **Top 10 High-Risk Vehicles**
+	* **Purpose:** Lists vehicles with the highest risk scores.
+	* **Business value:** Directs urgent service reviews.
+* **Average Risk Score by Region**
+	* **Purpose:** Compares risk across operating regions.
+	* **Business value:** Supports regional resource planning.
+* **Primary Risk Factors Analysis**
+	* **Purpose:** Highlights mileage, faults, maintenance, and temperature
+		trends.
+	* **Business value:** Helps teams investigate likely causes of risk.
 
-Top 10 High-Risk Vehicles
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Filters
+-------
 
-Lists vehicles with the highest risk scores so service teams can prioritize
-urgent reviews.
-
-Average Risk Score by Region
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Compares average risk scores geographically and may reveal differences in
-operating conditions, usage, or maintenance practices.
-
-Primary Risk Factors Analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Highlights high mileage, frequent faults, frequent maintenance, and temperature
-trends as contributors to maintenance risk.
-
-Recommended Dashboard Layout
-----------------------------
-
-.. code-block:: text
-
-	Row 1: Total Vehicles | High-Risk Vehicles | Average Risk Score
-	Row 2: Risk Category Distribution | Average Risk Score by Region
-	Row 3: Top 10 High-Risk Vehicles
-	Row 4: Primary Risk Factors Analysis
-
-Useful Filters
---------------
-
-* Risk category
-* Region
+* Risk category and region
 * Vehicle identifier
-* Risk-score range
-* Mileage range
-
-Business Usage
---------------
-
-Maintenance managers can identify vehicles requiring review, compare regions,
-investigate risk causes, plan preventive work, and monitor fleet risk trends.
-
-Governance
-----------
-
-Access should be restricted to authorized users. Dataset refreshes should
-follow successful ETL runs, and calculated fields and filters should be
-documented and reviewed.
+* Risk-score and mileage ranges
