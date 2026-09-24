@@ -1,0 +1,9 @@
+vehicle_id,model,battery_level,temperature,speed,region,event_timestamp
+V001,iX,85,72,65,Chennai,2026-09-15 08:00:00
+V002,i4,72,76,70,Bangalore,2026-09-15 08:15:00
+V003,X5,55,82,80,Mumbai,2026-09-15 08:30:00
+V004,X3,91,69,60,Delhi,2026-09-15 08:45:00
+V005,iX,42,88,75,Chennai,2026-09-15 09:00:00
+V006,i4,64,79,72,Bangalore,2026-09-15 09:15:00
+V007,X5,31,94,85,Mumbai,2026-09-15 09:30:00
+V008,X3,77,73,66,Delhi,2026-09-15 09:45:00

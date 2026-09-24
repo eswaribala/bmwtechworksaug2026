@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshooting &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix" href="appendix.html" />
+    <link rel="prev" title="Validation and Evaluator Evidence" href="validation_evidence.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h1>
+<section id="snowflake-says-table-does-not-exist-or-not-authorized">
+<h2>Snowflake says “table does not exist or not authorized”<a class="headerlink" href="#snowflake-says-table-does-not-exist-or-not-authorized" title="Link to this heading">¶</a></h2>
+<p>Check the execution order. Streams on STAGING tables can only be created after
+the STAGING tables exist. Run:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">STAGING</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If the schema is empty, execute <code class="docutils literal notranslate"><span class="pre">06_staging_tables.sql</span></code> first.</p>
+</section>
+<section id="snowflake-says-query-produced-no-results">
+<h2>Snowflake says “query produced no results”<a class="headerlink" href="#snowflake-says-query-produced-no-results" title="Link to this heading">¶</a></h2>
+<p>This message is normal for DDL/DCL statements such as <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALTER</span></code> and
+<code class="docutils literal notranslate"><span class="pre">USE</span></code>. It is also a valid success outcome for a query intentionally expected
+to return zero rows, such as a duplicate check. A <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">COUNT(*)</span></code> should,
+however, return one row if the table exists and the statement is actually run.</p>
+</section>
+<section id="snowflake-cannot-assume-aws-role">
+<h2>Snowflake cannot assume AWS role<a class="headerlink" href="#snowflake-cannot-assume-aws-role" title="Link to this heading">¶</a></h2>
+<p>Start with:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DESC</span><span class="w"> </span><span class="k">STORAGE</span><span class="w"> </span><span class="n">INTEGRATION</span><span class="w"> </span><span class="n">BMW_S3_INTEGRATION</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Compare the returned values with the AWS trust policy:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">STORAGE_AWS_IAM_USER_ARN</span></code> must equal the role principal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STORAGE_AWS_EXTERNAL_ID</span></code> must equal the trust-policy external ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STORAGE_AWS_ROLE_ARN</span></code> must equal the current AWS role ARN.</p></li>
+</ul>
+<p>Then inspect the role:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">iam</span> <span class="nb">get-role</span> <span class="p">-</span><span class="n">-role-name</span> <span class="n">vrr-snowflake-capstone</span> <span class="p">-</span><span class="n">-no-cli-pager</span>
+<span class="n">aws</span> <span class="n">iam</span> <span class="n">list-attached-role-policies</span> <span class="p">-</span><span class="n">-role-name</span> <span class="n">vrr-snowflake-capstone</span> <span class="p">-</span><span class="n">-no-cli-pager</span>
+</pre></div>
+</div>
+<p>The trust relationship and the S3 permissions are separate controls.
+<code class="docutils literal notranslate"><span class="pre">sts:AssumeRole</span></code> must be allowed by the trust relationship; S3 permissions
+matter only after the role is assumed.</p>
+</section>
+<section id="terraform-wants-to-destroy-an-existing-policy">
+<h2>Terraform wants to destroy an existing policy<a class="headerlink" href="#terraform-wants-to-destroy-an-existing-policy" title="Link to this heading">¶</a></h2>
+<p>Do not apply a destructive plan blindly. This usually means the policy exists
+in AWS but is no longer represented by the current Terraform configuration or
+state. Check:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">terraform</span> <span class="n">state</span> <span class="n">list</span>
+<span class="n">terraform</span> <span class="n">plan</span>
+</pre></div>
+</div>
+<p>If an existing policy should remain managed elsewhere, reference it with a
+Terraform data source rather than defining a second managed resource.</p>
+</section>
+<section id="copy-into-reload-behavior">
+<h2>COPY INTO reload behavior<a class="headerlink" href="#copy-into-reload-behavior" title="Link to this heading">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">FORCE</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> and meaningful file patterns. The initial file pattern
+and incremental file pattern should be separated so the demo loads the new
+objects without duplicating the original batch.</p>
+</section>
+<section id="stream-appears-empty">
+<h2>Stream appears empty<a class="headerlink" href="#stream-appears-empty" title="Link to this heading">¶</a></h2>
+<p>Streams show changes and are consumed when downstream statements read from the
+stream. Check whether a prior procedure/task already consumed the data. For a
+clean demo, check stream readiness before executing the Task.</p>
+</section>
+<section id="task-does-not-run">
+<h2>Task does not run<a class="headerlink" href="#task-does-not-run" title="Link to this heading">¶</a></h2>
+<p>New Snowflake Tasks are created suspended. Verify with:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TASKS</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>For an immediate demo, use <code class="docutils literal notranslate"><span class="pre">EXECUTE</span> <span class="pre">TASK</span></code> after the Task has been configured.
+For scheduled operation, resume the task explicitly.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#snowflake-says-table-does-not-exist-or-not-authorized">Snowflake says “table does not exist or not authorized”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snowflake-says-query-produced-no-results">Snowflake says “query produced no results”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snowflake-cannot-assume-aws-role">Snowflake cannot assume AWS role</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-wants-to-destroy-an-existing-policy">Terraform wants to destroy an existing policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-into-reload-behavior">COPY INTO reload behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stream-appears-empty">Stream appears empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-does-not-run">Task does not run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="validation_evidence.html" title="previous chapter">Validation and Evaluator Evidence</a></li>
+      <li>Next: <a href="appendix.html" title="next chapter">Appendix</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/troubleshooting.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

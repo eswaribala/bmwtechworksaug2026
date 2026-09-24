@@ -1,0 +1,4 @@
+sales_id,customer_id,vehicle_id,dealer_id,purchase_date,sale_price,quantity
+S006,C006,V006,D002,2026-09-17,7400000,1
+S007,C007,V007,D003,2026-09-17,9800000,1
+S008,C008,V008,D004,2026-09-17,6700000,1

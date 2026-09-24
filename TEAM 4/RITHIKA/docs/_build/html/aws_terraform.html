@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AWS and Terraform &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Snowflake Platform" href="snowflake_platform.html" />
+    <link rel="prev" title="Data Pipeline" href="data_pipeline.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="aws-and-terraform">
+<h1>AWS and Terraform<a class="headerlink" href="#aws-and-terraform" title="Link to this heading">¶</a></h1>
+<section id="aws-responsibilities">
+<h2>AWS responsibilities<a class="headerlink" href="#aws-responsibilities" title="Link to this heading">¶</a></h2>
+<p>The AWS side provides the landing zone and the IAM trust required for
+Snowflake to read the S3 objects.</p>
+<p>The intended resources are:</p>
+<ul class="simple">
+<li><p>S3 bucket for raw data.</p></li>
+<li><p>S3 versioning.</p></li>
+<li><p>S3 server-side encryption.</p></li>
+<li><p>Public-access block.</p></li>
+<li><p>IAM policy granting bucket/object read access for Snowflake and pipeline
+write access where required.</p></li>
+<li><p>IAM role trusted by the Snowflake-provisioned IAM user using the Snowflake
+external ID.</p></li>
+<li><p>CloudWatch log group for platform/pipeline logs.</p></li>
+</ul>
+</section>
+<section id="terraform-layout">
+<h2>Terraform layout<a class="headerlink" href="#terraform-layout" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">terraform/</span></code> folder defines the AWS provider, S3 bucket, security
+controls, CloudWatch log group, IAM policy and Snowflake role. Variables include
+AWS region, project/environment names, bucket name, Snowflake IAM user ARN and
+Snowflake external ID.</p>
+<p>The Snowflake IAM user ARN and external ID are <strong>outputs of Snowflake</strong>, not
+values that should be invented locally. Obtain them with:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DESC</span><span class="w"> </span><span class="k">STORAGE</span><span class="w"> </span><span class="n">INTEGRATION</span><span class="w"> </span><span class="n">BMW_S3_INTEGRATION</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Use the returned <code class="docutils literal notranslate"><span class="pre">STORAGE_AWS_IAM_USER_ARN</span></code> and
+<code class="docutils literal notranslate"><span class="pre">STORAGE_AWS_EXTERNAL_ID</span></code> in the trust policy.</p>
+</section>
+<section id="terraform-execution">
+<h2>Terraform execution<a class="headerlink" href="#terraform-execution" title="Link to this heading">¶</a></h2>
+<p>From the <code class="docutils literal notranslate"><span class="pre">terraform</span></code> directory:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">terraform</span> <span class="n">init</span>
+<span class="n">terraform</span> <span class="n">fmt</span> <span class="n">-recursive</span>
+<span class="n">terraform</span> <span class="n">validate</span>
+<span class="n">terraform</span> <span class="n">plan</span>
+<span class="n">terraform</span> <span class="n">apply</span>
+</pre></div>
+</div>
+<p>Always inspect the plan before applying. An existing S3 bucket, policy or log
+group should not be destroyed just because Terraform state or source files
+were reorganized.</p>
+</section>
+<section id="current-environment-note">
+<h2>Current environment note<a class="headerlink" href="#current-environment-note" title="Link to this heading">¶</a></h2>
+<p>In the working capstone environment, the S3 bucket used by the project is
+<code class="docutils literal notranslate"><span class="pre">snowflake-data-warehousing-dev-data</span></code> in <code class="docutils literal notranslate"><span class="pre">eu-north-1</span></code>. A custom IAM role
+named <code class="docutils literal notranslate"><span class="pre">vrr-snowflake-capstone</span></code> was also created during the implementation.
+The Snowflake storage integration must reference the exact role ARN of the
+current deployment.</p>
+</section>
+<section id="snowflake-trust-relationship">
+<h2>Snowflake trust relationship<a class="headerlink" href="#snowflake-trust-relationship" title="Link to this heading">¶</a></h2>
+<p>The trust policy answers <strong>who may assume the role</strong>. The S3 permission policy
+answers <strong>what that assumed role may do</strong>.</p>
+<p>The trust policy should conceptually contain:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;STORAGE_AWS_IAM_USER_ARN&gt;"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sts:AssumeRole"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"Condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"StringEquals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"sts:ExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;STORAGE_AWS_EXTERNAL_ID&gt;"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For S3 reads, the policy should include at least:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">s3:GetBucketLocation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s3:ListBucket</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s3:GetObject</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s3:GetObjectVersion</span></code></p></li>
+</ul>
+<p>The project also includes <code class="docutils literal notranslate"><span class="pre">s3:PutObject</span></code> for pipeline writes where required.</p>
+</section>
+<section id="storage-integration-validation">
+<h2>Storage integration validation<a class="headerlink" href="#storage-integration-validation" title="Link to this heading">¶</a></h2>
+<p>Before loading the warehouse, validate the connection:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">SYSTEM</span><span class="err">$</span><span class="n">VALIDATE_STORAGE_INTEGRATION</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">'BMW_S3_INTEGRATION'</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">'s3://snowflake-data-warehousing-dev-data/raw/telemetry/'</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">'telemetry_initial.csv'</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">'read'</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>A successful validation confirms that Snowflake can use the role to access the
+specified S3 object.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AWS and Terraform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#aws-responsibilities">AWS responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-layout">Terraform layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-execution">Terraform execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-environment-note">Current environment note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snowflake-trust-relationship">Snowflake trust relationship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-integration-validation">Storage integration validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="data_pipeline.html" title="previous chapter">Data Pipeline</a></li>
+      <li>Next: <a href="snowflake_platform.html" title="next chapter">Snowflake Platform</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/aws_terraform.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

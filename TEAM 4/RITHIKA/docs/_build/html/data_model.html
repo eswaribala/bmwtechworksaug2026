@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Model &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Incremental Processing" href="incremental_processing.html" />
+    <link rel="prev" title="Snowflake Platform" href="snowflake_platform.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="data-model">
+<h1>Data Model<a class="headerlink" href="#data-model" title="Link to this heading">¶</a></h1>
+<section id="dimensional-design">
+<h2>Dimensional design<a class="headerlink" href="#dimensional-design" title="Link to this heading">¶</a></h2>
+<p>The analytical schema follows a practical star-schema pattern:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                      DIM_DATE
+                         |
+                         |
+DIM_VEHICLE ------ FACT_SALES ------ DIM_DEALER
+      |                  |
+      |                  |
+      +------------ DIM_REGION
+
+              DIM_VEHICLE
+                   |
+                   |
+             FACT_TELEMETRY
+                   |
+              DIM_REGION
+                   |
+                DIM_DATE
+</pre></div>
+</div>
+</section>
+<section id="surrogate-keys">
+<h2>Surrogate keys<a class="headerlink" href="#surrogate-keys" title="Link to this heading">¶</a></h2>
+<p>Dimensions use surrogate integer keys for analytical joins. Business keys are
+kept alongside those surrogate keys, allowing the source identifiers to remain
+stable and traceable.</p>
+</section>
+<section id="unknown-members">
+<h2>Unknown members<a class="headerlink" href="#unknown-members" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DIM_REGION</span></code> creates a default member with surrogate key <code class="docutils literal notranslate"><span class="pre">0</span></code> and region
+code <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code>. Fact processing uses <code class="docutils literal notranslate"><span class="pre">COALESCE(region_key,</span> <span class="pre">0)</span></code> to avoid a
+hard load failure when a source record contains an unmapped region.</p>
+</section>
+<section id="fact-calculations">
+<h2>Fact calculations<a class="headerlink" href="#fact-calculations" title="Link to this heading">¶</a></h2>
+<p>The telemetry fact derives two operational flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BATTERY_ALERT</span></code> when <code class="docutils literal notranslate"><span class="pre">BATTERY_LEVEL</span> <span class="pre">&lt;</span> <span class="pre">20</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TEMPERATURE_ALERT</span></code> when <code class="docutils literal notranslate"><span class="pre">TEMPERATURE_C</span> <span class="pre">&gt;</span> <span class="pre">90</span></code>.</p></li>
+</ul>
+<p>The sales fact resolves vehicle, dealer, region and date surrogate keys from
+the staging stream before merging the transaction.</p>
+</section>
+<section id="dimension-maintenance">
+<h2>Dimension maintenance<a class="headerlink" href="#dimension-maintenance" title="Link to this heading">¶</a></h2>
+<p>Vehicle and dealer dimensions are maintained using <code class="docutils literal notranslate"><span class="pre">MERGE</span></code> statements. When
+a business key already exists, attributes are updated; otherwise a new row is
+inserted.</p>
+</section>
+<section id="date-dimension">
+<h2>Date dimension<a class="headerlink" href="#date-dimension" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DIM_DATE</span></code> is generated using Snowflake’s <code class="docutils literal notranslate"><span class="pre">GENERATOR</span></code> function so that the
+warehouse has a reusable calendar table rather than reconstructing date
+attributes in every dashboard query.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dimensional-design">Dimensional design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surrogate-keys">Surrogate keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unknown-members">Unknown members</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fact-calculations">Fact calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dimension-maintenance">Dimension maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#date-dimension">Date dimension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="snowflake_platform.html" title="previous chapter">Snowflake Platform</a></li>
+      <li>Next: <a href="incremental_processing.html" title="next chapter">Incremental Processing</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/data_model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

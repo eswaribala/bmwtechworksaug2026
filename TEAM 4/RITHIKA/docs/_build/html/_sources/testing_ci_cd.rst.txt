@@ -1,0 +1,56 @@
+Testing and CI/CD
+=================
+
+Automated tests
+----------------
+
+The project includes tests for:
+
+* configuration behavior;
+* schema validation;
+* canonicalization;
+* duplicate handling;
+* incremental logic assumptions.
+
+Run them with:
+
+.. code-block:: powershell
+
+   python -m pytest -v
+
+CI workflow
+-----------
+
+``.github/workflows/ci.yml`` is intended to validate the Python project and
+Terraform syntax before changes are merged.
+
+Deployment workflow
+-------------------
+
+``.github/workflows/deploy.yml`` provides a deployment path for the project.
+Secrets should be supplied through GitHub repository/environment configuration,
+not committed to the repository.
+
+Recommended CI gates
+--------------------
+
+1. Python dependency installation.
+2. Ruff/static quality checks.
+3. Pytest suite.
+4. Terraform formatting and validation.
+5. Snowflake SQL review/deployment in the controlled environment.
+6. Smoke checks against health endpoints and warehouse object counts.
+
+Git hygiene
+-----------
+
+The following should not be committed:
+
+* ``.env``
+* AWS secret keys
+* Snowflake passwords/private keys
+* Snowflake external IDs when treated as sensitive deployment data
+* local virtual environments
+* build artifacts and caches
+
+The repository's ``.gitignore`` is intended to enforce this boundary.

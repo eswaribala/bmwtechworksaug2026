@@ -1,0 +1,6 @@
+body { font-size: 16px; line-height: 1.62; }
+.document h1 { color: #17365d; }
+.document h2 { color: #1f4e79; margin-top: 2rem; }
+.document h3 { color: #365f91; }
+.highlight { border-radius: 6px; }
+.admonition { border-radius: 6px; }

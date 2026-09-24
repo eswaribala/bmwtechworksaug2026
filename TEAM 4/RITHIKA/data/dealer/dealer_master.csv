@@ -1,0 +1,5 @@
+dealer_id,dealer_name,city,state,country,region
+D001,BMW Chennai,Chennai,Tamil Nadu,India,South
+D002,BMW Bangalore,Bangalore,Karnataka,India,South
+D003,BMW Mumbai,Mumbai,Maharashtra,India,West
+D004,BMW Delhi,Delhi,Delhi,India,North

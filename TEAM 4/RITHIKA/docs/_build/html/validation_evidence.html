@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Validation and Evaluator Evidence &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Deployment Runbook" href="deployment_runbook.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="validation-and-evaluator-evidence">
+<h1>Validation and Evaluator Evidence<a class="headerlink" href="#validation-and-evaluator-evidence" title="Link to this heading">¶</a></h1>
+<p>The final project document should prove the implementation with outputs rather
+than asking an evaluator to run every SQL file manually.</p>
+<section id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Link to this heading">¶</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">  </span><span class="n">CURRENT_ACCOUNT</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="p">,</span>
+<span class="w">  </span><span class="k">CURRENT_USER</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">USER_NAME</span><span class="p">,</span>
+<span class="w">  </span><span class="k">CURRENT_ROLE</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ROLE_NAME</span><span class="p">,</span>
+<span class="w">  </span><span class="n">CURRENT_DATABASE</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="p">,</span>
+<span class="w">  </span><span class="n">CURRENT_SCHEMA</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SCHEMA_NAME</span><span class="p">,</span>
+<span class="w">  </span><span class="n">CURRENT_WAREHOUSE</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">WAREHOUSE_NAME</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="aws-s3-evidence">
+<h2>AWS/S3 evidence<a class="headerlink" href="#aws-s3-evidence" title="Link to this heading">¶</a></h2>
+<p>Capture:</p>
+<ul class="simple">
+<li><p>S3 bucket and raw object list.</p></li>
+<li><p>Snowflake <code class="docutils literal notranslate"><span class="pre">LIST</span> <span class="pre">&#64;BMW_S3_STAGE</span></code> output.</p></li>
+<li><p>Storage integration properties from <code class="docutils literal notranslate"><span class="pre">DESC</span> <span class="pre">STORAGE</span> <span class="pre">INTEGRATION</span></code>.</p></li>
+</ul>
+</section>
+<section id="warehouse-object-evidence">
+<h2>Warehouse object evidence<a class="headerlink" href="#warehouse-object-evidence" title="Link to this heading">¶</a></h2>
+<p>Run:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">SCHEMAS</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">RAW</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">STAGING</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">STREAMS</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">RAW</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">STREAMS</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">STAGING</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TASKS</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">PROCEDURES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="row-count-evidence">
+<h2>Row-count evidence<a class="headerlink" href="#row-count-evidence" title="Link to this heading">¶</a></h2>
+<p>The best compact proof is the result of <code class="docutils literal notranslate"><span class="pre">17_health_checks.sql</span></code>. Capture the
+single combined row-count table and explain the expected initial/after-change
+counts.</p>
+</section>
+<section id="incremental-evidence">
+<h2>Incremental evidence<a class="headerlink" href="#incremental-evidence" title="Link to this heading">¶</a></h2>
+<p>Capture both before and after results:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">  </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">.</span><span class="n">FACT_TELEMETRY</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TELEMETRY_COUNT</span><span class="p">,</span>
+<span class="w">  </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">.</span><span class="n">FACT_SALES</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SALES_COUNT</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The demonstration target is 8 -&gt; 12 telemetry and 5 -&gt; 8 sales.</p>
+</section>
+<section id="cdc-evidence">
+<h2>CDC evidence<a class="headerlink" href="#cdc-evidence" title="Link to this heading">¶</a></h2>
+<p>Before the Task consumes them, capture:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">RAW</span><span class="p">.</span><span class="n">RAW_TELEMETRY_STREAM</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">STAGING</span><span class="p">.</span><span class="n">TELEMETRY_STREAM</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="task-evidence">
+<h2>Task evidence<a class="headerlink" href="#task-evidence" title="Link to this heading">¶</a></h2>
+<p>Capture recent Task History showing successful execution.</p>
+</section>
+<section id="data-quality-evidence">
+<h2>Data quality evidence<a class="headerlink" href="#data-quality-evidence" title="Link to this heading">¶</a></h2>
+<p>Useful checks include:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EVENT_ID</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">.</span><span class="n">FACT_TELEMETRY</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">EVENT_ID</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">SALE_ID</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">.</span><span class="n">FACT_SALES</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">SALE_ID</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">produced</span> <span class="pre">no</span> <span class="pre">results</span></code> response is a successful outcome for a duplicate
+check, because it means no duplicates were found.</p>
+</section>
+<section id="time-travel-and-clone-evidence">
+<h2>Time Travel and clone evidence<a class="headerlink" href="#time-travel-and-clone-evidence" title="Link to this heading">¶</a></h2>
+<p>Capture one historical query from <code class="docutils literal notranslate"><span class="pre">13_time_travel.sql</span></code> and the source/clone
+row counts from <code class="docutils literal notranslate"><span class="pre">14_zero_copy_clone.sql</span></code>.</p>
+</section>
+<section id="analytics-evidence">
+<h2>Analytics evidence<a class="headerlink" href="#analytics-evidence" title="Link to this heading">¶</a></h2>
+<p>Capture the output from <code class="docutils literal notranslate"><span class="pre">VW_SALES_KPI</span></code> and <code class="docutils literal notranslate"><span class="pre">VW_TELEMETRY_HEALTH</span></code>. These
+show that the warehouse is not merely storing data; it supports business
+analysis.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Validation and Evaluator Evidence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aws-s3-evidence">AWS/S3 evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#warehouse-object-evidence">Warehouse object evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#row-count-evidence">Row-count evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#incremental-evidence">Incremental evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cdc-evidence">CDC evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-evidence">Task evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-quality-evidence">Data quality evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-travel-and-clone-evidence">Time Travel and clone evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analytics-evidence">Analytics evidence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="deployment_runbook.html" title="previous chapter">Deployment Runbook</a></li>
+      <li>Next: <a href="troubleshooting.html" title="next chapter">Troubleshooting</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/validation_evidence.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

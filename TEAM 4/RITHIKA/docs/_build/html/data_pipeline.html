@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Pipeline &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AWS and Terraform" href="aws_terraform.html" />
+    <link rel="prev" title="Architecture" href="architecture.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="data-pipeline">
+<h1>Data Pipeline<a class="headerlink" href="#data-pipeline" title="Link to this heading">¶</a></h1>
+<section id="stage-1-source-files-and-contracts">
+<h2>Stage 1: Source files and contracts<a class="headerlink" href="#stage-1-source-files-and-contracts" title="Link to this heading">¶</a></h2>
+<p>Four source domains are represented by CSV files under <code class="docutils literal notranslate"><span class="pre">data/</span></code>. The Python
+layer defines a contract for each dataset in <code class="docutils literal notranslate"><span class="pre">python/schemas.py</span></code>. A contract
+contains required columns, business keys and accepted aliases.</p>
+<p>Example telemetry contract concepts include:</p>
+<ul class="simple">
+<li><p>event identifier</p></li>
+<li><p>vehicle identifier</p></li>
+<li><p>event timestamp</p></li>
+<li><p>latitude and longitude</p></li>
+<li><p>speed</p></li>
+<li><p>battery percentage</p></li>
+<li><p>temperature</p></li>
+<li><p>region</p></li>
+</ul>
+<p>The sales contract similarly defines <code class="docutils literal notranslate"><span class="pre">SALE_ID</span></code> as the business key and
+requires vehicle, dealer, date, amount, currency, customer and region fields.</p>
+</section>
+<section id="stage-2-validation-and-canonicalization">
+<h2>Stage 2: Validation and canonicalization<a class="headerlink" href="#stage-2-validation-and-canonicalization" title="Link to this heading">¶</a></h2>
+<p>Before upload, <code class="docutils literal notranslate"><span class="pre">python/main.py</span></code> reads the CSV and applies two categories of
+checks:</p>
+<ul class="simple">
+<li><p>contract validation: required columns, non-empty files, non-null keys and
+duplicate key detection;</p></li>
+<li><p>domain validation: telemetry coordinates and battery range, and non-negative
+sales amounts.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">python/canonicalize.py</span></code> standardizes column names, resolves aliases,
+selects the canonical field order, drops duplicate business keys keeping the
+last row, and converts timestamps/numeric fields to consistent Python types.
+The normalized file is written under <code class="docutils literal notranslate"><span class="pre">build/normalized</span></code> and that normalized
+file is uploaded to S3.</p>
+</section>
+<section id="stage-3-s3-landing">
+<h2>Stage 3: S3 landing<a class="headerlink" href="#stage-3-s3-landing" title="Link to this heading">¶</a></h2>
+<p>Files are organized under the raw prefix:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>s3://&lt;bucket&gt;/raw/
+    telemetry/
+        telemetry_initial.csv
+        telemetry_incremental.csv
+    sales/
+        sales_initial.csv
+        sales_incremental.csv
+    vehicle/
+        vehicle_master.csv
+    dealer/
+        dealer_master.csv
+</pre></div>
+</div>
+<p>The Python uploader maps dataset types to these prefixes and uses boto3 for
+object upload.</p>
+</section>
+<section id="stage-4-external-stage">
+<h2>Stage 4: External stage<a class="headerlink" href="#stage-4-external-stage" title="Link to this heading">¶</a></h2>
+<p>The Snowflake object <code class="docutils literal notranslate"><span class="pre">BMW_DW.RAW.BMW_S3_STAGE</span></code> is an external stage backed by
+S3. It points to the raw prefix and uses <code class="docutils literal notranslate"><span class="pre">BMW_S3_INTEGRATION</span></code> for AWS
+credentials/role assumption plus <code class="docutils literal notranslate"><span class="pre">CSV_FORMAT</span></code> for file parsing.</p>
+<p>The stage is queried with:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">RAW</span><span class="p">;</span>
+
+<span class="n">LIST</span><span class="w"> </span><span class="o">@</span><span class="n">BMW_S3_STAGE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The correct production description is: <strong>the external stage references the S3
+files; ``COPY INTO`` reads them through that stage into Snowflake tables</strong>.
+The files are not physically copied into an internal Snowflake stage.</p>
+</section>
+<section id="stage-5-raw-ingestion">
+<h2>Stage 5: RAW ingestion<a class="headerlink" href="#stage-5-raw-ingestion" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">snowflake/09_initial_load.sql</span></code> uses <code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">INTO</span></code> statements to load each
+source domain from stage subpaths into corresponding RAW tables. The load also
+records <code class="docutils literal notranslate"><span class="pre">METADATA$FILENAME</span></code> in <code class="docutils literal notranslate"><span class="pre">SOURCE_FILE</span></code> and uses <code class="docutils literal notranslate"><span class="pre">LOAD_TS</span></code> for
+lineage.</p>
+<p>Example pattern:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">RAW</span><span class="p">.</span><span class="n">RAW_TELEMETRY</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">METADATA$FILENAME</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="o">@</span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">RAW</span><span class="p">.</span><span class="n">BMW_S3_STAGE</span><span class="o">/</span><span class="n">telemetry</span>
+<span class="p">)</span>
+<span class="n">FILE_FORMAT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">FORMAT_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'BMW_DW.RAW.CSV_FORMAT'</span><span class="p">)</span>
+<span class="n">PATTERN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'.*telemetry.*[.]csv'</span>
+<span class="n">ON_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'ABORT_STATEMENT'</span>
+<span class="k">FORCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The incremental runbook uses the same approach but restricts the pattern to
+<code class="docutils literal notranslate"><span class="pre">incremental</span></code> files. This gives a deterministic way to demonstrate the CDC
+pipeline without reprocessing the initial files.</p>
+</section>
+<section id="stage-6-initial-raw-staging-analytics">
+<h2>Stage 6: Initial RAW -&gt; STAGING -&gt; ANALYTICS<a class="headerlink" href="#stage-6-initial-raw-staging-analytics" title="Link to this heading">¶</a></h2>
+<p>The initial load script then inserts RAW rows into STAGING and uses <code class="docutils literal notranslate"><span class="pre">MERGE</span></code>
+statements to build:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DIM_REGION</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DIM_VEHICLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DIM_DEALER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FACT_TELEMETRY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FACT_SALES</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">DIM_DATE</span></code> is pre-populated using Snowflake’s <code class="docutils literal notranslate"><span class="pre">GENERATOR</span></code> function.</p>
+</section>
+<section id="stage-7-change-data-capture">
+<h2>Stage 7: Change data capture<a class="headerlink" href="#stage-7-change-data-capture" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">snowflake/10_streams.sql</span></code> creates streams on both RAW and STAGING tables.
+For example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">RAW</span><span class="p">.</span><span class="n">RAW_TELEMETRY_STREAM</span>
+<span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">RAW</span><span class="p">.</span><span class="n">RAW_TELEMETRY</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">STAGING</span><span class="p">.</span><span class="n">TELEMETRY_STREAM</span>
+<span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">STAGING</span><span class="p">.</span><span class="n">STG_TELEMETRY</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A stream exposes metadata such as <code class="docutils literal notranslate"><span class="pre">METADATA$ACTION</span></code> so the procedures can
+process new inserted/changed records.</p>
+</section>
+<section id="stage-8-orchestration">
+<h2>Stage 8: Orchestration<a class="headerlink" href="#stage-8-orchestration" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">snowflake/11_procedures.sql</span></code> contains three procedures:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">STAGING.PROC_RAW_TO_STAGING</span></code></dt><dd><p>Consumes RAW streams and merges newly inserted records into STAGING.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ANALYTICS.PROC_STAGING_TO_ANALYTICS</span></code></dt><dd><p>Consumes STAGING streams, maintains dimensions, resolves surrogate keys,
+calculates dates/alerts and merges records into the fact tables.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ANALYTICS.PROC_RUN_INCREMENTAL_PIPELINE</span></code></dt><dd><p>Checks whether RAW or STAGING streams contain changes. It calls the first
+procedure when RAW changes exist and the second procedure when STAGING
+changes exist.</p>
+</dd>
+</dl>
+</section>
+<section id="stage-9-task-execution">
+<h2>Stage 9: Task execution<a class="headerlink" href="#stage-9-task-execution" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">snowflake/12_tasks.sql</span></code> creates <code class="docutils literal notranslate"><span class="pre">ANALYTICS.TASK_INCREMENTAL_PIPELINE</span></code>
+with a five-minute schedule and a <code class="docutils literal notranslate"><span class="pre">SYSTEM$STREAM_HAS_DATA</span></code> condition. A
+new task is created suspended, so deployment validation should happen before
+it is resumed.</p>
+<p>For an immediate demonstration, the project runbook supports:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">EXECUTE</span><span class="w"> </span><span class="n">TASK</span><span class="w"> </span><span class="n">BMW_DW</span><span class="p">.</span><span class="n">ANALYTICS</span><span class="p">.</span><span class="n">TASK_INCREMENTAL_PIPELINE</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="stage-10-analytics">
+<h2>Stage 10: Analytics<a class="headerlink" href="#stage-10-analytics" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">snowflake/15_analytics.sql</span></code> creates three views:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">VW_SALES_KPI</span></code></dt><dd><p>Revenue, count and average sale by month and region.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">VW_TELEMETRY_HEALTH</span></code></dt><dd><p>Event volume, average speed, battery, temperature and alert counts by
+region.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">VW_VEHICLE_SALES</span></code></dt><dd><p>Units sold and total revenue by vehicle with dealer and region context.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#stage-1-source-files-and-contracts">Stage 1: Source files and contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-2-validation-and-canonicalization">Stage 2: Validation and canonicalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-3-s3-landing">Stage 3: S3 landing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-4-external-stage">Stage 4: External stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-5-raw-ingestion">Stage 5: RAW ingestion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-6-initial-raw-staging-analytics">Stage 6: Initial RAW -&gt; STAGING -&gt; ANALYTICS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-7-change-data-capture">Stage 7: Change data capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-8-orchestration">Stage 8: Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-9-task-execution">Stage 9: Task execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-10-analytics">Stage 10: Analytics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="architecture.html" title="previous chapter">Architecture</a></li>
+      <li>Next: <a href="aws_terraform.html" title="next chapter">AWS and Terraform</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/data_pipeline.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

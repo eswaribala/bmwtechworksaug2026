@@ -1,0 +1,13 @@
+vehicle_id,model,make,fuel_type,vehicle_year,segment
+V001,iX,BMW,Electric,2026,SUV
+V002,i4,BMW,Electric,2026,Sedan
+V003,X5,BMW,Petrol,2025,SUV
+V004,X3,BMW,Petrol,2025,SUV
+V005,iX,BMW,Electric,2026,SUV
+V006,i4,BMW,Electric,2026,Sedan
+V007,X5,BMW,Petrol,2025,SUV
+V008,X3,BMW,Petrol,2025,SUV
+V009,iX,BMW,Electric,2026,SUV
+V010,i4,BMW,Electric,2026,Sedan
+V011,X5,BMW,Petrol,2025,SUV
+V012,X3,BMW,Petrol,2025,SUV

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BMW Snowflake Incremental Data Warehouse &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Project Overview" href="overview.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="bmw-snowflake-incremental-data-warehouse">
+<h1>BMW Snowflake Incremental Data Warehouse<a class="headerlink" href="#bmw-snowflake-incremental-data-warehouse" title="Link to this heading">¶</a></h1>
+<p>Production-style capstone documentation</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#objective">Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#expected-demonstration">Expected demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#why-the-layered-design-matters">Why the layered design matters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#repository-structure">Repository structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#end-to-end-architecture">End-to-end architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#data-flow-responsibilities">Data flow responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#initial-versus-incremental-flow">Initial versus incremental flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-1-source-files-and-contracts">Stage 1: Source files and contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-2-validation-and-canonicalization">Stage 2: Validation and canonicalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-3-s3-landing">Stage 3: S3 landing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-4-external-stage">Stage 4: External stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-5-raw-ingestion">Stage 5: RAW ingestion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-6-initial-raw-staging-analytics">Stage 6: Initial RAW -&gt; STAGING -&gt; ANALYTICS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-7-change-data-capture">Stage 7: Change data capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-8-orchestration">Stage 8: Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-9-task-execution">Stage 9: Task execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_pipeline.html#stage-10-analytics">Stage 10: Analytics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#aws-responsibilities">AWS responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#terraform-layout">Terraform layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#terraform-execution">Terraform execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#current-environment-note">Current environment note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#snowflake-trust-relationship">Snowflake trust relationship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_terraform.html#storage-integration-validation">Storage integration validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#database-and-warehouse">Database and warehouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#file-format">File format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#raw-layer">RAW layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#staging-layer">STAGING layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#analytics-layer">ANALYTICS layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#security-model">Security model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snowflake_platform.html#health-checks">Health checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#dimensional-design">Dimensional design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#surrogate-keys">Surrogate keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#unknown-members">Unknown members</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#fact-calculations">Fact calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#dimension-maintenance">Dimension maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#date-dimension">Date dimension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="incremental_processing.html#what-changes-between-initial-and-incremental-loads">What changes between initial and incremental loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incremental_processing.html#idempotency">Idempotency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incremental_processing.html#incremental-runbook">Incremental runbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incremental_processing.html#immediate-execution-example">Immediate execution example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incremental_processing.html#expected-capstone-proof">Expected capstone proof</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python_ingestion.html#responsibilities">Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_ingestion.html#command-examples">Command examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_ingestion.html#validation-guarantees">Validation guarantees</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyspark_and_api.html#pyspark-batch-processing">PySpark batch processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyspark_and_api.html#fastapi-read-only-interface">FastAPI read-only interface</a></li>
+</ul>
+</li>
+
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security_operations.html#security-controls">Security controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_operations.html#operational-checks">Operational checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_operations.html#auditability">Auditability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_operations.html#time-travel">Time Travel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_operations.html#zero-copy-cloning">Zero-copy cloning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-1-python-environment">Phase 1: Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-2-aws-terraform">Phase 2: AWS/Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-3-python-initial-upload">Phase 3: Python initial upload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-4-snowflake-bootstrap">Phase 4: Snowflake bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-5-incremental-demo">Phase 5: Incremental demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_runbook.html#phase-6-final-verification">Phase 6: Final verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#aws-s3-evidence">AWS/S3 evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#warehouse-object-evidence">Warehouse object evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#row-count-evidence">Row-count evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#incremental-evidence">Incremental evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#cdc-evidence">CDC evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#task-evidence">Task evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#data-quality-evidence">Data quality evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#time-travel-and-clone-evidence">Time Travel and clone evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation_evidence.html#analytics-evidence">Analytics evidence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#snowflake-says-table-does-not-exist-or-not-authorized">Snowflake says “table does not exist or not authorized”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#snowflake-says-query-produced-no-results">Snowflake says “query produced no results”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#snowflake-cannot-assume-aws-role">Snowflake cannot assume AWS role</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#terraform-wants-to-destroy-an-existing-policy">Terraform wants to destroy an existing policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#copy-into-reload-behavior">COPY INTO reload behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#stream-appears-empty">Stream appears empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#task-does-not-run">Task does not run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#snowflake-script-inventory">Snowflake script inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#key-commands">Key commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#documentation-build">Documentation build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#submission-guidance">Submission guidance</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="project-purpose">
+<h2>Project purpose<a class="headerlink" href="#project-purpose" title="Link to this heading">¶</a></h2>
+<p>This documentation describes the complete BMW incremental data warehouse
+implemented for the capstone project. It explains <strong>what was built</strong>, <strong>why each
+layer exists</strong>, <strong>how data moves through the platform</strong>, and <strong>how incremental
+processing is demonstrated and verified</strong>.</p>
+<p>The core business flow is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BMW source CSV files
+       |
+       v
+Python validation + canonicalization
+       |
+       v
+AWS S3 raw landing zone
+       |
+       v
+Snowflake external stage
+       |
+       v
+RAW tables
+       |
+       v
+RAW streams (CDC)
+       |
+       v
+RAW -&gt; STAGING stored procedure
+       |
+       v
+STAGING tables
+       |
+       v
+STAGING streams (CDC)
+       |
+       v
+STAGING -&gt; ANALYTICS stored procedure
+       |
+       +--------------------+
+       |                    |
+       v                    v
+Dimensions               Fact tables
+       |                    |
+       +---------+----------+
+                 |
+                 v
+           Analytics views
+</pre></div>
+</div>
+</section>
+<section id="important-terminology">
+<h2>Important terminology<a class="headerlink" href="#important-terminology" title="Link to this heading">¶</a></h2>
+<p>The project uses an <strong>external Snowflake stage</strong>. The stage is a managed
+reference to the S3 location; it does not physically copy S3 objects into a
+second storage bucket. Snowflake reads the files through the external stage
+and <code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">INTO</span></code> loads their records into the RAW tables. This distinction is
+important when describing the implementation to an evaluator.</p>
+</section>
+<section id="key-implementation-requirements-covered">
+<h2>Key implementation requirements covered<a class="headerlink" href="#key-implementation-requirements-covered" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>AWS S3 landing and object organization.</p></li>
+<li><p>Snowflake database, warehouse, schemas and external stage.</p></li>
+<li><p>RAW, STAGING and ANALYTICS layers.</p></li>
+<li><p>Fact tables and dimension tables.</p></li>
+<li><p>Snowflake Streams for change data capture.</p></li>
+<li><p>Stored procedures for incremental transformations.</p></li>
+<li><p>Snowflake Task orchestration.</p></li>
+<li><p>Idempotent <code class="docutils literal notranslate"><span class="pre">MERGE</span></code> logic using business keys.</p></li>
+<li><p>Time Travel example.</p></li>
+<li><p>Zero-copy clone example.</p></li>
+<li><p>Python source validation and S3 ingestion.</p></li>
+<li><p>PySpark batch telemetry processing.</p></li>
+<li><p>Read-only FastAPI analytics endpoints.</p></li>
+<li><p>Terraform infrastructure definitions.</p></li>
+
+<li><p>Health checks and operational evidence.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="security_operations.html">Security and Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="overview.html" title="next chapter">Project Overview</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

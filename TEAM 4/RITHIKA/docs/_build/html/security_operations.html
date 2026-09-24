@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Security and Operations &#8212; BMW Snowflake Incremental Data Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17d25768" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deployment Runbook" href="deployment_runbook.html" />
+    <link rel="prev" title="Testing and CI/CD" href="testing_ci_cd.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="security-and-operations">
+<h1>Security and Operations<a class="headerlink" href="#security-and-operations" title="Link to this heading">¶</a></h1>
+<section id="security-controls">
+<h2>Security controls<a class="headerlink" href="#security-controls" title="Link to this heading">¶</a></h2>
+<section id="aws">
+<h3>AWS<a class="headerlink" href="#aws" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>S3 public access is blocked.</p></li>
+<li><p>S3 server-side encryption is enabled.</p></li>
+<li><p>S3 versioning is enabled.</p></li>
+<li><p>Snowflake access is mediated through an IAM role and external ID trust.</p></li>
+<li><p>Raw object access is limited to the required prefix.</p></li>
+</ul>
+</section>
+<section id="snowflake">
+<h3>Snowflake<a class="headerlink" href="#snowflake" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Raw ingestion and analytical access are separated by schema.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BMW_ANALYTICS_READONLY</span></code> provides a least-privilege role for reporting/API
+consumption.</p></li>
+<li><p>Stored procedures use <code class="docutils literal notranslate"><span class="pre">EXECUTE</span> <span class="pre">AS</span> <span class="pre">OWNER</span></code> for controlled orchestration.</p></li>
+</ul>
+</section>
+<section id="secrets">
+<h3>Secrets<a class="headerlink" href="#secrets" title="Link to this heading">¶</a></h3>
+<p>Credentials are supplied through environment variables or CI secret stores.
+They should never be committed in the Git repository.</p>
+</section>
+</section>
+<section id="operational-checks">
+<h2>Operational checks<a class="headerlink" href="#operational-checks" title="Link to this heading">¶</a></h2>
+<p>A deployment should verify:</p>
+<ul class="simple">
+<li><p>stage connectivity;</p></li>
+<li><p>RAW row counts;</p></li>
+<li><p>STAGING row counts;</p></li>
+<li><p>dimension counts;</p></li>
+<li><p>fact counts;</p></li>
+<li><p>stream state;</p></li>
+<li><p>task state and recent task history;</p></li>
+<li><p>duplicate and null checks;</p></li>
+<li><p>analytics view results.</p></li>
+</ul>
+</section>
+<section id="auditability">
+<h2>Auditability<a class="headerlink" href="#auditability" title="Link to this heading">¶</a></h2>
+<p>The pipeline keeps <code class="docutils literal notranslate"><span class="pre">SOURCE_FILE</span></code> and <code class="docutils literal notranslate"><span class="pre">LOAD_TS</span></code> in RAW and STAGING, making
+it possible to trace records to the S3 object and ingestion timestamp.</p>
+<p>Task history can be queried through <code class="docutils literal notranslate"><span class="pre">INFORMATION_SCHEMA.TASK_HISTORY</span></code>.</p>
+</section>
+<section id="time-travel">
+<h2>Time Travel<a class="headerlink" href="#time-travel" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">13_time_travel.sql</span></code> demonstrates historical querying of <code class="docutils literal notranslate"><span class="pre">FACT_SALES</span></code>.
+The feature can be used to compare row counts or inspect a prior table state
+within the account’s retention window.</p>
+</section>
+<section id="zero-copy-cloning">
+<h2>Zero-copy cloning<a class="headerlink" href="#zero-copy-cloning" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">14_zero_copy_clone.sql</span></code> creates a development copy of <code class="docutils literal notranslate"><span class="pre">FACT_SALES</span></code> and a
+clone of the ANALYTICS schema. This provides a safe place for testing changes
+without making a full physical copy of the underlying data.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Snowflake Incremental Data Warehouse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Data Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_terraform.html">AWS and Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake_platform.html">Snowflake Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incremental_processing.html">Incremental Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_ingestion.html">Python Ingestion Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyspark_and_api.html">PySpark and API Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_ci_cd.html">Testing and CI/CD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Security and Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#security-controls">Security controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operational-checks">Operational checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#auditability">Auditability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-travel">Time Travel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zero-copy-cloning">Zero-copy cloning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_runbook.html">Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_evidence.html">Validation and Evaluator Evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="testing_ci_cd.html" title="previous chapter">Testing and CI/CD</a></li>
+      <li>Next: <a href="deployment_runbook.html" title="next chapter">Deployment Runbook</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Data Platform Capstone.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/security_operations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
