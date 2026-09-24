@@ -1,0 +1,26 @@
+[
+  {
+    "question": "Which BMW model sold the most vehicles?",
+    "intent": "vehicle_sales"
+  },
+  {
+    "question": "Which model had the highest warranty cost?",
+    "intent": "warranty_cost"
+  },
+  {
+    "question": "What are the most common faults?",
+    "intent": "fault_summary"
+  },
+  {
+    "question": "Which vehicles have low battery?",
+    "intent": "battery_status"
+  },
+  {
+    "question": "Compare sales and warranty costs by model",
+    "intent": "custom_query"
+  },
+  {
+    "question": "Show sales, faults, and battery status for BMW iX",
+    "intent": "custom_query"
+  }
+]

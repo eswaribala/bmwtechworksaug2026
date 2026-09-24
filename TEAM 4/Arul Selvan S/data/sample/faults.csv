@@ -1,0 +1,1001 @@
+vehicle_id,model,city,fault_date,fault_type,severity
+1001,BMW X1,Chennai,2026-02-10,Engine,High
+1002,BMW X3,Chennai,2026-02-22,Electrical,Medium
+1005,BMW i4,Chennai,2026-03-18,Battery,High
+1009,BMW 5 Series,Chennai,2026-05-11,Infotainment,Low
+1003,BMW 3 Series,Mumbai,2026-02-28,Brake,Medium
+1007,BMW X1,Mumbai,2026-04-02,Suspension,Medium
+1004,BMW X5,Delhi,2026-03-05,Engine,High
+1008,BMW X3,Delhi,2026-04-20,Electrical,Medium
+1006,BMW iX,Bengaluru,2026-04-15,Battery,High
+1010,BMW i4,Bengaluru,2026-05-20,Charging,Medium
+1011,BMW i7,Hyderabad,2026-03-12,Electrical,Low
+1012,BMW iX,Hyderabad,2026-06-17,Brake,Medium
+1013,BMW X5,Hyderabad,2026-05-17,Steering,Medium
+1014,BMW X7,Chennai,2026-05-16,Charging,High
+1015,BMW i5,Delhi,2026-01-12,Engine,Low
+1016,BMW i5,Chennai,2026-02-17,Battery,Low
+1017,BMW i4,Bengaluru,2026-03-03,Charging,Medium
+1018,BMW iX,Chennai,2026-06-12,Infotainment,High
+1019,BMW 5 Series,Hyderabad,2026-02-01,Engine,Low
+1020,BMW i5,Chennai,2026-03-28,Transmission,Medium
+1021,BMW 7 Series,Chennai,2026-05-01,AC,Medium
+1022,BMW i5,Delhi,2026-08-02,Infotainment,Low
+1023,BMW X1,Pune,2026-02-28,Transmission,Low
+1024,BMW 3 Series,Bengaluru,2026-05-02,Charging,Medium
+1025,BMW i5,Ahmedabad,2026-04-16,AC,Low
+1026,BMW i4,Ahmedabad,2026-04-18,Suspension,Low
+1027,BMW X5,Bengaluru,2026-04-09,Transmission,Low
+1028,BMW X1,Bengaluru,2026-06-16,Steering,Low
+1029,BMW i4,Kolkata,2026-08-24,Cooling,Low
+1030,BMW iX,Bengaluru,2026-03-01,Battery,Low
+1031,BMW iX,Bengaluru,2026-06-06,Battery,Low
+1032,BMW i5,Mumbai,2026-08-04,AC,Low
+1033,BMW i5,Pune,2026-07-23,Charging,High
+1034,BMW i4,Ahmedabad,2026-02-22,Steering,High
+1035,BMW X1,Kolkata,2026-01-06,Battery,High
+1036,BMW i5,Bengaluru,2026-06-06,Electrical,High
+1037,BMW X5,Chennai,2026-03-06,Brake,Low
+1038,BMW X1,Mumbai,2026-03-16,AC,High
+1039,BMW X3,Delhi,2026-04-10,Battery,High
+1040,BMW 7 Series,Kolkata,2026-03-04,Charging,High
+1041,BMW X1,Delhi,2026-02-02,Steering,Low
+1042,BMW 7 Series,Bengaluru,2026-02-13,Transmission,High
+1043,BMW X1,Bengaluru,2026-05-05,Infotainment,High
+1044,BMW 3 Series,Delhi,2026-02-28,Charging,High
+1045,BMW i4,Mumbai,2026-06-08,Engine,High
+1046,BMW X5,Hyderabad,2026-01-13,AC,Low
+1047,BMW 7 Series,Chennai,2026-01-09,Transmission,Medium
+1048,BMW i7,Hyderabad,2026-08-02,Brake,Low
+1049,BMW X3,Mumbai,2026-02-05,Steering,Low
+1050,BMW iX,Delhi,2026-07-27,Battery,Low
+1051,BMW X5,Kolkata,2026-06-05,Charging,Low
+1052,BMW i4,Bengaluru,2026-04-09,Battery,Medium
+1053,BMW X3,Kolkata,2026-06-13,Battery,Low
+1054,BMW X5,Kolkata,2026-08-09,Brake,Low
+1055,BMW X7,Delhi,2026-08-18,Infotainment,High
+1056,BMW 5 Series,Mumbai,2026-06-04,Charging,High
+1057,BMW i5,Hyderabad,2026-08-01,Brake,Low
+1058,BMW 7 Series,Pune,2026-02-27,Charging,Medium
+1059,BMW X5,Pune,2026-06-07,Infotainment,High
+1060,BMW i7,Kolkata,2026-04-01,Infotainment,Medium
+1061,BMW X1,Bengaluru,2026-01-07,Transmission,High
+1062,BMW i5,Delhi,2026-01-24,Transmission,Low
+1063,BMW 3 Series,Delhi,2026-04-01,Charging,High
+1064,BMW i7,Chennai,2026-06-21,Steering,High
+1065,BMW X5,Bengaluru,2026-08-04,Battery,Low
+1066,BMW 3 Series,Kolkata,2026-05-25,Engine,Low
+1067,BMW 7 Series,Kolkata,2026-07-25,Cooling,Medium
+1068,BMW X1,Kolkata,2026-08-07,Cooling,High
+1069,BMW X7,Pune,2026-01-01,AC,Medium
+1070,BMW 7 Series,Kolkata,2026-05-09,Suspension,Medium
+1071,BMW X1,Mumbai,2026-05-12,Infotainment,Low
+1072,BMW X1,Hyderabad,2026-01-28,Infotainment,Medium
+1073,BMW X1,Delhi,2026-04-28,Engine,Low
+1074,BMW 7 Series,Delhi,2026-06-09,Transmission,High
+1075,BMW X5,Delhi,2026-08-12,AC,Medium
+1076,BMW iX,Hyderabad,2026-07-05,Brake,High
+1077,BMW i7,Pune,2026-04-24,Brake,Medium
+1078,BMW X5,Ahmedabad,2026-02-26,Infotainment,Low
+1079,BMW i4,Kolkata,2026-07-15,Charging,Medium
+1080,BMW X3,Ahmedabad,2026-02-27,Engine,Medium
+1081,BMW i7,Kolkata,2026-07-01,Battery,Low
+1082,BMW 3 Series,Mumbai,2026-02-19,Transmission,Low
+1083,BMW X3,Delhi,2026-02-07,Electrical,Low
+1084,BMW 7 Series,Pune,2026-01-10,Electrical,Medium
+1085,BMW i7,Ahmedabad,2026-07-03,Steering,Low
+1086,BMW X3,Ahmedabad,2026-01-16,Steering,Low
+1087,BMW i5,Ahmedabad,2026-02-16,Infotainment,Medium
+1088,BMW X5,Chennai,2026-06-11,Brake,High
+1089,BMW i4,Mumbai,2026-04-14,Charging,Low
+1090,BMW 7 Series,Bengaluru,2026-07-14,Charging,Medium
+1091,BMW X5,Kolkata,2026-04-05,Charging,Low
+1092,BMW 7 Series,Bengaluru,2026-08-25,Electrical,Low
+1093,BMW 7 Series,Ahmedabad,2026-04-12,Electrical,High
+1094,BMW i5,Kolkata,2026-02-07,Engine,Medium
+1095,BMW iX,Kolkata,2026-01-20,Charging,Medium
+1096,BMW X5,Mumbai,2026-04-21,Steering,High
+1097,BMW iX,Bengaluru,2026-04-08,Transmission,Medium
+1098,BMW i5,Hyderabad,2026-01-15,AC,High
+1099,BMW i7,Kolkata,2026-05-27,Steering,Medium
+1100,BMW 3 Series,Hyderabad,2026-03-08,Charging,Low
+1101,BMW X7,Mumbai,2026-03-26,Suspension,High
+1102,BMW i5,Pune,2026-01-19,Engine,High
+1103,BMW i4,Ahmedabad,2026-08-25,Suspension,High
+1104,BMW X5,Chennai,2026-07-18,Charging,Low
+1105,BMW X7,Bengaluru,2026-04-13,Battery,Low
+1106,BMW i7,Kolkata,2026-06-12,Brake,High
+1107,BMW X5,Delhi,2026-02-23,AC,Medium
+1108,BMW X1,Delhi,2026-01-03,Brake,Medium
+1109,BMW X7,Delhi,2026-08-26,Brake,High
+1110,BMW i7,Hyderabad,2026-08-28,Infotainment,Medium
+1111,BMW i7,Bengaluru,2026-03-20,Suspension,Low
+1112,BMW i7,Ahmedabad,2026-05-06,Engine,Medium
+1113,BMW i5,Pune,2026-08-20,Steering,Low
+1114,BMW i7,Bengaluru,2026-07-20,AC,Low
+1115,BMW i5,Pune,2026-06-28,Engine,High
+1116,BMW 5 Series,Pune,2026-01-25,AC,Low
+1117,BMW i7,Hyderabad,2026-05-04,Charging,Medium
+1118,BMW 5 Series,Delhi,2026-04-24,Cooling,Medium
+1119,BMW 3 Series,Delhi,2026-01-14,Steering,Medium
+1120,BMW 7 Series,Ahmedabad,2026-07-05,Engine,Low
+1121,BMW X5,Hyderabad,2026-08-02,Suspension,Medium
+1122,BMW i7,Delhi,2026-04-26,AC,High
+1123,BMW iX,Delhi,2026-08-26,Suspension,Medium
+1124,BMW 3 Series,Hyderabad,2026-02-04,Transmission,Low
+1125,BMW X1,Chennai,2026-01-25,Battery,Medium
+1126,BMW i7,Delhi,2026-05-07,Electrical,Low
+1127,BMW X1,Delhi,2026-01-10,Electrical,Medium
+1128,BMW i4,Kolkata,2026-05-26,AC,Low
+1129,BMW 3 Series,Ahmedabad,2026-06-23,Battery,High
+1130,BMW i4,Ahmedabad,2026-07-10,Infotainment,High
+1131,BMW iX,Bengaluru,2026-06-24,Suspension,Low
+1132,BMW i4,Hyderabad,2026-01-23,Electrical,High
+1133,BMW 7 Series,Chennai,2026-03-20,Infotainment,Medium
+1134,BMW X7,Ahmedabad,2026-05-17,Charging,Low
+1135,BMW X1,Hyderabad,2026-04-14,Cooling,Medium
+1136,BMW 3 Series,Chennai,2026-05-13,Suspension,Low
+1137,BMW iX,Kolkata,2026-02-01,Battery,High
+1138,BMW X3,Chennai,2026-06-11,AC,Low
+1139,BMW i5,Hyderabad,2026-02-06,Brake,Low
+1140,BMW 5 Series,Hyderabad,2026-04-13,Battery,Medium
+1141,BMW 3 Series,Kolkata,2026-06-06,Transmission,Medium
+1142,BMW i4,Delhi,2026-02-02,Brake,Medium
+1143,BMW i5,Hyderabad,2026-02-16,Infotainment,Low
+1144,BMW i5,Hyderabad,2026-01-21,AC,Medium
+1145,BMW X3,Chennai,2026-08-02,Steering,Low
+1146,BMW X7,Chennai,2026-02-18,Charging,Low
+1147,BMW X1,Chennai,2026-03-14,Suspension,Medium
+1148,BMW i7,Delhi,2026-07-02,Infotainment,Medium
+1149,BMW X3,Hyderabad,2026-05-18,Cooling,Low
+1150,BMW i7,Pune,2026-02-28,Electrical,Low
+1151,BMW i7,Delhi,2026-08-04,Suspension,Low
+1152,BMW X5,Chennai,2026-08-13,Infotainment,Low
+1153,BMW 7 Series,Hyderabad,2026-04-05,Steering,High
+1154,BMW 3 Series,Pune,2026-07-10,Battery,Low
+1155,BMW iX,Kolkata,2026-03-04,Suspension,Low
+1156,BMW X3,Chennai,2026-06-06,Infotainment,High
+1157,BMW i7,Delhi,2026-02-11,Transmission,Medium
+1158,BMW i7,Kolkata,2026-06-03,Cooling,Low
+1159,BMW X7,Delhi,2026-08-06,Cooling,Low
+1160,BMW i5,Pune,2026-02-18,Infotainment,High
+1161,BMW X5,Kolkata,2026-07-09,Brake,High
+1162,BMW iX,Bengaluru,2026-07-23,Brake,Medium
+1163,BMW X7,Chennai,2026-05-22,Steering,Medium
+1164,BMW X7,Chennai,2026-04-20,Infotainment,Low
+1165,BMW i7,Pune,2026-05-19,Suspension,Medium
+1166,BMW X1,Mumbai,2026-05-10,Suspension,High
+1167,BMW iX,Mumbai,2026-01-18,Suspension,Low
+1168,BMW 7 Series,Hyderabad,2026-01-25,Battery,Low
+1169,BMW X5,Pune,2026-07-05,Engine,Low
+1170,BMW i5,Kolkata,2026-06-23,Steering,Low
+1171,BMW X7,Ahmedabad,2026-06-19,Transmission,Low
+1172,BMW X1,Pune,2026-04-16,Charging,Low
+1173,BMW X3,Hyderabad,2026-04-14,Charging,Medium
+1174,BMW X5,Mumbai,2026-02-13,Brake,High
+1175,BMW iX,Delhi,2026-02-13,Cooling,High
+1176,BMW 5 Series,Bengaluru,2026-07-21,Transmission,Medium
+1177,BMW i4,Chennai,2026-05-02,Steering,Medium
+1178,BMW X5,Ahmedabad,2026-05-24,Battery,High
+1179,BMW 7 Series,Ahmedabad,2026-01-11,Transmission,Medium
+1180,BMW X7,Ahmedabad,2026-06-28,Transmission,High
+1181,BMW 5 Series,Bengaluru,2026-06-24,Transmission,Medium
+1182,BMW X5,Chennai,2026-05-01,Electrical,Low
+1183,BMW i5,Mumbai,2026-03-05,Suspension,High
+1184,BMW X5,Pune,2026-06-20,Suspension,Medium
+1185,BMW X7,Hyderabad,2026-06-26,Charging,High
+1186,BMW 5 Series,Kolkata,2026-04-08,Steering,Medium
+1187,BMW i5,Chennai,2026-06-07,AC,Low
+1188,BMW 3 Series,Hyderabad,2026-07-14,Electrical,High
+1189,BMW i4,Mumbai,2026-04-19,AC,High
+1190,BMW X1,Ahmedabad,2026-05-23,Infotainment,High
+1191,BMW X7,Bengaluru,2026-07-02,Brake,High
+1192,BMW 5 Series,Pune,2026-05-17,Infotainment,High
+1193,BMW 3 Series,Hyderabad,2026-07-10,Suspension,Low
+1194,BMW iX,Bengaluru,2026-04-15,AC,High
+1195,BMW X1,Bengaluru,2026-03-01,Steering,Low
+1196,BMW i7,Hyderabad,2026-08-06,Cooling,High
+1197,BMW i5,Delhi,2026-01-23,Steering,High
+1198,BMW i4,Delhi,2026-03-13,Charging,High
+1199,BMW 5 Series,Mumbai,2026-08-15,Infotainment,Medium
+1200,BMW i5,Chennai,2026-01-07,Charging,High
+1201,BMW iX,Hyderabad,2026-04-18,Brake,Low
+1202,BMW X7,Hyderabad,2026-08-04,Transmission,Medium
+1203,BMW X1,Delhi,2026-04-10,Suspension,High
+1204,BMW i7,Hyderabad,2026-03-19,Steering,Medium
+1205,BMW iX,Kolkata,2026-06-18,Brake,High
+1206,BMW i7,Ahmedabad,2026-08-19,Transmission,High
+1207,BMW 7 Series,Mumbai,2026-06-18,Engine,High
+1208,BMW 3 Series,Ahmedabad,2026-06-03,Suspension,High
+1209,BMW i7,Kolkata,2026-07-05,Brake,High
+1210,BMW 7 Series,Kolkata,2026-06-18,Infotainment,Medium
+1211,BMW X5,Chennai,2026-08-16,Engine,Low
+1212,BMW 3 Series,Pune,2026-03-15,Infotainment,Low
+1213,BMW i7,Hyderabad,2026-02-12,Battery,Medium
+1214,BMW i5,Mumbai,2026-04-27,Battery,Low
+1215,BMW 7 Series,Pune,2026-07-08,Suspension,High
+1216,BMW i7,Mumbai,2026-01-02,Suspension,Low
+1217,BMW 3 Series,Ahmedabad,2026-03-07,Infotainment,Medium
+1218,BMW X3,Pune,2026-06-07,Battery,Medium
+1219,BMW X7,Chennai,2026-08-24,Charging,Medium
+1220,BMW X7,Mumbai,2026-08-18,Infotainment,High
+1221,BMW 5 Series,Kolkata,2026-03-12,Electrical,Medium
+1222,BMW i4,Bengaluru,2026-01-23,Infotainment,High
+1223,BMW 7 Series,Pune,2026-05-11,Transmission,Low
+1224,BMW X3,Chennai,2026-07-20,Transmission,Low
+1225,BMW X7,Ahmedabad,2026-04-02,Charging,Medium
+1226,BMW X3,Mumbai,2026-04-03,Electrical,Medium
+1227,BMW i7,Delhi,2026-03-07,Brake,Medium
+1228,BMW X7,Chennai,2026-01-06,Suspension,High
+1229,BMW i4,Chennai,2026-06-23,Engine,Low
+1230,BMW 7 Series,Delhi,2026-02-26,Electrical,Low
+1231,BMW iX,Hyderabad,2026-02-05,Electrical,High
+1232,BMW i7,Pune,2026-02-24,Infotainment,Medium
+1233,BMW 3 Series,Hyderabad,2026-03-08,Battery,Medium
+1234,BMW X5,Ahmedabad,2026-07-25,Electrical,Medium
+1235,BMW 7 Series,Delhi,2026-02-16,AC,High
+1236,BMW X7,Mumbai,2026-05-18,Charging,Low
+1237,BMW 5 Series,Delhi,2026-07-18,Steering,High
+1238,BMW i5,Delhi,2026-08-07,Cooling,High
+1239,BMW 3 Series,Pune,2026-05-18,Electrical,High
+1240,BMW X7,Pune,2026-05-04,Electrical,Medium
+1241,BMW 7 Series,Chennai,2026-01-09,Brake,High
+1242,BMW i7,Delhi,2026-03-04,Electrical,Low
+1243,BMW X1,Ahmedabad,2026-06-26,Steering,Low
+1244,BMW i4,Ahmedabad,2026-06-10,Transmission,High
+1245,BMW 3 Series,Chennai,2026-04-25,Electrical,Medium
+1246,BMW 7 Series,Pune,2026-08-07,Brake,Low
+1247,BMW X5,Mumbai,2026-02-05,Electrical,Medium
+1248,BMW 3 Series,Mumbai,2026-04-14,Electrical,Low
+1249,BMW i5,Mumbai,2026-03-15,Charging,Low
+1250,BMW i7,Chennai,2026-05-16,Infotainment,Medium
+1251,BMW iX,Mumbai,2026-05-23,Steering,Medium
+1252,BMW 3 Series,Chennai,2026-02-06,Brake,High
+1253,BMW i4,Hyderabad,2026-03-22,Transmission,Medium
+1254,BMW X7,Chennai,2026-02-07,Transmission,Low
+1255,BMW 5 Series,Mumbai,2026-05-10,Engine,High
+1256,BMW X3,Mumbai,2026-05-17,Cooling,High
+1257,BMW X5,Chennai,2026-07-06,Suspension,Medium
+1258,BMW i7,Ahmedabad,2026-07-17,Battery,Medium
+1259,BMW 7 Series,Mumbai,2026-02-08,Cooling,High
+1260,BMW 7 Series,Mumbai,2026-05-01,Brake,High
+1261,BMW X3,Chennai,2026-03-20,Infotainment,High
+1262,BMW iX,Ahmedabad,2026-06-04,Battery,Low
+1263,BMW X7,Mumbai,2026-01-19,Cooling,High
+1264,BMW 3 Series,Pune,2026-03-11,Charging,Low
+1265,BMW 7 Series,Chennai,2026-03-06,Brake,Medium
+1266,BMW X5,Pune,2026-05-24,Transmission,Medium
+1267,BMW 5 Series,Delhi,2026-04-14,Infotainment,Low
+1268,BMW i4,Chennai,2026-08-09,Transmission,High
+1269,BMW i4,Kolkata,2026-08-05,Cooling,Medium
+1270,BMW 7 Series,Bengaluru,2026-04-26,AC,Low
+1271,BMW 5 Series,Bengaluru,2026-01-16,Engine,High
+1272,BMW X7,Pune,2026-03-19,Brake,Low
+1273,BMW iX,Hyderabad,2026-08-09,AC,High
+1274,BMW i7,Ahmedabad,2026-08-21,Infotainment,Low
+1275,BMW iX,Delhi,2026-03-09,Infotainment,High
+1276,BMW X3,Pune,2026-03-21,Electrical,Medium
+1277,BMW iX,Kolkata,2026-07-13,Steering,High
+1278,BMW X5,Delhi,2026-04-07,Charging,Medium
+1279,BMW X3,Chennai,2026-04-02,Electrical,Medium
+1280,BMW 5 Series,Pune,2026-03-28,Steering,Low
+1281,BMW X7,Bengaluru,2026-02-03,Battery,High
+1282,BMW X3,Pune,2026-06-07,Electrical,Low
+1283,BMW 3 Series,Mumbai,2026-03-03,Electrical,Low
+1284,BMW i4,Mumbai,2026-06-20,Steering,Medium
+1285,BMW X3,Ahmedabad,2026-01-20,Brake,Low
+1286,BMW 5 Series,Hyderabad,2026-01-11,Steering,Medium
+1287,BMW 7 Series,Delhi,2026-01-28,Brake,Medium
+1288,BMW X5,Mumbai,2026-02-28,Electrical,High
+1289,BMW i4,Mumbai,2026-07-20,Steering,Medium
+1290,BMW X3,Chennai,2026-04-25,Charging,High
+1291,BMW i5,Bengaluru,2026-07-19,Steering,High
+1292,BMW X5,Bengaluru,2026-03-10,Infotainment,Medium
+1293,BMW X5,Chennai,2026-05-04,Electrical,Medium
+1294,BMW 7 Series,Kolkata,2026-05-17,Battery,Medium
+1295,BMW X1,Mumbai,2026-08-22,Battery,Medium
+1296,BMW X7,Delhi,2026-08-19,AC,Low
+1297,BMW iX,Chennai,2026-03-27,Charging,Medium
+1298,BMW i5,Kolkata,2026-08-11,Brake,Medium
+1299,BMW X7,Bengaluru,2026-01-08,Engine,Low
+1300,BMW i4,Mumbai,2026-01-05,Suspension,Low
+1301,BMW 3 Series,Delhi,2026-07-17,Engine,Medium
+1302,BMW X7,Chennai,2026-05-16,Charging,Low
+1303,BMW i7,Ahmedabad,2026-01-23,Transmission,High
+1304,BMW i5,Chennai,2026-07-24,Brake,Medium
+1305,BMW i4,Hyderabad,2026-03-02,Engine,Low
+1306,BMW X5,Hyderabad,2026-01-17,Transmission,Low
+1307,BMW X1,Ahmedabad,2026-07-03,Transmission,Low
+1308,BMW 3 Series,Ahmedabad,2026-01-17,Steering,Medium
+1309,BMW i7,Pune,2026-02-17,Steering,Low
+1310,BMW 7 Series,Kolkata,2026-02-19,Charging,Low
+1311,BMW X7,Delhi,2026-05-24,Infotainment,Medium
+1312,BMW X3,Ahmedabad,2026-03-18,Electrical,Medium
+1313,BMW X7,Hyderabad,2026-04-22,Battery,High
+1314,BMW i5,Bengaluru,2026-04-02,Steering,Low
+1315,BMW X7,Bengaluru,2026-04-14,Charging,High
+1316,BMW i7,Ahmedabad,2026-06-11,Charging,Medium
+1317,BMW X7,Hyderabad,2026-05-02,Steering,Medium
+1318,BMW iX,Pune,2026-02-27,Transmission,Low
+1319,BMW X1,Mumbai,2026-06-19,Infotainment,Medium
+1320,BMW i5,Mumbai,2026-08-08,Steering,Low
+1321,BMW i4,Kolkata,2026-01-06,Steering,High
+1322,BMW X5,Mumbai,2026-04-20,Suspension,Medium
+1323,BMW iX,Mumbai,2026-07-12,Brake,High
+1324,BMW X7,Chennai,2026-07-23,Electrical,High
+1325,BMW iX,Chennai,2026-02-24,Battery,Medium
+1326,BMW 3 Series,Delhi,2026-05-17,AC,Medium
+1327,BMW X7,Delhi,2026-07-06,Electrical,High
+1328,BMW X3,Kolkata,2026-07-12,Brake,High
+1329,BMW X1,Delhi,2026-07-15,AC,High
+1330,BMW X1,Mumbai,2026-05-20,AC,Medium
+1331,BMW X1,Pune,2026-01-16,Transmission,Low
+1332,BMW i7,Pune,2026-01-10,Transmission,Medium
+1333,BMW i7,Kolkata,2026-04-09,Suspension,High
+1334,BMW X3,Bengaluru,2026-01-02,Battery,Medium
+1335,BMW i7,Pune,2026-01-27,Steering,Medium
+1336,BMW i7,Pune,2026-01-06,Infotainment,Low
+1337,BMW i5,Bengaluru,2026-01-16,Transmission,Low
+1338,BMW iX,Mumbai,2026-06-23,Suspension,Medium
+1339,BMW X3,Ahmedabad,2026-01-20,Brake,Low
+1340,BMW 5 Series,Pune,2026-06-14,Engine,Low
+1341,BMW 3 Series,Mumbai,2026-02-08,Infotainment,Low
+1342,BMW 3 Series,Hyderabad,2026-04-28,Infotainment,Medium
+1343,BMW X5,Ahmedabad,2026-01-28,Infotainment,Low
+1344,BMW iX,Bengaluru,2026-03-01,Suspension,High
+1345,BMW X1,Delhi,2026-08-03,Transmission,Low
+1346,BMW X1,Ahmedabad,2026-03-05,Infotainment,Medium
+1347,BMW 5 Series,Bengaluru,2026-05-19,Infotainment,High
+1348,BMW X1,Kolkata,2026-03-09,Infotainment,Medium
+1349,BMW iX,Delhi,2026-05-22,AC,Medium
+1350,BMW 5 Series,Bengaluru,2026-01-21,Brake,Low
+1351,BMW i4,Bengaluru,2026-04-15,Steering,Low
+1352,BMW 5 Series,Pune,2026-06-16,Transmission,Low
+1353,BMW 3 Series,Bengaluru,2026-02-14,Suspension,Medium
+1354,BMW i7,Chennai,2026-04-03,Steering,High
+1355,BMW i5,Pune,2026-01-11,Battery,High
+1356,BMW X5,Bengaluru,2026-01-16,AC,Low
+1357,BMW X3,Mumbai,2026-06-25,Charging,Medium
+1358,BMW iX,Pune,2026-03-27,Cooling,Low
+1359,BMW i4,Chennai,2026-06-22,Steering,Low
+1360,BMW X1,Mumbai,2026-08-26,Engine,Low
+1361,BMW X5,Pune,2026-01-26,Engine,Low
+1362,BMW i4,Hyderabad,2026-03-20,Engine,Medium
+1363,BMW i7,Mumbai,2026-08-12,Infotainment,High
+1364,BMW 7 Series,Kolkata,2026-04-04,Cooling,High
+1365,BMW 7 Series,Hyderabad,2026-04-08,Battery,Low
+1366,BMW X3,Chennai,2026-01-24,Cooling,Medium
+1367,BMW X1,Chennai,2026-06-07,Transmission,Low
+1368,BMW X1,Delhi,2026-03-06,Cooling,Medium
+1369,BMW X1,Mumbai,2026-06-06,Engine,Low
+1370,BMW i7,Pune,2026-01-11,Cooling,Low
+1371,BMW X3,Kolkata,2026-04-04,AC,Medium
+1372,BMW i7,Kolkata,2026-01-24,Brake,Medium
+1373,BMW i4,Mumbai,2026-07-11,Cooling,Low
+1374,BMW i5,Hyderabad,2026-05-24,Suspension,Low
+1375,BMW i4,Mumbai,2026-03-12,Charging,Medium
+1376,BMW X1,Kolkata,2026-04-01,Engine,High
+1377,BMW X1,Hyderabad,2026-07-08,Cooling,Medium
+1378,BMW iX,Bengaluru,2026-06-05,Cooling,Medium
+1379,BMW X5,Bengaluru,2026-03-16,Engine,Low
+1380,BMW X1,Ahmedabad,2026-02-19,Brake,Medium
+1381,BMW i5,Hyderabad,2026-07-14,Engine,Low
+1382,BMW X1,Kolkata,2026-01-18,Engine,Medium
+1383,BMW X7,Pune,2026-08-23,Battery,Medium
+1384,BMW 5 Series,Ahmedabad,2026-01-12,Suspension,Low
+1385,BMW iX,Kolkata,2026-03-07,Transmission,High
+1386,BMW iX,Ahmedabad,2026-08-13,Steering,Medium
+1387,BMW 7 Series,Delhi,2026-04-24,Brake,High
+1388,BMW i5,Pune,2026-01-18,Cooling,Medium
+1389,BMW X7,Mumbai,2026-03-04,Cooling,Medium
+1390,BMW i5,Bengaluru,2026-06-21,Brake,Low
+1391,BMW 7 Series,Hyderabad,2026-04-05,Charging,High
+1392,BMW i5,Bengaluru,2026-07-09,Cooling,High
+1393,BMW i5,Pune,2026-08-06,Engine,High
+1394,BMW 3 Series,Bengaluru,2026-07-06,Infotainment,Medium
+1395,BMW 5 Series,Delhi,2026-04-03,Engine,Medium
+1396,BMW i7,Ahmedabad,2026-08-14,Battery,Low
+1397,BMW 5 Series,Chennai,2026-02-01,Suspension,Medium
+1398,BMW X3,Hyderabad,2026-07-16,Transmission,Low
+1399,BMW 7 Series,Pune,2026-03-19,AC,Medium
+1400,BMW 5 Series,Ahmedabad,2026-03-05,Cooling,Medium
+1401,BMW iX,Hyderabad,2026-02-17,Cooling,High
+1402,BMW X5,Ahmedabad,2026-06-10,Steering,Medium
+1403,BMW i7,Pune,2026-03-18,Cooling,Low
+1404,BMW i4,Chennai,2026-07-14,Electrical,Medium
+1405,BMW i7,Hyderabad,2026-03-18,Transmission,Low
+1406,BMW i5,Chennai,2026-07-27,Suspension,High
+1407,BMW 7 Series,Mumbai,2026-01-18,Charging,High
+1408,BMW i4,Chennai,2026-07-02,Charging,High
+1409,BMW i4,Mumbai,2026-03-07,Electrical,High
+1410,BMW i7,Delhi,2026-08-06,Engine,High
+1411,BMW X3,Kolkata,2026-03-19,Cooling,Low
+1412,BMW i7,Ahmedabad,2026-01-10,Brake,Medium
+1413,BMW 7 Series,Ahmedabad,2026-08-03,Steering,Low
+1414,BMW i7,Bengaluru,2026-07-21,Engine,Low
+1415,BMW X7,Hyderabad,2026-06-22,Infotainment,Medium
+1416,BMW 7 Series,Chennai,2026-06-09,Transmission,Medium
+1417,BMW X7,Mumbai,2026-04-10,Brake,High
+1418,BMW X1,Delhi,2026-04-22,Suspension,High
+1419,BMW iX,Hyderabad,2026-03-20,Cooling,High
+1420,BMW i7,Hyderabad,2026-03-01,Suspension,Medium
+1421,BMW iX,Mumbai,2026-04-04,Steering,High
+1422,BMW i7,Delhi,2026-02-03,Charging,High
+1423,BMW i5,Hyderabad,2026-06-02,Steering,High
+1424,BMW X5,Chennai,2026-02-23,Electrical,High
+1425,BMW iX,Bengaluru,2026-03-12,Infotainment,High
+1426,BMW X5,Delhi,2026-04-18,Transmission,Low
+1427,BMW X1,Hyderabad,2026-01-18,Infotainment,High
+1428,BMW 5 Series,Pune,2026-01-25,Cooling,Low
+1429,BMW iX,Kolkata,2026-04-24,Infotainment,Medium
+1430,BMW X7,Chennai,2026-04-26,Engine,Low
+1431,BMW 7 Series,Kolkata,2026-01-27,Cooling,High
+1432,BMW 7 Series,Delhi,2026-02-12,Suspension,Medium
+1433,BMW 7 Series,Mumbai,2026-08-14,Infotainment,Low
+1434,BMW 5 Series,Chennai,2026-04-13,Engine,Low
+1435,BMW X3,Mumbai,2026-05-23,Engine,Medium
+1436,BMW X3,Mumbai,2026-02-06,Cooling,Low
+1437,BMW X5,Hyderabad,2026-06-17,Steering,Low
+1438,BMW i7,Ahmedabad,2026-06-14,Battery,High
+1439,BMW X1,Chennai,2026-08-25,Steering,Medium
+1440,BMW 5 Series,Delhi,2026-08-10,Steering,High
+1441,BMW X5,Pune,2026-02-08,AC,Low
+1442,BMW 7 Series,Bengaluru,2026-01-27,Transmission,High
+1443,BMW 3 Series,Ahmedabad,2026-01-24,Cooling,High
+1444,BMW 3 Series,Chennai,2026-04-13,Infotainment,Medium
+1445,BMW 3 Series,Delhi,2026-03-02,Cooling,High
+1446,BMW iX,Chennai,2026-06-06,Electrical,Low
+1447,BMW 7 Series,Delhi,2026-08-07,Battery,Medium
+1448,BMW i7,Bengaluru,2026-07-23,Charging,Low
+1449,BMW X5,Hyderabad,2026-07-17,Steering,Low
+1450,BMW 5 Series,Kolkata,2026-05-13,Cooling,High
+1451,BMW 3 Series,Bengaluru,2026-07-14,Transmission,High
+1452,BMW iX,Kolkata,2026-08-26,Steering,Low
+1453,BMW X1,Delhi,2026-01-26,Cooling,Low
+1454,BMW X1,Ahmedabad,2026-05-09,Electrical,Low
+1455,BMW X1,Mumbai,2026-07-04,Steering,High
+1456,BMW 5 Series,Ahmedabad,2026-07-28,Steering,High
+1457,BMW iX,Kolkata,2026-02-17,Engine,Low
+1458,BMW 3 Series,Mumbai,2026-07-28,Electrical,Low
+1459,BMW X1,Kolkata,2026-08-14,Engine,Low
+1460,BMW i5,Hyderabad,2026-06-05,Cooling,Low
+1461,BMW iX,Chennai,2026-02-03,Transmission,High
+1462,BMW X5,Mumbai,2026-06-09,Electrical,High
+1463,BMW X1,Pune,2026-07-15,Brake,Medium
+1464,BMW i5,Chennai,2026-03-20,Engine,Low
+1465,BMW X3,Pune,2026-07-26,Infotainment,Low
+1466,BMW X1,Hyderabad,2026-06-27,Suspension,High
+1467,BMW i4,Ahmedabad,2026-06-22,Infotainment,High
+1468,BMW X5,Delhi,2026-08-19,Infotainment,Low
+1469,BMW 5 Series,Pune,2026-03-23,Electrical,Low
+1470,BMW X5,Bengaluru,2026-05-12,Infotainment,Medium
+1471,BMW 3 Series,Ahmedabad,2026-08-10,Engine,Medium
+1472,BMW 7 Series,Hyderabad,2026-05-10,Charging,High
+1473,BMW iX,Kolkata,2026-06-07,Engine,Low
+1474,BMW X5,Mumbai,2026-01-26,Battery,Low
+1475,BMW iX,Kolkata,2026-07-01,Suspension,High
+1476,BMW X7,Chennai,2026-07-19,Infotainment,Medium
+1477,BMW 7 Series,Chennai,2026-08-12,Charging,Low
+1478,BMW i7,Hyderabad,2026-03-16,Cooling,High
+1479,BMW i5,Mumbai,2026-08-08,Suspension,Low
+1480,BMW X7,Chennai,2026-07-08,Cooling,Low
+1481,BMW i5,Hyderabad,2026-08-09,Suspension,Medium
+1482,BMW X3,Delhi,2026-04-13,Cooling,Medium
+1483,BMW i5,Mumbai,2026-03-14,Infotainment,Low
+1484,BMW iX,Chennai,2026-01-17,Transmission,Medium
+1485,BMW i7,Bengaluru,2026-04-26,Engine,High
+1486,BMW 3 Series,Delhi,2026-06-22,Cooling,High
+1487,BMW X3,Pune,2026-07-05,Transmission,Medium
+1488,BMW X7,Bengaluru,2026-03-11,Suspension,Low
+1489,BMW 3 Series,Ahmedabad,2026-02-06,Transmission,High
+1490,BMW iX,Kolkata,2026-03-13,Steering,Low
+1491,BMW iX,Bengaluru,2026-06-07,Charging,High
+1492,BMW X3,Delhi,2026-08-18,Engine,Medium
+1493,BMW iX,Chennai,2026-02-09,Charging,Low
+1494,BMW 5 Series,Ahmedabad,2026-04-05,Brake,Low
+1495,BMW X5,Bengaluru,2026-02-19,Electrical,Medium
+1496,BMW 7 Series,Mumbai,2026-07-17,Engine,Low
+1497,BMW 5 Series,Bengaluru,2026-07-07,Brake,Medium
+1498,BMW 5 Series,Bengaluru,2026-07-27,Suspension,Low
+1499,BMW i4,Mumbai,2026-02-24,Electrical,High
+1500,BMW X3,Mumbai,2026-01-17,Suspension,Medium
+1501,BMW X7,Bengaluru,2026-03-12,Charging,Low
+1502,BMW 5 Series,Chennai,2026-05-02,Battery,Medium
+1503,BMW 7 Series,Ahmedabad,2026-06-26,Battery,Low
+1504,BMW i5,Bengaluru,2026-04-25,Battery,High
+1505,BMW iX,Hyderabad,2026-07-25,Engine,Low
+1506,BMW X7,Pune,2026-01-28,Battery,High
+1507,BMW X1,Ahmedabad,2026-08-08,Engine,High
+1508,BMW 5 Series,Bengaluru,2026-08-07,Battery,Medium
+1509,BMW X5,Mumbai,2026-06-18,Transmission,Medium
+1510,BMW 5 Series,Pune,2026-04-17,Infotainment,Low
+1511,BMW i7,Chennai,2026-04-08,Steering,High
+1512,BMW i4,Hyderabad,2026-05-23,Engine,High
+1513,BMW i7,Chennai,2026-07-26,Engine,High
+1514,BMW 5 Series,Mumbai,2026-01-11,Electrical,Low
+1515,BMW X3,Kolkata,2026-07-26,Transmission,High
+1516,BMW X5,Kolkata,2026-05-18,Steering,Low
+1517,BMW X5,Pune,2026-06-23,Steering,Medium
+1518,BMW X1,Ahmedabad,2026-08-01,Battery,Medium
+1519,BMW X5,Kolkata,2026-06-13,AC,High
+1520,BMW i4,Mumbai,2026-02-12,Steering,High
+1521,BMW 3 Series,Hyderabad,2026-05-21,Charging,Medium
+1522,BMW X3,Bengaluru,2026-05-21,Battery,Low
+1523,BMW iX,Delhi,2026-07-14,Suspension,Medium
+1524,BMW 5 Series,Mumbai,2026-02-05,Engine,High
+1525,BMW X3,Delhi,2026-07-26,Electrical,Medium
+1526,BMW 7 Series,Ahmedabad,2026-07-02,Battery,Medium
+1527,BMW iX,Chennai,2026-04-05,Charging,High
+1528,BMW X1,Delhi,2026-01-13,Brake,Low
+1529,BMW X3,Mumbai,2026-08-12,AC,Medium
+1530,BMW X5,Pune,2026-06-21,Brake,Medium
+1531,BMW i4,Bengaluru,2026-04-28,Electrical,High
+1532,BMW i5,Ahmedabad,2026-02-06,Suspension,High
+1533,BMW X3,Kolkata,2026-08-15,AC,Low
+1534,BMW i4,Chennai,2026-07-22,Cooling,High
+1535,BMW iX,Delhi,2026-03-27,Brake,High
+1536,BMW i5,Kolkata,2026-06-22,Steering,Medium
+1537,BMW 3 Series,Delhi,2026-04-27,Steering,High
+1538,BMW i7,Ahmedabad,2026-07-02,Steering,High
+1539,BMW 3 Series,Pune,2026-06-08,Battery,Medium
+1540,BMW 7 Series,Kolkata,2026-02-09,Charging,Medium
+1541,BMW X5,Ahmedabad,2026-01-05,Electrical,Medium
+1542,BMW iX,Kolkata,2026-03-22,Electrical,Medium
+1543,BMW i5,Bengaluru,2026-07-14,Brake,High
+1544,BMW 3 Series,Chennai,2026-02-09,Brake,Low
+1545,BMW i4,Ahmedabad,2026-01-01,Suspension,Low
+1546,BMW i4,Hyderabad,2026-04-28,Battery,Low
+1547,BMW X3,Pune,2026-03-05,Cooling,Low
+1548,BMW X1,Ahmedabad,2026-01-25,Cooling,Low
+1549,BMW X3,Delhi,2026-08-16,Engine,Medium
+1550,BMW i4,Kolkata,2026-03-20,Cooling,Medium
+1551,BMW i5,Delhi,2026-01-02,Infotainment,Medium
+1552,BMW 5 Series,Chennai,2026-02-10,Suspension,High
+1553,BMW X1,Delhi,2026-07-05,Brake,Medium
+1554,BMW i4,Mumbai,2026-08-03,Brake,High
+1555,BMW i7,Delhi,2026-06-07,Electrical,Medium
+1556,BMW i4,Delhi,2026-07-02,Electrical,Medium
+1557,BMW i4,Hyderabad,2026-02-14,AC,High
+1558,BMW X3,Ahmedabad,2026-01-19,Brake,Low
+1559,BMW i4,Mumbai,2026-01-27,Engine,High
+1560,BMW 3 Series,Ahmedabad,2026-02-17,Transmission,Low
+1561,BMW X7,Chennai,2026-01-04,Suspension,Medium
+1562,BMW i7,Mumbai,2026-03-06,Electrical,High
+1563,BMW i5,Kolkata,2026-05-25,Charging,Medium
+1564,BMW X1,Hyderabad,2026-01-25,Engine,Medium
+1565,BMW 7 Series,Hyderabad,2026-04-11,Brake,Low
+1566,BMW X1,Delhi,2026-06-15,Cooling,High
+1567,BMW 3 Series,Ahmedabad,2026-03-12,Charging,Medium
+1568,BMW X3,Pune,2026-02-07,Engine,Low
+1569,BMW X3,Kolkata,2026-06-14,Infotainment,Low
+1570,BMW X1,Kolkata,2026-04-03,Electrical,High
+1571,BMW X1,Delhi,2026-04-04,Suspension,Low
+1572,BMW 5 Series,Bengaluru,2026-08-11,Infotainment,Low
+1573,BMW 7 Series,Ahmedabad,2026-01-28,Transmission,High
+1574,BMW X1,Pune,2026-02-11,Brake,High
+1575,BMW X7,Chennai,2026-04-18,Brake,High
+1576,BMW i4,Chennai,2026-02-23,Infotainment,Low
+1577,BMW i5,Hyderabad,2026-08-23,Transmission,High
+1578,BMW 3 Series,Ahmedabad,2026-05-12,Charging,Low
+1579,BMW i7,Hyderabad,2026-05-01,Charging,High
+1580,BMW X5,Delhi,2026-07-24,Battery,Medium
+1581,BMW 5 Series,Hyderabad,2026-07-26,Charging,Medium
+1582,BMW 3 Series,Pune,2026-04-12,Infotainment,High
+1583,BMW i4,Ahmedabad,2026-07-26,Cooling,High
+1584,BMW X5,Kolkata,2026-06-15,Cooling,High
+1585,BMW i4,Chennai,2026-08-07,Steering,Low
+1586,BMW i4,Ahmedabad,2026-07-24,Suspension,Low
+1587,BMW i5,Hyderabad,2026-02-15,Infotainment,Low
+1588,BMW X3,Hyderabad,2026-05-27,Engine,High
+1589,BMW 3 Series,Ahmedabad,2026-06-18,Infotainment,High
+1590,BMW X3,Kolkata,2026-06-26,Cooling,Low
+1591,BMW i5,Pune,2026-04-14,Battery,High
+1592,BMW 5 Series,Chennai,2026-03-02,Infotainment,Medium
+1593,BMW X5,Kolkata,2026-01-01,Transmission,High
+1594,BMW 7 Series,Bengaluru,2026-01-20,Steering,High
+1595,BMW i7,Bengaluru,2026-06-28,Cooling,Medium
+1596,BMW 3 Series,Delhi,2026-07-09,AC,Medium
+1597,BMW iX,Delhi,2026-07-24,Transmission,Medium
+1598,BMW 5 Series,Ahmedabad,2026-02-16,Suspension,High
+1599,BMW i7,Hyderabad,2026-01-01,Engine,Low
+1600,BMW X3,Kolkata,2026-05-02,Engine,Low
+1601,BMW i5,Bengaluru,2026-08-15,AC,Medium
+1602,BMW i5,Hyderabad,2026-04-20,AC,Low
+1603,BMW i4,Ahmedabad,2026-02-14,Suspension,High
+1604,BMW i7,Pune,2026-01-08,Battery,Low
+1605,BMW X3,Kolkata,2026-05-15,Engine,High
+1606,BMW i7,Hyderabad,2026-05-14,Suspension,High
+1607,BMW 5 Series,Bengaluru,2026-01-28,Suspension,Low
+1608,BMW 7 Series,Pune,2026-05-06,Steering,Low
+1609,BMW 3 Series,Ahmedabad,2026-05-13,Engine,Low
+1610,BMW i4,Bengaluru,2026-05-28,Battery,Low
+1611,BMW 3 Series,Kolkata,2026-02-22,Charging,High
+1612,BMW X7,Chennai,2026-01-06,Suspension,Medium
+1613,BMW X7,Mumbai,2026-01-18,Charging,Low
+1614,BMW X7,Chennai,2026-08-20,Battery,Medium
+1615,BMW 5 Series,Kolkata,2026-05-18,Transmission,Medium
+1616,BMW 7 Series,Pune,2026-03-08,Infotainment,High
+1617,BMW X1,Hyderabad,2026-08-20,AC,High
+1618,BMW 7 Series,Pune,2026-07-26,Infotainment,High
+1619,BMW iX,Mumbai,2026-01-16,Charging,Low
+1620,BMW 3 Series,Kolkata,2026-05-09,AC,Low
+1621,BMW iX,Mumbai,2026-08-04,Charging,High
+1622,BMW i5,Bengaluru,2026-03-08,Transmission,Low
+1623,BMW 5 Series,Kolkata,2026-04-26,Electrical,High
+1624,BMW i7,Delhi,2026-08-06,Charging,Low
+1625,BMW X1,Bengaluru,2026-01-07,Suspension,Medium
+1626,BMW X1,Pune,2026-03-19,Steering,High
+1627,BMW i5,Hyderabad,2026-02-15,Steering,Medium
+1628,BMW 7 Series,Delhi,2026-04-14,AC,Medium
+1629,BMW X7,Delhi,2026-04-21,Transmission,Low
+1630,BMW X1,Chennai,2026-03-09,AC,High
+1631,BMW X1,Delhi,2026-05-18,Suspension,Medium
+1632,BMW 3 Series,Mumbai,2026-02-17,Engine,High
+1633,BMW i4,Delhi,2026-04-09,Battery,Low
+1634,BMW X1,Pune,2026-08-03,Charging,Medium
+1635,BMW i7,Chennai,2026-08-24,Electrical,High
+1636,BMW X5,Ahmedabad,2026-08-01,Cooling,Low
+1637,BMW X5,Chennai,2026-05-24,Infotainment,Low
+1638,BMW i7,Delhi,2026-04-07,Suspension,Low
+1639,BMW i5,Kolkata,2026-03-28,Suspension,High
+1640,BMW X5,Chennai,2026-02-17,Cooling,Low
+1641,BMW i4,Ahmedabad,2026-03-12,Electrical,Medium
+1642,BMW 5 Series,Mumbai,2026-01-13,Transmission,High
+1643,BMW i5,Ahmedabad,2026-04-08,Charging,High
+1644,BMW X1,Ahmedabad,2026-01-13,Brake,Medium
+1645,BMW X5,Delhi,2026-01-28,Brake,Low
+1646,BMW X7,Pune,2026-02-15,AC,High
+1647,BMW i5,Hyderabad,2026-06-11,Steering,Low
+1648,BMW 5 Series,Pune,2026-04-19,Cooling,Medium
+1649,BMW i7,Chennai,2026-01-14,Charging,Low
+1650,BMW 5 Series,Chennai,2026-07-03,Brake,Low
+1651,BMW i7,Ahmedabad,2026-06-19,Cooling,Medium
+1652,BMW iX,Chennai,2026-07-06,Steering,Low
+1653,BMW X1,Bengaluru,2026-03-07,Cooling,High
+1654,BMW X7,Chennai,2026-07-02,Charging,Medium
+1655,BMW X7,Mumbai,2026-05-16,Suspension,Medium
+1656,BMW 3 Series,Chennai,2026-01-24,Charging,Low
+1657,BMW i7,Mumbai,2026-04-04,Transmission,Medium
+1658,BMW X3,Bengaluru,2026-03-10,Charging,High
+1659,BMW i7,Bengaluru,2026-06-23,Battery,High
+1660,BMW 5 Series,Mumbai,2026-04-23,Brake,High
+1661,BMW 3 Series,Kolkata,2026-08-07,Battery,High
+1662,BMW i4,Delhi,2026-08-21,Infotainment,Low
+1663,BMW 3 Series,Ahmedabad,2026-06-03,Battery,High
+1664,BMW iX,Delhi,2026-01-25,Electrical,High
+1665,BMW i5,Chennai,2026-01-23,Infotainment,Medium
+1666,BMW 3 Series,Bengaluru,2026-06-10,Electrical,Low
+1667,BMW X7,Hyderabad,2026-06-17,Charging,Low
+1668,BMW i5,Chennai,2026-05-13,Brake,Low
+1669,BMW i7,Hyderabad,2026-07-20,Charging,High
+1670,BMW 3 Series,Chennai,2026-07-19,AC,Medium
+1671,BMW 7 Series,Bengaluru,2026-03-16,Transmission,Medium
+1672,BMW i4,Delhi,2026-08-16,Battery,Medium
+1673,BMW i7,Mumbai,2026-08-06,Charging,High
+1674,BMW X5,Hyderabad,2026-05-22,Transmission,High
+1675,BMW 3 Series,Hyderabad,2026-08-09,Battery,High
+1676,BMW X1,Bengaluru,2026-03-11,Infotainment,High
+1677,BMW i7,Mumbai,2026-04-19,AC,High
+1678,BMW X5,Kolkata,2026-04-06,Transmission,High
+1679,BMW X7,Kolkata,2026-01-10,Cooling,High
+1680,BMW X5,Ahmedabad,2026-03-08,Suspension,Medium
+1681,BMW i4,Pune,2026-01-24,Charging,Low
+1682,BMW i4,Kolkata,2026-05-01,Infotainment,Low
+1683,BMW i5,Ahmedabad,2026-08-19,Engine,Low
+1684,BMW X1,Delhi,2026-03-03,Battery,Low
+1685,BMW X1,Kolkata,2026-01-24,Battery,Medium
+1686,BMW i5,Kolkata,2026-01-16,Electrical,High
+1687,BMW i5,Hyderabad,2026-05-27,Steering,Low
+1688,BMW i7,Hyderabad,2026-02-15,Infotainment,Medium
+1689,BMW X1,Pune,2026-04-11,Cooling,Medium
+1690,BMW X7,Chennai,2026-08-17,Brake,Low
+1691,BMW X1,Mumbai,2026-01-15,Battery,Low
+1692,BMW i4,Hyderabad,2026-03-01,Brake,Low
+1693,BMW 5 Series,Hyderabad,2026-05-17,Electrical,High
+1694,BMW i5,Kolkata,2026-01-23,Transmission,High
+1695,BMW X5,Chennai,2026-03-16,Electrical,Low
+1696,BMW 3 Series,Kolkata,2026-01-25,Infotainment,High
+1697,BMW i7,Mumbai,2026-04-16,Battery,Low
+1698,BMW X3,Kolkata,2026-08-25,Charging,Medium
+1699,BMW X1,Delhi,2026-08-14,Brake,Low
+1700,BMW X5,Pune,2026-06-10,Electrical,Medium
+1701,BMW i4,Hyderabad,2026-03-18,Brake,Low
+1702,BMW 7 Series,Kolkata,2026-05-19,Infotainment,Low
+1703,BMW 5 Series,Kolkata,2026-05-12,Transmission,High
+1704,BMW X7,Kolkata,2026-08-14,Battery,High
+1705,BMW X7,Delhi,2026-01-04,Charging,Medium
+1706,BMW 3 Series,Mumbai,2026-03-13,Steering,Low
+1707,BMW iX,Delhi,2026-01-04,Electrical,Low
+1708,BMW iX,Mumbai,2026-03-26,Infotainment,High
+1709,BMW 3 Series,Kolkata,2026-01-10,Electrical,Medium
+1710,BMW i5,Hyderabad,2026-05-17,Brake,Low
+1711,BMW iX,Bengaluru,2026-01-24,Engine,Low
+1712,BMW X1,Bengaluru,2026-06-24,Engine,High
+1713,BMW i7,Bengaluru,2026-04-21,Transmission,Low
+1714,BMW 3 Series,Hyderabad,2026-06-15,Cooling,Medium
+1715,BMW i7,Hyderabad,2026-04-24,Cooling,Medium
+1716,BMW i4,Delhi,2026-06-12,Suspension,High
+1717,BMW 7 Series,Kolkata,2026-03-11,Electrical,High
+1718,BMW X1,Bengaluru,2026-08-13,Suspension,Low
+1719,BMW 3 Series,Kolkata,2026-03-09,Charging,High
+1720,BMW 3 Series,Kolkata,2026-06-11,Infotainment,Low
+1721,BMW i4,Delhi,2026-07-17,Brake,Medium
+1722,BMW iX,Chennai,2026-08-05,AC,Medium
+1723,BMW iX,Mumbai,2026-04-27,Infotainment,Low
+1724,BMW 5 Series,Delhi,2026-05-17,Cooling,Medium
+1725,BMW X7,Mumbai,2026-01-01,Transmission,High
+1726,BMW X5,Ahmedabad,2026-07-13,Transmission,High
+1727,BMW X7,Pune,2026-04-19,Electrical,Medium
+1728,BMW i4,Bengaluru,2026-07-08,Battery,Low
+1729,BMW X7,Delhi,2026-04-04,Transmission,Medium
+1730,BMW X3,Pune,2026-05-18,Brake,Medium
+1731,BMW X5,Ahmedabad,2026-07-01,Infotainment,High
+1732,BMW 5 Series,Hyderabad,2026-05-12,Charging,Medium
+1733,BMW X7,Mumbai,2026-08-11,Cooling,High
+1734,BMW X3,Chennai,2026-02-23,Transmission,Low
+1735,BMW X3,Kolkata,2026-02-04,Electrical,Low
+1736,BMW i4,Mumbai,2026-08-13,Infotainment,High
+1737,BMW iX,Bengaluru,2026-08-13,Engine,Medium
+1738,BMW X3,Hyderabad,2026-02-18,Cooling,Low
+1739,BMW iX,Bengaluru,2026-05-03,Cooling,Low
+1740,BMW X3,Mumbai,2026-07-23,Steering,Medium
+1741,BMW X1,Hyderabad,2026-07-16,Cooling,Low
+1742,BMW 3 Series,Mumbai,2026-01-08,Cooling,Low
+1743,BMW i5,Delhi,2026-01-09,Brake,High
+1744,BMW 3 Series,Hyderabad,2026-05-24,Infotainment,Low
+1745,BMW i7,Kolkata,2026-03-28,Transmission,Medium
+1746,BMW i4,Chennai,2026-03-16,AC,High
+1747,BMW X1,Ahmedabad,2026-05-19,Electrical,Medium
+1748,BMW X5,Bengaluru,2026-07-07,Engine,High
+1749,BMW X3,Delhi,2026-08-21,Charging,Medium
+1750,BMW 5 Series,Bengaluru,2026-07-28,Battery,Low
+1751,BMW i5,Bengaluru,2026-03-08,Charging,Low
+1752,BMW X5,Mumbai,2026-08-13,Infotainment,Low
+1753,BMW i4,Hyderabad,2026-06-23,AC,Medium
+1754,BMW X7,Bengaluru,2026-03-12,Brake,Medium
+1755,BMW i4,Mumbai,2026-08-18,Suspension,Medium
+1756,BMW 3 Series,Kolkata,2026-05-28,Battery,Medium
+1757,BMW iX,Ahmedabad,2026-01-17,Battery,High
+1758,BMW i5,Kolkata,2026-07-23,Infotainment,Low
+1759,BMW iX,Hyderabad,2026-01-16,Steering,Medium
+1760,BMW X1,Delhi,2026-03-25,Electrical,Low
+1761,BMW X3,Chennai,2026-01-11,Battery,Low
+1762,BMW X3,Mumbai,2026-03-20,Battery,High
+1763,BMW 5 Series,Delhi,2026-04-24,Transmission,High
+1764,BMW 3 Series,Delhi,2026-05-02,Charging,High
+1765,BMW X3,Delhi,2026-04-06,AC,Medium
+1766,BMW i4,Hyderabad,2026-08-03,Electrical,Low
+1767,BMW i7,Mumbai,2026-04-03,Electrical,Medium
+1768,BMW X1,Delhi,2026-04-02,Charging,High
+1769,BMW i4,Kolkata,2026-03-17,Transmission,Low
+1770,BMW X5,Bengaluru,2026-07-24,Infotainment,High
+1771,BMW X3,Mumbai,2026-04-06,Charging,High
+1772,BMW 3 Series,Pune,2026-06-21,Cooling,Low
+1773,BMW 7 Series,Kolkata,2026-03-07,Battery,High
+1774,BMW 3 Series,Bengaluru,2026-05-01,AC,High
+1775,BMW X5,Mumbai,2026-01-26,AC,High
+1776,BMW i7,Hyderabad,2026-07-15,Transmission,Low
+1777,BMW i5,Mumbai,2026-02-26,Transmission,Medium
+1778,BMW i4,Hyderabad,2026-05-03,Cooling,Low
+1779,BMW X1,Pune,2026-02-18,Steering,Medium
+1780,BMW 5 Series,Pune,2026-07-13,Electrical,Low
+1781,BMW i7,Chennai,2026-05-21,Battery,Medium
+1782,BMW X3,Ahmedabad,2026-05-20,Suspension,High
+1783,BMW i4,Kolkata,2026-03-20,Engine,Medium
+1784,BMW X5,Kolkata,2026-06-09,Engine,Low
+1785,BMW 7 Series,Ahmedabad,2026-01-15,Electrical,High
+1786,BMW iX,Kolkata,2026-01-04,AC,Low
+1787,BMW X7,Bengaluru,2026-05-22,Cooling,Low
+1788,BMW 5 Series,Ahmedabad,2026-07-10,Brake,Medium
+1789,BMW X1,Kolkata,2026-06-18,Engine,Low
+1790,BMW i7,Bengaluru,2026-05-01,Suspension,High
+1791,BMW i4,Ahmedabad,2026-04-24,Transmission,Low
+1792,BMW 5 Series,Chennai,2026-07-24,Charging,Medium
+1793,BMW iX,Bengaluru,2026-04-08,Battery,High
+1794,BMW X7,Kolkata,2026-01-24,Brake,High
+1795,BMW i5,Hyderabad,2026-02-13,Transmission,High
+1796,BMW 7 Series,Bengaluru,2026-02-07,AC,Medium
+1797,BMW X3,Delhi,2026-08-22,Brake,Medium
+1798,BMW 5 Series,Mumbai,2026-08-01,Electrical,Medium
+1799,BMW i5,Pune,2026-08-07,Suspension,High
+1800,BMW 3 Series,Kolkata,2026-06-02,Engine,Medium
+1801,BMW i4,Delhi,2026-08-17,Engine,Low
+1802,BMW 5 Series,Delhi,2026-07-16,Brake,Low
+1803,BMW iX,Bengaluru,2026-02-09,Electrical,Medium
+1804,BMW X7,Delhi,2026-01-21,Steering,Low
+1805,BMW X5,Ahmedabad,2026-04-10,Cooling,Low
+1806,BMW 7 Series,Mumbai,2026-02-17,Transmission,Medium
+1807,BMW 7 Series,Delhi,2026-07-22,Charging,Low
+1808,BMW iX,Delhi,2026-01-28,Brake,High
+1809,BMW i5,Delhi,2026-05-14,Charging,High
+1810,BMW i5,Hyderabad,2026-04-20,Charging,Low
+1811,BMW X5,Mumbai,2026-05-13,Charging,High
+1812,BMW iX,Delhi,2026-07-22,Suspension,Medium
+1813,BMW i4,Delhi,2026-02-10,Engine,Low
+1814,BMW 5 Series,Kolkata,2026-01-16,AC,Low
+1815,BMW X5,Mumbai,2026-07-17,AC,Medium
+1816,BMW 5 Series,Ahmedabad,2026-02-16,Battery,Medium
+1817,BMW 7 Series,Chennai,2026-07-28,Transmission,High
+1818,BMW 3 Series,Chennai,2026-05-12,Electrical,Medium
+1819,BMW 5 Series,Ahmedabad,2026-08-19,Battery,Low
+1820,BMW X1,Chennai,2026-02-25,Brake,High
+1821,BMW 7 Series,Chennai,2026-02-21,Charging,Low
+1822,BMW i4,Delhi,2026-07-15,Battery,High
+1823,BMW 7 Series,Mumbai,2026-04-15,Electrical,Low
+1824,BMW X7,Chennai,2026-06-25,Brake,Low
+1825,BMW X5,Mumbai,2026-06-26,Steering,Low
+1826,BMW 3 Series,Mumbai,2026-01-07,Infotainment,Low
+1827,BMW 3 Series,Pune,2026-06-12,Infotainment,High
+1828,BMW i4,Hyderabad,2026-02-17,Steering,Medium
+1829,BMW i7,Kolkata,2026-01-07,Brake,High
+1830,BMW i7,Delhi,2026-07-15,Steering,Medium
+1831,BMW 5 Series,Delhi,2026-01-06,Brake,Medium
+1832,BMW iX,Bengaluru,2026-08-05,Engine,Low
+1833,BMW X3,Bengaluru,2026-04-11,Steering,High
+1834,BMW 5 Series,Delhi,2026-08-02,AC,High
+1835,BMW X1,Delhi,2026-01-19,Charging,Medium
+1836,BMW i7,Chennai,2026-03-26,Transmission,High
+1837,BMW i4,Ahmedabad,2026-07-22,Battery,Low
+1838,BMW i7,Chennai,2026-03-22,Charging,Medium
+1839,BMW iX,Delhi,2026-04-04,Battery,Low
+1840,BMW X3,Mumbai,2026-01-26,Cooling,Low
+1841,BMW i7,Delhi,2026-03-04,Engine,High
+1842,BMW i7,Mumbai,2026-05-26,Transmission,Low
+1843,BMW iX,Bengaluru,2026-03-22,Engine,High
+1844,BMW X1,Chennai,2026-04-05,Charging,High
+1845,BMW 7 Series,Hyderabad,2026-05-26,Electrical,Medium
+1846,BMW X3,Delhi,2026-04-17,Engine,Medium
+1847,BMW X1,Kolkata,2026-02-04,Suspension,Low
+1848,BMW i7,Delhi,2026-01-19,Suspension,Low
+1849,BMW i4,Kolkata,2026-07-11,Suspension,High
+1850,BMW X1,Hyderabad,2026-04-02,Steering,Medium
+1851,BMW i4,Kolkata,2026-01-27,Steering,Medium
+1852,BMW i4,Chennai,2026-08-25,Cooling,Low
+1853,BMW iX,Ahmedabad,2026-03-13,Brake,High
+1854,BMW i4,Hyderabad,2026-03-03,Brake,High
+1855,BMW X1,Hyderabad,2026-07-25,Transmission,High
+1856,BMW 3 Series,Hyderabad,2026-05-13,Engine,High
+1857,BMW 3 Series,Chennai,2026-02-02,Cooling,Medium
+1858,BMW X7,Delhi,2026-04-17,Infotainment,High
+1859,BMW 7 Series,Hyderabad,2026-03-10,Infotainment,Low
+1860,BMW i5,Pune,2026-04-10,Steering,Medium
+1861,BMW i4,Ahmedabad,2026-08-04,Battery,Medium
+1862,BMW i5,Mumbai,2026-08-23,Transmission,Low
+1863,BMW X3,Kolkata,2026-03-13,Electrical,High
+1864,BMW X3,Hyderabad,2026-05-07,Electrical,High
+1865,BMW i5,Pune,2026-02-15,Infotainment,High
+1866,BMW i4,Ahmedabad,2026-05-13,Transmission,Medium
+1867,BMW i4,Ahmedabad,2026-07-05,Battery,Medium
+1868,BMW i4,Hyderabad,2026-01-22,Brake,Low
+1869,BMW X3,Ahmedabad,2026-04-02,Suspension,Low
+1870,BMW 3 Series,Mumbai,2026-08-14,Charging,Medium
+1871,BMW iX,Delhi,2026-03-25,Electrical,High
+1872,BMW i4,Kolkata,2026-03-25,Suspension,Medium
+1873,BMW X7,Ahmedabad,2026-08-23,Steering,Medium
+1874,BMW 7 Series,Bengaluru,2026-01-26,Cooling,Medium
+1875,BMW i5,Kolkata,2026-05-17,AC,High
+1876,BMW i7,Kolkata,2026-06-03,Battery,Medium
+1877,BMW 3 Series,Mumbai,2026-07-26,Battery,Low
+1878,BMW X5,Delhi,2026-03-14,Electrical,High
+1879,BMW 3 Series,Ahmedabad,2026-05-02,Brake,Medium
+1880,BMW 7 Series,Mumbai,2026-06-24,Brake,Low
+1881,BMW 3 Series,Bengaluru,2026-05-24,Steering,High
+1882,BMW i4,Chennai,2026-04-09,Transmission,Low
+1883,BMW 5 Series,Ahmedabad,2026-05-17,Engine,Low
+1884,BMW X7,Ahmedabad,2026-02-13,Suspension,High
+1885,BMW i4,Bengaluru,2026-06-04,Cooling,Medium
+1886,BMW i7,Mumbai,2026-02-17,Electrical,High
+1887,BMW i4,Kolkata,2026-02-07,Infotainment,Medium
+1888,BMW X1,Pune,2026-02-20,Suspension,Medium
+1889,BMW i5,Chennai,2026-01-05,Engine,High
+1890,BMW i7,Mumbai,2026-01-20,Engine,Medium
+1891,BMW X5,Chennai,2026-03-01,Charging,Low
+1892,BMW i5,Chennai,2026-07-10,Cooling,High
+1893,BMW X7,Chennai,2026-02-18,Battery,Low
+1894,BMW i5,Chennai,2026-03-22,Charging,High
+1895,BMW 5 Series,Hyderabad,2026-05-04,Electrical,Low
+1896,BMW 3 Series,Chennai,2026-03-11,Battery,High
+1897,BMW X3,Pune,2026-08-17,Transmission,Low
+1898,BMW X5,Delhi,2026-08-21,Steering,Low
+1899,BMW X7,Pune,2026-08-22,Cooling,High
+1900,BMW X7,Delhi,2026-06-25,Electrical,Low
+1901,BMW 5 Series,Mumbai,2026-08-23,Cooling,High
+1902,BMW 3 Series,Chennai,2026-07-14,Electrical,Medium
+1903,BMW X1,Bengaluru,2026-01-15,Infotainment,Medium
+1904,BMW 5 Series,Delhi,2026-05-27,Brake,Low
+1905,BMW 3 Series,Delhi,2026-07-14,Battery,Medium
+1906,BMW i4,Bengaluru,2026-03-13,Transmission,Low
+1907,BMW i7,Hyderabad,2026-01-04,Cooling,Medium
+1908,BMW i7,Kolkata,2026-02-10,Electrical,Medium
+1909,BMW iX,Mumbai,2026-02-26,Steering,Low
+1910,BMW 3 Series,Hyderabad,2026-01-07,Steering,Medium
+1911,BMW 3 Series,Ahmedabad,2026-04-08,Battery,Low
+1912,BMW X1,Delhi,2026-07-25,Battery,Low
+1913,BMW iX,Mumbai,2026-08-12,Engine,Low
+1914,BMW 7 Series,Hyderabad,2026-07-07,Infotainment,High
+1915,BMW X3,Hyderabad,2026-08-23,Charging,Medium
+1916,BMW iX,Hyderabad,2026-07-09,Infotainment,Low
+1917,BMW 7 Series,Kolkata,2026-08-24,Electrical,Medium
+1918,BMW i4,Chennai,2026-03-11,AC,Low
+1919,BMW X1,Delhi,2026-05-06,Electrical,Medium
+1920,BMW iX,Delhi,2026-03-08,Battery,Low
+1921,BMW i5,Chennai,2026-06-12,AC,Medium
+1922,BMW X3,Mumbai,2026-04-24,Battery,Low
+1923,BMW X5,Bengaluru,2026-06-22,Infotainment,High
+1924,BMW i4,Hyderabad,2026-01-14,Charging,Medium
+1925,BMW X3,Mumbai,2026-08-05,Infotainment,High
+1926,BMW i7,Ahmedabad,2026-01-05,Cooling,Medium
+1927,BMW X7,Hyderabad,2026-02-02,Suspension,High
+1928,BMW 5 Series,Kolkata,2026-02-11,Cooling,Low
+1929,BMW 7 Series,Pune,2026-08-07,AC,High
+1930,BMW 3 Series,Ahmedabad,2026-05-12,Suspension,High
+1931,BMW X5,Chennai,2026-04-13,Steering,Low
+1932,BMW X3,Mumbai,2026-05-18,Steering,Medium
+1933,BMW 5 Series,Ahmedabad,2026-08-25,Transmission,High
+1934,BMW 5 Series,Hyderabad,2026-06-26,Charging,Low
+1935,BMW 7 Series,Delhi,2026-07-25,Engine,Low
+1936,BMW i4,Mumbai,2026-01-28,AC,Low
+1937,BMW X3,Kolkata,2026-04-28,Brake,High
+1938,BMW i7,Mumbai,2026-06-02,Steering,Low
+1939,BMW i4,Chennai,2026-08-18,Brake,High
+1940,BMW iX,Delhi,2026-03-18,Infotainment,Low
+1941,BMW X1,Hyderabad,2026-07-26,Cooling,Medium
+1942,BMW i7,Mumbai,2026-01-16,Suspension,Medium
+1943,BMW i5,Bengaluru,2026-01-04,AC,Medium
+1944,BMW i7,Mumbai,2026-02-25,Battery,Medium
+1945,BMW i5,Hyderabad,2026-06-02,Charging,Low
+1946,BMW 7 Series,Pune,2026-01-02,AC,Low
+1947,BMW i5,Ahmedabad,2026-06-14,AC,Low
+1948,BMW X7,Pune,2026-06-26,Cooling,High
+1949,BMW iX,Mumbai,2026-02-14,Brake,Low
+1950,BMW X1,Ahmedabad,2026-03-28,Battery,High
+1951,BMW iX,Kolkata,2026-02-13,Brake,Low
+1952,BMW X7,Mumbai,2026-01-11,Charging,Low
+1953,BMW 7 Series,Delhi,2026-05-03,Brake,Medium
+1954,BMW 3 Series,Pune,2026-08-15,Brake,High
+1955,BMW i5,Mumbai,2026-05-03,Steering,Medium
+1956,BMW 5 Series,Kolkata,2026-05-02,Battery,Medium
+1957,BMW i7,Pune,2026-06-03,Cooling,Medium
+1958,BMW i4,Chennai,2026-06-12,Steering,Medium
+1959,BMW X3,Pune,2026-02-11,Cooling,Low
+1960,BMW i5,Mumbai,2026-01-17,Transmission,Medium
+1961,BMW i4,Kolkata,2026-05-11,Brake,Medium
+1962,BMW i4,Bengaluru,2026-02-03,Steering,Low
+1963,BMW i7,Pune,2026-08-08,Infotainment,High
+1964,BMW i4,Mumbai,2026-01-20,AC,Medium
+1965,BMW 5 Series,Kolkata,2026-01-08,AC,Low
+1966,BMW i7,Ahmedabad,2026-04-17,Steering,Low
+1967,BMW X3,Kolkata,2026-03-19,Battery,Medium
+1968,BMW 5 Series,Hyderabad,2026-08-14,Cooling,High
+1969,BMW X5,Chennai,2026-05-24,Infotainment,Low
+1970,BMW X1,Kolkata,2026-04-28,Electrical,Low
+1971,BMW 7 Series,Delhi,2026-08-26,Transmission,High
+1972,BMW X3,Kolkata,2026-04-10,Battery,High
+1973,BMW 7 Series,Bengaluru,2026-04-11,AC,High
+1974,BMW i5,Ahmedabad,2026-05-20,Battery,Medium
+1975,BMW X3,Pune,2026-03-18,Electrical,Low
+1976,BMW 7 Series,Pune,2026-06-05,Brake,Medium
+1977,BMW i7,Ahmedabad,2026-01-16,Transmission,Low
+1978,BMW i4,Bengaluru,2026-03-23,AC,Low
+1979,BMW X5,Ahmedabad,2026-08-24,Battery,High
+1980,BMW X5,Delhi,2026-05-14,Brake,High
+1981,BMW i5,Hyderabad,2026-08-26,Suspension,Low
+1982,BMW 3 Series,Hyderabad,2026-06-22,Electrical,Medium
+1983,BMW X7,Kolkata,2026-06-28,Infotainment,Low
+1984,BMW 3 Series,Bengaluru,2026-02-05,Infotainment,Medium
+1985,BMW i4,Delhi,2026-08-06,Brake,High
+1986,BMW 5 Series,Kolkata,2026-07-18,Brake,Low
+1987,BMW 7 Series,Mumbai,2026-03-10,AC,Medium
+1988,BMW iX,Mumbai,2026-03-16,Brake,High
+1989,BMW X7,Hyderabad,2026-06-21,Electrical,Medium
+1990,BMW X1,Chennai,2026-03-10,Steering,Medium
+1991,BMW 5 Series,Hyderabad,2026-07-16,Charging,Low
+1992,BMW 7 Series,Ahmedabad,2026-04-23,AC,High
+1993,BMW i4,Pune,2026-07-04,Electrical,Medium
+1994,BMW iX,Delhi,2026-04-13,Battery,Low
+1995,BMW i4,Kolkata,2026-01-06,Cooling,High
+1996,BMW X3,Mumbai,2026-03-09,Cooling,Low
+1997,BMW i4,Chennai,2026-06-20,Charging,Medium
+1998,BMW 7 Series,Pune,2026-04-01,Electrical,High
+1999,BMW 3 Series,Kolkata,2026-07-15,AC,Medium
+2000,BMW i4,Pune,2026-07-22,Charging,High

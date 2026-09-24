@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCP &mdash; BMW Natural Language Analyst  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Snowflake" href="snowflake.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BMW Natural Language Analyst
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Project Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MCP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mcp-architecture">MCP Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mcp-tools">MCP Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vehicle-sales">Vehicle Sales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#warranty-cost">Warranty Cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fault-summary">Fault Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#battery-status">Battery Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#approved-query">Approved Query</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mcp-server">MCP Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="snowflake.html">Snowflake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BMW Natural Language Analyst</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MCP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mcp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mcp">
+<h1>MCP<a class="headerlink" href="#mcp" title="Link to this heading"></a></h1>
+<p>The BMW Natural Language Analyst uses the Model Context Protocol (MCP)
+to expose BMW analytics tools.</p>
+<section id="mcp-architecture">
+<h2>MCP Architecture<a class="headerlink" href="#mcp-architecture" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BMW</span> <span class="n">Analyst</span> <span class="n">Agent</span>
+       <span class="o">|</span>
+       <span class="n">v</span>
+   <span class="n">MCP</span> <span class="n">Client</span>
+       <span class="o">|</span>
+       <span class="n">v</span>
+   <span class="n">MCP</span> <span class="n">Server</span>
+       <span class="o">|</span>
+       <span class="n">v</span>
+    <span class="n">Snowflake</span>
+</pre></div>
+</div>
+</section>
+<section id="mcp-tools">
+<h2>MCP Tools<a class="headerlink" href="#mcp-tools" title="Link to this heading"></a></h2>
+<section id="vehicle-sales">
+<h3>Vehicle Sales<a class="headerlink" href="#vehicle-sales" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vehicle_sales</span>
+</pre></div>
+</div>
+<p>Provides BMW vehicle sales information.</p>
+</section>
+<section id="warranty-cost">
+<h3>Warranty Cost<a class="headerlink" href="#warranty-cost" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">warranty_cost</span>
+</pre></div>
+</div>
+<p>Provides BMW warranty information and warranty costs.</p>
+</section>
+<section id="fault-summary">
+<h3>Fault Summary<a class="headerlink" href="#fault-summary" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fault_summary</span>
+</pre></div>
+</div>
+<p>Provides BMW fault information.</p>
+</section>
+<section id="battery-status">
+<h3>Battery Status<a class="headerlink" href="#battery-status" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">battery_status</span>
+</pre></div>
+</div>
+<p>Provides BMW battery information.</p>
+</section>
+<section id="approved-query">
+<h3>Approved Query<a class="headerlink" href="#approved-query" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execute_approved_query</span>
+</pre></div>
+</div>
+<p>Executes a validated read-only SQL query.</p>
+</section>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h2>
+<p>The MCP server validates SQL before allowing execution.</p>
+<p>Only approved read-only operations are permitted.</p>
+</section>
+<section id="mcp-server">
+<h2>MCP Server<a class="headerlink" href="#mcp-server" title="Link to this heading"></a></h2>
+<p>The MCP server can be started using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">bmw_analyst</span><span class="o">.</span><span class="n">mcp_server</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+<p>The application normally starts and manages the MCP process through
+the MCP client.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="snowflake.html" class="btn btn-neutral float-right" title="Snowflake" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, BMW Natural Language Analyst.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "bmw-natural-language-analyst"
+version = "0.1.0"
+
+description = "Natural Language BMW Data Analyst using MCP, Snowflake and Ollama Qwen 2.5 7B"
+
+readme = "README.md"
+
+requires-python = ">=3.12,<3.13"
+
+
+dependencies = [
+    "mcp<2",
+    "snowflake-connector-python[secure-local-storage]",
+    "boto3",
+    "pydantic>=2.0",
+    "python-dotenv",
+    "fastapi",
+    "uvicorn",
+    "streamlit",
+    "requests",
+    "ollama",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-dotenv",
+]
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+testpaths = ["tests"]
+
+env_files = [".env"]
+
+markers = [
+    "integration: requires external Snowflake infrastructure",
+]
