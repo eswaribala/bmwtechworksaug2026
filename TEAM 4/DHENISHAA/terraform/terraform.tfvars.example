@@ -1,0 +1,7 @@
+aws_region      = "us-east-1"
+environment     = "dev"
+project_name    = "bmw-serverless-data-lake"
+participant     = "P15"
+bucket_suffix   = "bmw-data-lake-dev"
+quicksight_enabled = false
+

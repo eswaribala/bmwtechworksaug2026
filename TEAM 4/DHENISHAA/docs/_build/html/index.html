@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMW Serverless Data Lake Documentation &mdash; BMW Serverless Data Lake 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="01. Business Requirements" href="01_business_requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            BMW Serverless Data Lake
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01_business_requirements.html">01. Business Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_solution_architecture.html">02. Solution Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_dictionary.html">03. Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_data_flow.html">04. Data Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_terraform_infrastructure.html">05. Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_data_processing.html">06. Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_athena_queries.html">07. Athena Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_lake_formation_governance.html">08. Lake Formation Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_quicksight_dashboard.html">09. QuickSight Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_testing_strategy.html">10. Testing Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cicd.html">11. CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cicd.html#id1">11. CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_troubleshooting.html">12. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_deployment_runbook.html">13. Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_demo_script.html">14. Demo Script</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">BMW Serverless Data Lake</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BMW Serverless Data Lake Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bmw-serverless-data-lake-documentation">
+<h1>BMW Serverless Data Lake Documentation<a class="headerlink" href="#bmw-serverless-data-lake-documentation" title="Link to this heading"></a></h1>
+<p>This documentation describes the BMW serverless data lake architecture,
+data processing pipeline, AWS infrastructure, and Python implementation.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01_business_requirements.html">01. Business Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_business_requirements.html#business-objective">Business objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_business_requirements.html#business-stakeholders">Business stakeholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_business_requirements.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_business_requirements.html#acceptance-criteria">Acceptance criteria</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_solution_architecture.html">02. Solution Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_solution_architecture.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_solution_architecture.html#layers">Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_solution_architecture.html#core-design-decisions">Core design decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_dictionary.html">03. Data Dictionary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03_data_dictionary.html#vehicle-master">Vehicle master</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_data_dictionary.html#telemetry">Telemetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_data_dictionary.html#sales">Sales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_data_dictionary.html#maintenance">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_data_dictionary.html#warranty">Warranty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_data_flow.html">04. Data Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04_data_flow.html#flow">Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_data_flow.html#data-lineage">Data lineage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05_terraform_infrastructure.html">05. Terraform Infrastructure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05_terraform_infrastructure.html#terraform-overview">Terraform overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_terraform_infrastructure.html#core-modules">Core modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_terraform_infrastructure.html#important-notes">Important notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06_data_processing.html">06. Data Processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="06_data_processing.html#local-processing-flow">Local processing flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_data_processing.html#why-parquet-and-partitioning-matter">Why parquet and partitioning matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="07_athena_queries.html">07. Athena Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="07_athena_queries.html#example-query-patterns">Example query patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_athena_queries.html#best-practices">Best practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08_lake_formation_governance.html">08. Lake Formation Governance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08_lake_formation_governance.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_lake_formation_governance.html#important-note">Important note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09_quicksight_dashboard.html">09. QuickSight Dashboard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="09_quicksight_dashboard.html#dashboard-vision">Dashboard vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_quicksight_dashboard.html#planned-kpis">Planned KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_quicksight_dashboard.html#planned-visuals">Planned visuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_quicksight_dashboard.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10_testing_strategy.html">10. Testing Strategy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10_testing_strategy.html#testing-goals">Testing goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_testing_strategy.html#stack">Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_testing_strategy.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="11_cicd.html">11. CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_cicd.html#id1">11. CI/CD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="11_cicd.html#continuous-integration">Continuous integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cicd.html#continuous-delivery">Continuous delivery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cicd.html#github-setup">GitHub setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="12_troubleshooting.html">12. Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting.html#common-issues">Common issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting.html#basic-checks">Basic checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="13_deployment_runbook.html">13. Deployment Runbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="13_deployment_runbook.html#local-setup">Local setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_deployment_runbook.html#aws-verification">AWS verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="14_demo_script.html">14. Demo Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="14_demo_script.html#demo-flow">Demo flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_demo_script.html#trainer-notes">Trainer notes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Link to this heading"></a></h1>
+<section id="module-bmw_data_lake.config">
+<span id="configuration"></span><h2>Configuration<a class="headerlink" href="#module-bmw_data_lake.config" title="Link to this heading"></a></h2>
+<p>Project configuration and environment-aware settings.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bmw_data_lake.config.</span></span><span class="sig-name descname"><span class="pre">ProjectConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bmw-serverless-data-lake'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dev'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aws_region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'us-east-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_bucket_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bmw-data-lake-dev'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'raw'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curated_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'curated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'logs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rejected'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bmw_data_lake/config.html#ProjectConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig" title="Link to this definition"></a></dt>
+<dd><p>Application configuration for local and AWS-friendly execution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.aws_region">
+<span class="sig-name descname"><span class="pre">aws_region</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'us-east-1'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.aws_region" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.curated_prefix">
+<span class="sig-name descname"><span class="pre">curated_prefix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'curated'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.curated_prefix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.data_bucket_name">
+<span class="sig-name descname"><span class="pre">data_bucket_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bmw-data-lake-dev'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.data_bucket_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.environment">
+<span class="sig-name descname"><span class="pre">environment</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dev'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.environment" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.from_env">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_env</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bmw_data_lake.config.ProjectConfig" title="bmw_data_lake.config.ProjectConfig"><span class="pre">ProjectConfig</span></a></span></span><a class="reference internal" href="_modules/bmw_data_lake/config.html#ProjectConfig.from_env"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.from_env" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.logs_prefix">
+<span class="sig-name descname"><span class="pre">logs_prefix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'logs'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.logs_prefix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.project_name">
+<span class="sig-name descname"><span class="pre">project_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bmw-serverless-data-lake'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.project_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.raw_prefix">
+<span class="sig-name descname"><span class="pre">raw_prefix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'raw'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.raw_prefix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bmw_data_lake.config.ProjectConfig.rejected_prefix">
+<span class="sig-name descname"><span class="pre">rejected_prefix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rejected'</span></span><a class="headerlink" href="#bmw_data_lake.config.ProjectConfig.rejected_prefix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bmw_data_lake.data_generator">
+<span id="data-generation"></span><h2>Data generation<a class="headerlink" href="#module-bmw_data_lake.data_generator" title="Link to this heading"></a></h2>
+<p>Synthetic BMW data generator for the serverless data lake project.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.create_sample_data_copy">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">create_sample_data_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#create_sample_data_copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.create_sample_data_copy" title="Link to this definition"></a></dt>
+<dd><p>Create a copy of the generated data in the sample directory for documentation use.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_all_datasets">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_all_datasets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_all_datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_all_datasets" title="Link to this definition"></a></dt>
+<dd><p>Generate all BMW sample datasets.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_maintenance">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_maintenance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_maintenance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_maintenance" title="Link to this definition"></a></dt>
+<dd><p>Generate a maintenance dataset.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_sales">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_sales</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_sales"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_sales" title="Link to this definition"></a></dt>
+<dd><p>Generate a sales dataset.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_telemetry">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_telemetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_telemetry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_telemetry" title="Link to this definition"></a></dt>
+<dd><p>Generate a telemetry dataset with realistic values and invalid samples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_vehicle_master">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_vehicle_master</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_vehicle_master"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_vehicle_master" title="Link to this definition"></a></dt>
+<dd><p>Generate a synthetic vehicle master dataset.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.data_generator.generate_warranty">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.data_generator.</span></span><span class="sig-name descname"><span class="pre">generate_warranty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/data_generator.html#generate_warranty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.data_generator.generate_warranty" title="Link to this definition"></a></dt>
+<dd><p>Generate a warranty claims dataset.</p>
+</dd></dl>
+
+</section>
+<section id="module-bmw_data_lake.validation">
+<span id="validation"></span><h2>Validation<a class="headerlink" href="#module-bmw_data_lake.validation" title="Link to this heading"></a></h2>
+<p>Data-quality validation utilities for BMW data sources.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.validation.is_valid_vin">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.validation.</span></span><span class="sig-name descname"><span class="pre">is_valid_vin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/validation.html#is_valid_vin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.validation.is_valid_vin" title="Link to this definition"></a></dt>
+<dd><p>Very simple VIN validation for synthetic data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.validation.valid_region">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.validation.</span></span><span class="sig-name descname"><span class="pre">valid_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/validation.html#valid_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.validation.valid_region" title="Link to this definition"></a></dt>
+<dd><p>Check whether region is in the approved set.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.validation.validate_dataframe">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.validation.</span></span><span class="sig-name descname"><span class="pre">validate_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/validation.html#validate_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.validation.validate_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Validate a DataFrame and return clean, rejected, and summary data.</p>
+</dd></dl>
+
+</section>
+<section id="module-bmw_data_lake.transformations">
+<span id="transformations-and-etl"></span><h2>Transformations and ETL<a class="headerlink" href="#module-bmw_data_lake.transformations" title="Link to this heading"></a></h2>
+<p>Transformation utilities for BMW datasets.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.add_partition_columns">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">add_partition_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'event_timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#add_partition_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.add_partition_columns" title="Link to this definition"></a></dt>
+<dd><p>Add year and month partitioning columns for telemetry analysis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.calculate_summary">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">calculate_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#calculate_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.calculate_summary" title="Link to this definition"></a></dt>
+<dd><p>Compute a simple summary for local QA.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.clean_missing_values">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">clean_missing_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pd.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pd.DataFrame</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#clean_missing_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.clean_missing_values" title="Link to this definition"></a></dt>
+<dd><p>Fill missing values conservatively for analysis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.convert_timestamp_columns">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">convert_timestamp_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#convert_timestamp_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.convert_timestamp_columns" title="Link to this definition"></a></dt>
+<dd><p>Convert selected timestamp columns to pandas datetime.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.drop_duplicate_records">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">drop_duplicate_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#drop_duplicate_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.drop_duplicate_records" title="Link to this definition"></a></dt>
+<dd><p>Remove duplicate records based on selected columns.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.transformations.standardize_columns">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.transformations.</span></span><span class="sig-name descname"><span class="pre">standardize_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/transformations.html#standardize_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.transformations.standardize_columns" title="Link to this definition"></a></dt>
+<dd><p>Standardize and lower-case column names.</p>
+</dd></dl>
+
+<p id="module-bmw_data_lake.etl">Local ETL pipeline for BMW telemetry and supporting datasets.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.etl.run_local_pipeline">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.etl.</span></span><span class="sig-name descname"><span class="pre">run_local_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated/curated')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/etl.html#run_local_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.etl.run_local_pipeline" title="Link to this definition"></a></dt>
+<dd><p>Run the local ETL flow for the generated BMW data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.etl.run_local_telemetry_etl">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.etl.</span></span><span class="sig-name descname"><span class="pre">run_local_telemetry_etl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_csv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WindowsPath('C:/BMWTechworks/bmw-serverless-data-lake/data/generated/curated')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bmw_data_lake/etl.html#run_local_telemetry_etl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.etl.run_local_telemetry_etl" title="Link to this definition"></a></dt>
+<dd><p>Read raw telemetry CSV, validate it, and write partitioned Parquet files.</p>
+</dd></dl>
+
+</section>
+<section id="module-bmw_data_lake.partitioning">
+<span id="partitioning"></span><h2>Partitioning<a class="headerlink" href="#module-bmw_data_lake.partitioning" title="Link to this heading"></a></h2>
+<p>Partition helper functions for BMW telemetry data.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.partitioning.build_partition_directory">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.partitioning.</span></span><span class="sig-name descname"><span class="pre">build_partition_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/partitioning.html#build_partition_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.partitioning.build_partition_directory" title="Link to this definition"></a></dt>
+<dd><p>Create a partition directory path for local file output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bmw_data_lake.partitioning.telemetry_partition_path">
+<span class="sig-prename descclassname"><span class="pre">bmw_data_lake.partitioning.</span></span><span class="sig-name descname"><span class="pre">telemetry_partition_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/bmw_data_lake/partitioning.html#telemetry_partition_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bmw_data_lake.partitioning.telemetry_partition_path" title="Link to this definition"></a></dt>
+<dd><p>Return an S3 or local partition path in a common telemetry layout.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_business_requirements.html" class="btn btn-neutral float-right" title="01. Business Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

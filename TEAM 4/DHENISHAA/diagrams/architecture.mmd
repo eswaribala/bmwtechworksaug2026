@@ -1,0 +1,12 @@
+flowchart LR
+    A[Synthetic BMW datasets] --> B[Python Data Generator]
+    B --> C[S3 Raw Zone]
+    C --> D[PySpark ETL]
+    D --> E[Curated Parquet + Partitions]
+    E --> F[AWS Glue Crawler]
+    F --> G[Glue Data Catalog]
+    G --> H[Athena]
+    H --> I[QuickSight]
+    G --> J[Lake Formation]
+    D --> K[CloudWatch]
+    A --> L[Business Insights]

@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bmw_data_lake.etl &mdash; BMW Serverless Data Lake 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BMW Serverless Data Lake
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_requirements.html">01. Business Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_solution_architecture.html">02. Solution Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_dictionary.html">03. Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_terraform_infrastructure.html">05. Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_data_processing.html">06. Data Processing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BMW Serverless Data Lake</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bmw_data_lake.etl</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bmw_data_lake.etl</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Local ETL pipeline for BMW telemetry and supporting datasets."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_GENERATED_DIR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.transformations</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">add_partition_columns</span><span class="p">,</span>
+    <span class="n">clean_missing_values</span><span class="p">,</span>
+    <span class="n">convert_timestamp_columns</span><span class="p">,</span>
+    <span class="n">drop_duplicate_records</span><span class="p">,</span>
+    <span class="n">standardize_columns</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_dataframe</span>
+
+
+<div class="viewcode-block" id="run_local_telemetry_etl">
+<a class="viewcode-back" href="../../index.html#bmw_data_lake.etl.run_local_telemetry_etl">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_local_telemetry_etl</span><span class="p">(</span>
+    <span class="n">input_csv</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">DEFAULT_GENERATED_DIR</span> <span class="o">/</span> <span class="s2">"curated"</span><span class="p">,</span>
+    <span class="n">rejected_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Path</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""Read raw telemetry CSV, validate it, and write partitioned Parquet files."""</span>
+
+    <span class="n">input_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">input_csv</span><span class="p">)</span>
+    <span class="n">output_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+    <span class="n">output_root</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">rejected_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rejected_root</span> <span class="o">=</span> <span class="n">output_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"rejected"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rejected_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">rejected_dir</span><span class="p">)</span>
+    <span class="n">rejected_root</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">telemetry_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="n">telemetry_df</span> <span class="o">=</span> <span class="n">standardize_columns</span><span class="p">(</span><span class="n">telemetry_df</span><span class="p">)</span>
+    <span class="n">telemetry_df</span> <span class="o">=</span> <span class="n">clean_missing_values</span><span class="p">(</span>
+        <span class="n">telemetry_df</span><span class="p">,</span>
+        <span class="n">fill_values</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"fault_code"</span><span class="p">:</span> <span class="s2">"UNKNOWN"</span><span class="p">,</span>
+            <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"Unknown"</span><span class="p">,</span>
+            <span class="s2">"event_date"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">clean_df</span><span class="p">,</span> <span class="n">rejected_df</span><span class="p">,</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">validate_dataframe</span><span class="p">(</span><span class="n">telemetry_df</span><span class="p">,</span> <span class="s2">"telemetry"</span><span class="p">)</span>
+    <span class="n">clean_df</span> <span class="o">=</span> <span class="n">convert_timestamp_columns</span><span class="p">(</span><span class="n">clean_df</span><span class="p">,</span> <span class="p">[</span><span class="s2">"event_timestamp"</span><span class="p">,</span> <span class="s2">"event_date"</span><span class="p">])</span>
+    <span class="n">clean_df</span> <span class="o">=</span> <span class="n">add_partition_columns</span><span class="p">(</span><span class="n">clean_df</span><span class="p">,</span> <span class="s2">"event_timestamp"</span><span class="p">)</span>
+    <span class="n">clean_df</span> <span class="o">=</span> <span class="n">drop_duplicate_records</span><span class="p">(</span><span class="n">clean_df</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"vehicle_id"</span><span class="p">,</span> <span class="s2">"event_timestamp"</span><span class="p">,</span> <span class="s2">"battery_level"</span><span class="p">])</span>
+    <span class="n">clean_df</span> <span class="o">=</span> <span class="n">clean_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"year"</span><span class="p">,</span> <span class="s2">"month"</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">output_files</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">),</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">clean_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"year"</span><span class="p">,</span> <span class="s2">"month"</span><span class="p">],</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">partition_dir</span> <span class="o">=</span> <span class="n">output_root</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">partition_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">partition_dir</span> <span class="o">/</span> <span class="s2">"part-000.parquet"</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">output_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+    <span class="n">rejected_csv</span> <span class="o">=</span> <span class="n">rejected_root</span> <span class="o">/</span> <span class="s2">"telemetry_rejected.csv"</span>
+    <span class="n">rejected_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">rejected_csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="s2">"output_files"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_files</span><span class="p">),</span>
+        <span class="s2">"rejected_csv"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">rejected_csv</span><span class="p">),</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">output_files</span><span class="p">,</span> <span class="n">summary</span></div>
+
+
+
+<div class="viewcode-block" id="run_local_pipeline">
+<a class="viewcode-back" href="../../index.html#bmw_data_lake.etl.run_local_pipeline">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_local_pipeline</span><span class="p">(</span>
+    <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">DEFAULT_GENERATED_DIR</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">DEFAULT_GENERATED_DIR</span> <span class="o">/</span> <span class="s2">"curated"</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Run the local ETL flow for the generated BMW data."""</span>
+
+    <span class="n">generated_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="n">output_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+    <span class="n">output_root</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">telemetry_input</span> <span class="o">=</span> <span class="n">generated_dir</span> <span class="o">/</span> <span class="s2">"telemetry.csv"</span>
+    <span class="n">output_files</span><span class="p">,</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">run_local_telemetry_etl</span><span class="p">(</span><span class="n">telemetry_input</span><span class="p">,</span> <span class="n">output_root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"telemetry_files"</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">output_files</span><span class="p">],</span>
+        <span class="s2">"summary"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

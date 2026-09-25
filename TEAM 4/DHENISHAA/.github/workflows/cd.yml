@@ -1,0 +1,133 @@
+name: CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      terraform_action:
+        description: Terraform action to run
+        required: true
+        default: plan
+        type: choice
+        options:
+          - plan
+          - apply
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+
+      - name: Debug repository identity
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Repository ID: ${{ github.repository_id }}"
+          echo "Owner ID: ${{ github.repository_owner_id }}"
+          echo "Ref: $GITHUB_REF"
+          echo "Environment: dev"
+
+
+
+
+      
+      
+      - name: Inspect OIDC token endpoint
+        shell: bash
+        run: |
+          set +e
+
+          echo "Checking GitHub OIDC environment variables..."
+
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ]; then
+            echo "ERROR: ACTIONS_ID_TOKEN_REQUEST_TOKEN is missing"
+          else
+            echo "Token request token: PRESENT"
+          fi
+
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then
+            echo "ERROR: ACTIONS_ID_TOKEN_REQUEST_URL is missing"
+            exit 1
+          else
+            echo "Token request URL: PRESENT"
+          fi
+
+          echo "Requesting OIDC token..."
+
+          HTTP_STATUS=$(curl -sS -o /tmp/oidc_response.json \
+            -w "%{http_code}" \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")
+
+          echo "HTTP status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "SUCCESS: GitHub returned an OIDC token."
+
+            if jq -e '.value' /tmp/oidc_response.json > /dev/null 2>&1; then
+              echo "Token response format: VALID"
+            else
+              echo "WARNING: Unexpected token response format."
+              cat /tmp/oidc_response.json
+            fi
+          else
+            echo "ERROR: OIDC token request failed."
+            echo "Response:"
+            cat /tmp/oidc_response.json
+            exit 1
+          fi
+
+
+      - name: Decode OIDC token claims
+        shell: bash
+        run: |
+          set -e
+
+          TOKEN_RESPONSE=$(curl -sS \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")
+
+          TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.value')
+
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+            echo "ERROR: Failed to retrieve token"
+            exit 1
+          fi
+
+          PAYLOAD=$(echo "$TOKEN" | cut -d '.' -f 2)
+
+          PAYLOAD=$(python -c "import sys,base64; print(base64.urlsafe_b64decode(sys.argv[1] + '=' * (-len(sys.argv[1]) % 4)).decode())" "$PAYLOAD")
+
+          echo "OIDC Claims:"
+          echo "$PAYLOAD" | jq '{iss, aud, sub}'
+
+      - name: Configure AWS credentials with OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            role-to-assume: arn:aws:iam::532404260630:role/bmw-serverless-data-lake-github-actions
+            aws-region: us-east-1
+
+      
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform
+        working-directory: terraform
+        run: terraform init
+
+      - name: Terraform plan
+        working-directory: terraform
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        if: inputs.terraform_action == 'apply'
+        working-directory: terraform
+        run: terraform apply -auto-approve tfplan

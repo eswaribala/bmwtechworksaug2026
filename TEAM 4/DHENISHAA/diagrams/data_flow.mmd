@@ -1,0 +1,10 @@
+flowchart TD
+    A[Raw CSV Files] --> B[Validation]
+    B --> C[Transform + Clean]
+    C --> D[Parquet Conversion]
+    D --> E[Partition by year/month]
+    E --> F[Curated S3 Layer]
+    F --> G[Glue Crawler]
+    G --> H[Data Catalog]
+    H --> I[Athena]
+    I --> J[Dashboard/Reports]

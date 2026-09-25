@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. CI/CD &mdash; BMW Serverless Data Lake 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. Troubleshooting" href="12_troubleshooting.html" />
+    <link rel="prev" title="10. Testing Strategy" href="10_testing_strategy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BMW Serverless Data Lake
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Project Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_business_requirements.html">01. Business Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_solution_architecture.html">02. Solution Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_dictionary.html">03. Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_data_flow.html">04. Data Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_terraform_infrastructure.html">05. Terraform Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_data_processing.html">06. Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_athena_queries.html">07. Athena Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_lake_formation_governance.html">08. Lake Formation Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_quicksight_dashboard.html">09. QuickSight Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_testing_strategy.html">10. Testing Strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">11. CI/CD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-delivery">Continuous delivery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-setup">GitHub setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="12_troubleshooting.html">12. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_deployment_runbook.html">13. Deployment Runbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_demo_script.html">14. Demo Script</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BMW Serverless Data Lake</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11. CI/CD</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/11_cicd.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ci-cd">
+<h1>11. CI/CD<a class="headerlink" href="#ci-cd" title="Link to this heading"></a></h1>
+</section>
+<section id="id1">
+<h1>11. CI/CD<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>The repository includes GitHub Actions workflows under <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.</p>
+<section id="continuous-integration">
+<h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">CI</span></code> workflow runs on pushes to <code class="docutils literal notranslate"><span class="pre">main</span></code> and on pull requests. It:</p>
+<ul class="simple">
+<li><p>Installs Python dependencies</p></li>
+<li><p>Runs Ruff checks</p></li>
+<li><p>Runs the pytest suite</p></li>
+<li><p>Builds the Sphinx documentation with warnings treated as errors</p></li>
+<li><p>Checks Terraform formatting</p></li>
+<li><p>Initializes and validates Terraform without using an AWS backend</p></li>
+</ul>
+<p>The existing project contains long lines and deliberate <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> bootstrap
+imports in operational scripts, so CI excludes Ruff rules <code class="docutils literal notranslate"><span class="pre">E501</span></code> and <code class="docutils literal notranslate"><span class="pre">E402</span></code>.</p>
+</section>
+<section id="continuous-delivery">
+<h2>Continuous delivery<a class="headerlink" href="#continuous-delivery" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">CD</span></code> workflow is manually started from the GitHub Actions tab. It:</p>
+<ol class="arabic simple">
+<li><p>Authenticates to AWS using GitHub OIDC.</p></li>
+<li><p>Initializes Terraform.</p></li>
+<li><p>Creates a Terraform plan.</p></li>
+<li><p>Applies the plan only when the <code class="docutils literal notranslate"><span class="pre">apply</span></code> input is selected.</p></li>
+</ol>
+<p>The workflow uses the protected GitHub environment <code class="docutils literal notranslate"><span class="pre">dev</span></code>. Configure an
+environment secret named <code class="docutils literal notranslate"><span class="pre">AWS_ROLE_ARN</span></code> containing an AWS IAM role trusted by
+the GitHub repository. Add required reviewers to the environment before
+allowing production deployments.</p>
+</section>
+<section id="github-setup">
+<h2>GitHub setup<a class="headerlink" href="#github-setup" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Push this repository to GitHub.</p></li>
+<li><p>Create an AWS IAM OIDC provider for
+<code class="docutils literal notranslate"><span class="pre">https://token.actions.githubusercontent.com</span></code>.</p></li>
+<li><p>Create an IAM deployment role restricted to this repository and branch.</p></li>
+<li><p>Add the role ARN as the <code class="docutils literal notranslate"><span class="pre">AWS_ROLE_ARN</span></code> secret in the <code class="docutils literal notranslate"><span class="pre">dev</span></code> environment.</p></li>
+<li><p>Run the CI workflow from a pull request or push.</p></li>
+<li><p>Start the CD workflow manually and select <code class="docutils literal notranslate"><span class="pre">plan</span></code> first.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">apply</span></code> only after reviewing the plan and approving the environment.</p></li>
+</ol>
+<p>AWS access keys must not be committed to the repository or stored as GitHub
+secrets when OIDC is available.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="10_testing_strategy.html" class="btn btn-neutral float-left" title="10. Testing Strategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="12_troubleshooting.html" class="btn btn-neutral float-right" title="12. Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

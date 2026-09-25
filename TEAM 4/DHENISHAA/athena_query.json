@@ -1,0 +1,6 @@
+﻿{
+  "QueryString": "SELECT count(*) AS row_count FROM \"bmw-serverless-data-lake_dev\".\"curated\"",
+  "QueryExecutionContext": {"Database": "bmw-serverless-data-lake_dev"},
+  "ResultConfiguration": {"OutputLocation": "s3://bmw-serverless-data-lake-dev-bmw-data-lake-dev/athena-results/"},
+  "WorkGroup": "bmw-serverless-data-lake-dev-analytics"
+}

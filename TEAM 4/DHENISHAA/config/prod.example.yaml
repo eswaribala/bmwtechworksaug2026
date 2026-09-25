@@ -1,0 +1,5 @@
+project_name: bmw-serverless-data-lake
+environment: prod
+aws_region: us-east-1
+bucket_suffix: bmw-data-lake-prod
+quicksight_enabled: false
