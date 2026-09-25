@@ -1,0 +1,43 @@
+name: BMW analytics CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt
+      - run: ruff check src tests
+      - run: pytest -q --cov=src --cov-report=term-missing
+      - run: python -m compileall src
+      - name: Package source
+        run: tar -czf bmw-analytics-${{ github.sha }}.tar.gz src sql requirements.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bmw-analytics-${{ github.sha }}
+          path: bmw-analytics-${{ github.sha }}.tar.gz
+
+  deploy:
+    needs: test-and-package
+    if: github.ref == 'refs/heads/main' && vars.AWS_REGION != '' && vars.AWS_DEPLOY_ROLE_ARN != '' && vars.BMW_BUCKET_NAME != ''
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+      - run: aws s3 sync sql/ s3://${{ vars.BMW_BUCKET_NAME }}/sql/ --delete
